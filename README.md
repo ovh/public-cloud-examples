@@ -1,13 +1,26 @@
-# Infrastructure architectures made of OVHcloud component assemblies 
+# Public cloud examples
 
-Here you find a list of examples that use several OVHcloud public cloud products. 
-
+<div style="color: red;
+    font-weight:700;
+    font-size: 35px;text-align: center;">
+⚠️ Work In Progress repository ⚠️ .</br>
+Use these examples at your own risk 😉.
+</div>
+</br>
+<br>
+Here you find a list of examples that use several OVHcloud [public cloud products](https://www.ovhcloud.com/fr/public-cloud/). 
  
 You've developed a new cool feature? Fixed an annoying bug? We'd be happy
 to hear from you!
  
 Have a look in [CONTRIBUTING.md](https://github.com/ovh/public-cloud-examples/blob/master/CONTRIBUTING.md)
  
+# Tools for labs
+
+Here you find severals tools to help you to build a lab on OVHcloud public cloud products.
+
+ - Create several [K3s](https://k3s.io/) instances on public cloud instances : go in the [labs/k3s](./labs/labk3s/) and read the [README](./labs/labk3s/README.md)
+
 # Related links
  
  * Contribute: https://github.com/ovh/public-cloud-examples/blob/master/CONTRIBUTING.md
