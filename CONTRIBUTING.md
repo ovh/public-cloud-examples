@@ -8,9 +8,7 @@ pay attention to a few things:
 3. your code must be documented
 4. your work must be signed (see below)
 5. you may contribute through GitHub Pull Requests
- 
-# Coding and documentation Style
- 
+  
 # Submitting Modifications
  
 The contributions should be submitted through Github Pull Requests
