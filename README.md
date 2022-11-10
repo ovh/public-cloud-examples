@@ -1,13 +1,7 @@
 # Public cloud examples
 
-<div style="color: red;
-    font-weight:700;
-    font-size: 35px;text-align: center;">
-⚠️ Work In Progress repository ⚠️ .</br>
-Use these examples at your own risk 😉.
-</div>
-</br>
-<br>
+![Work in progess](./docs/assets/wip.jpg)
+
 Here you find a list of examples that use several OVHcloud [public cloud products](https://www.ovhcloud.com/fr/public-cloud/). 
  
 You've developed a new cool feature? Fixed an annoying bug? We'd be happy
