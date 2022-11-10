@@ -11,8 +11,6 @@ pay attention to a few things:
  
 # Coding and documentation Style
  
-TDB
-
 # Submitting Modifications
  
 The contributions should be submitted through Github Pull Requests

@@ -22,7 +22,7 @@ Here you find severals tools to help you to build a lab on OVHcloud public cloud
  
 # License
  
-Copyright 2021 OVH SAS
+Copyright 2022 OVH SAS
  
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
