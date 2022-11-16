@@ -1,6 +1,16 @@
 # Starting Pack to manage your OVHcloud Services from shell
 
-In this tutorial, you will learn how to install and setup tools you need to manage [OVHcloud services](https://www.ovhcloud.com), as [OVHcloud API](https://api.ovh.com), [Openstack](https://www.openstack.org), [Terraform](https://www.terraform.io) and [Ansible](https://www.ansible.com).
+In this tutorial, you will learn how to install, setup and use tools to manage [OVHcloud services](https://www.ovhcloud.com).
+
+- [OVHcloud API](https://api.ovh.com) Bash script
+
+- [Openstack](https://www.openstack.org)
+
+- [Terraform](https://www.terraform.io)
+
+- [kubectl](https://kubernetes.io/docs/tasks/tools)
+
+- [Ansible](https://www.ansible.com)
 
 ## Pre-requisites
 
