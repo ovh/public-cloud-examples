@@ -2,6 +2,8 @@
 
 vRack + private network + subnet + router
 
+ > subnet details : static and DHCP range
+
 ## Pre-requisites
 
 examples - basics - ovhrc file
