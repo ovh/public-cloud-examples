@@ -200,13 +200,218 @@ Result:
 pn-xxxxxx_2
 ```
 
-## terraform cli
+- Change your PCI account description
 
-## Examples
+```bash
+# Create a data JSON file.
+cat << 'EOF' > data.json
+{
+  "description": "My_PCI_Project",
+  "manualQuota": false
+}
+EOF
+
+./ovhAPI.sh POST /cloud/project/${OS_TENANT_ID} $(jq -c . < data.json)
+```
+
+Result:
+
+```bash
+null
+```
+
+the `null` response means it's OK.
+
+Check the new description with:
+
+```bash
+./ovhAPI.sh GET /cloud/project/${OS_TENANT_ID} | jq .description
+```
+
+Result:
+
+```bash
+"My_PCI_Project"
+```
+
+### terraform cli
+
+Install Terraform by following the [Install Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli) tutorial.
+
+Example on an Ubuntu/Debian system:
+
+```bash
+wget -O- https://apt.releases.hashicorp.com/gpg | gpg --dearmor | sudo tee /usr/share/keyrings/hashicorp-archive-keyring.gpg >/dev/null
+echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+sudo apt-get update && sudo apt-get install terraform
+```
+
+Test the Terraform setup:
+
+```bash
+terraform init
+```
+
+Result:
+
+```bash
+Initializing the backend...
+
+Initializing provider plugins...
+- Finding latest version of ovh/ovh...
+- Finding terraform-provider-openstack/openstack versions matching "~> 1.35.0"...
+- Installing ovh/ovh v0.22.0...
+- Installed ovh/ovh v0.22.0 (signed by a HashiCorp partner, key ID F56D1A6CBDAAADA5)
+- Installing terraform-provider-openstack/openstack v1.35.0...
+- Installed terraform-provider-openstack/openstack v1.35.0 (self-signed, key ID 4F80527A391BEFD2)
+
+Partner and community providers are signed by their developers.
+If you'd like to know more about provider signing, you can read about it here:
+https://www.terraform.io/docs/cli/plugins/signing.html
+
+Terraform has created a lock file .terraform.lock.hcl to record the provider
+selections it made above. Include this file in your version control repository
+so that Terraform can guarantee to make the same selections by default when
+you run "terraform init" in the future.
+
+Terraform has been successfully initialized!
+
+You may now begin working with Terraform. Try running "terraform plan" to see
+any changes that are required for your infrastructure. All Terraform commands
+should now work.
+
+If you ever set or change modules or backend configuration for Terraform,
+rerun this command to reinitialize your working directory. If you forget, other
+commands will detect it and remind you to do so if necessary.
+```
+
+Example:
+
+- Create a SSH Keypair
+
+```bash
+cat << 'EOF' > keypair.tf
+resource "openstack_compute_keypair_v2" "myKeypair" {
+  name       		= "myKeypair"
+  public_key 		= "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxW9O0o0ENkVJ19/KFD33NYDtC1arT4u2aUl4heuKmAfrLrZUQvVQMuST50YHwlJSy9LVtnsRxZiFyI/xyTMmtPQ+oIOWMkQyuNlONcQHKtMNPa1P/Q8h2362A6eN7UB5z6qDSin+k/RkwnkypEi1I5AWQiZdxrT9RqdzHINHn0DdJPcJB93ZMp3c1pUhTpGXW1xq7JbFBlTeUgCJV+eSz+eVbMfgFWnU8M8exzMbxUCSGxhIaYrAXYeEp Generated-by-Nova"
+}
+EOF
+
+terraform init
+terraform apply
+```
+
+Result:
+
+```bash
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # openstack_compute_keypair_v2.myKeypair will be created
+  + resource "openstack_compute_keypair_v2" "myKeypair" {
+      + fingerprint = (known after apply)
+      + id          = (known after apply)
+      + name        = "myKeypair"
+      + private_key = (known after apply)
+      + public_key  = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxW9O0o0ENkVJ19/KFD33NYDtC1arT4u2aUl4heuKmAfrLrZUQvVQMuST50YHwlJSy9LVtnsRxZiFyI/xyTMmtPQ+oIOWMkQyuNlONcQHKtMNPa1P/Q8h2362A6eN7UB5z6qDSin+k/RkwnkypEi1I5AWQiZdxrT9RqdzHINHn0DdJPcJB93ZMp3c1pUhTpGXW1xq7JbFBlTeUgCJV+eSz+eVbMfgFWnU8M8exzMbxUCSGxhIaYrAXYeEp Generated-by-Nova"
+      + region      = (known after apply)
+    }
+
+Plan: 1 to add, 0 to change, 0 to destroy.
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+openstack_compute_keypair_v2.myKeypair: Creating...
+openstack_compute_keypair_v2.myKeypair: Creation complete after 1s [id=myKeypair]
+
+Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
+```
+
+You can check if the key exists with openstack cli too:
+
+```bash
+openstack keypair list
+```
+
+Result:
+
+```bash
++-----------------+-------------------------------------------------+
+| Name            | Fingerprint                                     |
++-----------------+-------------------------------------------------+
+| myKeypair       | db:8c:2e:62:xx:xx:xx:xx:xx:c9:1c:a6:a9:06:05:82 |
++-----------------+-------------------------------------------------+
+```
+
+## Install additionnaly useful tools
+
+### Ansible
+
+Install `ansible` by following the [Installing Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html) tutorial.
+
+Example on an Ubuntu/Debian system:
+
+```bash
+sudo add-apt-repository -y ppa:ansible/ansible
+sudo apt update && sudo apt install -y ansible
+```
+
+### Kubectl
+
+Install the Kubernetes command-line tool `kubectl` by following the first step of the [Install Tools](https://kubernetes.io/docs/tasks/tools) tutorial.
+
+Example on an Ubuntu/Debian system:
+
+```bash
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl" \
+        && sudo mv ./kubectl /usr/local/bin/kubectl \
+        && sudo chmod 0755 /usr/local/bin/kubectl
+```
+
+Example:
+
+- Get an existing Managed Kubernetes config file with the OVHcloud API and use the kubectl tool:
+
+Get your Managed Kubernetes service id with this command:
+
+```bash
+./ovhAPI.sh GET /cloud/project/${OS_TENANT_ID}/kube
+```
+
+Then get the associated config file:
+
+```bash
+./ovhAPI.sh POST /cloud/project/${OS_TENANT_ID}/kube/xxxxxxxx-9241-4a9e-86ba-xxxxxxxxxxxx/kubeconfig | jq -r .content > mykubeconfig
+```
+
+Test the kubectl Managed Kubernetes cluster access:
+
+```bash
+export KUBECONFIG=./mykubeconfig
+kubectl get ns
+```
+
+Result:
+
+```bash
+NAME              STATUS   AGE
+default           Active   8d
+ingress-nginx     Active   8d
+kube-node-lease   Active   8d
+kube-public       Active   8d
+kube-system       Active   8d
+logging           Active   8d
+monitoring        Active   8d
+```
 
 ## Go further
 
+Now you can access and manage all [OVHcloud products](https://docs.ovh.com/gb/en) from your shell and start scripting useful tools.
 
-```bash
-
-```
+Feel free to propose new tools or differents ways to manage our services.
