@@ -143,14 +143,14 @@ The result should be like:
 
 ### OVHcloud API bash script
 
-The `ovhAPI.sh` is a bash script that helps you to request the [OVHcloud API](https://api.ovh.com).
+The `utils/ovhAPI.sh` is a bash script that helps you to request the [OVHcloud API](https://api.ovh.com).
 
 Examples: 
 
 - Get your PCI private networks list:
 
 ```bash
-./ovhAPI.sh GET /cloud/project/${OS_TENANT_ID}/network/private |jq
+utils/ovhAPI.sh GET /cloud/project/${OS_TENANT_ID}/network/private |jq
 ```
 
 Result:
@@ -191,7 +191,7 @@ Result:
 - Get the PCI private network id from its name, using jq:
 
 ```bash
-./ovhAPI.sh GET /cloud/project/${OS_TENANT_ID}/network/private | jq -r '.[] | select(.name=="my-private-nw") |.id'
+utils/ovhAPI.sh GET /cloud/project/${OS_TENANT_ID}/network/private | jq -r '.[] | select(.name=="my-private-nw") |.id'
 ```
 
 Result:
@@ -211,7 +211,7 @@ cat << 'EOF' > data.json
 }
 EOF
 
-./ovhAPI.sh POST /cloud/project/${OS_TENANT_ID} $(jq -c . < data.json)
+utils/ovhAPI.sh POST /cloud/project/${OS_TENANT_ID} $(jq -c . < data.json)
 ```
 
 Result:
@@ -225,7 +225,7 @@ the `null` response means it's OK.
 Check the new description with:
 
 ```bash
-./ovhAPI.sh GET /cloud/project/${OS_TENANT_ID} | jq .description
+utils/ovhAPI.sh GET /cloud/project/${OS_TENANT_ID} | jq .description
 ```
 
 Result:
@@ -249,6 +249,7 @@ sudo apt-get update && sudo apt-get install terraform
 Test the Terraform setup:
 
 ```bash
+cd terraform
 terraform init
 ```
 
@@ -381,13 +382,13 @@ Example:
 Get your Managed Kubernetes service id with this command:
 
 ```bash
-./ovhAPI.sh GET /cloud/project/${OS_TENANT_ID}/kube
+utils/ovhAPI.sh GET /cloud/project/${OS_TENANT_ID}/kube
 ```
 
 Then get the associated config file:
 
 ```bash
-./ovhAPI.sh POST /cloud/project/${OS_TENANT_ID}/kube/xxxxxxxx-9241-4a9e-86ba-xxxxxxxxxxxx/kubeconfig | jq -r .content > mykubeconfig
+utils/ovhAPI.sh POST /cloud/project/${OS_TENANT_ID}/kube/xxxxxxxx-9241-4a9e-86ba-xxxxxxxxxxxx/kubeconfig | jq -r .content > mykubeconfig
 ```
 
 Test the kubectl Managed Kubernetes cluster access:

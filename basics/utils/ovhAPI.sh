@@ -16,7 +16,7 @@
 
 # Script variables(s)
 SCRIPTROOTDIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
-source $SCRIPTROOTDIR/ovhrc
+source $SCRIPTROOTDIR/../ovhrc
 
 # Input parameters
 METHOD="${1}"
