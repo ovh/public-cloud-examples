@@ -256,7 +256,7 @@ openstack_networking_router_v2.myRouter: Creating...
 ovh_cloud_project_network_private.myPrivateNetwork: Creating...
 openstack_networking_router_v2.myRouter: Still creating... [10s elapsed]
 ovh_cloud_project_network_private.myPrivateNetwork: Still creating... [10s elapsed]
-ovh_cloud_project_network_private.myPrivateNetwork: Creation complete after 16s [id=pn-1083922_30]
+ovh_cloud_project_network_private.myPrivateNetwork: Creation complete after 16s [id=pn-xxxxxxxx_30]
 openstack_networking_subnet_v2.mySubnet: Creating...
 openstack_networking_router_v2.myRouter: Creation complete after 17s [id=xxxxxx-e0d3-4889-ae7e-xxxxxxxxxxxx]
 openstack_networking_subnet_v2.mySubnet: Creation complete after 6s [id=xxxxxxxx-6a1d-4027-8ebe-xxxxxxxxxxxx]
@@ -348,7 +348,7 @@ Import successful!
 The resources that were imported are shown above. These resources are now in
 your Terraform state and will henceforth be managed by Terraform.
 
-ovh_cloud_project_network_private.myPrivateNetwork: Importing from ID "xxxxxxxxxxxx4017a6a6f6bxxxxxxxxx/pn-1083922_30"...
+ovh_cloud_project_network_private.myPrivateNetwork: Importing from ID "xxxxxxxxxxxx4017a6a6f6bxxxxxxxxx/pn-xxxxxxxx_30"...
 ovh_cloud_project_network_private.myPrivateNetwork: Import prepared!
   Prepared ovh_cloud_project_network_private for import
 ovh_cloud_project_network_private.myPrivateNetwork: Refreshing state... [id=pn-xxxxxxx_30]
@@ -374,9 +374,138 @@ your Terraform state and will henceforth be managed by Terraform.
 ## deleteNetwork.sh
 
 ```bash
-
+./deleteNetwork.sh
 ```
+
+<details><summary>See output</summary>
 
 ```bash
+Removed openstack_networking_network_v2.Ext-Net
+Successfully removed 1 resource instance(s).
+openstack_networking_router_v2.myRouter: Refreshing state... [id=xxxxxx-e0d3-4889-ae7e-xxxxxxxxxxxx]
+ovh_cloud_project_network_private.myPrivateNetwork: Refreshing state... [id=pn-xxxxxxxx_30]
+openstack_networking_subnet_v2.mySubnet: Refreshing state... [id=xxxxxxxx-6a1d-4027-8ebe-xxxxxxxxxxxx]
+openstack_networking_router_interface_v2.myRouterInterface: Refreshing state... [id=xxxxxxxx-038e-4572-ad80-xxxxxxxxxxxx]
 
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  - destroy
+
+Terraform will perform the following actions:
+
+  # openstack_networking_router_interface_v2.myRouterInterface will be destroyed
+  - resource "openstack_networking_router_interface_v2" "myRouterInterface" {
+      - id        = "xxxxxxxx-038e-4572-ad80-xxxxxxxxxxxx" -> null
+      - port_id   = "xxxxxxxx-038e-4572-ad80-xxxxxxxxxxxx" -> null
+      - region    = "GRA9" -> null
+      - router_id = "xxxxxx-e0d3-4889-ae7e-xxxxxxxxxxxx" -> null
+      - subnet_id = "xxxxxxxx-6a1d-4027-8ebe-xxxxxxxxxxxx" -> null
+
+      - timeouts {}
+    }
+
+  # openstack_networking_router_v2.myRouter will be destroyed
+  - resource "openstack_networking_router_v2" "myRouter" {
+      - admin_state_up          = true -> null
+      - all_tags                = [] -> null
+      - availability_zone_hints = [] -> null
+      - distributed             = false -> null
+      - enable_snat             = true -> null
+      - external_gateway        = "xxxxxxxx-ffdf-40f6-9722-xxxxxxxxxxxx" -> null
+      - external_network_id     = "xxxxxxxx-ffdf-40f6-9722-xxxxxxxxxxxx" -> null
+      - id                      = "xxxxxx-e0d3-4889-ae7e-xxxxxxxxxxxx" -> null
+      - name                    = "myRouter" -> null
+      - region                  = "GRA9" -> null
+      - tags                    = [] -> null
+      - tenant_id               = "xxxxxxxxxxxx4017a6a6f6bxxxxxxxxx" -> null
+
+      - external_fixed_ip {
+          - ip_address = "51.210.147.144" -> null
+          - subnet_id  = "xxxxxxxx-c441-4678-b395-xxxxxxxxxxxx" -> null
+        }
+
+      - timeouts {}
+    }
+
+  # openstack_networking_subnet_v2.mySubnet will be destroyed
+  - resource "openstack_networking_subnet_v2" "mySubnet" {
+      - all_tags        = [] -> null
+      - cidr            = "192.168.2.0/24" -> null
+      - dns_nameservers = [
+          - "1.1.1.1",
+          - "1.0.0.1",
+        ] -> null
+      - enable_dhcp     = true -> null
+      - gateway_ip      = "192.168.2.1" -> null
+      - id              = "xxxxxxxx-6a1d-4027-8ebe-xxxxxxxxxxxx" -> null
+      - ip_version      = 4 -> null
+      - name            = "mySubnet" -> null
+      - network_id      = "xxxxxxxx-cc06-49f7-8966-xxxxxxxxxxxx" -> null
+      - no_gateway      = false -> null
+      - region          = "GRA9" -> null
+      - tags            = [] -> null
+      - tenant_id       = "xxxxxxxxxxxx4017a6a6f6bxxxxxxxxx" -> null
+
+      - allocation_pool {
+          - end   = "192.168.2.254" -> null
+          - start = "192.168.2.200" -> null
+        }
+
+      - allocation_pools {
+          - end   = "192.168.2.254" -> null
+          - start = "192.168.2.200" -> null
+        }
+
+      - timeouts {}
+    }
+
+  # ovh_cloud_project_network_private.myPrivateNetwork will be destroyed
+  - resource "ovh_cloud_project_network_private" "myPrivateNetwork" {
+      - id                 = "pn-xxxxxxxx_30" -> null
+      - name               = "myPrivateNetwork" -> null
+      - regions            = [
+          - "GRA9",
+        ] -> null
+      - regions_attributes = [
+          - {
+              - openstackid = "xxxxxxxx-cc06-49f7-8966-xxxxxxxxxxxx"
+              - region      = "GRA9"
+              - status      = "ACTIVE"
+            },
+        ] -> null
+      - regions_status     = [
+          - {
+              - region = "GRA9"
+              - status = "ACTIVE"
+            },
+        ] -> null
+      - service_name       = "xxxxxxxxxxxx4017a6a6f6bxxxxxxxxx" -> null
+      - status             = "ACTIVE" -> null
+      - type               = "private" -> null
+      - vlan_id            = 30 -> null
+    }
+
+Plan: 0 to add, 0 to change, 4 to destroy.
+
+Changes to Outputs:
+  - Ext-NetID          = "xxxxxxxx-ffdf-40f6-9722-xxxxxxxxxxxx" -> null
+  - myPrivateNetworkID = "xxxxxxxx-cc06-49f7-8966-xxxxxxxxxxxx" -> null
+  - mySubnetID         = "xxxxxxxx-6a1d-4027-8ebe-xxxxxxxxxxxx" -> null
+  - serviceName        = "xxxxxxxxxxxx4017a6a6f6bxxxxxxxxx" -> null
+openstack_networking_router_interface_v2.myRouterInterface: Destroying... [id=xxxxxxxx-038e-4572-ad80-xxxxxxxxxxxx]
+openstack_networking_router_interface_v2.myRouterInterface: Still destroying... [id=xxxxxxxx-038e-4572-ad80-xxxxxxxxxxxx, 10s elapsed]
+openstack_networking_router_interface_v2.myRouterInterface: Destruction complete after 15s
+openstack_networking_router_v2.myRouter: Destroying... [id=xxxxxx-e0d3-4889-ae7e-xxxxxxxxxxxx]
+openstack_networking_subnet_v2.mySubnet: Destroying... [id=xxxxxxxx-6a1d-4027-8ebe-xxxxxxxxxxxx]
+openstack_networking_router_v2.myRouter: Destruction complete after 10s
+openstack_networking_subnet_v2.mySubnet: Still destroying... [id=xxxxxxxx-6a1d-4027-8ebe-xxxxxxxxxxxx, 10s elapsed]
+openstack_networking_subnet_v2.mySubnet: Destruction complete after 12s
+ovh_cloud_project_network_private.myPrivateNetwork: Destroying... [id=pn-xxxxxxxx_30]
+ovh_cloud_project_network_private.myPrivateNetwork: Still destroying... [id=pn-xxxxxxxx_30, 10s elapsed]
+ovh_cloud_project_network_private.myPrivateNetwork: Destruction complete after 16s
+
+Destroy complete! Resources: 4 destroyed.
 ```
+
+</details>
+
+
