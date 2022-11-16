@@ -33,7 +33,8 @@ export TF_VAR_rtrIp="192.168.2.1"
 ./createNetwork.sh
 ```
 
-<details>
+<details><summary>See result</summary>
+
 ```bash
 Initializing the backend...
 
@@ -272,6 +273,7 @@ myPrivateNetworkID = "477e9eeb-cc06-49f7-8966-26ebe88d8317"
 mySubnetID = "1fb0115f-6a1d-4027-8ebe-b1560ef9bb07"
 serviceName = "706b47d91da24017a6a6f6b6ef1cf53a"
 ```
+
 </details>
 
 ## importNetworks.sh
