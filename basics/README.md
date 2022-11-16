@@ -14,13 +14,13 @@ What you need to follow this tutorial is:
 
 ## Configuration file
 
-All needed variables are stored in the `ovhrc` files. Copy and paste the `ovhrc.template` file to create yours.
+All necessary variables are stored in the `ovhrc` files. Copy and paste the `ovhrc.template` file to create yours.
 
 ```bash
 cp ovhrc.template ovhrc
 ```
 
-Now you have to add needed values to variables.
+Now you have to add values to variables.
 
 ### Variables from openstack openrc file
 
