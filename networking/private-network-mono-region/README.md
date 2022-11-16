@@ -64,17 +64,17 @@ should now work.
 If you ever set or change modules or backend configuration for Terraform,
 rerun this command to reinitialize your working directory. If you forget, other
 commands will detect it and remind you to do so if necessary.
-openstack_networking_network_v2.Ext-Net: Importing from ID "b2c02fdc-ffdf-40f6-9722-533bd7058c06"...
+openstack_networking_network_v2.Ext-Net: Importing from ID "xxxxxxxx-ffdf-40f6-9722-xxxxxxxxxxxx"...
 openstack_networking_network_v2.Ext-Net: Import prepared!
   Prepared openstack_networking_network_v2 for import
-openstack_networking_network_v2.Ext-Net: Refreshing state... [id=b2c02fdc-ffdf-40f6-9722-533bd7058c06]
+openstack_networking_network_v2.Ext-Net: Refreshing state... [id=xxxxxxxx-ffdf-40f6-9722-xxxxxxxxxxxx]
 
 Import successful!
 
 The resources that were imported are shown above. These resources are now in
 your Terraform state and will henceforth be managed by Terraform.
 
-openstack_networking_network_v2.Ext-Net: Refreshing state... [id=b2c02fdc-ffdf-40f6-9722-533bd7058c06]
+openstack_networking_network_v2.Ext-Net: Refreshing state... [id=xxxxxxxx-ffdf-40f6-9722-xxxxxxxxxxxx]
 
 Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
   + create
@@ -98,7 +98,7 @@ Terraform will perform the following actions:
       + distributed             = (known after apply)
       + enable_snat             = (known after apply)
       + external_gateway        = (known after apply)
-      + external_network_id     = "b2c02fdc-ffdf-40f6-9722-533bd7058c06"
+      + external_network_id     = "xxxxxxxx-ffdf-40f6-9722-xxxxxxxxxxxx"
       + id                      = (known after apply)
       + name                    = "myRouter"
       + region                  = (known after apply)
@@ -150,7 +150,7 @@ Terraform will perform the following actions:
         ]
       + regions_attributes = (known after apply)
       + regions_status     = (known after apply)
-      + service_name       = "706b47d91da24017a6a6f6b6ef1cf53a"
+      + service_name       = "xxxxxxxxxxxx4017a6a6f6bxxxxxxxxx"
       + status             = (known after apply)
       + type               = (known after apply)
       + vlan_id            = 30
@@ -165,7 +165,7 @@ Changes to Outputs:
 ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 
 Note: You didn't use the -out option to save this plan, so Terraform can't guarantee to take exactly these actions if you run "terraform apply" now.
-openstack_networking_network_v2.Ext-Net: Refreshing state... [id=b2c02fdc-ffdf-40f6-9722-533bd7058c06]
+openstack_networking_network_v2.Ext-Net: Refreshing state... [id=xxxxxxxx-ffdf-40f6-9722-xxxxxxxxxxxx]
 
 Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
   + create
@@ -189,7 +189,7 @@ Terraform will perform the following actions:
       + distributed             = (known after apply)
       + enable_snat             = (known after apply)
       + external_gateway        = (known after apply)
-      + external_network_id     = "b2c02fdc-ffdf-40f6-9722-533bd7058c06"
+      + external_network_id     = "xxxxxxxx-ffdf-40f6-9722-xxxxxxxxxxxx"
       + id                      = (known after apply)
       + name                    = "myRouter"
       + region                  = (known after apply)
@@ -241,7 +241,7 @@ Terraform will perform the following actions:
         ]
       + regions_attributes = (known after apply)
       + regions_status     = (known after apply)
-      + service_name       = "706b47d91da24017a6a6f6b6ef1cf53a"
+      + service_name       = "xxxxxxxxxxxx4017a6a6f6bxxxxxxxxx"
       + status             = (known after apply)
       + type               = (known after apply)
       + vlan_id            = 30
@@ -258,20 +258,20 @@ openstack_networking_router_v2.myRouter: Still creating... [10s elapsed]
 ovh_cloud_project_network_private.myPrivateNetwork: Still creating... [10s elapsed]
 ovh_cloud_project_network_private.myPrivateNetwork: Creation complete after 16s [id=pn-1083922_30]
 openstack_networking_subnet_v2.mySubnet: Creating...
-openstack_networking_router_v2.myRouter: Creation complete after 17s [id=af2113c6-e0d3-4889-ae7e-0d29515c5626]
-openstack_networking_subnet_v2.mySubnet: Creation complete after 6s [id=1fb0115f-6a1d-4027-8ebe-b1560ef9bb07]
+openstack_networking_router_v2.myRouter: Creation complete after 17s [id=xxxxxx-e0d3-4889-ae7e-xxxxxxxxxxxx]
+openstack_networking_subnet_v2.mySubnet: Creation complete after 6s [id=xxxxxxxx-6a1d-4027-8ebe-xxxxxxxxxxxx]
 openstack_networking_router_interface_v2.myRouterInterface: Creating...
 openstack_networking_router_interface_v2.myRouterInterface: Still creating... [10s elapsed]
-openstack_networking_router_interface_v2.myRouterInterface: Creation complete after 12s [id=eb40c7e4-038e-4572-ad80-5c1a16553503]
+openstack_networking_router_interface_v2.myRouterInterface: Creation complete after 12s [id=xxxxxxxx-038e-4572-ad80-xxxxxxxxxxxx]
 
 Apply complete! Resources: 4 added, 0 changed, 0 destroyed.
 
 Outputs:
 
-Ext-NetID = "b2c02fdc-ffdf-40f6-9722-533bd7058c06"
-myPrivateNetworkID = "477e9eeb-cc06-49f7-8966-26ebe88d8317"
-mySubnetID = "1fb0115f-6a1d-4027-8ebe-b1560ef9bb07"
-serviceName = "706b47d91da24017a6a6f6b6ef1cf53a"
+Ext-NetID = "xxxxxxxx-ffdf-40f6-9722-xxxxxxxxxxxx"
+myPrivateNetworkID = "xxxxxxxx-cc06-49f7-8966-xxxxxxxxxxxx"
+mySubnetID = "xxxxxxxx-6a1d-4027-8ebe-xxxxxxxxxxxx"
+serviceName = "xxxxxxxxxxxx4017a6a6f6bxxxxxxxxx"
 ```
 
 </details>
