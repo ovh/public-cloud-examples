@@ -1,9 +1,10 @@
 #!/bin/bash
 
-app="labk3s"
+SCRIPTROOTDIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+cd $SCRIPTROOTDIR
 
-DIR="/workspace/OVHcloud-small-recipes"
-cd ${DIR}/$app
+source ./ovhrc
+source ./properties
 
 terraform destroy --auto-approve 
 

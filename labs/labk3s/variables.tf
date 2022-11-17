@@ -4,7 +4,7 @@ variable "keypairAdmin" {
 
 variable "imageId" {
  type = string
- default = "832e22a6-e665-4b7d-a625-5413a2833a5b"
+ default = "680bf266-52a2-4794-a3b7-9bb30a933bdc"
 }
 
 variable "flavorId" {

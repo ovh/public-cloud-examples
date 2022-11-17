@@ -1,7 +1,10 @@
 #!/bin/bash
 
-DIR="/workspace/OVHcloud-small-recipes"
-cd ${DIR}/labk3s
+SCRIPTROOTDIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+cd $SCRIPTROOTDIR
+
+source ./ovhrc
+source ./properties
 
 terraform init
 
