@@ -30,18 +30,18 @@ Be sure you have your private and public keys into your `$HOME/.ssh` directory, 
 
 ## Create Lab Instances
 
-### Specify how many instances you want
+### Lab Instances parameters
 
-Open the `createInstances.sh` script and insert the desired value into the **nb** variable.
+Open the `properties` files and modify variables with desired values.
 
 example:
 ```bash
-# nb --> how many instances you want to create
-nb=30
+export imageName="Ubuntu 22.04"
+export flavorName="b2-7"
+export nbInstances=3
 ```
 
-Save and exit script.
-
+Save and exit file.
 
 ### Create the lab instances
 

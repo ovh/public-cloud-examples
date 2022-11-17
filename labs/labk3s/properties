@@ -1,0 +1,3 @@
+export imageName="Ubuntu 22.04"
+export flavorName="b2-7"
+export nbInstances=3
