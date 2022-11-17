@@ -6,59 +6,33 @@ Just after the instance creation, the Kubernetes config file is imported, you'll
 
 ## Pré-requisites
 
-### Openstack configuration file
+What you need to follow this tutorial is:
 
-We use Openstack to get instances Ids.
+- an [OVHcloud account](https://docs.ovh.com/gb/en/customer/create-ovhcloud-account).
 
-Import the appropriate openrc file at he root of this project.
+- an [OVHcloud PCI project](https://docs.ovh.com/gb/en/public-cloud/create_a_public_cloud_project).
 
-> Using Gitpod ? Create a variable named **OS_OPENRC_B64**, with the base64 encoded content of the file. The openrc file will be automaticly created with right content.
+- a shell with [Bash](https://www.gnu.org/software/bash) installed.
+
+- an installed and configured [Openstack](https://www.openstack.org) client.
+
+- an installed [Terraform](https://www.terraform.io) client.
+
+ > To install and setup Openstack and Terraform clients, just follow the [Starting Pack to manage your OVHcloud Services from shell](../../basics/README.md) tutorial.
+
+- a full configured `ovhrc` file with your parameters.
 
 ### SSH keypair for admin
 
 Create a keypair named **keypairAdmin**, or choose a different name in your openstack project, this is for adding your SSH public key into the instances.
 
-Be sure you have your private and public keys into your **$HOME/.ssh** directory, this keys will be use by Ansible.
-
-> Using Gitpod ? Create a couple of variables named **SSH_PUB_B64** and **SSH_PV_B64**, with respectivly the base64 encoded content of yout SSH public and private keys. The workspace will be created with your provided SSH keys in the $HOME/.ssh directory, and the **TF_VAR_keypairAdmin** variable will be automaticly setted.
-
-### Create OVHcloud API token
-
-This token are used by the OVHcloud Terraform provider.
-
-Go to [this page](https://www.ovh.com/auth/api/createToken) to create and save your token.
-
-### Terraform configuration file
-
-We use Terraform to instanciate instances and then launch Ansible post-creation K3s setup tasks.
-
-Create a terraformrc file at the root of this project like this:
-
-```bash
-export OVH_ENDPOINT=ovh-eu
-export OVH_APPLICATION_KEY=
-export OVH_APPLICATION_SECRET=
-export OVH_CONSUMER_KEY=
-export TF_VAR_IP=xx.xx.xx.xx/32
-export TF_VAR_serviceName=
-export TF_VAR_keypairAdmin="xxxxxx"
-```
-
-The **OVH_APPLICATION_KEY**, **OVH_APPLICATION_SECRET** and **OVH_CONSUMER_KEY** values come from your OVHcloud API token.
-
-The **TF_VAR_IP** value is the IP address of your machine.
-
-The **TF_VAR_serviceName** is the Id of your OVHcloud Public Cloud project (find by requesting the API at /cloud/project)
-
-The **TF_VAR_keypairAdmin** is the name of your Openstack keypair
-
-> Using Gipod ? Create the 3 variables **OVH_API_AK_b64**, **OVH_API_AS_b64** and **OVH_API_CK_b64** with the base6' encoded content of your OVHcloud Api token. The terraformrc file will be automaticly created with right content.
+Be sure you have your private and public keys into your `$HOME/.ssh` directory, this keys will be use by Ansible.
 
 ## Create Lab Instances
 
 ### Specify how many instances you want
 
-Open the **createInstances.sh** script and insert the desired value into the **nb** variable.
+Open the `createInstances.sh` script and insert the desired value into the **nb** variable.
 
 example:
 ```bash
@@ -71,7 +45,7 @@ Save and exit script.
 
 ### Create the lab instances
 
-Execute the **createInstances.sh** script.
+Execute the `createInstances.sh` script.
 
 This will loop from 1 to your instance number for creating instances.
 
