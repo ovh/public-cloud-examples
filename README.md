@@ -9,17 +9,17 @@ to hear from you!
  
 Have a look in [CONTRIBUTING.md](https://github.com/ovh/public-cloud-examples/blob/master/CONTRIBUTING.md)
  
-# Getting Started
+# 👀 Getting Started
 
-Her you can start to operate your OVHcloud services, with tutorials on useful tools setup, with examples.
+ - [Starting Pack to manage your OVHcloud Services from shell](./basics/README.md)
 
- - Starting Pack to manage your OVHcloud Services from shell : go to [basics](./basics/) and read the [README](./basics/README.md)
+# 📡 Networking
 
-# Tools for labs
+- [Simple private network](./networking/private-network-mono-region/README.md)
 
-Here you find severals tools to help you to build a lab on OVHcloud public cloud products.
+# 🔬 Tools for labs
 
- - Create several [K3s](https://k3s.io/) instances on public cloud instances : go in the [labs/k3s](./labs/labk3s/) and read the [README](./labs/labk3s/README.md)
+ - [Create instances with K3s installed on OVHcloud Public Cloud](./labs/labk3s/README.md)
 
 # Related links
  
