@@ -2,10 +2,15 @@
 
 This example builds a minimal private network infrastructure within OVHcloud Public Cloud.
 
-![Simple Private Network](./img/img01.png)
+The componants that will be created are : 
 
- > subnet details : 
- > The subnet is built with static and DHCP range.
+- A private network (built on vRack).
+
+- A subnet, with a mix of DHCP and static range.
+
+- A router that have the subnet gateway role.
+
+![Simple Private Network](./img/img01.png)
 
 ## Pre-requisites
 
