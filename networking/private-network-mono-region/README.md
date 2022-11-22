@@ -4,7 +4,7 @@ This example builds a minimal private network infrastructure within OVHcloud Pub
 
 The componants that will be created are : 
 
-- A private network (built on vRack).
+- A private network (built on [vRack](https://www.ovhcloud.com/en-gb/network/vrack)).
 
 - A subnet, with a mix of DHCP and static range.
 
