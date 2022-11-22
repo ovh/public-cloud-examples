@@ -2,7 +2,7 @@
 
 This example builds a minimal private network infrastructure within OVHcloud Public Cloud.
 
-The componants that will be created are : 
+The components that will be created are : 
 
 - A private network (built on [vRack](https://www.ovhcloud.com/en-gb/network/vrack)).
 
@@ -301,7 +301,7 @@ serviceName = "xxxxxxxxxxxx4017a6a6f6bxxxxxxxxx"
 rm -rf .terraform* terraform.tfstate*
 ```
 
-You lost the Terraform plan? Import existing componants by executing the `importNetwork.sh` script:
+You lost the Terraform plan? Import existing components by executing the `importNetwork.sh` script:
 
 ```bash
 ./importNetwork.sh
