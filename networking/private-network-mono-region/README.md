@@ -2,6 +2,8 @@
 
 vRack + private network + subnet + router
 
+![Simple Private Network](./img/img01.png)
+
  > subnet details : static and DHCP range
 
 ## Pre-requisites
