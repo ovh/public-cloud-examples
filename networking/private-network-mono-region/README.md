@@ -18,7 +18,11 @@ You need to follow steps from the [basics tutorial](../../basics/README.md) for 
 
 ## properties files
 
-Edit the `properties` file to modify values according your needs:
+This is the parameters needed by the scripts:
+
+![Simple Private Network](./img/img02.png)
+
+Edit the `properties` file to modify values:
 
 ```bash
 # Region
