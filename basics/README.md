@@ -394,9 +394,7 @@ curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stabl
         && sudo chmod 0755 /usr/local/bin/kubectl
 ```
 
-Example:
-
-- Get an existing Managed Kubernetes config file with the OVHcloud API and use the kubectl tool:
+<details><summary> 📍 Example : Get an existing Managed Kubernetes config file with the OVHcloud API and use the kubectl tool</summary>
 
 Get your Managed Kubernetes service id with this command:
 
@@ -429,6 +427,8 @@ kube-system       Active   8d
 logging           Active   8d
 monitoring        Active   8d
 ```
+
+</details>
 
 ## Go further
 
