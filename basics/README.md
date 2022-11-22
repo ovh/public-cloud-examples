@@ -135,7 +135,9 @@ sudo apt update && sudo apt -y install \
     curl
 ```
 
-Test the openstack cli setup, by requesting the network list:
+
+<details><summary> 📍 Example : Request the network list</summary>
+
 
 ```bash
 openstack network list
@@ -151,13 +153,14 @@ The result should be like:
 +--------------------------------------+-------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 ```
 
+</details>
+
+
 ### OVHcloud API bash script
 
 The `utils/ovhAPI.sh` is a bash script that helps you to request the [OVHcloud API](https://api.ovh.com).
 
-Examples: 
-
-- Get your PCI private networks list:
+<details><summary> 📍 Example : Get your PCI private networks list</summary>
 
 ```bash
 utils/ovhAPI.sh GET /cloud/project/${OS_TENANT_ID}/network/private |jq
@@ -198,7 +201,9 @@ Result:
 ]
 ```
 
-- Get the PCI private network id from its name, using jq:
+</details>
+
+<details><summary> 📍 Example : Get the PCI private network id from its name, using jq</summary>
 
 ```bash
 utils/ovhAPI.sh GET /cloud/project/${OS_TENANT_ID}/network/private | jq -r '.[] | select(.name=="my-private-nw") |.id'
@@ -210,7 +215,9 @@ Result:
 pn-xxxxxx_2
 ```
 
-- Change your PCI account description
+</details>
+
+<details><summary> 📍 Example : Change your PCI account description</summary>
 
 ```bash
 # Create a data JSON file.
@@ -243,6 +250,8 @@ Result:
 ```bash
 "My_PCI_Project"
 ```
+
+</details>
 
 ### terraform cli
 
@@ -296,9 +305,7 @@ rerun this command to reinitialize your working directory. If you forget, other
 commands will detect it and remind you to do so if necessary.
 ```
 
-Example:
-
-- Create a SSH Keypair
+<details><summary> 📍 Example : Create a SSH Keypair</summary>
 
 ```bash
 cat << 'EOF' > keypair.tf
@@ -360,6 +367,8 @@ Result:
 +-----------------+-------------------------------------------------+
 ```
 
+</details>
+
 ## Install additionnaly useful tools
 
 ### Ansible
@@ -385,9 +394,7 @@ curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stabl
         && sudo chmod 0755 /usr/local/bin/kubectl
 ```
 
-Example:
-
-- Get an existing Managed Kubernetes config file with the OVHcloud API and use the kubectl tool:
+<details><summary> 📍 Example : Get an existing Managed Kubernetes config file with the OVHcloud API and use the kubectl tool</summary>
 
 Get your Managed Kubernetes service id with this command:
 
@@ -420,6 +427,8 @@ kube-system       Active   8d
 logging           Active   8d
 monitoring        Active   8d
 ```
+
+</details>
 
 ## Go further
 
