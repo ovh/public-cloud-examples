@@ -136,7 +136,7 @@ sudo apt update && sudo apt -y install \
 ```
 
 
-<details><summary>Example : Request the network list</summary>
+<details><summary> 📍 Example : Request the network list</summary>
 
 
 ```bash
@@ -160,7 +160,7 @@ The result should be like:
 
 The `utils/ovhAPI.sh` is a bash script that helps you to request the [OVHcloud API](https://api.ovh.com).
 
-<details><summary>Example : Get your PCI private networks list</summary>
+<details><summary> 📍 Example : Get your PCI private networks list</summary>
 
 ```bash
 utils/ovhAPI.sh GET /cloud/project/${OS_TENANT_ID}/network/private |jq
@@ -203,7 +203,7 @@ Result:
 
 </details>
 
-<details><summary>Example : Get the PCI private network id from its name, using jq</summary>
+<details><summary> 📍 Example : Get the PCI private network id from its name, using jq</summary>
 
 ```bash
 utils/ovhAPI.sh GET /cloud/project/${OS_TENANT_ID}/network/private | jq -r '.[] | select(.name=="my-private-nw") |.id'
@@ -217,7 +217,7 @@ pn-xxxxxx_2
 
 </details>
 
-<details><summary>Example : Change your PCI account description</summary>
+<details><summary> 📍 Example : Change your PCI account description</summary>
 
 ```bash
 # Create a data JSON file.
@@ -305,7 +305,7 @@ rerun this command to reinitialize your working directory. If you forget, other
 commands will detect it and remind you to do so if necessary.
 ```
 
-<details><summary>Example : Create a SSH Keypair</summary>
+<details><summary> 📍 Example : Create a SSH Keypair</summary>
 
 ```bash
 cat << 'EOF' > keypair.tf
