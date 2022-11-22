@@ -1,16 +1,19 @@
 # Simple private network
 
-vRack + private network + subnet + router
+This example builds a minimal private network infrastructure within OVHcloud Public Cloud.
 
 ![Simple Private Network](./img/img01.png)
 
- > subnet details : static and DHCP range
+ > subnet details : 
+ > The subnet is built with static and DHCP range.
 
 ## Pre-requisites
 
-examples - basics - ovhrc file
+You need to follow steps from the [basics tutorial](../../basics/README.md) for having necessary tools and a fonctionnal `ovhrc` file.
 
 ## properties files
+
+Edit the `properties` file to modify values according your needs:
 
 ```bash
 # Region
@@ -32,6 +35,8 @@ export TF_VAR_rtrIp="192.168.2.1"
 ```
 
 ## createNetwork.sh
+
+Create the network environment by executing the `createNetwork.sh` script.
 
 ```bash
 ./createNetwork.sh
@@ -287,6 +292,8 @@ serviceName = "xxxxxxxxxxxx4017a6a6f6bxxxxxxxxx"
 rm -rf .terraform* terraform.tfstate*
 ```
 
+You lost the Terraform plan? Import existing componants by executing the `importNetwork.sh` script:
+
 ```bash
 ./importNetwork.sh
 ```
@@ -376,6 +383,8 @@ your Terraform state and will henceforth be managed by Terraform.
 </details>
 
 ## deleteNetwork.sh
+
+Clean you environment by executing the `deleteNetwork.sh` script:
 
 ```bash
 ./deleteNetwork.sh
