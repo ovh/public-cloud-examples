@@ -1,14 +1,14 @@
+// Openstack project Id
+
+variable "serviceName" {
+ type           = string
+}
+
+// Region
+
 variable "region" {
  type 		= string
  default	= "GRA9"
-}
-
-variable "IP" {
-  type 		= string
-}
-
-variable "serviceName" {
- type 		= string
 }
 
 // Network - Private Network

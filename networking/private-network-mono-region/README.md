@@ -22,25 +22,67 @@ This is the parameters needed by the scripts:
 
 ![Simple Private Network](./img/img02.png)
 
-Edit the `properties` file to modify values:
+Edit the `variables.tf` file to modify values:
 
-```bash
-# Region
-export TF_VAR_region="${OS_REGION_NAME}"
+```terraform
+// Openstack project Id
 
-# Network - Private Network
-export TF_VAR_pvNetworkName="myPrivateNetwork"
-export TF_VAR_pvNetworkId="30"
+variable "serviceName" {
+ type           = string
+}
 
-# Network - Subnet
-export TF_VAR_subnetName="mySubnet"
-export TF_VAR_subnetCIDR="192.168.2.0/24"
-export TF_VAR_subnetDHCPStart="192.168.2.200"
-export TF_VAR_subnetDHCPEnd="192.168.2.254"
+// Region
 
-# Network - Router
-export TF_VAR_rtrName="myRouter"
-export TF_VAR_rtrIp="192.168.2.1"
+variable "region" {
+ type           = string
+ default        = "GRA9"
+}
+
+// Network - Private Network
+
+variable "pvNetworkName" {
+ type           = string
+ default        = "myPrivateNetwork"
+}
+
+variable "pvNetworkId" {
+ type           = string
+ default        = "30"
+}
+
+// Network - Subnet
+
+variable "subnetName" {
+ type           = string
+ default        = "mySubnet"
+}
+
+variable "subnetCIDR" {
+ type           = string
+ default        = "192.168.2.0/24"
+}
+
+variable "subnetDHCPStart" {
+ type           = string
+ default        = "192.168.2.200"
+}
+
+variable "subnetDHCPEnd" {
+ type           = string
+ default        = "192.168.2.254"
+}
+
+// Network - Router
+
+variable "rtrName" {
+ type           = string
+ default        = "myRouter"
+}
+
+variable "rtrIp" {
+ type           = string
+ default        = "192.168.2.1"
+}
 ```
 
 ## createNetwork.sh
