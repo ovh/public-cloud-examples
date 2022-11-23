@@ -22,30 +22,81 @@ This is the parameters needed by the scripts:
 
 ![Simple Private Network](./img/img02.png)
 
-Edit the `properties` file to modify values:
+Edit the `variables.tf` file to modify values:
 
-```bash
-# Region
-export TF_VAR_region="${OS_REGION_NAME}"
+```terraform
+// Openstack project Id
 
-# Network - Private Network
-export TF_VAR_pvNetworkName="myPrivateNetwork"
-export TF_VAR_pvNetworkId="30"
+variable "serviceName" {
+ type           = string
+}
 
-# Network - Subnet
-export TF_VAR_subnetName="mySubnet"
-export TF_VAR_subnetCIDR="192.168.2.0/24"
-export TF_VAR_subnetDHCPStart="192.168.2.200"
-export TF_VAR_subnetDHCPEnd="192.168.2.254"
+// Region
 
-# Network - Router
-export TF_VAR_rtrName="myRouter"
-export TF_VAR_rtrIp="192.168.2.1"
+variable "region" {
+ type           = string
+ default        = "GRA9"
+}
+
+// Network - Private Network
+
+variable "pvNetworkName" {
+ type           = string
+ default        = "myPrivateNetwork"
+}
+
+variable "pvNetworkId" {
+ type           = string
+ default        = "30"
+}
+
+// Network - Subnet
+
+variable "subnetName" {
+ type           = string
+ default        = "mySubnet"
+}
+
+variable "subnetCIDR" {
+ type           = string
+ default        = "192.168.2.0/24"
+}
+
+variable "subnetDHCPStart" {
+ type           = string
+ default        = "192.168.2.200"
+}
+
+variable "subnetDHCPEnd" {
+ type           = string
+ default        = "192.168.2.254"
+}
+
+// Network - Router
+
+variable "rtrName" {
+ type           = string
+ default        = "myRouter"
+}
+
+variable "rtrIp" {
+ type           = string
+ default        = "192.168.2.1"
+}
 ```
 
-## createNetwork.sh
+## Create
 
-Create the network environment by executing the `createNetwork.sh` script.
+Create the network environment with this commands:
+
+```bash
+source ovhrc
+terraform init
+terraform plan
+terraform apply
+```
+
+Or simply use the `createNetwork.sh` script.
 
 ```bash
 ./createNetwork.sh
@@ -294,106 +345,16 @@ serviceName = "xxxxxxxxxxxx4017a6a6f6bxxxxxxxxx"
 
 </details>
 
-## importNetworks.sh
+## Delete / Purge
+
+Clean you environment with this commands:
 
 ```bash
-# oops!
-rm -rf .terraform* terraform.tfstate*
+source ovhrc
+terraform destroy --auto-approve
 ```
 
-You lost the Terraform plan? Import existing components by executing the `importNetwork.sh` script:
-
-```bash
-./importNetwork.sh
-```
-
-<details><summary>See output</summary>
-
-```bash
-Initializing the backend...
-
-Initializing provider plugins...
-- Finding latest version of ovh/ovh...
-- Finding terraform-provider-openstack/openstack versions matching "~> 1.35.0"...
-- Installing ovh/ovh v0.22.0...
-- Installed ovh/ovh v0.22.0 (signed by a HashiCorp partner, key ID F56D1A6CBDAAADA5)
-- Installing terraform-provider-openstack/openstack v1.35.0...
-- Installed terraform-provider-openstack/openstack v1.35.0 (self-signed, key ID 4F80527A391BEFD2)
-
-Partner and community providers are signed by their developers.
-If you'd like to know more about provider signing, you can read about it here:
-https://www.terraform.io/docs/cli/plugins/signing.html
-
-Terraform has created a lock file .terraform.lock.hcl to record the provider
-selections it made above. Include this file in your version control repository
-so that Terraform can guarantee to make the same selections by default when
-you run "terraform init" in the future.
-
-Terraform has been successfully initialized!
-
-You may now begin working with Terraform. Try running "terraform plan" to see
-any changes that are required for your infrastructure. All Terraform commands
-should now work.
-
-If you ever set or change modules or backend configuration for Terraform,
-rerun this command to reinitialize your working directory. If you forget, other
-commands will detect it and remind you to do so if necessary.
-openstack_networking_router_v2.myRouter: Importing from ID "xxxxxx-e0d3-4889-ae7e-xxxxxxxxxxxx"...
-openstack_networking_router_v2.myRouter: Import prepared!
-  Prepared openstack_networking_router_v2 for import
-openstack_networking_router_v2.myRouter: Refreshing state... [id=xxxxxx-e0d3-4889-ae7e-xxxxxxxxxxxx]
-
-Import successful!
-
-The resources that were imported are shown above. These resources are now in
-your Terraform state and will henceforth be managed by Terraform.
-
-openstack_networking_router_interface_v2.myRouterInterface: Importing from ID "xxxxxxxx-038e-4572-ad80-xxxxxxxxxxxx"...
-openstack_networking_router_interface_v2.myRouterInterface: Import prepared!
-  Prepared openstack_networking_router_interface_v2 for import
-openstack_networking_router_interface_v2.myRouterInterface: Refreshing state... [id=xxxxxxxx-038e-4572-ad80-xxxxxxxxxxxx]
-
-Import successful!
-
-The resources that were imported are shown above. These resources are now in
-your Terraform state and will henceforth be managed by Terraform.
-
-openstack_networking_subnet_v2.mySubnet: Importing from ID "xxxxxxxx-6a1d-4027-8ebe-xxxxxxxxxxxx"...
-openstack_networking_subnet_v2.mySubnet: Import prepared!
-  Prepared openstack_networking_subnet_v2 for import
-openstack_networking_subnet_v2.mySubnet: Refreshing state... [id=xxxxxxxx-6a1d-4027-8ebe-xxxxxxxxxxxx]
-
-Import successful!
-
-The resources that were imported are shown above. These resources are now in
-your Terraform state and will henceforth be managed by Terraform.
-
-ovh_cloud_project_network_private.myPrivateNetwork: Importing from ID "xxxxxxxxxxxx4017a6a6f6bxxxxxxxxx/pn-xxxxxxxx_30"...
-ovh_cloud_project_network_private.myPrivateNetwork: Import prepared!
-  Prepared ovh_cloud_project_network_private for import
-ovh_cloud_project_network_private.myPrivateNetwork: Refreshing state... [id=pn-xxxxxxx_30]
-
-Import successful!
-
-The resources that were imported are shown above. These resources are now in
-your Terraform state and will henceforth be managed by Terraform.
-
-openstack_networking_network_v2.Ext-Net: Importing from ID "xxxxxxxx-ffdf-40f6-9722-xxxxxxxxxxxx"...
-openstack_networking_network_v2.Ext-Net: Import prepared!
-  Prepared openstack_networking_network_v2 for import
-openstack_networking_network_v2.Ext-Net: Refreshing state... [id=xxxxxxxx-ffdf-40f6-9722-xxxxxxxxxxxx]
-
-Import successful!
-
-The resources that were imported are shown above. These resources are now in
-your Terraform state and will henceforth be managed by Terraform.
-```
-
-</details>
-
-## deleteNetwork.sh
-
-Clean you environment by executing the `deleteNetwork.sh` script:
+Or execute the `deleteNetwork.sh` script:
 
 ```bash
 ./deleteNetwork.sh

@@ -20,14 +20,10 @@ resource "openstack_networking_subnet_v2" "mySubnet" {
    }
 }
 
-resource "openstack_networking_network_v2" "Ext-Net" {
-  name        		= "Ext-Net"
-}
-
 resource "openstack_networking_router_v2" "myRouter" {
   name                	= var.rtrName
   admin_state_up      	= true
-  external_network_id 	= "${openstack_networking_network_v2.Ext-Net.id}"
+  external_network_id 	= "${data.openstack_networking_network_v2.Ext-Net.id}"
 }
 
 resource "openstack_networking_router_interface_v2" "myRouterInterface" {
