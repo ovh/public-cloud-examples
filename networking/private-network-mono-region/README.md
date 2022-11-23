@@ -85,9 +85,18 @@ variable "rtrIp" {
 }
 ```
 
-## createNetwork.sh
+## create
 
-Create the network environment by executing the `createNetwork.sh` script.
+Create the network environment with this commands:
+
+```bash
+source ovhrc
+terraform init
+terraform plan
+terraform apply
+```
+
+Or simply use the `createNetwork.sh` script.
 
 ```bash
 ./createNetwork.sh
@@ -336,9 +345,16 @@ serviceName = "xxxxxxxxxxxx4017a6a6f6bxxxxxxxxx"
 
 </details>
 
-## deleteNetwork.sh
+## Delete / Purge
 
-Clean you environment by executing the `deleteNetwork.sh` script:
+Clean you environment with this commands:
+
+```bash
+source ovhrc
+terraform destroy --auto-approve
+```
+
+Or execute the `deleteNetwork.sh` script:
 
 ```bash
 ./deleteNetwork.sh
