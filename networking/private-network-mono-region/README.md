@@ -85,7 +85,7 @@ variable "rtrIp" {
 }
 ```
 
-## create
+## Create
 
 Create the network environment with this commands:
 
