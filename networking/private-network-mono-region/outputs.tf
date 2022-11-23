@@ -11,5 +11,5 @@ output "mySubnetID" {
 }
 
 output "Ext-NetID" {
-  value = openstack_networking_network_v2.Ext-Net.id
+  value = data.openstack_networking_network_v2.Ext-Net.id
 }
