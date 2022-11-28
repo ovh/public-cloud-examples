@@ -8,7 +8,7 @@ variable "serviceName" {
 
 variable "region" {
  type 		= string
- default	= "GRA9"
+ default	= "GRA7"
 }
 
 // Network - Private Network
