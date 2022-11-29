@@ -4,7 +4,6 @@ resource "ovh_cloud_project_database" "mongodb" {
   engine        = var.dbEngine
   version       = var.dbVersion
   plan          = var.dbPlan
-//  disk_size 	= var.dbDiskSize
   nodes {
     region      = var.dbRegion
     subnet_id   = data.openstack_networking_subnet_v2.mySubnet.id
@@ -35,5 +34,5 @@ resource "ovh_cloud_project_database_mongodb_user" "mongouser" {
   cluster_id    = ovh_cloud_project_database.mongodb.id
   name          = var.dbUserName
   roles         = var.dbUserRole
-  password_reset = "changeMeToResetPassword1"
+  password_reset = "changeMeToResetPassword"
 }

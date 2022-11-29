@@ -56,12 +56,7 @@ variable "dbPlan" {
 
 variable "dbFlavor" {
  type           = string
- default        = "db1-2"
-}
-
-variable "dbDiskSize" {
- type		= string
- default	= "25"
+ default        = "db1-7"
 }
 
 // Database User
@@ -73,7 +68,7 @@ variable "dbUserName" {
 
 variable "dbUserRole" {
  type		= list
- default	= ["readWrite"]
+ default	= ["readWriteAnyDatabase"]
 }
 
 // IP Restriction
