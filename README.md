@@ -25,11 +25,13 @@ Have a look in [CONTRIBUTING.md](https://github.com/ovh/public-cloud-examples/bl
 
  - [Create instances with K3s installed on OVHcloud Public Cloud](./labs/labk3s/README.md)
 
-# ![iDatabase Icon](./docs/assets/database-32x32.png) Databases
+# ![iDatabase Icon](./docs/assets/database-32x32.png) Storage
 
 - [Managed MongoDb database with private network](./databases/mongodb/README.md)
 
 - [Managed PostgreSQL database with private network](./databases/pgsql/README.md)
+
+- [Simple Block Storage Volume](./storage/block-storage/README.md)
 
 # Related links
  
