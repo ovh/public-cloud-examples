@@ -433,6 +433,58 @@ terraform apply
 terraform output dbUserPassword
 ```
 
+<details><summary>Output</summary>
+
+```bash
+data.openstack_networking_network_v2.myPrivateNetwork: Reading...
+data.openstack_networking_subnet_v2.mySubnet: Reading...
+data.openstack_networking_subnet_v2.mySubnet: Read complete after 2s [id=xxxxxxxx-78ac-4a1b-af85-xxxxxxxxxxxx]
+data.openstack_networking_network_v2.myPrivateNetwork: Read complete after 2s [id=xxxxxxxx-d430-4c31-8e2d-xxxxxxxxxxxx]
+ovh_cloud_project_database.mongodb: Refreshing state... [id=xxxxxxxx-e6b0-4253-abf4-xxxxxxxxxxxx]
+ovh_cloud_project_database_ip_restriction.iprestriction: Refreshing state... [id=xxx4843xxx]
+ovh_cloud_project_database_mongodb_user.mongouser: Refreshing state... [id=xxxxxxxx-f7be-4d0b-84f7-xxxxxxxxxxxx]
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  ~ update in-place
+
+Terraform will perform the following actions:
+
+  # ovh_cloud_project_database_mongodb_user.mongouser will be updated in-place
+  ~ resource "ovh_cloud_project_database_mongodb_user" "mongouser" {
+        id             = "xxxxxxxx-f7be-4d0b-84f7-xxxxxxxxxxxx"
+        name           = "myuser@admin"
+      ~ password_reset = "changeMeToResetPassword" -> "changeMeToResetPassword1"
+        # (6 unchanged attributes hidden)
+    }
+
+Plan: 0 to add, 1 to change, 0 to destroy.
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+ovh_cloud_project_database_mongodb_user.mongouser: Modifying... [id=xxxxxxxx-f7be-4d0b-84f7-xxxxxxxxxxxx]
+ovh_cloud_project_database_mongodb_user.mongouser: Still modifying... [id=xxxxxxxx-f7be-4d0b-84f7-xxxxxxxxxxxx, 10s elapsed]
+ovh_cloud_project_database_mongodb_user.mongouser: Still modifying... [id=xxxxxxxx-f7be-4d0b-84f7-xxxxxxxxxxxx, 20s elapsed]
+ovh_cloud_project_database_mongodb_user.mongouser: Still modifying... [id=xxxxxxxx-f7be-4d0b-84f7-xxxxxxxxxxxx, 30s elapsed]
+ovh_cloud_project_database_mongodb_user.mongouser: Still modifying... [id=xxxxxxxx-f7be-4d0b-84f7-xxxxxxxxxxxx, 40s elapsed]
+ovh_cloud_project_database_mongodb_user.mongouser: Still modifying... [id=xxxxxxxx-f7be-4d0b-84f7-xxxxxxxxxxxx, 50s elapsed]
+ovh_cloud_project_database_mongodb_user.mongouser: Still modifying... [id=xxxxxxxx-f7be-4d0b-84f7-xxxxxxxxxxxx, 1m0s elapsed]
+ovh_cloud_project_database_mongodb_user.mongouser: Modifications complete after 1m9s [id=xxxxxxxx-f7be-4d0b-84f7-xxxxxxxxxxxx]
+
+Apply complete! Resources: 0 added, 1 changed, 0 destroyed.
+
+Outputs:
+
+dbId = "xxxxxxxx-e6b0-4253-abf4-xxxxxxxxxxxx"
+dbUserPassword = <sensitive>
+serviceName = "xxxxxxxx1da24017a6a6f6b6xxxxxxxx"
+```
+
+</details>
+
 ## Delete / Purge
 
 Clean you environment with this commands:
