@@ -17,9 +17,19 @@ Have a look in [CONTRIBUTING.md](https://github.com/ovh/public-cloud-examples/bl
 
 - [Simple private network](./networking/private-network-mono-region/README.md)
 
+# ![Kubernetes logo](./docs/assets/kubernetes-32x32.png) Kubernetes
+
+- [Managed Kubernetes Cluster with private network](./kubernetes/k8s-private-network/README.md)
+
 # 🔬 Tools for labs
 
  - [Create instances with K3s installed on OVHcloud Public Cloud](./labs/labk3s/README.md)
+
+# ![iDatabase Icon](./docs/assets/database-32x32.png) Databases
+
+- [Managed MongoDb database with private network](./databases/mongodb/README.md)
+
+- [Managed PostgreSQL database with private network](./databases/pgsql/README.md)
 
 # Related links
  
