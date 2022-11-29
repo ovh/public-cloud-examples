@@ -73,7 +73,7 @@ variable "dbUserName" {
 
 variable "dbUserRole" {
  type		= list
- default	= ["dbAdminAnyDatabase"]
+ default	= ["readWrite"]
 }
 
 // IP Restriction
