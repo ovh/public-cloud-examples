@@ -1,59 +1,50 @@
 // Openstack project Id
 
 variable "serviceName" {
- type           = string
+  type = string
 }
 
 
 // Kubernetes Cluster Name
 
 variable "clusterName" {
- type		= string
- default	= "myKubernetesCluster"
+  type = string
 }
 
 // Region
 
 variable "region" {
- type 		= string
- default	= "GRA7"
+  type = string
 }
 
 // Network - Private Network
 
 variable "pvNetworkName" {
- type 		= string
- default 	= "myPrivateNetwork"
+  type = string
 }
 
 variable "rtrIp" {
- type 		= string
- default	= "192.168.2.1"
+  type = string
 }
 
 // Node Pool definition
 
 variable "myPoolName" {
- type           = string
- default        = "mypool"
+  type = string
 }
 
 variable "myPoolFlavor" {
- type           = string
- default        = "b2-7"
+  type = string
 }
 
 variable "myPoolDesiredNodes" {
- type           = string
- default        = "3"
+  type = string
 }
 
 variable "myPoolMaxNodes" {
- type           = string
- default        = "6"
+  type = string
 }
 
 variable "myPoolMinNodes" {
- type           = string
- default        = "3"
+  type = string
 }
