@@ -1,12 +1,11 @@
-resource "ovh_cloud_project_network_private" "myPrivateNetwork" {
-  service_name = var.serviceName
-  name         = var.pvNetworkName
-  vlan_id      = var.pvNetworkId
-  regions      = [var.region]
+resource "openstack_networking_network_v2" "myPrivateNetwork" {
+  name           = var.pvNetworkName
+  admin_state_up = "true"
+  region         = var.region
 }
 
 resource "openstack_networking_subnet_v2" "mySubnet" {
-  network_id      = tolist(ovh_cloud_project_network_private.myPrivateNetwork.regions_attributes)[0].openstackid
+  network_id      = openstack_networking_network_v2.myPrivateNetwork.id
   name            = var.subnetName
   region          = var.region
   cidr            = var.subnetCIDR

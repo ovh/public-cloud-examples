@@ -3,7 +3,7 @@ output "serviceName" {
 }
 
 output "myPrivateNetworkID" {
-  value = tolist(ovh_cloud_project_network_private.myPrivateNetwork.regions_attributes)[0].openstackid
+  value = openstack_networking_network_v2.myPrivateNetwork.id
 }
 
 output "mySubnetID" {
