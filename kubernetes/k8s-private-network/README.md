@@ -22,68 +22,29 @@ This is the parameters needed by the scripts:
 
 ![Managed Kubernetes Cluster](./img/img02.png)
 
-Edit the `variables.tf` file to modify values:
+Edit the `variables.auto.tfvars` file to modify values:
 
 ```terraform
-// Openstack project Id
-
-variable "serviceName" {
- type           = string
-}
-
-
 // Kubernetes Cluster Name
 
-variable "clusterName" {
- type           = string
- default        = "myKubernetesCluster"
-}
+clusterName = "myKubernetesCluster"
 
 // Region
 
-variable "region" {
- type           = string
- default        = "GRA7"
-}
+region = "GRA7"
 
 // Network - Private Network
 
-variable "pvNetworkName" {
- type           = string
- default        = "myPrivateNetwork"
-}
-
-variable "rtrIp" {
- type           = string
- default        = "192.168.2.1"
-}
+pvNetworkName = "myPrivateNetwork"
+rtrIp = "192.168.2.1"
 
 // Node Pool definition
 
-variable "myPoolName" {
- type           = string
- default        = "mypool"
-}
-
-variable "myPoolFlavor" {
- type           = string
- default        = "b2-7"
-}
-
-variable "myPoolDesiredNodes" {
- type           = string
- default        = "3"
-}
-
-variable "myPoolMaxNodes" {
- type           = string
- default        = "6"
-}
-
-variable "myPoolMinNodes" {
- type           = string
- default        = "3"
-}
+myPoolName = "mypool"
+myPoolFlavor = "b2-7"
+myPoolDesiredNodes = "3"
+myPoolMaxNodes = "6"
+myPoolMinNodes = "3"
 ```
 
 ## Create
