@@ -1,5 +1,5 @@
 output "serviceName" {
- value = var.serviceName
+  value = var.serviceName
 }
 
 output "myPrivateNetworkID" {

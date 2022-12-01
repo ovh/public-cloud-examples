@@ -22,67 +22,29 @@ This is the parameters needed by the scripts:
 
 ![Simple Private Network](./img/img02.png)
 
-Edit the `variables.tf` file to modify values:
+Edit the `variables.auto.tfvars` file to modify values:
 
 ```terraform
-// Openstack project Id
-
-variable "serviceName" {
- type           = string
-}
-
 // Region
-
-variable "region" {
- type           = string
- default        = "GRA9"
-}
+  
+region = "GRA7"
 
 // Network - Private Network
 
-variable "pvNetworkName" {
- type           = string
- default        = "myPrivateNetwork"
-}
-
-variable "pvNetworkId" {
- type           = string
- default        = "30"
-}
+pvNetworkName = "myPrivateNetwork"
+pvNetworkId   = "30"
 
 // Network - Subnet
 
-variable "subnetName" {
- type           = string
- default        = "mySubnet"
-}
-
-variable "subnetCIDR" {
- type           = string
- default        = "192.168.2.0/24"
-}
-
-variable "subnetDHCPStart" {
- type           = string
- default        = "192.168.2.200"
-}
-
-variable "subnetDHCPEnd" {
- type           = string
- default        = "192.168.2.254"
-}
+subnetName      = "mySubnet"
+subnetCIDR      = "192.168.2.0/24"
+subnetDHCPStart = "192.168.2.200"
+subnetDHCPEnd   = "192.168.2.254"
 
 // Network - Router
 
-variable "rtrName" {
- type           = string
- default        = "myRouter"
-}
-
-variable "rtrIp" {
- type           = string
- default        = "192.168.2.1"
-}
+rtrName = "myRouter"
+rtrIp   = "192.168.2.1"
 ```
 
 ## Create
