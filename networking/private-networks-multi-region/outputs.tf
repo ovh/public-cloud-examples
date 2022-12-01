@@ -1,3 +1,3 @@
 output "serviceName" {
- value = var.serviceName
+  value = var.serviceName
 }
