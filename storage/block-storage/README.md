@@ -12,33 +12,17 @@ You need to follow steps from the [basics tutorial](../../basics/README.md) for 
 
 ## properties files
 
-Edit the `variables.tf` file to modify values:
+Edit the `variables.auto.tfvars` file to modify values:
 
 ```terraform
-// Openstack project Id
-  
-variable "serviceName" {
- type           = string
-}
-
 // Region
 
-variable "region" {
- type           = string
- default        = "GRA7"
-}
+region = "GRA7"
 
 // Block Storage Volume
 
-variable "bsName" {
- type           = string
- default        = "my-block-storage-volume"
-}
-
-variable "bsSize" {
- type           = number
- default        = 100
-}
+bsName = "my-block-storage-volume"
+bsSize = 100
 ```
 
 ## Create
