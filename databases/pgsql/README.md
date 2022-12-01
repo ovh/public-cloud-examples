@@ -24,88 +24,41 @@ This is the parameters needed by the scripts:
 
 ![Managed PostgreSQL](./img/img02.png)
 
-Edit the `variables.tf` file to modify values:
+Edit the `variables.auto.tfvars` file to modify values:
 
 ```terraform
-// Openstack project Id
-
-variable "serviceName" {
- type           = string
-}
-
 // Region
 
-variable "region" {
- type           = string
- default        = "GRA7"
-}
+region = "GRA7"
 
 // Region for database
 
-variable "dbRegion" {
- type           = string
- default        = "GRA"
-}
+dbRegion = "GRA"
 
 // Network - Private Network
 
-variable "pvNetworkName" {
- type           = string
- default        = "myPrivateNetwork"
-}
+pvNetworkName = "myPrivateNetwork"
 
 // Network - Subnet
 
-variable "subnetName" {
- type           = string
- default        = "mySubnet"
-}
+subnetName = "mySubnet"
 
 // Database
 
-variable "dbDescription" {
- type           = string
- default        = "myPgSqlDb"
-}
-
-variable "dbEngine" {
- type           = string
- default        = "postgresql"
-}
-
-variable "dbVersion" {
- type           = string
- default        = "14"
-}
-
-variable "dbPlan" {
- type           = string
- default        = "business"
-}
-
-variable "dbFlavor" {
- type           = string
- default        = "db1-7"
-}
+dbDescription = "myPgSqlDb"
+dbEngine = "postgresql"
+dbVersion = "14"
+dbPlan = "business"
+dbFlavor = "db1-7"
 
 // Database User
 
-variable "dbUserName" {
- type           = string
- default        = "myuser"
-}
-
-variable "dbUserRole" {
- type           = list
- default        = ["replication"]
-}
+dbUserName = "myuser"
+dbUserRole = ["replication"]
 
 // IP Restriction
 
-variable "dbAllowedIp" {
- type           = string
- default        = "192.168.2.0/24"
-}
+dbAllowedIp = "192.168.2.0/24"
 ```
 
 ## Create

@@ -1,79 +1,67 @@
 // Openstack project Id
 
 variable "serviceName" {
- type           = string
+  type = string
 }
 
 // Region
 
 variable "region" {
- type 		= string
- default	= "GRA7"
+  type = string
 }
 
 // Region for database
 
 variable "dbRegion" {
- type           = string
- default        = "GRA"
+  type = string
 }
 
 // Network - Private Network
 
 variable "pvNetworkName" {
- type 		= string
- default 	= "myPrivateNetwork"
+  type = string
 }
 
 // Network - Subnet
 
 variable "subnetName" {
- type           = string
- default        = "mySubnet"
+  type = string
 }
 
 // Database
 
 variable "dbDescription" {
- type		= string
- default	= "myMongoDb"
+  type = string
 }
 
 variable "dbEngine" {
- type           = string
- default        = "mongodb"
+  type = string
 }
 
 variable "dbVersion" {
- type           = string
- default        = "6.0"
+  type = string
 }
 
 variable "dbPlan" {
- type           = string
- default        = "business"
+  type = string
 }
 
 variable "dbFlavor" {
- type           = string
- default        = "db1-7"
+  type = string
 }
 
 // Database User
 
 variable "dbUserName" {
- type           = string
- default        = "myuser"
+  type = string
 }
 
 variable "dbUserRole" {
- type		= list
- default	= ["readWriteAnyDatabase"]
+  type = list(any)
 }
 
 // IP Restriction
 
 variable "dbAllowedIp" {
- type		= string
- default	= "192.168.2.0/24"
+  type = string
 }
