@@ -1,58 +1,49 @@
 // Openstack project Id
 
 variable "serviceName" {
- type           = string
+  type = string
 }
 
 // Region
 
 variable "region" {
- type 		= string
- default	= "GRA7"
+  type = string
 }
 
 // Network - Private Network
 
 variable "pvNetworkName" {
- type 		= string
- default 	= "myPrivateNetwork"
+  type = string
 }
 
 variable "pvNetworkId" {
- type 		= string
- default	= "30"
+  type = string
 }
 
 // Network - Subnet
 
 variable "subnetName" {
- type 		= string
- default	= "mySubnet"
+  type = string
 }
 
 variable "subnetCIDR" {
- type 		= string
- default	= "192.168.2.0/24"
+  type = string
 }
 
 variable "subnetDHCPStart" {
- type 		= string
- default	= "192.168.2.200"
+  type = string
 }
 
 variable "subnetDHCPEnd" {
- type 		= string
- default 	= "192.168.2.254"
+  type = string
 }
 
 // Network - Router
 
 variable "rtrName" {
- type 		= string
- default	= "myRouter"
+  type = string
 }
 
 variable "rtrIp" {
- type 		= string
- default	= "192.168.2.1"
+  type = string
 }
