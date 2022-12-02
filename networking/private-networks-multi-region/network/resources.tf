@@ -1,5 +1,5 @@
 resource "openstack_networking_network_v2" "frontnetwork" {
-  for_each = { for o in var.z : o.region => o }
+  for_each = { for o in var.multi : o.region => o }
 
   name           = var.common.frontNwName
   region         = each.key
@@ -7,7 +7,7 @@ resource "openstack_networking_network_v2" "frontnetwork" {
 }
 
 resource "openstack_networking_subnet_v2" "frontsubnet" {
-  for_each = { for o in var.z : o.region => o }
+  for_each = { for o in var.multi : o.region => o }
 
   network_id      = openstack_networking_network_v2.frontnetwork[each.key].id
   name            = var.common.frontSubnetName
@@ -19,7 +19,7 @@ resource "openstack_networking_subnet_v2" "frontsubnet" {
 }
 
 resource "openstack_networking_router_v2" "frontrouter" {
-  for_each = { for o in var.z : o.region => o }
+  for_each = { for o in var.multi : o.region => o }
 
   region              = each.key
   name                = var.common.frontRouterName
@@ -28,7 +28,7 @@ resource "openstack_networking_router_v2" "frontrouter" {
 }
 
 resource "openstack_networking_router_interface_v2" "frontRouterInterface" {
-  for_each = { for o in var.z : o.region => o }
+  for_each = { for o in var.multi : o.region => o }
 
   region    = each.key
   router_id = openstack_networking_router_v2.frontrouter[each.key].id
@@ -43,7 +43,7 @@ resource "ovh_cloud_project_network_private" "backnetwork" {
 }
 
 resource "openstack_networking_subnet_v2" "backsubnet" {
-  for_each = { for o in var.z : o.region => o }
+  for_each = { for o in var.multi : o.region => o }
 
   network_id      = tolist(ovh_cloud_project_network_private.backnetwork.regions_attributes)[index(ovh_cloud_project_network_private.backnetwork.regions_attributes.*.region, each.key)].openstackid
   region          = each.key
@@ -54,7 +54,7 @@ resource "openstack_networking_subnet_v2" "backsubnet" {
 }
 
 resource "openstack_networking_router_v2" "backrouter" {
-  for_each = { for o in var.z : o.region => o }
+  for_each = { for o in var.multi : o.region => o }
 
   region         = each.key
   name           = var.common.backRouterName
@@ -62,7 +62,7 @@ resource "openstack_networking_router_v2" "backrouter" {
 }
 
 resource "openstack_networking_router_interface_v2" "backRouterInterfaceBack" {
-  for_each = { for o in var.z : o.region => o }
+  for_each = { for o in var.multi : o.region => o }
 
   region    = each.key
   router_id = openstack_networking_router_v2.backrouter[each.key].id
@@ -70,7 +70,7 @@ resource "openstack_networking_router_interface_v2" "backRouterInterfaceBack" {
 }
 
 resource "openstack_networking_port_v2" "backRouterPortFront" {
-  for_each = { for o in var.z : o.region => o }
+  for_each = { for o in var.multi : o.region => o }
 
   region         = each.key
   name           = var.common.portName
@@ -83,7 +83,7 @@ resource "openstack_networking_port_v2" "backRouterPortFront" {
 }
 
 resource "openstack_networking_router_interface_v2" "backRouterInterfaceFront" {
-  for_each = { for o in var.z : o.region => o }
+  for_each = { for o in var.multi : o.region => o }
 
   region    = each.key
   router_id = openstack_networking_router_v2.backrouter[each.key].id
