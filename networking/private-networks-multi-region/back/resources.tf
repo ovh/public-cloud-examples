@@ -8,10 +8,6 @@ resource "openstack_compute_instance_v2" "myBack" {
   user_data       = data.template_file.user-data-back_tpl.rendered
 
   network {
-    name = "Ext-Net"
-  }
-
-  network {
     name        = var.back.backNwName
     fixed_ip_v4 = var.back.backIP
   }

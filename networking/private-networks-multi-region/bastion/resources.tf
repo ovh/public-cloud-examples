@@ -1,20 +1,3 @@
-resource "openstack_compute_keypair_v2" "myKeypair" {
-  region = var.bastion.bRegion
-  name   = var.keypair.keypairName
-}
-
-resource "local_file" "ssh_private_key" {
-  content         = openstack_compute_keypair_v2.myKeypair.private_key
-  filename        = "${path.module}/${var.keypair.keypairName}_rsa"
-  file_permission = "0600"
-}
-
-resource "local_file" "ssh_public_key" {
-  content         = openstack_compute_keypair_v2.myKeypair.public_key
-  filename        = "${path.module}/${var.keypair.keypairName}_rsa.pub"
-  file_permission = "0644"
-}
-
 resource "openstack_compute_instance_v2" "myBastion" {
   name            = var.bastion.bastionName
   region          = var.bastion.bRegion

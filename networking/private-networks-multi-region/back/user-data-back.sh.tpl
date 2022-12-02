@@ -11,8 +11,6 @@ network:
   version: 2
   ethernets:
     ens3:
-      dhcp4: true
-    ens4:
       addresses: [${backIP}/24]
       dhcp4: false
       dhcp6: false
