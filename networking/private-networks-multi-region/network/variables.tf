@@ -17,18 +17,18 @@ variable "common" {
     backSubnetName  = string
     backRouterName  = string
     portName        = string
+    backSubnetCIDR  = string
   })
 }
 
-// Network by regions parameters
+# Network by regions parameters
 
 variable "multi" {
   type = list(object({
-    region            = string
-    frontSubnetCIDR   = string
-    backSubnetCIDR    = string
-    backRouterFrontIP = string
-    backRouterBackIP  = string
+    region             = string
+    frontSubnetCIDR    = string
+    frontRouterFrontIP = string
+    backRouterFrontIP  = string
+    backRouterBackIP   = string
   }))
 }
-

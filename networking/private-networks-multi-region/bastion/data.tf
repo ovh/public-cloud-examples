@@ -11,8 +11,10 @@ data "template_file" "ssh_config_tpl" {
 data "template_file" "user-data-bastion_tpl" {
   template = file("${path.module}/user-data-bastion.sh.tpl")
   vars = {
-    bastionIP  = var.bastion.bastionIP
-    subnetCIDR = var.bastion.bSubnetCIDR
-    rtrIp      = var.bastion.bRtrIp
+    bastionIP      = var.bastion.bastionIP
+    subnetCIDR     = var.bastion.bSubnetCIDR
+    rtrIp          = var.bastion.bRtrIp
+    backSubnetCIDR = var.bastion.backSubnetCIDR
+    bGateway       = var.bastion.bGateway
   }
 }

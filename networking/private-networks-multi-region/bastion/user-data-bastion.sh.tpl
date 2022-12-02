@@ -19,6 +19,8 @@ network:
       routes:
       - to: ${subnetCIDR}
         via: ${rtrIp}
+      - to: ${backSubnetCIDR}
+        via: ${bGateway}
 EOF
 netplan apply
 

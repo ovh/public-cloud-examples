@@ -21,6 +21,7 @@ module "mybastion" {
   keypair     = var.keypair
 }
 
+/*
 module "myback" {
   source = "./back"
   depends_on = [
@@ -31,3 +32,4 @@ module "myback" {
   back        = var.back
   keypair     = var.keypair
 }
+*/

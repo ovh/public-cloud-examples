@@ -17,6 +17,7 @@ variable "common" {
     backSubnetName  = string
     backRouterName  = string
     portName        = string
+    backSubnetCIDR = string
   })
 }
 
@@ -24,11 +25,11 @@ variable "common" {
 
 variable "multi" {
   type = list(object({
-    region            = string
-    frontSubnetCIDR   = string
-    backSubnetCIDR    = string
-    backRouterFrontIP = string
-    backRouterBackIP  = string
+    region             = string
+    frontSubnetCIDR    = string
+    frontRouterFrontIP = string
+    backRouterFrontIP  = string
+    backRouterBackIP   = string
   }))
 }
 
@@ -46,15 +47,17 @@ variable "keypair" {
 
 variable "bastion" {
   type = object({
-    frontNwName   = string
-    bRegion       = string
-    bSubnetCIDR   = string
-    bRtrIp        = string
-    bastionName   = string
-    bastionFlavor = string
-    bastionImage  = string
-    bastionUser   = string
-    bastionIP     = string
+    frontNwName    = string
+    bRegion        = string
+    bSubnetCIDR    = string
+    bRtrIp         = string
+    bGateway       = string
+    bastionName    = string
+    bastionFlavor  = string
+    bastionImage   = string
+    bastionUser    = string
+    bastionIP      = string
+    backSubnetCIDR = string
   })
 }
 
