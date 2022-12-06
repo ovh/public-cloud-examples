@@ -379,7 +379,7 @@ terraform output dbUserPassword
 
 Open and edit the `resources.tf` file and change the value of the `password_reset` parameter, from the `ovh_cloud_project_database_mongodb_user` resource block.
 
-Then, re-apply the plan to perform a password resseti and get the new one with:
+Then, re-apply the plan to perform a password reset and get the new one with:
 
 ```bash
 terraform apply
