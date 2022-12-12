@@ -8,12 +8,15 @@ resource "ovh_cloud_project_network_private" "backnetwork" {
 resource "openstack_networking_subnet_v2" "backsubnet" {
   for_each = { for o in var.multi : o.region => o }
 
-  network_id      = tolist(ovh_cloud_project_network_private.backnetwork.regions_attributes)[index(ovh_cloud_project_network_private.backnetwork.regions_attributes.*.region, each.key)].openstackid
-  region          = each.key
-  cidr            = var.common.backSubnetCIDR
-  enable_dhcp     = false
-  no_gateway      = false
-  dns_nameservers = ["1.1.1.1", "1.0.0.1"]
+  network_id  = tolist(ovh_cloud_project_network_private.backnetwork.regions_attributes)[index(ovh_cloud_project_network_private.backnetwork.regions_attributes.*.region, each.key)].openstackid
+  region      = each.key
+  cidr        = var.common.backSubnetCIDR
+  enable_dhcp = false
+  gateway_ip  = each.value.backRouterBackIP
+  allocation_pool {
+    start = each.value.backSubnetStart
+    end   = each.value.backSubnetEnd
+  }
 }
 
 resource "openstack_networking_router_v2" "backrouter" {
@@ -38,7 +41,7 @@ resource "openstack_networking_port_v2" "backRouterPortFront" {
   for_each = { for o in var.multi : o.region => o }
 
   region         = each.key
-  name           = var.common.portName
+  name           = "frontPort"
   network_id     = openstack_networking_network_v2.frontnetwork[each.key].id
   admin_state_up = true
   fixed_ip {
@@ -61,7 +64,7 @@ resource "openstack_networking_port_v2" "backRouterPortBack" {
   for_each = { for o in var.multi : o.region => o }
 
   region         = each.key
-  name           = var.common.portName
+  name           = "backPort"
   network_id     = openstack_networking_subnet_v2.backsubnet[each.key].network_id
   admin_state_up = true
   fixed_ip {

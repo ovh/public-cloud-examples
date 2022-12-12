@@ -16,7 +16,6 @@ variable "common" {
     backNwVlanId    = number
     backSubnetName  = string
     backRouterName  = string
-    portName        = string
     backSubnetCIDR  = string
   })
 }
@@ -30,5 +29,7 @@ variable "multi" {
     frontRouterFrontIP = string
     backRouterFrontIP  = string
     backRouterBackIP   = string
+    backSubnetStart    = string
+    backSubnetEnd      = string
   }))
 }
