@@ -12,7 +12,7 @@ resource "local_file" "ssh_private_key" {
 resource "local_file" "ssh_public_key" {
   content         = openstack_compute_keypair_v2.myMainKeypair.public_key
   filename        = "${path.module}/${var.keypair.keypairName}_rsa.pub"
-  file_permission = "0644"
+  file_permission = "0600"
 }
 
 resource "openstack_compute_keypair_v2" "myOtherKeypair" {

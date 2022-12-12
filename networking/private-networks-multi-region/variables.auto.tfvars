@@ -48,17 +48,17 @@ keypair = {
 # Bastion Instance
 
 bastion = {
-  frontNwName   = "frontNw"
-  bRegion       = "GRA9"
-  bSubnetCIDR   = "192.168.30.0/24"
-  bRtrIp        = "192.168.30.1"
-  bGateway	= "192.168.30.254"
-  bastionName   = "bastion"
-  bastionFlavor = "b2-7"
-  bastionImage  = "Ubuntu 20.04"
-  bastionUser   = "ubuntu"
-  bastionIP     = "192.168.30.2"
-  backSubnetCIDR  = "172.16.0.0/16"
+  frontNwName    = "frontNw"
+  bRegion        = "GRA9"
+  bSubnetCIDR    = "192.168.30.0/24"
+  bRtrIp         = "192.168.30.1"
+  bGateway       = "192.168.30.254"
+  bastionName    = "bastion"
+  bastionFlavor  = "b2-7"
+  bastionImage   = "Ubuntu 20.04"
+  bastionUser    = "ubuntu"
+  bastionIP      = "192.168.30.2"
+  backSubnetCIDR = "172.16.0.0/16"
 }
 
 # Back Instance

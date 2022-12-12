@@ -17,7 +17,7 @@ variable "common" {
     backSubnetName  = string
     backRouterName  = string
     portName        = string
-    backSubnetCIDR = string
+    backSubnetCIDR  = string
   })
 }
 
