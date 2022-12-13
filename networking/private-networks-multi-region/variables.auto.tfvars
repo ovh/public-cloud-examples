@@ -2,15 +2,15 @@
 
 common = {
   regions         = ["GRA7", "SBG5", "GRA9"]
-  frontNwName     = "frontNw"
-  frontSubnetName = "frontSubnet"
-  frontRouterName = "frontRouter"
-  backNwName      = "backNw"
-  backNwVlanId    = 100
+  monoNwName     = "frontNw"
+  monoSubnetName = "frontSubnet"
+  routerName = "frontRouter"
+  multiNwName      = "backNw"
+  multiNwVlanId    = 100
   backSubnetName  = "backSubnet"
   backRouterName  = "backRouter"
   portName        = "frontPort"
-  backSubnetCIDR  = "172.16.0.0/16"
+  multiSubnetCIDR  = "172.16.0.0/16"
 }
 
 # Network by regions parameters
@@ -18,28 +18,25 @@ common = {
 multi = [
   {
     region             = "GRA9"
-    frontSubnetCIDR    = "192.168.10.0/24"
-    frontRouterFrontIP = "192.168.10.1"
-    backRouterFrontIP  = "192.168.10.254"
-    backRouterBackIP   = "172.16.0.1"
-    backSubnetStart    = "172.16.0.2"
-    backSubnetEnd      = "172.16.63.254"
+    monoSubnetCIDR    = "192.168.10.0/24"
+    routerMonoNwIP = "192.168.10.1"
+    routerMultiNwIP   = "172.16.0.1"
+    multiSubnetStart    = "172.16.0.2"
+    multiSubnetEnd      = "172.16.63.254"
     }, {
     region             = "GRA7"
-    frontSubnetCIDR    = "192.168.20.0/24"
-    frontRouterFrontIP = "192.168.20.1"
-    backRouterFrontIP  = "192.168.20.254"
-    backRouterBackIP   = "172.16.64.1"
-    backSubnetStart    = "172.16.64.2"
-    backSubnetEnd      = "172.16.127.254"
+    monoSubnetCIDR    = "192.168.20.0/24"
+    routerMonoNwIP = "192.168.20.1"
+    routerMultiNwIP   = "172.16.64.1"
+    multiSubnetStart    = "172.16.64.2"
+    multiSubnetEnd      = "172.16.127.254"
     }, {
     region             = "SBG5"
-    frontSubnetCIDR    = "192.168.30.0/24"
-    frontRouterFrontIP = "192.168.30.1"
-    backRouterFrontIP  = "192.168.30.254"
-    backRouterBackIP   = "172.16.128.1"
-    backSubnetStart    = "172.16.128.2"
-    backSubnetEnd      = "172.16.255.254"
+    monoSubnetCIDR    = "192.168.30.0/24"
+    routerMonoNwIP = "192.168.30.1"
+    routerMultiNwIP   = "172.16.128.1"
+    multiSubnetStart    = "172.16.128.2"
+    multiSubnetEnd      = "172.16.255.254"
   }
 ]
 

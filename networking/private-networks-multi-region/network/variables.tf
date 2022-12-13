@@ -9,14 +9,14 @@ variable "serviceName" {
 variable "common" {
   type = object({
     regions         = list(string)
-    frontNwName     = string
-    frontSubnetName = string
-    frontRouterName = string
-    backNwName      = string
-    backNwVlanId    = number
+    monoNwName      = string
+    monoSubnetName  = string
+    routerName      = string
+    multiNwName     = string
+    multiNwVlanId   = number
     backSubnetName  = string
     backRouterName  = string
-    backSubnetCIDR  = string
+    multiSubnetCIDR = string
   })
 }
 
@@ -25,11 +25,10 @@ variable "common" {
 variable "multi" {
   type = list(object({
     region             = string
-    frontSubnetCIDR    = string
-    frontRouterFrontIP = string
-    backRouterFrontIP  = string
-    backRouterBackIP   = string
-    backSubnetStart    = string
-    backSubnetEnd      = string
+    monoSubnetCIDR     = string
+    routerMonoNwIP  = string
+    routerMultiNwIP    = string
+    multiSubnetStart   = string
+    multiSubnetEnd     = string
   }))
 }

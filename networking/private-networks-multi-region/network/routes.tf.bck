@@ -1,4 +1,5 @@
 resource "openstack_networking_router_route_v2" "route01_a" {
+  depends_on       = [ openstack_networking_port_v2.backRouterPortBack["GRA9"] ]
   region           = "GRA9"
   router_id        = openstack_networking_router_v2.backrouter["GRA9"].id
   destination_cidr = "192.168.20.0/24"
@@ -6,6 +7,7 @@ resource "openstack_networking_router_route_v2" "route01_a" {
 }
 
 resource "openstack_networking_router_route_v2" "route01_b" {
+  depends_on       = [ openstack_networking_port_v2.backRouterPortBack["GRA9"] ]
   region           = "GRA9"
   router_id        = openstack_networking_router_v2.backrouter["GRA9"].id
   destination_cidr = "192.168.30.0/24"
@@ -13,6 +15,7 @@ resource "openstack_networking_router_route_v2" "route01_b" {
 }
 
 resource "openstack_networking_router_route_v2" "route02_a" {
+  depends_on       = [ openstack_networking_port_v2.backRouterPortBack["GRA7"] ]
   region           = "GRA7"
   router_id        = openstack_networking_router_v2.backrouter["GRA7"].id
   destination_cidr = "192.168.10.0/24"
@@ -20,6 +23,7 @@ resource "openstack_networking_router_route_v2" "route02_a" {
 }
 
 resource "openstack_networking_router_route_v2" "route02_b" {
+  depends_on       = [ openstack_networking_port_v2.backRouterPortBack["GRA7"] ]
   region           = "GRA7"
   router_id        = openstack_networking_router_v2.backrouter["GRA7"].id
   destination_cidr = "192.168.30.0/24"
@@ -27,6 +31,7 @@ resource "openstack_networking_router_route_v2" "route02_b" {
 }
 
 resource "openstack_networking_router_route_v2" "route03_a" {
+  depends_on       = [ openstack_networking_port_v2.backRouterPortBack["SBG5"] ]
   region           = "SBG5"
   router_id        = openstack_networking_router_v2.backrouter["SBG5"].id
   destination_cidr = "192.168.10.0/24"
@@ -34,6 +39,7 @@ resource "openstack_networking_router_route_v2" "route03_a" {
 }
 
 resource "openstack_networking_router_route_v2" "route03_b" {
+  depends_on       = [ openstack_networking_port_v2.backRouterPortBack["SBG5"] ]
   region           = "SBG5"
   router_id        = openstack_networking_router_v2.backrouter["SBG5"].id
   destination_cidr = "192.168.20.0/24"

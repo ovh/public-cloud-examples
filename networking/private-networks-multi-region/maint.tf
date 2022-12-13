@@ -10,6 +10,7 @@ module "mynetwork" {
   multi       = var.multi
 }
 
+/*
 module "mybastion" {
   source = "./bastion"
   depends_on = [
@@ -31,3 +32,4 @@ module "mytarget" {
   target      = var.target
   keypair     = var.keypair
 }
+*/

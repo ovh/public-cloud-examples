@@ -18,13 +18,13 @@ network:
       dhcp6: false
       routes:
       - to: 192.168.0.0/16
-        via: ${rtrIp}
+        via: ${bGateway}
       - to: 192.168.10.0/24
-        via: 192.168.10.1
+        via: ${rtrIp}
       - to: 192.168.20.0/24
-        via: ${rtrIp}
+        via: ${bGateway}
       - to: 192.168.30.0/24
-        via: ${rtrIp}
+        via: ${bGateway}
 EOF
 netplan apply
 
