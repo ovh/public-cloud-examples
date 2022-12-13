@@ -29,7 +29,7 @@ variable "multi" {
     frontRouterFrontIP = string
     backRouterFrontIP  = string
     backRouterBackIP   = string
-    backSubnetStart     = string
+    backSubnetStart    = string
     backSubnetEnd      = string
   }))
 }
@@ -62,18 +62,20 @@ variable "bastion" {
   })
 }
 
-# Back parameters
+# Target parameters
 
-variable "back" {
+variable "target" {
   type = object({
-    backNwName  = string
-    bRegion     = string
-    bSubnetCIDR = string
-    bRtrIp      = string
-    backName    = string
-    backFlavor  = string
-    backImage   = string
-    backUser    = string
-    backIP      = string
+    frontNwName    = string
+    bRegion        = string
+    bSubnetCIDR    = string
+    bRtrIp         = string
+    bGateway       = string
+    targetName     = string
+    targetFlavor   = string
+    targetImage    = string
+    targetUser     = string
+    targetIP       = string
+    backSubnetCIDR = string
   })
 }

@@ -19,8 +19,12 @@ network:
       routes:
       - to: 192.168.0.0/16
         via: ${rtrIp}
-      - to: ${backSubnetCIDR}
-        via: ${bGateway}
+      - to: 192.168.10.0/24
+        via: 192.168.10.1
+      - to: 192.168.20.0/24
+        via: ${rtrIp}
+      - to: 192.168.30.0/24
+        via: ${rtrIp}
 EOF
 netplan apply
 

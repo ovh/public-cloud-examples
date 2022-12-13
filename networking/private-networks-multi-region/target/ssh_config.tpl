@@ -1,0 +1,9 @@
+Host ${targetName}
+	HostName ${targetIP}
+	User ${targetUser}
+	ForwardAgent yes
+	IdentityFile ./${keypairName}_rsa
+	StrictHostKeyChecking no
+	UserKnownHostsFile /dev/null
+	ServerAliveInterval 60
+	ServerAliveCountMax 30

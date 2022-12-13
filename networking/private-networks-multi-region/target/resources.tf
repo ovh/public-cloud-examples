@@ -1,11 +1,11 @@
-resource "openstack_compute_instance_v2" "myBastion" {
-  name            = var.bastion.bastionName
-  region          = var.bastion.bRegion
-  flavor_name     = var.bastion.bastionFlavor
-  image_name      = var.bastion.bastionImage
+resource "openstack_compute_instance_v2" "myTarget" {
+  name            = var.target.targetName
+  region          = var.target.bRegion
+  flavor_name     = var.target.targetFlavor
+  image_name      = var.target.targetImage
   key_pair        = var.keypair.keypairName
   security_groups = ["default"]
-  user_data       = data.template_file.user-data-bastion_tpl.rendered
+  user_data       = data.template_file.user-data-target_tpl.rendered
 
   lifecycle { ignore_changes = ["user_data"] }
 
@@ -14,8 +14,8 @@ resource "openstack_compute_instance_v2" "myBastion" {
   }
 
   network {
-    name        = var.bastion.frontNwName
-    fixed_ip_v4 = var.bastion.bastionIP
+    name        = var.target.frontNwName
+    fixed_ip_v4 = var.target.targetIP
   }
 }
 

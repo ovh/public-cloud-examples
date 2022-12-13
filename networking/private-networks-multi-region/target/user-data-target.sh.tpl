@@ -11,11 +11,19 @@ network:
   version: 2
   ethernets:
     ens3:
-      addresses: [${backIP}/24]
+      dhcp4: true
+    ens4:
+      addresses: [${targetIP}/24]
       dhcp4: false
       dhcp6: false
       routes:
-      - to: ${subnetCIDR}
+      - to: 192.168.0.0/16
+        via: ${rtrIp}
+      - to: 192.168.20.0/24
+        via: 192.168.20.1
+      - to: 192.168.10.0/24
+        via: ${rtrIp}
+      - to: 192.168.30.0/24
         via: ${rtrIp}
 EOF
 netplan apply

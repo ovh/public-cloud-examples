@@ -21,15 +21,13 @@ module "mybastion" {
   keypair     = var.keypair
 }
 
-/*
-module "myback" {
-  source = "./back"
+module "mytarget" {
+  source = "./target"
   depends_on = [
     module.mynetwork,
     module.mykeypair
   ]
   serviceName = var.serviceName
-  back        = var.back
+  target      = var.target
   keypair     = var.keypair
 }
-*/

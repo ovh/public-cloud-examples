@@ -67,16 +67,18 @@ bastion = {
   backSubnetCIDR = "172.16.0.0/16"
 }
 
-# Back Instance
+# Target Instance
 
-back = {
-  backNwName  = "backNw"
-  bRegion     = "SBG5"
-  bSubnetCIDR = "192.168.120.0/24"
-  bRtrIp      = "192.168.120.1"
-  backName    = "back"
-  backFlavor  = "b2-7"
-  backImage   = "Ubuntu 20.04"
-  backUser    = "ubuntu"
-  backIP      = "192.168.120.2"
+target = {
+  frontNwName    = "frontNw"
+  bRegion        = "GRA7"
+  bSubnetCIDR    = "192.168.20.0/24"
+  bRtrIp         = "192.168.20.1"
+  bGateway       = "192.168.20.254"
+  targetName     = "target"
+  targetFlavor   = "b2-7"
+  targetImage    = "Ubuntu 20.04"
+  targetUser     = "ubuntu"
+  targetIP       = "192.168.20.2"
+  backSubnetCIDR = "172.16.0.0/16"
 }
