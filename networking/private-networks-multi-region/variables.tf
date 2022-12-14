@@ -30,6 +30,8 @@ variable "multi" {
     routerMultiNwIP  = string
     multiSubnetStart = string
     multiSubnetEnd   = string
+    monoSubnetStart  = string
+    monoSubnetEnd    = string
   }))
 }
 
@@ -76,15 +78,11 @@ variable "bastion" {
 
 variable "target" {
   type = object({
-    networkName     = string
-    region          = string
-    subnetCIDR      = string
-    rtrIp           = string
-    name            = string
-    flavor          = string
-    image           = string
-    user            = string
-    fixedIP         = string
-    subnetMultiCIDR = string
+    networkName = string
+    region      = string
+    name        = string
+    flavor      = string
+    image       = string
+    user        = string
   })
 }

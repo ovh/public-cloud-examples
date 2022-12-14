@@ -9,11 +9,15 @@ resource "openstack_networking_network_v2" "mononetwork" {
 resource "openstack_networking_subnet_v2" "monosubnet" {
   for_each = { for o in var.multi : o.region => o }
 
-  network_id      = openstack_networking_network_v2.mononetwork[each.key].id
-  name            = var.common.monoSubnetName
-  region          = each.key
-  cidr            = each.value.monoSubnetCIDR
-  enable_dhcp     = false
+  network_id  = openstack_networking_network_v2.mononetwork[each.key].id
+  name        = var.common.monoSubnetName
+  region      = each.key
+  cidr        = each.value.monoSubnetCIDR
+  enable_dhcp = true
+  allocation_pool {
+    start = each.value.monoSubnetStart
+    end   = each.value.monoSubnetEnd
+  }
   no_gateway      = false
   dns_nameservers = ["1.1.1.1", "1.0.0.1"]
 }

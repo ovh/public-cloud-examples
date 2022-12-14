@@ -30,5 +30,7 @@ variable "multi" {
     routerMultiNwIP  = string
     multiSubnetStart = string
     multiSubnetEnd   = string
+    monoSubnetStart  = string
+    monoSubnetEnd    = string
   }))
 }

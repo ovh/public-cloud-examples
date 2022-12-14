@@ -21,22 +21,28 @@ multi = [
     monoSubnetCIDR   = "192.168.10.0/24"
     routerMonoNwIP   = "192.168.10.1"
     routerMultiNwIP  = "172.16.0.1"
-    multiSubnetStart = "172.16.0.2"
+    multiSubnetStart = "172.16.0.100"
     multiSubnetEnd   = "172.16.63.254"
+    monoSubnetStart  = "192.168.10.100"
+    monoSubnetEnd    = "192.168.10.200"
     }, {
     region           = "GRA7"
     monoSubnetCIDR   = "192.168.20.0/24"
     routerMonoNwIP   = "192.168.20.1"
     routerMultiNwIP  = "172.16.64.1"
-    multiSubnetStart = "172.16.64.2"
+    multiSubnetStart = "172.16.64.100"
     multiSubnetEnd   = "172.16.127.254"
+    monoSubnetStart  = "192.168.20.100"
+    monoSubnetEnd    = "192.168.20.200"
     }, {
     region           = "SBG5"
     monoSubnetCIDR   = "192.168.30.0/24"
     routerMonoNwIP   = "192.168.30.1"
     routerMultiNwIP  = "172.16.128.1"
-    multiSubnetStart = "172.16.128.2"
+    multiSubnetStart = "172.16.128.100"
     multiSubnetEnd   = "172.16.255.254"
+    monoSubnetStart  = "192.168.30.100"
+    monoSubnetEnd    = "192.168.30.200"
   }
 ]
 

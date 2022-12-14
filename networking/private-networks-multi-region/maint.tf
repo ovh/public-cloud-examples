@@ -35,7 +35,6 @@ module "mytarget" {
     module.routes,
     module.mykeypair
   ]
-  serviceName = var.serviceName
-  target      = var.target
-  keypair     = var.keypair
+  target  = var.target
+  keypair = var.keypair
 }
