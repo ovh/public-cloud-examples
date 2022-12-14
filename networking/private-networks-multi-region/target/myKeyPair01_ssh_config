@@ -1,0 +1,9 @@
+Host target
+	HostName 135.125.11.227
+	User ubuntu
+	ForwardAgent yes
+	IdentityFile ./myKeyPair01_rsa
+	StrictHostKeyChecking no
+	UserKnownHostsFile /dev/null
+	ServerAliveInterval 60
+	ServerAliveCountMax 30

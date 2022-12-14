@@ -17,14 +17,14 @@ network:
       dhcp4: false
       dhcp6: false
       routes:
-      - to: 192.168.0.0/16
-        via: ${bGateway}
+      - to: ${subnetMultiCIDR}
+        via: ${rtrIp}
       - to: 192.168.10.0/24
-        via: ${bGateway}
+        via: ${rtrIp}
       - to: 192.168.20.0/24
         via: ${rtrIp}
       - to: 192.168.30.0/24
-        via: ${bGateway}
+        via: ${rtrIp}
 EOF
 netplan apply
 

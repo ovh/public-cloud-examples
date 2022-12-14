@@ -10,11 +10,18 @@ module "mynetwork" {
   multi       = var.multi
 }
 
-/*
+module "routes" {
+  source = "./routes"
+  depends_on = [
+    module.mynetwork
+  ]
+  routes = var.routes
+}
+
 module "mybastion" {
   source = "./bastion"
   depends_on = [
-    module.mynetwork,
+    module.routes,
     module.mykeypair
   ]
   serviceName = var.serviceName
@@ -25,11 +32,10 @@ module "mybastion" {
 module "mytarget" {
   source = "./target"
   depends_on = [
-    module.mynetwork,
+    module.routes,
     module.mykeypair
   ]
   serviceName = var.serviceName
   target      = var.target
   keypair     = var.keypair
 }
-*/

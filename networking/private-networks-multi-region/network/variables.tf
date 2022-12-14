@@ -14,7 +14,7 @@ variable "common" {
     routerName      = string
     multiNwName     = string
     multiNwVlanId   = number
-    backSubnetName  = string
+    multiSubnetName = string
     backRouterName  = string
     multiSubnetCIDR = string
   })
@@ -24,11 +24,11 @@ variable "common" {
 
 variable "multi" {
   type = list(object({
-    region             = string
-    monoSubnetCIDR     = string
-    routerMonoNwIP  = string
-    routerMultiNwIP    = string
-    multiSubnetStart   = string
-    multiSubnetEnd     = string
+    region           = string
+    monoSubnetCIDR   = string
+    routerMonoNwIP   = string
+    routerMultiNwIP  = string
+    multiSubnetStart = string
+    multiSubnetEnd   = string
   }))
 }

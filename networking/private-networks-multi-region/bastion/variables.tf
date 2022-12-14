@@ -8,17 +8,16 @@ variable "serviceName" {
 
 variable "bastion" {
   type = object({
-    frontNwName    = string
-    bRegion        = string
-    bSubnetCIDR    = string
-    bRtrIp         = string
-    bGateway       = string
-    bastionName    = string
-    bastionFlavor  = string
-    bastionImage   = string
-    bastionUser    = string
-    bastionIP      = string
-    backSubnetCIDR = string
+    networkName     = string
+    region          = string
+    subnetCIDR      = string
+    rtrIp           = string
+    name            = string
+    flavor          = string
+    image           = string
+    user            = string
+    fixedIP         = string
+    subnetMultiCIDR = string
   })
 }
 

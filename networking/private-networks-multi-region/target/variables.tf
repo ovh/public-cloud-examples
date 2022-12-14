@@ -8,17 +8,16 @@ variable "serviceName" {
 
 variable "target" {
   type = object({
-    frontNwName    = string
-    bRegion        = string
-    bSubnetCIDR    = string
-    bRtrIp         = string
-    bGateway       = string
-    targetName     = string
-    targetFlavor   = string
-    targetImage    = string
-    targetUser     = string
-    targetIP       = string
-    backSubnetCIDR = string
+    networkName     = string
+    region          = string
+    subnetCIDR      = string
+    rtrIp           = string
+    name            = string
+    flavor          = string
+    image           = string
+    user            = string
+    fixedIP         = string
+    subnetMultiCIDR = string
   })
 }
 

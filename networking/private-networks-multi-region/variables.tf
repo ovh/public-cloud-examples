@@ -14,7 +14,7 @@ variable "common" {
     routerName      = string
     multiNwName     = string
     multiNwVlanId   = number
-    backSubnetName  = string
+    multiSubnetName = string
     backRouterName  = string
     multiSubnetCIDR = string
   })
@@ -24,12 +24,24 @@ variable "common" {
 
 variable "multi" {
   type = list(object({
-    region             = string
-    monoSubnetCIDR     = string
-    routerMonoNwIP  = string
-    routerMultiNwIP    = string
-    multiSubnetStart   = string
-    multiSubnetEnd     = string
+    region           = string
+    monoSubnetCIDR   = string
+    routerMonoNwIP   = string
+    routerMultiNwIP  = string
+    multiSubnetStart = string
+    multiSubnetEnd   = string
+  }))
+}
+
+# Network Routes
+
+variable "routes" {
+  type = list(object({
+    region        = string
+    nextHopRoute1 = string
+    nextHopRoute2 = string
+    destRoute1    = string
+    destRoute2    = string
   }))
 }
 
@@ -47,17 +59,16 @@ variable "keypair" {
 
 variable "bastion" {
   type = object({
-    frontNwName    = string
-    bRegion        = string
-    bSubnetCIDR    = string
-    bRtrIp         = string
-    bGateway       = string
-    bastionName    = string
-    bastionFlavor  = string
-    bastionImage   = string
-    bastionUser    = string
-    bastionIP      = string
-    backSubnetCIDR = string
+    networkName     = string
+    region          = string
+    subnetCIDR      = string
+    rtrIp           = string
+    name            = string
+    flavor          = string
+    image           = string
+    user            = string
+    fixedIP         = string
+    subnetMultiCIDR = string
   })
 }
 
@@ -65,16 +76,15 @@ variable "bastion" {
 
 variable "target" {
   type = object({
-    frontNwName    = string
-    bRegion        = string
-    bSubnetCIDR    = string
-    bRtrIp         = string
-    bGateway       = string
-    targetName     = string
-    targetFlavor   = string
-    targetImage    = string
-    targetUser     = string
-    targetIP       = string
-    backSubnetCIDR = string
+    networkName     = string
+    region          = string
+    subnetCIDR      = string
+    rtrIp           = string
+    name            = string
+    flavor          = string
+    image           = string
+    user            = string
+    fixedIP         = string
+    subnetMultiCIDR = string
   })
 }

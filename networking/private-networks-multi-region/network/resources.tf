@@ -27,7 +27,7 @@ resource "openstack_networking_router_v2" "router" {
   external_network_id = data.openstack_networking_network_v2.Ext-Net[each.key].id
 }
 
-resource "openstack_networking_router_interface_v2" "routerInterface" {
+resource "openstack_networking_router_interface_v2" "routerInterface_Mono" {
   for_each = { for o in var.multi : o.region => o }
 
   region    = each.key
@@ -46,6 +46,7 @@ resource "openstack_networking_subnet_v2" "multisubnet" {
   for_each = { for o in var.multi : o.region => o }
 
   network_id  = tolist(ovh_cloud_project_network_private.multinetwork.regions_attributes)[index(ovh_cloud_project_network_private.multinetwork.regions_attributes.*.region, each.key)].openstackid
+  name        = var.common.multiSubnetName
   region      = each.key
   cidr        = var.common.multiSubnetCIDR
   enable_dhcp = false
@@ -55,3 +56,31 @@ resource "openstack_networking_subnet_v2" "multisubnet" {
     end   = each.value.multiSubnetEnd
   }
 }
+
+resource "openstack_networking_router_interface_v2" "routerInterface_Multi" {
+  for_each = { for o in var.multi : o.region => o }
+
+  region    = each.key
+  router_id = openstack_networking_router_v2.router[each.key].id
+  subnet_id = openstack_networking_subnet_v2.multisubnet[each.key].id
+}
+
+/*
+resource "openstack_networking_router_route_v2" "route01" {
+  for_each = { for o in var.multi : o.region => o }
+
+  region           = each.key
+  router_id        = openstack_networking_router_v2.router[each.key].id
+  destination_cidr = each.value.destRoute1
+  next_hop         = each.value.nextHopRoute1
+}
+
+resource "openstack_networking_router_route_v2" "route02" {
+  for_each = { for o in var.multi : o.region => o }
+
+  region           = each.key
+  router_id        = openstack_networking_router_v2.router[each.key].id
+  destination_cidr = each.value.destRoute2
+  next_hop         = each.value.nextHopRoute2
+}
+*/
