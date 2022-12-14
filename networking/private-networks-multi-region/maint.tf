@@ -24,7 +24,6 @@ module "mybastion" {
     module.routes,
     module.mykeypair
   ]
-  serviceName = var.serviceName
   bastion     = var.bastion
   keypair     = var.keypair
 }

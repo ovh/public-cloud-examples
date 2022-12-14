@@ -2,12 +2,12 @@
 
 variable "target" {
   type = object({
-    networkName     = string
-    region          = string
-    name            = string
-    flavor          = string
-    image           = string
-    user            = string
+    networkName = string
+    region      = string
+    name        = string
+    flavor      = string
+    image       = string
+    user        = string
   })
 }
 

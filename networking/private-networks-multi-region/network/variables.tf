@@ -15,7 +15,6 @@ variable "common" {
     multiNwName     = string
     multiNwVlanId   = number
     multiSubnetName = string
-    backRouterName  = string
     multiSubnetCIDR = string
   })
 }

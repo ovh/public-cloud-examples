@@ -5,22 +5,19 @@ resource "openstack_compute_instance_v2" "myBastion" {
   image_name      = var.bastion.image
   key_pair        = var.keypair.keypairName
   security_groups = ["default"]
-  user_data       = data.template_file.user-data-bastion_tpl.rendered
-
-  lifecycle { ignore_changes = [user_data] }
-
-  network {
-    name = "Ext-Net"
-  }
 
   network {
     name        = var.bastion.networkName
-    fixed_ip_v4 = var.bastion.fixedIP
   }
 }
 
-resource "local_file" "ssh_config" {
-  content         = data.template_file.ssh_config_tpl.rendered
-  filename        = "${path.module}/${var.keypair.keypairName}_ssh_config"
-  file_permission = "0644"
+resource "openstack_networking_floatingip_v2" "floatip_bastion" {
+  region = var.bastion.region
+  pool   = "Ext-Net"
+}
+
+resource "openstack_compute_floatingip_associate_v2" "fip_associate_bastion" {
+  region      = var.bastion.region
+  floating_ip = openstack_networking_floatingip_v2.floatip_bastion.address
+  instance_id = openstack_compute_instance_v2.myBastion.id
 }

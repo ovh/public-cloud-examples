@@ -8,7 +8,6 @@ common = {
   multiNwName     = "multiNetwork"
   multiNwVlanId   = 100
   multiSubnetName = "multiSubnet"
-  backRouterName  = "backRouter"
   portName        = "frontPort"
   multiSubnetCIDR = "172.16.0.0/16"
 }
@@ -83,14 +82,10 @@ keypair = {
 bastion = {
   networkName     = "monoNetwork"
   region          = "GRA9"
-  subnetCIDR      = "192.168.10.0/24"
-  rtrIp           = "192.168.10.1"
   name            = "bastion"
   flavor          = "b2-7"
   image           = "Ubuntu 20.04"
   user            = "ubuntu"
-  fixedIP         = "192.168.10.2"
-  subnetMultiCIDR = "172.16.0.0/16"
 }
 
 # Target Instance
@@ -98,12 +93,8 @@ bastion = {
 target = {
   networkName     = "monoNetwork"
   region          = "GRA7"
-  subnetCIDR      = "192.168.20.0/24"
-  rtrIp           = "192.168.20.1"
   name            = "target"
   flavor          = "b2-7"
   image           = "Ubuntu 20.04"
   user            = "ubuntu"
-  fixedIP         = "192.168.20.2"
-  subnetMultiCIDR = "172.16.0.0/16"
 }

@@ -6,6 +6,6 @@ resource "openstack_compute_instance_v2" "myTarget" {
   key_pair        = var.keypair.keypairName
   security_groups = ["default"]
   network {
-    name        = var.target.networkName
+    name = var.target.networkName
   }
 }
