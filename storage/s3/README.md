@@ -1,5 +1,4 @@
-# Simple volume
-
+# S3 bucket
 This example builds an S3 bucket within OVHcloud Public Cloud.
 
 The components that will be created are : 
