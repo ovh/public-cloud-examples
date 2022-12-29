@@ -12,4 +12,4 @@ tasks:
   command: |
         gp sync-await ovhrc
         echo ". ${GITPOD_REPO_ROOT}/ovhrc" >> ${HOME}/.bashrc
-        
+        source ${HOME}/.bashrc        
