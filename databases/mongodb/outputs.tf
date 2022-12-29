@@ -1,6 +1,6 @@
-output "serviceName" {
+output "service_name" {
   description = "Service Name"
-  value       = var.serviceName
+  value       = var.service_name
 }
 
 output "dbId" {

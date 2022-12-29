@@ -29,35 +29,35 @@ region = "GRA7"
 
 // Region for database
 
-dbRegion = "GRA"
+db_region = "GRA"
 
 // Network - Private Network
 
-pvNetworkName = "myPrivateNetwork"
+pv_network_name = "myPrivateNetwork"
 
 // Network - Subnet
 
-subnetName = "mySubnet"
+subnet_name = "mySubnet"
 
 // Database
 
-dbDescription = "myMongoDb"
-dbEngine = "mongodb"
-dbVersion = "6.0"
-dbPlan = "business"
-dbFlavor = "db1-7"
+db_description = "myMongoDb"
+db_engine = "mongodb"
+db_version = "6.0"
+db_plan = "business"
+db_flavor = "db1-7"
 
 // Database User
 
-dbUserName = "myuser"
-dbUserRole = ["readWriteAnyDatabase"]
+db_user_name = "myuser"
+db_user_role = ["readWriteAnyDatabase"]
 
 // IP Restriction
 
-dbAllowedIp = "192.168.2.0/24"
+db_allowed_ip = "192.168.2.0/24"
 ```
 
-> Note: dbUserRole possible values are:
+> Note: db_user_role possible values are:
 >
 >    "readAnyDatabase"
 >    "readWriteAnyDatabase"
@@ -188,7 +188,7 @@ Plan: 3 to add, 0 to change, 0 to destroy.
 Changes to Outputs:
   + dbId           = (known after apply)
   + dbUserPassword = (sensitive value)
-  + serviceName    = "xxxxxxxx1da24017a6a6f6b6xxxxxxxx"
+  + service_name    = "xxxxxxxx1da24017a6a6f6b6xxxxxxxx"
 
 ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 
@@ -267,7 +267,7 @@ Plan: 3 to add, 0 to change, 0 to destroy.
 Changes to Outputs:
   + dbId           = (known after apply)
   + dbUserPassword = (sensitive value)
-  + serviceName    = "xxxxxxxx1da24017a6a6f6b6xxxxxxxx"
+  + service_name    = "xxxxxxxx1da24017a6a6f6b6xxxxxxxx"
 ovh_cloud_project_database.mongodb: Creating...
 ovh_cloud_project_database.mongodb: Still creating... [10s elapsed]
 ovh_cloud_project_database.mongodb: Still creating... [20s elapsed]
@@ -364,7 +364,7 @@ Outputs:
 
 dbId = "xxxxxxxx-2df2-4006-a0f3-xxxxxxxxxxxx"
 dbUserPassword = <sensitive>
-serviceName = "xxxxxxxx1da24017a6a6f6b6xxxxxxxx"
+service_name = "xxxxxxxx1da24017a6a6f6b6xxxxxxxx"
 ```
 
 </details>
@@ -433,7 +433,7 @@ Outputs:
 
 dbId = "xxxxxxxx-e6b0-4253-abf4-xxxxxxxxxxxx"
 dbUserPassword = <sensitive>
-serviceName = "xxxxxxxx1da24017a6a6f6b6xxxxxxxx"
+service_name = "xxxxxxxx1da24017a6a6f6b6xxxxxxxx"
 ```
 
 </details>
@@ -557,7 +557,7 @@ Plan: 0 to add, 0 to change, 3 to destroy.
 Changes to Outputs:
   - dbId           = "xxxxxxxx-2df2-4006-a0f3-xxxxxxxxxxxx" -> null
   - dbUserPassword = (sensitive value)
-  - serviceName    = "xxxxxxxx1da24017a6a6f6b6xxxxxxxx" -> null
+  - service_name    = "xxxxxxxx1da24017a6a6f6b6xxxxxxxx" -> null
 ovh_cloud_project_database_ip_restriction.iprestriction: Destroying... [id=xxx4843xxx]
 ovh_cloud_project_database_mongodb_user.mongouser: Destroying... [id=xxxxxxxx-c66b-42ad-965c-xxxxxxxxxxxx]
 ovh_cloud_project_database_mongodb_user.mongouser: Still destroying... [id=xxxxxxxx-c66b-42ad-965c-xxxxxxxxxxxx, 10s elapsed]
