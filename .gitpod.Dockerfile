@@ -35,5 +35,9 @@ RUN sudo apt update && sudo apt install -y ansible
 RUN curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl" \
         && sudo mv ./kubectl /usr/local/bin/kubectl \
         && sudo chmod 0755 /usr/local/bin/kubectl
+
 # Pre-commit
 RUN pip install pre-commit
+
+# Tflint
+RUN curl -s https://raw.githubusercontent.com/terraform-linters/tflint/master/install_linux.sh | bash
