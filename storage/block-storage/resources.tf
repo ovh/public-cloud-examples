@@ -1,5 +1,5 @@
-resource "openstack_blockstorage_volume_v3" "bsVolume" {
+resource "openstack_blockstorage_volume_v3" "bs_volume" {
   region = var.region
-  name   = var.bsName
-  size   = var.bsSize
+  name   = var.bs_name
+  size   = var.bs_size
 }
