@@ -1,11 +1,11 @@
-resource "openstack_networking_network_v2" "myPrivateNetwork" {
+resource "openstack_networking_network_v2" "my_private_network" {
   name           = var.pv_network_name
   admin_state_up = "true"
   region         = var.region
 }
 
-resource "openstack_networking_subnet_v2" "mySubnet" {
-  network_id      = openstack_networking_network_v2.myPrivateNetwork.id
+resource "openstack_networking_subnet_v2" "my_subnet" {
+  network_id      = openstack_networking_network_v2.my_private_network.id
   name            = var.subnet_name
   region          = var.region
   cidr            = var.subnet_cidr
@@ -19,15 +19,15 @@ resource "openstack_networking_subnet_v2" "mySubnet" {
   }
 }
 
-resource "openstack_networking_router_v2" "myRouter" {
+resource "openstack_networking_router_v2" "my_router" {
   name                = var.rtr_name
   admin_state_up      = true
   external_network_id = data.openstack_networking_network_v2.Ext-Net.id
   region              = var.region
 }
 
-resource "openstack_networking_router_interface_v2" "myRouterInterface" {
-  router_id = openstack_networking_router_v2.myRouter.id
-  subnet_id = openstack_networking_subnet_v2.mySubnet.id
+resource "openstack_networking_router_interface_v2" "my_routerInterface" {
+  router_id = openstack_networking_router_v2.my_router.id
+  subnet_id = openstack_networking_subnet_v2.my_subnet.id
   region    = var.region
 }
