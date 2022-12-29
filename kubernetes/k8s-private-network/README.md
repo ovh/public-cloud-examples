@@ -2,7 +2,7 @@
 
 This example builds a Managed Kubernetes Cluster connected to a private network within OVHcloud Public Cloud.
 
-The components that will be created are : 
+The components that will be created are :
 
 - A [Managed Kubernetes Cluster](https://www.ovhcloud.com/en/public-cloud/kubernetes)
 
@@ -421,5 +421,3 @@ Destroy complete! Resources: 2 destroyed.
 ```
 
 </details>
-
-

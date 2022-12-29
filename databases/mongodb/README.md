@@ -2,7 +2,7 @@
 
 This example builds a Managed MongoDb database connected to a private network within OVHcloud Public Cloud.
 
-The components that will be created are : 
+The components that will be created are :
 
 - A [Managed MongoDb database](https://www.ovhcloud.com/en/public-cloud/mongodb)
 
@@ -58,7 +58,7 @@ dbAllowedIp = "192.168.2.0/24"
 ```
 
 > Note: dbUserRole possible values are:
-> 
+>
 >    "readAnyDatabase"
 >    "readWriteAnyDatabase"
 >    "userAdminAnyDatabase"
@@ -579,5 +579,3 @@ Destroy complete! Resources: 3 destroyed.
 ```
 
 </details>
-
-

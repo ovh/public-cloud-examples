@@ -2,7 +2,7 @@
 
 This example builds a Managed PostgreSQL database connected to a private network within OVHcloud Public Cloud.
 
-The components that will be created are : 
+The components that will be created are :
 
 - A [Managed PostgreSQL database](https://www.ovhcloud.com/en/public-cloud/postgresql).
 
@@ -531,5 +531,3 @@ Destroy complete! Resources: 3 destroyed.
 ```
 
 </details>
-
-

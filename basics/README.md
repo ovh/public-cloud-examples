@@ -34,7 +34,7 @@ Now you have to add values to variables.
 
 ### Variables from openstack openrc file
 
-The first part of the `ovhrc` file is dedicated to the openstack cli. 
+The first part of the `ovhrc` file is dedicated to the openstack cli.
 
 You must follow the tutorial [Creating and deleting OpenStack users](https://docs.ovh.com/gb/en/public-cloud/creation-and-deletion-of-openstack-user) to create an openstack user, and the step 1 [Retrieve the variables] of the tutorial [Setting OpenStack environment variables](https://docs.ovh.com/gb/en/public-cloud/set-openstack-environment-variables) to get the associated `openrc` file.
 
@@ -52,7 +52,7 @@ export OS_REGION_NAME=""
 if [ -z "$OS_REGION_NAME" ]; then unset OS_REGION_NAME; fi
 ```
 
-### Variables from the OVHcloud API token 
+### Variables from the OVHcloud API token
 
 The second part of the `ovhrc` file is for accessing the [OVHcloud API](https://api.ovh.com).
 

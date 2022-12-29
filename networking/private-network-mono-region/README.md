@@ -2,7 +2,7 @@
 
 This example builds a minimal private network infrastructure within OVHcloud Public Cloud.
 
-The components that will be created are : 
+The components that will be created are :
 
 - A private network (built on [vRack](https://www.ovhcloud.com/en-gb/network/vrack)).
 
@@ -26,7 +26,7 @@ Edit the `variables.auto.tfvars` file to modify values:
 
 ```terraform
 // Region
-  
+
 region = "GRA7"
 
 // Network - Private Network
@@ -452,5 +452,3 @@ Destroy complete! Resources: 4 destroyed.
 ```
 
 </details>
-
-

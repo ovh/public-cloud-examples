@@ -48,4 +48,4 @@ EOF
 # Create Instance
 terraform init
 terraform plan
-terraform apply --auto-approve 
+terraform apply --auto-approve

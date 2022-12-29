@@ -28,4 +28,3 @@
       src: /etc/rancher/k3s/k3s.yaml
       dest: config-{{ ansible_hostname }}
       flat: yes
-

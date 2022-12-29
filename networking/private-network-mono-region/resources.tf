@@ -23,11 +23,11 @@ resource "openstack_networking_router_v2" "myRouter" {
   name                = var.rtrName
   admin_state_up      = true
   external_network_id = data.openstack_networking_network_v2.Ext-Net.id
-  region         = var.region
+  region              = var.region
 }
 
 resource "openstack_networking_router_interface_v2" "myRouterInterface" {
   router_id = openstack_networking_router_v2.myRouter.id
   subnet_id = openstack_networking_subnet_v2.mySubnet.id
-  region         = var.region
+  region    = var.region
 }

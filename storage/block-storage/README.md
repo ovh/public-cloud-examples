@@ -2,7 +2,7 @@
 
 This example builds a block storage volume within OVHcloud Public Cloud.
 
-The components that will be created are : 
+The components that will be created are :
 
 - [Block Storage Volume](https://www.ovhcloud.com/fr/public-cloud/block-storage).
 
@@ -138,5 +138,3 @@ Destroy complete! Resources: 1 destroyed.
 ```
 
 </details>
-
-
