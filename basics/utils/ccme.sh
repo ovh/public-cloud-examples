@@ -6,10 +6,10 @@
 # pv_network_name;pv_network_name
 
 for line in $(cat vars.csv)
-do 
+do
 	orig="$(echo $line | cut -d ';' -f1)"
 	dest="$(echo $line | cut -d ';' -f2)"
-	
+
 	for fic in $(grep $orig * 2>>/dev/null | cut -d ':' -f1 | grep -v vars.csv)
 	do
 		echo "$orig in $fic"

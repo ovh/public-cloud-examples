@@ -15,5 +15,5 @@ output "my_subnet_id" {
 
 output "ext_net_id" {
   description = "External Network Id"
-  value       = data.openstack_networking_network_v2.Ext-Net.id
+  value       = data.openstack_networking_network_v2.ext_net.id
 }
