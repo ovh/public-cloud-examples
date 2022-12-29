@@ -1,6 +1,6 @@
 # Openstack project Id
 
-variable "serviceName" {
+variable "service_name" {
   description = "Service Name"
   type        = string
 }
@@ -14,46 +14,46 @@ variable "region" {
 
 # Network - Private Network
 
-variable "pvNetworkName" {
+variable "pv_network_name" {
   description = "Private Network Name"
   type        = string
 }
 
-variable "pvNetworkId" {
+variable "pv_network_id" {
   description = "Private Network Id"
   type        = string
 }
 
 # Network - Subnet
 
-variable "subnetName" {
+variable "subnet_name" {
   description = "Subnet Name"
   type        = string
 }
 
-variable "subnetCIDR" {
+variable "subnet_cidr" {
   description = "Subnet CIDR"
   type        = string
 }
 
-variable "subnetDHCPStart" {
+variable "subnet_dhcp_start" {
   description = "Subnet DHCP Range start"
   type        = string
 }
 
-variable "subnetDHCPEnd" {
+variable "subnet_dhcp_end" {
   description = "Subnet DHCP Range end"
   type        = string
 }
 
 # Network - Router
 
-variable "rtrName" {
+variable "rtr_name" {
   description = "Router Name"
   type        = string
 }
 
-variable "rtrIp" {
+variable "rtr_ip" {
   description = "Router Ip"
   type        = string
 }

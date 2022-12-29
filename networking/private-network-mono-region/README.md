@@ -31,20 +31,20 @@ region = "GRA7"
 
 // Network - Private Network
 
-pvNetworkName = "myPrivateNetwork"
-pvNetworkId   = "30"
+pv_network_name = "myPrivateNetwork"
+pv_network_id   = "30"
 
 // Network - Subnet
 
-subnetName      = "mySubnet"
-subnetCIDR      = "192.168.2.0/24"
-subnetDHCPStart = "192.168.2.200"
-subnetDHCPEnd   = "192.168.2.254"
+subnet_name      = "mySubnet"
+subnet_cidr      = "192.168.2.0/24"
+subnet_dhcp_start = "192.168.2.200"
+subnet_dhcp_end   = "192.168.2.254"
 
 // Network - Router
 
-rtrName = "myRouter"
-rtrIp   = "192.168.2.1"
+rtr_name = "myRouter"
+rtr_ip   = "192.168.2.1"
 ```
 
 ## Create
@@ -302,7 +302,7 @@ Outputs:
 Ext-NetID = "xxxxxxxx-ffdf-40f6-9722-xxxxxxxxxxxx"
 myPrivateNetworkID = "xxxxxxxx-cc06-49f7-8966-xxxxxxxxxxxx"
 mySubnetID = "xxxxxxxx-6a1d-4027-8ebe-xxxxxxxxxxxx"
-serviceName = "xxxxxxxxxxxx4017a6a6f6bxxxxxxxxx"
+service_name = "xxxxxxxxxxxx4017a6a6f6bxxxxxxxxx"
 ```
 
 </details>
@@ -435,7 +435,7 @@ Changes to Outputs:
   - Ext-NetID          = "xxxxxxxx-ffdf-40f6-9722-xxxxxxxxxxxx" -> null
   - myPrivateNetworkID = "xxxxxxxx-cc06-49f7-8966-xxxxxxxxxxxx" -> null
   - mySubnetID         = "xxxxxxxx-6a1d-4027-8ebe-xxxxxxxxxxxx" -> null
-  - serviceName        = "xxxxxxxxxxxx4017a6a6f6bxxxxxxxxx" -> null
+  - service_name        = "xxxxxxxxxxxx4017a6a6f6bxxxxxxxxx" -> null
 openstack_networking_router_interface_v2.myRouterInterface: Destroying... [id=xxxxxxxx-038e-4572-ad80-xxxxxxxxxxxx]
 openstack_networking_router_interface_v2.myRouterInterface: Still destroying... [id=xxxxxxxx-038e-4572-ad80-xxxxxxxxxxxx, 10s elapsed]
 openstack_networking_router_interface_v2.myRouterInterface: Destruction complete after 15s
