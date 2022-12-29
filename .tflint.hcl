@@ -1,25 +1,25 @@
 # Let's be very strict from the ground up and enable everything.
 # All rules are define here: https://github.com/terraform-linters/tflint/tree/master/docs/rules
 rule "terraform_comment_syntax" {
-  enabled = false
+  enabled = true
 }
 rule "terraform_deprecated_index" {
-  enabled = false
+  enabled = true
 }
 rule "terraform_deprecated_interpolation" {
-  enabled = false
+  enabled = true
 }
 rule "terraform_documented_outputs" {
-  enabled = false
+  enabled = true
 }
 rule "terraform_documented_variables" {
-  enabled = false
+  enabled = true
 }
 rule "terraform_module_pinned_source" {
-  enabled = false
+  enabled = true
 }
 rule "terraform_module_version" {
-  enabled = false
+  enabled = true
 }
 rule "terraform_naming_convention" {
   enabled = false

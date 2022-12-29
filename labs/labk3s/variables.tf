@@ -1,13 +1,16 @@
 variable "keypairAdmin" {
-  type = string
+  description = "Admin Keypair Name"
+  type        = string
 }
 
 variable "imageId" {
-  type = string
+  description = "Image Id"
+  type        = string
 }
 
 variable "flavorId" {
-  type = string
+  description = "Flavor Id"
+  type        = string
 }
 
 variable "nameList" {

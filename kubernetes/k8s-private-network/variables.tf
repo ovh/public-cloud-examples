@@ -1,50 +1,60 @@
-// Openstack project Id
+# Openstack project Id
 
 variable "serviceName" {
-  type = string
+  description = "Service Name"
+  type        = string
 }
 
 
-// Kubernetes Cluster Name
+# Kubernetes Cluster Name
 
 variable "clusterName" {
-  type = string
+  description = "Cluster Name"
+  type        = string
 }
 
-// Region
+# Region
 
 variable "region" {
-  type = string
+  description = "Region"
+  type        = string
 }
 
-// Network - Private Network
+# Network - Private Network
 
 variable "pvNetworkName" {
-  type = string
+  description = "Private Network Name"
+  type        = string
 }
 
 variable "rtrIp" {
-  type = string
+  description = "Router Ip"
+  type        = string
 }
 
-// Node Pool definition
+# Node Pool definition
 
 variable "myPoolName" {
-  type = string
+  description = "Pool Name"
+  type        = string
 }
 
 variable "myPoolFlavor" {
-  type = string
+  description = "Pool Flavor"
+  type        = string
 }
 
 variable "myPoolDesiredNodes" {
-  type = string
+  description = "Pool Desired Nodes"
+  type        = string
 }
 
 variable "myPoolMaxNodes" {
-  type = string
+  description = "Pool Max Nodes"
+  type        = string
 }
 
 variable "myPoolMinNodes" {
-  type = string
+  description = "Pool Min Nodes"
+  type        = string
 }

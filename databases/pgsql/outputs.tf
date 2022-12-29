@@ -1,12 +1,15 @@
 output "serviceName" {
-  value = var.serviceName
+  description = "Service Name"
+  value       = var.serviceName
 }
 
 output "dbId" {
-  value = ovh_cloud_project_database.pgsqldb.id
+  description = "Db Id"
+  value       = ovh_cloud_project_database.pgsqldb.id
 }
 
 output "dbUserPassword" {
-  value     = ovh_cloud_project_database_postgresql_user.pgsqluser.password
-  sensitive = true
+  description = "Db User Password"
+  value       = ovh_cloud_project_database_postgresql_user.pgsqluser.password
+  sensitive   = true
 }

@@ -1,21 +1,25 @@
-// Openstack project Id
+# Openstack project Id
 
 variable "serviceName" {
-  type = string
+  description = "Service Name"
+  type        = string
 }
 
-// Region
+# Region
 
 variable "region" {
-  type = string
+  description = "Region"
+  type        = string
 }
 
-// Block Storage Volume
+# Block Storage Volume
 
 variable "bsName" {
-  type = string
+  description = "Block Storage Name"
+  type        = string
 }
 
 variable "bsSize" {
-  type = number
+  description = "Block Storage Size"
+  type        = number
 }

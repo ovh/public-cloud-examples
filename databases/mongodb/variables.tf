@@ -1,67 +1,80 @@
-// Openstack project Id
+# Openstack project Id
 
 variable "serviceName" {
-  type = string
+  description = "Service Name"
+  type        = string
 }
 
-// Region
+# Region
 
 variable "region" {
-  type = string
+  description = "Region"
+  type        = string
 }
 
-// Region for database
+# Region for database
 
 variable "dbRegion" {
-  type = string
+  description = "Database Region"
+  type        = string
 }
 
-// Network - Private Network
+# Network - Private Network
 
 variable "pvNetworkName" {
-  type = string
+  description = "Private Network Name"
+  type        = string
 }
 
-// Network - Subnet
+# Network - Subnet
 
 variable "subnetName" {
-  type = string
+  description = "Subnet Name"
+  type        = string
 }
 
-// Database
+# Database
 
 variable "dbDescription" {
-  type = string
+  description = "Database Description"
+  type        = string
 }
 
 variable "dbEngine" {
-  type = string
+  description = "Db Engine"
+  type        = string
 }
 
 variable "dbVersion" {
-  type = string
+  description = "Db Version"
+  type        = string
 }
 
 variable "dbPlan" {
-  type = string
+  description = "Db Plan"
+  type        = string
 }
 
 variable "dbFlavor" {
-  type = string
+  description = "Db Flavor"
+  type        = string
 }
 
-// Database User
+# Database User
 
 variable "dbUserName" {
-  type = string
+  description = "Db User Name"
+  type        = string
 }
 
 variable "dbUserRole" {
-  type = list(any)
+  description = "Db User Role"
+  type        = list(any)
 }
 
-// IP Restriction
+# IP Restriction
 
 variable "dbAllowedIp" {
-  type = string
+  description = "Db Allowed IPs"
+  type        = string
 }
