@@ -2,3 +2,6 @@
 ovhrc
 .terraform*
 *tfstate*
+networking/private-networks-multi-region/bastion/*_ssh_config
+networking/private-networks-multi-region/keypair/*_rsa
+networking/private-networks-multi-region/keypair/*_rsa.pub
