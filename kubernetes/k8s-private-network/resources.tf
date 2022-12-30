@@ -3,7 +3,7 @@ resource "ovh_cloud_project_kube" "my_kube" {
   name         = var.cluster_name
   region       = var.region
 
-  private_network_id = data.openstack_networking_network_v2.myPrivateNetwork.id
+  private_network_id = data.openstack_networking_network_v2.my_private_network.id
 
   private_network_configuration {
     default_vrack_gateway              = var.rtr_ip
