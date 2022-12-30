@@ -1,14 +1,14 @@
-output "serviceName" {
+output "service_name" {
   description = "Service Name"
-  value       = var.serviceName
+  value       = var.service_name
 }
 
-output "kubeClusterId" {
+output "kube_cluster_id" {
   description = "Kubernetes Cluster id"
-  value       = ovh_cloud_project_kube.myKube.id
+  value       = ovh_cloud_project_kube.my_kube.id
 }
 
-output "nodePoolId" {
+output "node_pool_id" {
   description = "Node Pool Id"
-  value       = ovh_cloud_project_kube_nodepool.myPool.id
+  value       = ovh_cloud_project_kube_nodepool.my_pool.id
 }
