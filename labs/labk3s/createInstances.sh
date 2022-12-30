@@ -6,35 +6,35 @@ cd $SCRIPTROOTDIR
 source ./ovhrc
 source ./properties
 
-imageId="$(openstack image list -f json | jq -r --arg imageName "$imageName" '.[] | select(.Name==$imageName) | .ID')"
-flavorId="$(openstack flavor list -f json | jq -r --arg flavorName "$flavorName" '.[] | select(.Name==$flavorName) | .ID')"
+image_id="$(openstack image list -f json | jq -r --arg image_name "$image_name" '.[] | select(.Name==$image_name) | .ID')"
+flavor_id="$(openstack flavor list -f json | jq -r --arg flavor_name "$flavor_name" '.[] | select(.Name==$flavor_name) | .ID')"
 
 # RAZ variables.tf
 rm -f variables.tf
 
 cat <<EOF > variables.tf
-variable "keypairAdmin" {
+variable "keypair_admin" {
  type = string
 }
 
-variable "imageId" {
+variable "image_id" {
  type = string
- default = "$imageId"
+ default = "$image_id"
 }
 
-variable "flavorId" {
+variable "flavor_id" {
  type = string
- default = "$flavorId"
+ default = "$flavor_id"
 }
 
-variable "nameList" {
+variable "name_list" {
  type = list
  description = "List of instances"
  default = [
 EOF
 
 i=1
-while [ $i -le $nbInstances ]
+while [ $i -le $nb_instances ]
 do
   echo \"k3s$(printf "%03d" $i)\", >> variables.tf
   ((i++))

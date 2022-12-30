@@ -1,9 +1,9 @@
 resource "openstack_compute_instance_v2" "inst_" {
-  for_each  = toset(var.nameList)
+  for_each  = toset(var.name_list)
   name      = each.key
-  image_id  = var.imageId
-  flavor_id = var.flavorId
-  key_pair  = "keypairAdmin"
+  image_id  = var.image_id
+  flavor_id = var.flavor_id
+  key_pair  = var.keypair_admin
 
   network {
     name = "Ext-Net"

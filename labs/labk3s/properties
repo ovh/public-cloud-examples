@@ -1,3 +1,3 @@
-export imageName="Ubuntu 22.04"
-export flavorName="b2-7"
-export nbInstances=3
+export image_name="Ubuntu 22.04"
+export flavor_name="b2-7"
+export nb_instances=3
