@@ -19,11 +19,6 @@ variable "pv_network_name" {
   type        = string
 }
 
-variable "pv_network_id" {
-  description = "Private Network Id"
-  type        = string
-}
-
 # Network - Subnet
 
 variable "subnet_name" {
@@ -50,10 +45,5 @@ variable "subnet_dhcp_end" {
 
 variable "rtr_name" {
   description = "Router Name"
-  type        = string
-}
-
-variable "rtr_ip" {
-  description = "Router Ip"
   type        = string
 }

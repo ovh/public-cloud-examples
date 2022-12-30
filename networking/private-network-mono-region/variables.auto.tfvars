@@ -4,8 +4,7 @@ region = "GRA7"
 
 // Network - Private Network
 
-pv_network_name = "my_private_network"
-pv_network_id   = "30"
+pv_network_name = "myPrivateNetwork"
 
 // Network - Subnet
 
@@ -17,4 +16,3 @@ subnet_dhcp_end   = "192.168.2.254"
 // Network - Router
 
 rtr_name = "my_router"
-rtr_ip   = "192.168.2.1"
