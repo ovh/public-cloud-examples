@@ -4,10 +4,10 @@ module "mykeypair" {
 }
 
 module "mynetwork" {
-  source      = "./network"
-  serviceName = var.serviceName
-  common      = var.common
-  multi       = var.multi
+  source       = "./network"
+  service_name = var.service_name
+  common       = var.common
+  multi        = var.multi
 }
 
 module "routes" {
@@ -24,8 +24,8 @@ module "mybastion" {
     module.routes,
     module.mykeypair
   ]
-  bastion     = var.bastion
-  keypair     = var.keypair
+  bastion = var.bastion
+  keypair = var.keypair
 }
 
 module "mytarget" {

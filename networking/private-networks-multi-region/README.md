@@ -1,10 +1,10 @@
 # Accessing an instance from a regional private network to another via vRack
 
-This example builds 3 separated private routed networks on 3 regions. 
+This example builds 3 separated private routed networks on 3 regions.
 
 An additionnal network is build for communication between regions.
 
-2 instances are build onto 2 distinct regions, the `bastion` one to access the private networks, and the `target` one that is simply builded to be accessed. 
+2 instances are build onto 2 distinct regions, the `bastion` one to access the private networks, and the `target` one that is simply builded to be accessed.
 
 The access to the `bastion` instance is permitted by `Floating IP` implementation.
 
@@ -62,5 +62,3 @@ terraform destroy --auto-approve
 ```
 
 </details>
-
-

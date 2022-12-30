@@ -1,22 +1,24 @@
 # Target parameters
 
 variable "target" {
+  description = "Target instance"
   type = object({
-    networkName = string
-    region      = string
-    name        = string
-    flavor      = string
-    image       = string
-    user        = string
+    network_name = string
+    region       = string
+    name         = string
+    flavor       = string
+    image        = string
+    user         = string
   })
 }
 
 # SSH keypair
 
 variable "keypair" {
+  description = "Keypair"
   type = object({
-    keypairName               = string
-    keypairMainRegion         = string
-    keypairToReproduceRegions = list(string)
+    name                 = string
+    main_region          = string
+    to_reproduce_regions = list(string)
   })
 }
