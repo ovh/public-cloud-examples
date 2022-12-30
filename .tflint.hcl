@@ -4,7 +4,7 @@ rule "terraform_comment_syntax" {
   enabled = true
 }
 rule "terraform_deprecated_index" {
-  enabled = false
+  enabled = true
 }
 rule "terraform_deprecated_interpolation" {
   enabled = true
@@ -45,4 +45,3 @@ rule "terraform_unused_required_providers" {
 rule "terraform_workspace_remote" {
   enabled = true
 }
-
