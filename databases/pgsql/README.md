@@ -33,32 +33,32 @@ region = "GRA7"
 
 // Region for database
 
-dbRegion = "GRA"
+db_egion = "GRA"
 
 // Network - Private Network
 
-pvNetworkName = "myPrivateNetwork"
+pv_network_name = "my_private_network"
 
 // Network - Subnet
 
-subnetName = "mySubnet"
+subnet_name = "my_subnet"
 
 // Database
 
-dbDescription = "myPgSqlDb"
-dbEngine = "postgresql"
-dbVersion = "14"
-dbPlan = "business"
-dbFlavor = "db1-7"
+db_description = "myPgSqlDb"
+db_engine = "postgresql"
+db_version = "14"
+db_plan = "business"
+db_flavor = "db1-7"
 
 // Database User
 
-dbUserName = "myuser"
-dbUserRole = ["replication"]
+db_user_name = "myuser"
+db_user_role = ["replication"]
 
 // IP Restriction
 
-dbAllowedIp = "192.168.2.0/24"
+db_allowed_ip = "192.168.2.0/24"
 ```
 
 ## Create
@@ -98,10 +98,10 @@ should now work.
 If you ever set or change modules or backend configuration for Terraform,
 rerun this command to reinitialize your working directory. If you forget, other
 commands will detect it and remind you to do so if necessary.
-data.openstack_networking_network_v2.myPrivateNetwork: Reading...
-data.openstack_networking_subnet_v2.mySubnet: Reading...
-data.openstack_networking_network_v2.myPrivateNetwork: Read complete after 1s [id=xxxxxxxx-d430-4c31-8e2d-xxxxxxxxxxxx]
-data.openstack_networking_subnet_v2.mySubnet: Read complete after 1s [id=xxxxxxxx-78ac-4a1b-af85-xxxxxxxxxxxx]
+data.openstack_networking_network_v2.my_private_network: Reading...
+data.openstack_networking_subnet_v2.my_subnet: Reading...
+data.openstack_networking_network_v2.my_private_network: Read complete after 1s [id=xxxxxxxx-d430-4c31-8e2d-xxxxxxxxxxxx]
+data.openstack_networking_subnet_v2.my_subnet: Read complete after 1s [id=xxxxxxxx-78ac-4a1b-af85-xxxxxxxxxxxx]
 
 Terraform used the selected providers to generate the following execution plan. Resource actions are indicated
 with the following symbols:
@@ -167,18 +167,18 @@ Terraform will perform the following actions:
 Plan: 3 to add, 0 to change, 0 to destroy.
 
 Changes to Outputs:
-  + dbId           = (known after apply)
-  + dbUserPassword = (sensitive value)
-  + serviceName    = "xxxxxxxx1da24017a6a6f6b6xxxxxxxx"
+  + db_id           = (known after apply)
+  + db_user_password = (sensitive value)
+  + service_name    = "xxxxxxxx1da24017a6a6f6b6xxxxxxxx"
 
 ──────────────────────────────────────────────────────────────────────────────────────────────────────────────
 
 Note: You didn't use the -out option to save this plan, so Terraform can't guarantee to take exactly these
 actions if you run "terraform apply" now.
-data.openstack_networking_subnet_v2.mySubnet: Reading...
-data.openstack_networking_network_v2.myPrivateNetwork: Reading...
-data.openstack_networking_subnet_v2.mySubnet: Read complete after 1s [id=xxxxxxxx-78ac-4a1b-af85-xxxxxxxxxxxx]
-data.openstack_networking_network_v2.myPrivateNetwork: Read complete after 2s [id=xxxxxxxx-d430-4c31-8e2d-xxxxxxxxxxxx]
+data.openstack_networking_subnet_v2.my_subnet: Reading...
+data.openstack_networking_network_v2.my_private_network: Reading...
+data.openstack_networking_subnet_v2.my_subnet: Read complete after 1s [id=xxxxxxxx-78ac-4a1b-af85-xxxxxxxxxxxx]
+data.openstack_networking_network_v2.my_private_network: Read complete after 2s [id=xxxxxxxx-d430-4c31-8e2d-xxxxxxxxxxxx]
 
 Terraform used the selected providers to generate the following execution plan. Resource actions are indicated
 with the following symbols:
@@ -244,9 +244,9 @@ Terraform will perform the following actions:
 Plan: 3 to add, 0 to change, 0 to destroy.
 
 Changes to Outputs:
-  + dbId           = (known after apply)
-  + dbUserPassword = (sensitive value)
-  + serviceName    = "xxxxxxxx1da24017a6a6f6b6xxxxxxxx"
+  + db_id           = (known after apply)
+  + db_user_password = (sensitive value)
+  + service_name    = "xxxxxxxx1da24017a6a6f6b6xxxxxxxx"
 ovh_cloud_project_database.pgsqldb: Creating...
 ovh_cloud_project_database.pgsqldb: Still creating... [10s elapsed]
 ovh_cloud_project_database.pgsqldb: Still creating... [20s elapsed]
@@ -323,9 +323,9 @@ Apply complete! Resources: 3 added, 0 changed, 0 destroyed.
 
 Outputs:
 
-dbId = "xxxxxxxx-c804-446a-995c-xxxxxxxxxxxx"
-dbUserPassword = <sensitive>
-serviceName = "xxxxxxxx1da24017a6a6f6b6xxxxxxxx"
+db_id = "xxxxxxxx-c804-446a-995c-xxxxxxxxxxxx"
+db_user_password = <sensitive>
+service_name = "xxxxxxxx1da24017a6a6f6b6xxxxxxxx"
 ```
 
 </details>
@@ -333,7 +333,7 @@ serviceName = "xxxxxxxx1da24017a6a6f6b6xxxxxxxx"
 ## Get current user password
 
 ```bash
-terraform output dbUserPassword
+terraform output db_user_password
 ```
 
 ## Reset current user password
@@ -344,16 +344,16 @@ Then, re-apply the plan to perform a password resseti and get the new one with:
 
 ```bash
 terraform apply
-terraform output dbUserPassword
+terraform output db_user_password
 ```
 
 <details><summary>See output</summary>
 
 ```bash
-data.openstack_networking_network_v2.myPrivateNetwork: Reading...
-data.openstack_networking_subnet_v2.mySubnet: Reading...
-data.openstack_networking_subnet_v2.mySubnet: Read complete after 2s [id=xxxxxxxx-78ac-4a1b-af85-xxxxxxxxxxxx]
-data.openstack_networking_network_v2.myPrivateNetwork: Read complete after 2s [id=xxxxxxxx-d430-4c31-8e2d-xxxxxxxxxxxx]
+data.openstack_networking_network_v2.my_private_network: Reading...
+data.openstack_networking_subnet_v2.my_subnet: Reading...
+data.openstack_networking_subnet_v2.my_subnet: Read complete after 2s [id=xxxxxxxx-78ac-4a1b-af85-xxxxxxxxxxxx]
+data.openstack_networking_network_v2.my_private_network: Read complete after 2s [id=xxxxxxxx-d430-4c31-8e2d-xxxxxxxxxxxx]
 ovh_cloud_project_database.pgsqldb: Refreshing state... [id=xxxxxxxx-c804-446a-995c-xxxxxxxxxxxx]
 ovh_cloud_project_database_ip_restriction.iprestriction: Refreshing state... [id=xxx4843xxx]
 ovh_cloud_project_database_postgresql_user.pgsqluser: Refreshing state... [id=xxxxxxxx-73fc-4d44-a737-xxxxxxxxxxxxx]
@@ -392,9 +392,9 @@ Apply complete! Resources: 0 added, 1 changed, 0 destroyed.
 
 Outputs:
 
-dbId = "xxxxxxxx-c804-446a-995c-xxxxxxxxxxxx"
-dbUserPassword = <sensitive>
-serviceName = "xxxxxxxx1da24017a6a6f6b6xxxxxxxx"
+db_id = "xxxxxxxx-c804-446a-995c-xxxxxxxxxxxx"
+db_user_password = <sensitive>
+service_name = "xxxxxxxx1da24017a6a6f6b6xxxxxxxx"
 ```
 
 </details>
@@ -417,10 +417,10 @@ Or execute the `deleteDb.sh` script:
 <details><summary>See output</summary>
 
 ```bash
-data.openstack_networking_network_v2.myPrivateNetwork: Reading...
-data.openstack_networking_subnet_v2.mySubnet: Reading...
-data.openstack_networking_subnet_v2.mySubnet: Read complete after 1s [id=xxxxxxxx-78ac-4a1b-af85-xxxxxxxxxxxx]
-data.openstack_networking_network_v2.myPrivateNetwork: Read complete after 2s [id=xxxxxxxx-d430-4c31-8e2d-xxxxxxxxxxxx]
+data.openstack_networking_network_v2.my_private_network: Reading...
+data.openstack_networking_subnet_v2.my_subnet: Reading...
+data.openstack_networking_subnet_v2.my_subnet: Read complete after 1s [id=xxxxxxxx-78ac-4a1b-af85-xxxxxxxxxxxx]
+data.openstack_networking_network_v2.my_private_network: Read complete after 2s [id=xxxxxxxx-d430-4c31-8e2d-xxxxxxxxxxxx]
 ovh_cloud_project_database.pgsqldb: Refreshing state... [id=xxxxxxxx-c804-446a-995c-xxxxxxxxxxxx]
 ovh_cloud_project_database_ip_restriction.iprestriction: Refreshing state... [id=xxx4843xxx]
 ovh_cloud_project_database_postgresql_user.pgsqluser: Refreshing state... [id=xxxxxxxx-73fc-4d44-a737-xxxxxxxxxxxxx]
@@ -512,9 +512,9 @@ Terraform will perform the following actions:
 Plan: 0 to add, 0 to change, 3 to destroy.
 
 Changes to Outputs:
-  - dbId           = "xxxxxxxx-c804-446a-995c-xxxxxxxxxxxx" -> null
-  - dbUserPassword = (sensitive value)
-  - serviceName    = "xxxxxxxx1da24017a6a6f6b6xxxxxxxx" -> null
+  - db_id           = "xxxxxxxx-c804-446a-995c-xxxxxxxxxxxx" -> null
+  - db_user_password = (sensitive value)
+  - service_name    = "xxxxxxxx1da24017a6a6f6b6xxxxxxxx" -> null
 ovh_cloud_project_database_ip_restriction.iprestriction: Destroying... [id=xxx4843xxx]
 ovh_cloud_project_database_postgresql_user.pgsqluser: Destroying... [id=xxxxxxxx-73fc-4d44-a737-xxxxxxxxxxxxx]
 ovh_cloud_project_database_ip_restriction.iprestriction: Still destroying... [id=xxx4843xxx, 10s elapsed]

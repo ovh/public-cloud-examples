@@ -4,29 +4,29 @@ region = "GRA7"
 
 // Region for database
 
-dbRegion = "GRA"
+db_egion = "GRA"
 
 // Network - Private Network
 
-pvNetworkName = "myPrivateNetwork"
+pv_network_name = "myPrivateNetwork"
 
 // Network - Subnet
 
-subnetName = "mySubnet"
+subnet_name = "mySubnet"
 
 // Database
 
-dbDescription = "myPgSqlDb"
-dbEngine      = "postgresql"
-dbVersion     = "14"
-dbPlan        = "business"
-dbFlavor      = "db1-7"
+db_description = "myPgSqlDb"
+db_engine      = "postgresql"
+db_version     = "14"
+db_plan        = "business"
+db_flavor      = "db1-7"
 
 // Database User
 
-dbUserName = "myuser"
-dbUserRole = ["replication"]
+db_user_name = "myuser"
+db_user_role = ["replication"]
 
 // IP Restriction
 
-dbAllowedIp = "192.168.2.0/24"
+db_allowed_ip = "192.168.2.0/24"
