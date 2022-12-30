@@ -86,15 +86,15 @@ The last part contains helpful variables that will be used (or not) by the terra
 ```bash
 ### Terraform helpers variables
 export TF_VAR_IP="$(curl -s ifconfig.me)/32"
-export TF_VAR_serviceName="$OS_TENANT_ID"
-export TF_VAR_keypairAdmin="" # The ready to deployed SSH public key content
+export TF_VAR_service_name="$OS_TENANT_ID"
+export TF_VAR_keypair_admin="" # The ready to deployed SSH public key content
 ```
 
 - `TF_VAR_IP` is filled with your public IP. This can helps you if you have to add your public IP address into an IP restriction list, to access to managed databases for example. If you don't want to use curl or send a http request, just add the desired value.
 
-- `TF_VAR_serviceName` is the openstack project id, used in terraform by the OVHcloud and Openstack providers.
+- `TF_VAR_service_name` is the openstack project id, used in terraform by the OVHcloud and Openstack providers.
 
-- `TF_VAR_keypairAdmin` is the content of a SSH public key that you want to deploy to instances that are created with terraform, and mainly necessary by Ansible.
+- `TF_VAR_keypair_admin` is the content of a SSH public key that you want to deploy to instances that are created with terraform, and mainly necessary by Ansible.
 
 ### Load variables into your environemnt
 
@@ -129,6 +129,8 @@ sudo apt update && sudo apt -y install \
     python3-osc-placement \
     python3-openstackclient \
     python3-pankoclient \
+    python3-pip \
+    python3-venv \
     zip \
     gnupg \
     software-properties-common \
