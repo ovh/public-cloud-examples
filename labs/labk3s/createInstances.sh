@@ -14,20 +14,24 @@ rm -f variables.tf
 
 cat <<EOF > variables.tf
 variable "keypair_admin" {
+ description = "Keypair Name"
  type = string
 }
 
 variable "image_id" {
+ description = "Image Id"
  type = string
  default = "$image_id"
 }
 
 variable "flavor_id" {
+ description = "Flavor Id"
  type = string
  default = "$flavor_id"
 }
 
 variable "name_list" {
+ description = "Servers List"
  type = list
  description = "List of instances"
  default = [
