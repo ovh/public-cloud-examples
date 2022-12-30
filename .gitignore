@@ -2,3 +2,4 @@
 ovhrc
 .terraform*
 *tfstate*
+labs/labk3s/variables.tf

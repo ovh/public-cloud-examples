@@ -1,3 +1,4 @@
+# tflint-ignore: terraform_naming_convention
 resource "openstack_compute_instance_v2" "inst_" {
   for_each  = toset(var.name_list)
   name      = each.key

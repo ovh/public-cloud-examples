@@ -22,7 +22,7 @@ rule "terraform_module_version" {
   enabled = true
 }
 rule "terraform_naming_convention" {
-  enabled = false
+  enabled = true
 }
 rule "terraform_required_providers" {
   enabled = false

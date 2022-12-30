@@ -6,18 +6,18 @@ resource "ovh_cloud_project_database" "mongodb" {
   plan         = var.db_plan
   nodes {
     region     = var.db_region
-    subnet_id  = data.openstack_networking_subnet_v2.mySubnet.id
-    network_id = data.openstack_networking_network_v2.myPrivateNetwork.id
+    subnet_id  = data.openstack_networking_subnet_v2.my_subnet.id
+    network_id = data.openstack_networking_network_v2.my_private_network.id
   }
   nodes {
     region     = var.db_region
-    subnet_id  = data.openstack_networking_subnet_v2.mySubnet.id
-    network_id = data.openstack_networking_network_v2.myPrivateNetwork.id
+    subnet_id  = data.openstack_networking_subnet_v2.my_subnet.id
+    network_id = data.openstack_networking_network_v2.my_private_network.id
   }
   nodes {
     region     = var.db_region
-    subnet_id  = data.openstack_networking_subnet_v2.mySubnet.id
-    network_id = data.openstack_networking_network_v2.myPrivateNetwork.id
+    subnet_id  = data.openstack_networking_subnet_v2.my_subnet.id
+    network_id = data.openstack_networking_network_v2.my_private_network.id
   }
   flavor = var.db_flavor
 }
