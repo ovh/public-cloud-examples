@@ -16,6 +16,38 @@ module "floatip" {
 }
 ```
 
+# Variables
+
+## floatip
+
+`floatip` is an object type variable, with two string parameters.
+
+```terraform
+variable "floatip" {
+  description = "Floating IP"
+  type = object({
+    region       = string
+    component_id = string
+  })
+  default = {
+    region       = ""
+    component_id = ""
+  }
+}
+```
+
+### region
+
+The `region` where the floating IP is deployed.
+
+### component_id
+
+The Openstack id of the component to associate the floating IP to.
+
+> Note: This id is often unknown, so this variable cannot be setted into a tfvars file. That's why you have to declare the `floatip` variable into the main.tf file (or other .tf file)
+
+# Example
+
 Example: Associate a floating IP to an instance.
 
 ```terraform
@@ -33,19 +65,3 @@ module "floatip" {
   }
 }
 ```
-
-# Variables
-
-## floatip
-
-floatip is an object type variable, with two string parameters.
-
-### region
-
-The region where the floating IP is deployed.
-
-### component_id
-
-The Openstack id of the component to associate the floating IP to.
-
-This id is often unknown, so this variable cannot be setted into a tfvars file. That's why you have to declare the `floatip` variable into the main.tf file (or other .tf file)
