@@ -62,21 +62,6 @@ variable "bastion" {
   })
 }
 
-# Target
-
-variable "target" {
-  description = "Target Parameters"
-  type = object({
-    region       = string
-    network_name = string
-    keypair_name = string
-    name         = string
-    flavor       = string
-    image        = string
-    user         = string
-  })
-}
-
 # Floating IP
 
 variable "floatip" {
@@ -86,7 +71,7 @@ variable "floatip" {
     component_id = string
   })
   default = {
-   region = ""
-   component_id = ""
- }
+    region       = ""
+    component_id = ""
+  }
 }

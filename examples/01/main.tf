@@ -17,17 +17,11 @@ module "bastion" {
   instance   = var.bastion
 }
 
-module "target" {
-  source     = "../../modules/instance_simple"
-  depends_on = [module.keypair, module.network]
-  instance   = var.target
-}
-
 module "floatip" {
   source     = "../../modules/floating_ip"
   depends_on = [module.bastion]
   floatip = {
-    region = var.region
+    region       = var.region
     component_id = module.bastion.instance_id
   }
 }

@@ -43,15 +43,3 @@ bastion = {
   image        = "Ubuntu 20.04"
   user         = "ubuntu"
 }
-
-# Instance - target
-
-target = {
-  region       = "GRA7"
-  network_name = "myNetwork"
-  keypair_name = "myMainKeypair"
-  name         = "target"
-  flavor       = "b2-7"
-  image        = "Ubuntu 20.04"
-  user         = "ubuntu"
-}
