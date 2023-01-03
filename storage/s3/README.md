@@ -7,8 +7,14 @@ The components that will be created are :
 
 ## Pre-requisites
 
-You need to follow steps from the [basics tutorial](../../basics/README.md) for having necessary tools and a fonctionnal `ovhrc` file.
-However for the following example, since openstack is not used, you  need only terraform provider OVH API environment variables and the public cloud project id (serviceName variable in the tutorial). 
+You need to follow steps from the [basics tutorial](../../basics/README.md) for having necessary tools and a fonctional `ovhrc` file.
+However for the following example, since openstack is not used, you need only terraform provider OVH API environment variables and the public cloud project id (serviceName variable in the tutorial). 
+
+
+## OVH provider & Hashicorp AWS provider
+In order to limit the pre-requisites, the script creates users and credentials that are then used for the Hashicorp AWS provider configuration. 
+Due to a limitation of terraform & Hashicorp AWS provider (for more information on this limitation, see this long lasting [github issue](https://github.com/hashicorp/terraform/issues/2430)), *some* credentials need to be set at the provider initialisation, even if the provider is not used at that time and if other credentials will be used afterwards.
+A workaround is to set dummy environment variables `AWS_ACCESS_KEY_ID` & `AWS_SECRET_ACCESS_KEY` prior to run the `terraform plan`.
 
 ## properties files
 
@@ -31,6 +37,8 @@ Create the bucket with this commands:
 
 ```bash
 source ovhrc
+export AWS_ACCESS_KEY_ID="DUMMY_ACCESS_KEY_ID_NO_NEED_TO_CHANGE"
+export AWS_SECRET_ACCESS_KEY="DUMMY_SECRET_KEY_NO_NEED_TO_CHANGE"
 terraform init
 terraform plan
 terraform apply
