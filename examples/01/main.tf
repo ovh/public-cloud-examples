@@ -25,4 +25,3 @@ module "floatip" {
     component_id = module.bastion.instance_id
   }
 }
-

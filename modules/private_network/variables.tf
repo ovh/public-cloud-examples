@@ -2,7 +2,7 @@
 
 variable "region" {
   description = "Region"
-  type = string
+  type        = string
 }
 
 # Network - Private Network
@@ -10,7 +10,7 @@ variable "region" {
 variable "network" {
   description = "Private Network Parameters"
   type = object({
-    name   = string
+    name = string
   })
 }
 
@@ -31,6 +31,6 @@ variable "subnet" {
 variable "router" {
   description = "Router Parameters"
   type = object({
-    name   = string
+    name = string
   })
 }

@@ -31,7 +31,7 @@ module "mysql" {
 
 # Create the wordpress web site and connect it to the DB
 resource "helm_release" "wordpress" {
-  depends_on = [module.mysql,local_file.kubeconfig_file]
+  depends_on = [module.mysql, local_file.kubeconfig_file]
   name       = "wordpress"
   repository = "https://charts.bitnami.com/bitnami"
   chart      = "wordpress"
@@ -44,19 +44,19 @@ resource "helm_release" "wordpress" {
     name  = "externalDatabase.host"
     value = module.mysql.db_host
   }
-  set{
+  set {
     name  = "externalDatabase.port"
     value = module.mysql.db_port
   }
-  set{
+  set {
     name  = "externalDatabase.user"
     value = module.mysql.user_name
   }
-  set{
+  set {
     name  = "externalDatabase.password"
     value = module.mysql.user_password
   }
-  set{
+  set {
     name  = "externalDatabase.database"
     value = module.mysql.db_name
   }

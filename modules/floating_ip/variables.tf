@@ -1,5 +1,5 @@
 # Floating IP
-  
+
 variable "floatip" {
   description = "Floating IP"
   type = object({

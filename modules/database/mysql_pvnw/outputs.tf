@@ -28,5 +28,3 @@ output "user_password" {
   value       = ovh_cloud_project_database_user.mysqluser.password
   sensitive   = true
 }
-
-

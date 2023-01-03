@@ -44,7 +44,7 @@ The network on wich the instance is connected.
 
 The SSH keypair name that is deployed to to the user home directory
 
-### name 
+### name
 
 The name of the instance.
 
@@ -63,4 +63,3 @@ Get the full list here: TODO
 ### user
 
 The user that is created on the instance.
-
