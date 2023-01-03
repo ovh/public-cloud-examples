@@ -1,8 +1,3 @@
-output "service_name" {
-  description = "Service Name"
-  value       = var.service_name
-}
-
 output "db_id" {
   description = "Db Id"
   value       = ovh_cloud_project_database.mongodb.id
