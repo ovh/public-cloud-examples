@@ -1,7 +1,9 @@
-output "serviceName" {
-  value = var.serviceName
+output "service_name" {
+  description = "Service Name"
+  value       = var.service_name
 }
 
-output "volumeId" {
-  value = openstack_blockstorage_volume_v3.bsVolume.id
+output "volume_id" {
+  description = "Volume Id"
+  value       = openstack_blockstorage_volume_v3.bs_volume.id
 }

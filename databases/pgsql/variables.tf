@@ -1,67 +1,80 @@
-// Openstack project Id
+# Openstack project Id
 
-variable "serviceName" {
-  type = string
+variable "service_name" {
+  description = "Service Name"
+  type        = string
 }
 
-// Region
+# Region
 
 variable "region" {
-  type = string
+  description = "Region"
+  type        = string
 }
 
-// Region for database
+# Region for database
 
-variable "dbRegion" {
-  type = string
+variable "db_egion" {
+  description = "Db region"
+  type        = string
 }
 
-// Network - Private Network
+# Network - Private Network
 
-variable "pvNetworkName" {
-  type = string
+variable "pv_network_name" {
+  description = "Private Network Name"
+  type        = string
 }
 
-// Network - Subnet
+# Network - Subnet
 
-variable "subnetName" {
-  type = string
+variable "subnet_name" {
+  description = "Subnet Name"
+  type        = string
 }
 
-// Database
+# Database
 
-variable "dbDescription" {
-  type = string
+variable "db_description" {
+  description = "Db Description"
+  type        = string
 }
 
-variable "dbEngine" {
-  type = string
+variable "db_engine" {
+  description = "Db Engine"
+  type        = string
 }
 
-variable "dbVersion" {
-  type = string
+variable "db_version" {
+  description = "Db Version"
+  type        = string
 }
 
-variable "dbPlan" {
-  type = string
+variable "db_plan" {
+  description = "Db Plan"
+  type        = string
 }
 
-variable "dbFlavor" {
-  type = string
+variable "db_flavor" {
+  description = "Db Flavor"
+  type        = string
 }
 
-// Database User
+# Database User
 
-variable "dbUserName" {
-  type = string
+variable "db_user_name" {
+  description = "Db User Name"
+  type        = string
 }
 
-variable "dbUserRole" {
-  type = list(any)
+variable "db_user_role" {
+  description = "Db User Role"
+  type        = list(any)
 }
 
-// IP Restriction
+# IP Restriction
 
-variable "dbAllowedIp" {
-  type = string
+variable "db_allowed_ip" {
+  description = "Db Allowed Ips"
+  type        = string
 }

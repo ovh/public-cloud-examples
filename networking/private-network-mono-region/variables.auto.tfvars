@@ -4,17 +4,15 @@ region = "GRA7"
 
 // Network - Private Network
 
-pvNetworkName = "myPrivateNetwork"
-pvNetworkId   = "30"
+pv_network_name = "myPrivateNetwork"
 
 // Network - Subnet
 
-subnetName      = "mySubnet"
-subnetCIDR      = "192.168.2.0/24"
-subnetDHCPStart = "192.168.2.200"
-subnetDHCPEnd   = "192.168.2.254"
+subnet_name       = "my_subnet"
+subnet_cidr       = "192.168.2.0/24"
+subnet_dhcp_start = "192.168.2.200"
+subnet_dhcp_end   = "192.168.2.254"
 
 // Network - Router
 
-rtrName = "myRouter"
-rtrIp   = "192.168.2.1"
+rtr_name = "my_router"

@@ -101,7 +101,7 @@ Result should be like this:
 +--------------------------------------+---------+--------+------------------------------------------------+--------------+--------+
 ```
 
-### Test K3s 
+### Test K3s
 
 From the Kubernetes generated config files list, choose one and test the K3s access with the kubectl tool:
 

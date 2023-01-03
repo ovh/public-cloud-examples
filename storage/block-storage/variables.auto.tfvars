@@ -4,5 +4,5 @@ region = "GRA7"
 
 // Block Storage Volume
 
-bsName = "my-block-storage-volume"
-bsSize = 100
+bs_name = "my-block-storage-volume"
+bs_size = 100

@@ -2,7 +2,7 @@
 
 This example builds a Managed Kubernetes Cluster connected to a private network within OVHcloud Public Cloud.
 
-The components that will be created are : 
+The components that will be created are :
 
 - A [Managed Kubernetes Cluster](https://www.ovhcloud.com/en/public-cloud/kubernetes)
 
@@ -27,7 +27,7 @@ Edit the `variables.auto.tfvars` file to modify values:
 ```terraform
 // Kubernetes Cluster Name
 
-clusterName = "myKubernetesCluster"
+cluster_name = "my_kubernetesCluster"
 
 // Region
 
@@ -35,16 +35,16 @@ region = "GRA7"
 
 // Network - Private Network
 
-pvNetworkName = "myPrivateNetwork"
-rtrIp = "192.168.2.1"
+pv_network_name = "myPrivateNetwork"
+rtr_ip = "192.168.2.1"
 
 // Node Pool definition
 
-myPoolName = "mypool"
-myPoolFlavor = "b2-7"
-myPoolDesiredNodes = "3"
-myPoolMaxNodes = "6"
-myPoolMinNodes = "3"
+my_pool_name = "mypool"
+my_pool_flavor = "b2-7"
+my_pool_desired_nodes = "3"
+my_pool_max_nodes = "6"
+my_pool_min_nodes = "3"
 ```
 
 ## Create
@@ -103,13 +103,13 @@ Terraform used the selected providers to generate the following execution plan. 
 
 Terraform will perform the following actions:
 
-  # ovh_cloud_project_kube.myKube will be created
-  + resource "ovh_cloud_project_kube" "myKube" {
+  # ovh_cloud_project_kube.my_kube will be created
+  + resource "ovh_cloud_project_kube" "my_kube" {
       + control_plane_is_up_to_date = (known after apply)
       + id                          = (known after apply)
       + is_up_to_date               = (known after apply)
       + kubeconfig                  = (sensitive value)
-      + name                        = "myKubernetesCluster"
+      + name                        = "my_kubernetesCluster"
       + next_upgrade_versions       = (known after apply)
       + nodes_url                   = (known after apply)
       + private_network_id          = "xxxxxxxx-d430-4c31-8e2d-xxxxxxxxxxxx"
@@ -135,8 +135,8 @@ Terraform will perform the following actions:
         }
     }
 
-  # ovh_cloud_project_kube_nodepool.myPool will be created
-  + resource "ovh_cloud_project_kube_nodepool" "myPool" {
+  # ovh_cloud_project_kube_nodepool.my_pool will be created
+  + resource "ovh_cloud_project_kube_nodepool" "my_pool" {
       + anti_affinity    = false
       + autoscale        = false
       + available_nodes  = (known after apply)
@@ -162,9 +162,9 @@ Terraform will perform the following actions:
 Plan: 2 to add, 0 to change, 0 to destroy.
 
 Changes to Outputs:
-  + kubeClusterId = (known after apply)
-  + nodePoolId    = (known after apply)
-  + serviceName   = "xxxxxxxx1da24017a6a6f6b6xxxxxxxx"
+  + kube_cluster_id = (known after apply)
+  + node_pool_id    = (known after apply)
+  + service_name   = "xxxxxxxx1da24017a6a6f6b6xxxxxxxx"
 
 ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 
@@ -177,13 +177,13 @@ Terraform used the selected providers to generate the following execution plan. 
 
 Terraform will perform the following actions:
 
-  # ovh_cloud_project_kube.myKube will be created
-  + resource "ovh_cloud_project_kube" "myKube" {
+  # ovh_cloud_project_kube.my_kube will be created
+  + resource "ovh_cloud_project_kube" "my_kube" {
       + control_plane_is_up_to_date = (known after apply)
       + id                          = (known after apply)
       + is_up_to_date               = (known after apply)
       + kubeconfig                  = (sensitive value)
-      + name                        = "myKubernetesCluster"
+      + name                        = "my_kubernetesCluster"
       + next_upgrade_versions       = (known after apply)
       + nodes_url                   = (known after apply)
       + private_network_id          = "xxxxxxxx-d430-4c31-8e2d-xxxxxxxxxxxx"
@@ -209,8 +209,8 @@ Terraform will perform the following actions:
         }
     }
 
-  # ovh_cloud_project_kube_nodepool.myPool will be created
-  + resource "ovh_cloud_project_kube_nodepool" "myPool" {
+  # ovh_cloud_project_kube_nodepool.my_pool will be created
+  + resource "ovh_cloud_project_kube_nodepool" "my_pool" {
       + anti_affinity    = false
       + autoscale        = false
       + available_nodes  = (known after apply)
@@ -236,75 +236,75 @@ Terraform will perform the following actions:
 Plan: 2 to add, 0 to change, 0 to destroy.
 
 Changes to Outputs:
-  + kubeClusterId = (known after apply)
-  + nodePoolId    = (known after apply)
-  + serviceName   = "xxxxxxxx1da24017a6a6f6b6xxxxxxxx"
-ovh_cloud_project_kube.myKube: Creating...
-ovh_cloud_project_kube.myKube: Still creating... [10s elapsed]
-ovh_cloud_project_kube.myKube: Still creating... [20s elapsed]
-ovh_cloud_project_kube.myKube: Still creating... [30s elapsed]
-ovh_cloud_project_kube.myKube: Still creating... [40s elapsed]
-ovh_cloud_project_kube.myKube: Still creating... [50s elapsed]
-ovh_cloud_project_kube.myKube: Still creating... [1m0s elapsed]
-ovh_cloud_project_kube.myKube: Still creating... [1m10s elapsed]
-ovh_cloud_project_kube.myKube: Still creating... [1m20s elapsed]
-ovh_cloud_project_kube.myKube: Still creating... [1m30s elapsed]
-ovh_cloud_project_kube.myKube: Still creating... [1m40s elapsed]
-ovh_cloud_project_kube.myKube: Still creating... [1m50s elapsed]
-ovh_cloud_project_kube.myKube: Still creating... [2m0s elapsed]
-ovh_cloud_project_kube.myKube: Still creating... [2m10s elapsed]
-ovh_cloud_project_kube.myKube: Still creating... [2m20s elapsed]
-ovh_cloud_project_kube.myKube: Still creating... [2m30s elapsed]
-ovh_cloud_project_kube.myKube: Still creating... [2m40s elapsed]
-ovh_cloud_project_kube.myKube: Still creating... [2m50s elapsed]
-ovh_cloud_project_kube.myKube: Still creating... [3m0s elapsed]
-ovh_cloud_project_kube.myKube: Still creating... [3m10s elapsed]
-ovh_cloud_project_kube.myKube: Still creating... [3m20s elapsed]
-ovh_cloud_project_kube.myKube: Still creating... [3m30s elapsed]
-ovh_cloud_project_kube.myKube: Still creating... [3m40s elapsed]
-ovh_cloud_project_kube.myKube: Creation complete after 3m46s [id=xxxxxxxx-28b8-47c6-8ad2-xxxxxxxxxxxx]
-ovh_cloud_project_kube_nodepool.myPool: Creating...
-ovh_cloud_project_kube_nodepool.myPool: Still creating... [10s elapsed]
-ovh_cloud_project_kube_nodepool.myPool: Still creating... [20s elapsed]
-ovh_cloud_project_kube_nodepool.myPool: Still creating... [30s elapsed]
-ovh_cloud_project_kube_nodepool.myPool: Still creating... [40s elapsed]
-ovh_cloud_project_kube_nodepool.myPool: Still creating... [50s elapsed]
-ovh_cloud_project_kube_nodepool.myPool: Still creating... [1m0s elapsed]
-ovh_cloud_project_kube_nodepool.myPool: Still creating... [1m10s elapsed]
-ovh_cloud_project_kube_nodepool.myPool: Still creating... [1m20s elapsed]
-ovh_cloud_project_kube_nodepool.myPool: Still creating... [1m30s elapsed]
-ovh_cloud_project_kube_nodepool.myPool: Still creating... [1m40s elapsed]
-ovh_cloud_project_kube_nodepool.myPool: Still creating... [1m50s elapsed]
-ovh_cloud_project_kube_nodepool.myPool: Still creating... [2m0s elapsed]
-ovh_cloud_project_kube_nodepool.myPool: Still creating... [2m10s elapsed]
-ovh_cloud_project_kube_nodepool.myPool: Still creating... [2m20s elapsed]
-ovh_cloud_project_kube_nodepool.myPool: Still creating... [2m30s elapsed]
-ovh_cloud_project_kube_nodepool.myPool: Still creating... [2m40s elapsed]
-ovh_cloud_project_kube_nodepool.myPool: Still creating... [2m50s elapsed]
-ovh_cloud_project_kube_nodepool.myPool: Still creating... [3m0s elapsed]
-ovh_cloud_project_kube_nodepool.myPool: Still creating... [3m10s elapsed]
-ovh_cloud_project_kube_nodepool.myPool: Still creating... [3m20s elapsed]
-ovh_cloud_project_kube_nodepool.myPool: Still creating... [3m30s elapsed]
-ovh_cloud_project_kube_nodepool.myPool: Still creating... [3m40s elapsed]
-ovh_cloud_project_kube_nodepool.myPool: Still creating... [3m50s elapsed]
-ovh_cloud_project_kube_nodepool.myPool: Still creating... [4m0s elapsed]
-ovh_cloud_project_kube_nodepool.myPool: Still creating... [4m10s elapsed]
-ovh_cloud_project_kube_nodepool.myPool: Still creating... [4m20s elapsed]
-ovh_cloud_project_kube_nodepool.myPool: Still creating... [4m30s elapsed]
-ovh_cloud_project_kube_nodepool.myPool: Still creating... [4m40s elapsed]
-ovh_cloud_project_kube_nodepool.myPool: Still creating... [4m50s elapsed]
-ovh_cloud_project_kube_nodepool.myPool: Still creating... [5m0s elapsed]
-ovh_cloud_project_kube_nodepool.myPool: Still creating... [5m10s elapsed]
-ovh_cloud_project_kube_nodepool.myPool: Still creating... [5m20s elapsed]
-ovh_cloud_project_kube_nodepool.myPool: Creation complete after 5m29s [id=xxxxxxxx-755d-45e0-9967-xxxxxxxxxxxx]
+  + kube_cluster_id = (known after apply)
+  + node_pool_id    = (known after apply)
+  + service_name   = "xxxxxxxx1da24017a6a6f6b6xxxxxxxx"
+ovh_cloud_project_kube.my_kube: Creating...
+ovh_cloud_project_kube.my_kube: Still creating... [10s elapsed]
+ovh_cloud_project_kube.my_kube: Still creating... [20s elapsed]
+ovh_cloud_project_kube.my_kube: Still creating... [30s elapsed]
+ovh_cloud_project_kube.my_kube: Still creating... [40s elapsed]
+ovh_cloud_project_kube.my_kube: Still creating... [50s elapsed]
+ovh_cloud_project_kube.my_kube: Still creating... [1m0s elapsed]
+ovh_cloud_project_kube.my_kube: Still creating... [1m10s elapsed]
+ovh_cloud_project_kube.my_kube: Still creating... [1m20s elapsed]
+ovh_cloud_project_kube.my_kube: Still creating... [1m30s elapsed]
+ovh_cloud_project_kube.my_kube: Still creating... [1m40s elapsed]
+ovh_cloud_project_kube.my_kube: Still creating... [1m50s elapsed]
+ovh_cloud_project_kube.my_kube: Still creating... [2m0s elapsed]
+ovh_cloud_project_kube.my_kube: Still creating... [2m10s elapsed]
+ovh_cloud_project_kube.my_kube: Still creating... [2m20s elapsed]
+ovh_cloud_project_kube.my_kube: Still creating... [2m30s elapsed]
+ovh_cloud_project_kube.my_kube: Still creating... [2m40s elapsed]
+ovh_cloud_project_kube.my_kube: Still creating... [2m50s elapsed]
+ovh_cloud_project_kube.my_kube: Still creating... [3m0s elapsed]
+ovh_cloud_project_kube.my_kube: Still creating... [3m10s elapsed]
+ovh_cloud_project_kube.my_kube: Still creating... [3m20s elapsed]
+ovh_cloud_project_kube.my_kube: Still creating... [3m30s elapsed]
+ovh_cloud_project_kube.my_kube: Still creating... [3m40s elapsed]
+ovh_cloud_project_kube.my_kube: Creation complete after 3m46s [id=xxxxxxxx-28b8-47c6-8ad2-xxxxxxxxxxxx]
+ovh_cloud_project_kube_nodepool.my_pool: Creating...
+ovh_cloud_project_kube_nodepool.my_pool: Still creating... [10s elapsed]
+ovh_cloud_project_kube_nodepool.my_pool: Still creating... [20s elapsed]
+ovh_cloud_project_kube_nodepool.my_pool: Still creating... [30s elapsed]
+ovh_cloud_project_kube_nodepool.my_pool: Still creating... [40s elapsed]
+ovh_cloud_project_kube_nodepool.my_pool: Still creating... [50s elapsed]
+ovh_cloud_project_kube_nodepool.my_pool: Still creating... [1m0s elapsed]
+ovh_cloud_project_kube_nodepool.my_pool: Still creating... [1m10s elapsed]
+ovh_cloud_project_kube_nodepool.my_pool: Still creating... [1m20s elapsed]
+ovh_cloud_project_kube_nodepool.my_pool: Still creating... [1m30s elapsed]
+ovh_cloud_project_kube_nodepool.my_pool: Still creating... [1m40s elapsed]
+ovh_cloud_project_kube_nodepool.my_pool: Still creating... [1m50s elapsed]
+ovh_cloud_project_kube_nodepool.my_pool: Still creating... [2m0s elapsed]
+ovh_cloud_project_kube_nodepool.my_pool: Still creating... [2m10s elapsed]
+ovh_cloud_project_kube_nodepool.my_pool: Still creating... [2m20s elapsed]
+ovh_cloud_project_kube_nodepool.my_pool: Still creating... [2m30s elapsed]
+ovh_cloud_project_kube_nodepool.my_pool: Still creating... [2m40s elapsed]
+ovh_cloud_project_kube_nodepool.my_pool: Still creating... [2m50s elapsed]
+ovh_cloud_project_kube_nodepool.my_pool: Still creating... [3m0s elapsed]
+ovh_cloud_project_kube_nodepool.my_pool: Still creating... [3m10s elapsed]
+ovh_cloud_project_kube_nodepool.my_pool: Still creating... [3m20s elapsed]
+ovh_cloud_project_kube_nodepool.my_pool: Still creating... [3m30s elapsed]
+ovh_cloud_project_kube_nodepool.my_pool: Still creating... [3m40s elapsed]
+ovh_cloud_project_kube_nodepool.my_pool: Still creating... [3m50s elapsed]
+ovh_cloud_project_kube_nodepool.my_pool: Still creating... [4m0s elapsed]
+ovh_cloud_project_kube_nodepool.my_pool: Still creating... [4m10s elapsed]
+ovh_cloud_project_kube_nodepool.my_pool: Still creating... [4m20s elapsed]
+ovh_cloud_project_kube_nodepool.my_pool: Still creating... [4m30s elapsed]
+ovh_cloud_project_kube_nodepool.my_pool: Still creating... [4m40s elapsed]
+ovh_cloud_project_kube_nodepool.my_pool: Still creating... [4m50s elapsed]
+ovh_cloud_project_kube_nodepool.my_pool: Still creating... [5m0s elapsed]
+ovh_cloud_project_kube_nodepool.my_pool: Still creating... [5m10s elapsed]
+ovh_cloud_project_kube_nodepool.my_pool: Still creating... [5m20s elapsed]
+ovh_cloud_project_kube_nodepool.my_pool: Creation complete after 5m29s [id=xxxxxxxx-755d-45e0-9967-xxxxxxxxxxxx]
 
 Apply complete! Resources: 2 added, 0 changed, 0 destroyed.
 
 Outputs:
 
-kubeClusterId = "xxxxxxxx-28b8-47c6-8ad2-xxxxxxxxxxxx"
-nodePoolId = "xxxxxxxx-755d-45e0-9967-xxxxxxxxxxxx"
-serviceName = "xxxxxxxx1da24017a6a6f6b6xxxxxxxx"
+kube_cluster_id = "xxxxxxxx-28b8-47c6-8ad2-xxxxxxxxxxxx"
+node_pool_id = "xxxxxxxx-755d-45e0-9967-xxxxxxxxxxxx"
+service_name = "xxxxxxxx1da24017a6a6f6b6xxxxxxxx"
 ```
 
 </details>
@@ -329,21 +329,21 @@ Or execute the `deleteCluster.sh` script:
 ```bash
 data.openstack_networking_network_v2.myPrivateNetwork: Reading...
 data.openstack_networking_network_v2.myPrivateNetwork: Read complete after 2s [id=xxxxxxxx-d430-4c31-8e2d-xxxxxxxxxxxx]
-ovh_cloud_project_kube.myKube: Refreshing state... [id=xxxxxxxx-28b8-47c6-8ad2-xxxxxxxxxxxx]
-ovh_cloud_project_kube_nodepool.myPool: Refreshing state... [id=xxxxxxxx-755d-45e0-9967-xxxxxxxxxxxx]
+ovh_cloud_project_kube.my_kube: Refreshing state... [id=xxxxxxxx-28b8-47c6-8ad2-xxxxxxxxxxxx]
+ovh_cloud_project_kube_nodepool.my_pool: Refreshing state... [id=xxxxxxxx-755d-45e0-9967-xxxxxxxxxxxx]
 
 Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
   - destroy
 
 Terraform will perform the following actions:
 
-  # ovh_cloud_project_kube.myKube will be destroyed
-  - resource "ovh_cloud_project_kube" "myKube" {
+  # ovh_cloud_project_kube.my_kube will be destroyed
+  - resource "ovh_cloud_project_kube" "my_kube" {
       - control_plane_is_up_to_date = true -> null
       - id                          = "xxxxxxxx-28b8-47c6-8ad2-xxxxxxxxxxxx" -> null
       - is_up_to_date               = true -> null
       - kubeconfig                  = (sensitive value)
-      - name                        = "myKubernetesCluster" -> null
+      - name                        = "my_kubernetesCluster" -> null
       - next_upgrade_versions       = [] -> null
       - nodes_url                   = "xxxxxx.nodes.c1.gra7.k8s.ovh.net" -> null
       - private_network_id          = "xxxxxxxx-d430-4c31-8e2d-xxxxxxxxxxxx" -> null
@@ -372,8 +372,8 @@ Terraform will perform the following actions:
         }
     }
 
-  # ovh_cloud_project_kube_nodepool.myPool will be destroyed
-  - resource "ovh_cloud_project_kube_nodepool" "myPool" {
+  # ovh_cloud_project_kube_nodepool.my_pool will be destroyed
+  - resource "ovh_cloud_project_kube_nodepool" "my_pool" {
       - anti_affinity    = false -> null
       - autoscale        = false -> null
       - available_nodes  = 3 -> null
@@ -399,27 +399,25 @@ Terraform will perform the following actions:
 Plan: 0 to add, 0 to change, 2 to destroy.
 
 Changes to Outputs:
-  - kubeClusterId = "xxxxxxxx-28b8-47c6-8ad2-xxxxxxxxxxxx" -> null
-  - nodePoolId    = "xxxxxxxx-755d-45e0-9967-xxxxxxxxxxxx" -> null
-  - serviceName   = "xxxxxxxx1da24017a6a6f6b6xxxxxxxx" -> null
-ovh_cloud_project_kube_nodepool.myPool: Destroying... [id=xxxxxxxx-755d-45e0-9967-xxxxxxxxxxxx]
-ovh_cloud_project_kube_nodepool.myPool: Still destroying... [id=xxxxxxxx-755d-45e0-9967-xxxxxxxxxxxx, 10s elapsed]
-ovh_cloud_project_kube_nodepool.myPool: Still destroying... [id=xxxxxxxx-755d-45e0-9967-xxxxxxxxxxxx, 20s elapsed]
-ovh_cloud_project_kube_nodepool.myPool: Still destroying... [id=xxxxxxxx-755d-45e0-9967-xxxxxxxxxxxx, 30s elapsed]
-ovh_cloud_project_kube_nodepool.myPool: Still destroying... [id=xxxxxxxx-755d-45e0-9967-xxxxxxxxxxxx, 40s elapsed]
-ovh_cloud_project_kube_nodepool.myPool: Still destroying... [id=xxxxxxxx-755d-45e0-9967-xxxxxxxxxxxx, 50s elapsed]
-ovh_cloud_project_kube_nodepool.myPool: Still destroying... [id=xxxxxxxx-755d-45e0-9967-xxxxxxxxxxxx, 1m0s elapsed]
-ovh_cloud_project_kube_nodepool.myPool: Destruction complete after 1m6s
-ovh_cloud_project_kube.myKube: Destroying... [id=xxxxxxxx-28b8-47c6-8ad2-xxxxxxxxxxxx]
-ovh_cloud_project_kube.myKube: Still destroying... [id=xxxxxxxx-28b8-47c6-8ad2-xxxxxxxxxxxx, 10s elapsed]
-ovh_cloud_project_kube.myKube: Still destroying... [id=xxxxxxxx-28b8-47c6-8ad2-xxxxxxxxxxxx, 20s elapsed]
-ovh_cloud_project_kube.myKube: Still destroying... [id=xxxxxxxx-28b8-47c6-8ad2-xxxxxxxxxxxx, 30s elapsed]
-ovh_cloud_project_kube.myKube: Still destroying... [id=xxxxxxxx-28b8-47c6-8ad2-xxxxxxxxxxxx, 40s elapsed]
-ovh_cloud_project_kube.myKube: Destruction complete after 45s
+  - kube_cluster_id = "xxxxxxxx-28b8-47c6-8ad2-xxxxxxxxxxxx" -> null
+  - node_pool_id    = "xxxxxxxx-755d-45e0-9967-xxxxxxxxxxxx" -> null
+  - service_name   = "xxxxxxxx1da24017a6a6f6b6xxxxxxxx" -> null
+ovh_cloud_project_kube_nodepool.my_pool: Destroying... [id=xxxxxxxx-755d-45e0-9967-xxxxxxxxxxxx]
+ovh_cloud_project_kube_nodepool.my_pool: Still destroying... [id=xxxxxxxx-755d-45e0-9967-xxxxxxxxxxxx, 10s elapsed]
+ovh_cloud_project_kube_nodepool.my_pool: Still destroying... [id=xxxxxxxx-755d-45e0-9967-xxxxxxxxxxxx, 20s elapsed]
+ovh_cloud_project_kube_nodepool.my_pool: Still destroying... [id=xxxxxxxx-755d-45e0-9967-xxxxxxxxxxxx, 30s elapsed]
+ovh_cloud_project_kube_nodepool.my_pool: Still destroying... [id=xxxxxxxx-755d-45e0-9967-xxxxxxxxxxxx, 40s elapsed]
+ovh_cloud_project_kube_nodepool.my_pool: Still destroying... [id=xxxxxxxx-755d-45e0-9967-xxxxxxxxxxxx, 50s elapsed]
+ovh_cloud_project_kube_nodepool.my_pool: Still destroying... [id=xxxxxxxx-755d-45e0-9967-xxxxxxxxxxxx, 1m0s elapsed]
+ovh_cloud_project_kube_nodepool.my_pool: Destruction complete after 1m6s
+ovh_cloud_project_kube.my_kube: Destroying... [id=xxxxxxxx-28b8-47c6-8ad2-xxxxxxxxxxxx]
+ovh_cloud_project_kube.my_kube: Still destroying... [id=xxxxxxxx-28b8-47c6-8ad2-xxxxxxxxxxxx, 10s elapsed]
+ovh_cloud_project_kube.my_kube: Still destroying... [id=xxxxxxxx-28b8-47c6-8ad2-xxxxxxxxxxxx, 20s elapsed]
+ovh_cloud_project_kube.my_kube: Still destroying... [id=xxxxxxxx-28b8-47c6-8ad2-xxxxxxxxxxxx, 30s elapsed]
+ovh_cloud_project_kube.my_kube: Still destroying... [id=xxxxxxxx-28b8-47c6-8ad2-xxxxxxxxxxxx, 40s elapsed]
+ovh_cloud_project_kube.my_kube: Destruction complete after 45s
 
 Destroy complete! Resources: 2 destroyed.
 ```
 
 </details>
-
-

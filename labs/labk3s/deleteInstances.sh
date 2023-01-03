@@ -6,6 +6,6 @@ cd $SCRIPTROOTDIR
 source ./ovhrc
 source ./properties
 
-terraform destroy --auto-approve 
+terraform destroy --auto-approve
 
 rm $(ls | egrep 'config-k3s[0-9][0-9][0-9]')

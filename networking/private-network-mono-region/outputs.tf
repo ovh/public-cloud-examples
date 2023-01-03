@@ -1,15 +1,19 @@
-output "serviceName" {
-  value = var.serviceName
+output "service_name" {
+  description = "Service Name"
+  value       = var.service_name
 }
 
-output "myPrivateNetworkID" {
-  value = openstack_networking_network_v2.myPrivateNetwork.id
+output "my_private_network_id" {
+  description = "Private Network Id"
+  value       = openstack_networking_network_v2.my_private_network.id
 }
 
-output "mySubnetID" {
-  value = openstack_networking_subnet_v2.mySubnet.id
+output "my_subnet_id" {
+  description = "Subnet Id"
+  value       = openstack_networking_subnet_v2.my_subnet.id
 }
 
-output "Ext-NetID" {
-  value = data.openstack_networking_network_v2.Ext-Net.id
+output "ext_net_id" {
+  description = "External Network Id"
+  value       = data.openstack_networking_network_v2.ext_net.id
 }

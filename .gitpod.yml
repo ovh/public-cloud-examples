@@ -1,0 +1,15 @@
+image:
+  file: .gitpod.Dockerfile
+
+tasks:
+- name: Create ovhrc file
+  command: |
+        echo "$OVHRC_b64" | base64 -d > ${GITPOD_REPO_ROOT}/ovhrc
+        gp sync-done ovhrc
+        echo "File /home/gitpod/ovhrc created"
+
+- name: Load env files
+  command: |
+        gp sync-await ovhrc
+        echo ". ${GITPOD_REPO_ROOT}/ovhrc" >> ${HOME}/.bashrc
+        source ${HOME}/.bashrc

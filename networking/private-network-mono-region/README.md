@@ -2,7 +2,7 @@
 
 This example builds a minimal private network infrastructure within OVHcloud Public Cloud.
 
-The components that will be created are : 
+The components that will be created are :
 
 - A private network (built on [vRack](https://www.ovhcloud.com/en-gb/network/vrack)).
 
@@ -26,25 +26,25 @@ Edit the `variables.auto.tfvars` file to modify values:
 
 ```terraform
 // Region
-  
+
 region = "GRA7"
 
 // Network - Private Network
 
-pvNetworkName = "myPrivateNetwork"
-pvNetworkId   = "30"
+pv_network_name = "my_private_network"
+pv_network_id   = "30"
 
 // Network - Subnet
 
-subnetName      = "mySubnet"
-subnetCIDR      = "192.168.2.0/24"
-subnetDHCPStart = "192.168.2.200"
-subnetDHCPEnd   = "192.168.2.254"
+subnet_name      = "my_subnet"
+subnet_cidr      = "192.168.2.0/24"
+subnet_dhcp_start = "192.168.2.200"
+subnet_dhcp_end   = "192.168.2.254"
 
 // Network - Router
 
-rtrName = "myRouter"
-rtrIp   = "192.168.2.1"
+rtr_name = "my_router"
+rtr_ip   = "192.168.2.1"
 ```
 
 ## Create
@@ -112,8 +112,8 @@ Terraform used the selected providers to generate the following execution plan. 
 
 Terraform will perform the following actions:
 
-  # openstack_networking_router_interface_v2.myRouterInterface will be created
-  + resource "openstack_networking_router_interface_v2" "myRouterInterface" {
+  # openstack_networking_router_interface_v2.my_routerInterface will be created
+  + resource "openstack_networking_router_interface_v2" "my_routerInterface" {
       + id        = (known after apply)
       + port_id   = (known after apply)
       + region    = (known after apply)
@@ -121,8 +121,8 @@ Terraform will perform the following actions:
       + subnet_id = (known after apply)
     }
 
-  # openstack_networking_router_v2.myRouter will be created
-  + resource "openstack_networking_router_v2" "myRouter" {
+  # openstack_networking_router_v2.my_router will be created
+  + resource "openstack_networking_router_v2" "my_router" {
       + admin_state_up          = true
       + all_tags                = (known after apply)
       + availability_zone_hints = (known after apply)
@@ -131,7 +131,7 @@ Terraform will perform the following actions:
       + external_gateway        = (known after apply)
       + external_network_id     = "xxxxxxxx-ffdf-40f6-9722-xxxxxxxxxxxx"
       + id                      = (known after apply)
-      + name                    = "myRouter"
+      + name                    = "my_router"
       + region                  = (known after apply)
       + tenant_id               = (known after apply)
 
@@ -141,8 +141,8 @@ Terraform will perform the following actions:
         }
     }
 
-  # openstack_networking_subnet_v2.mySubnet will be created
-  + resource "openstack_networking_subnet_v2" "mySubnet" {
+  # openstack_networking_subnet_v2.my_subnet will be created
+  + resource "openstack_networking_subnet_v2" "my_subnet" {
       + all_tags          = (known after apply)
       + cidr              = "192.168.2.0/24"
       + dns_nameservers   = [
@@ -155,7 +155,7 @@ Terraform will perform the following actions:
       + ip_version        = 4
       + ipv6_address_mode = (known after apply)
       + ipv6_ra_mode      = (known after apply)
-      + name              = "mySubnet"
+      + name              = "my_subnet"
       + network_id        = (known after apply)
       + no_gateway        = false
       + region            = "GRA9"
@@ -172,10 +172,10 @@ Terraform will perform the following actions:
         }
     }
 
-  # ovh_cloud_project_network_private.myPrivateNetwork will be created
-  + resource "ovh_cloud_project_network_private" "myPrivateNetwork" {
+  # ovh_cloud_project_network_private.my_private_network will be created
+  + resource "ovh_cloud_project_network_private" "my_private_network" {
       + id                 = (known after apply)
-      + name               = "myPrivateNetwork"
+      + name               = "my_private_network"
       + regions            = [
           + "GRA9",
         ]
@@ -190,8 +190,8 @@ Terraform will perform the following actions:
 Plan: 4 to add, 0 to change, 0 to destroy.
 
 Changes to Outputs:
-  + myPrivateNetworkID = (known after apply)
-  + mySubnetID         = (known after apply)
+  + my_private_networkID = (known after apply)
+  + my_subnetID         = (known after apply)
 
 ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 
@@ -203,8 +203,8 @@ Terraform used the selected providers to generate the following execution plan. 
 
 Terraform will perform the following actions:
 
-  # openstack_networking_router_interface_v2.myRouterInterface will be created
-  + resource "openstack_networking_router_interface_v2" "myRouterInterface" {
+  # openstack_networking_router_interface_v2.my_routerInterface will be created
+  + resource "openstack_networking_router_interface_v2" "my_routerInterface" {
       + id        = (known after apply)
       + port_id   = (known after apply)
       + region    = (known after apply)
@@ -212,8 +212,8 @@ Terraform will perform the following actions:
       + subnet_id = (known after apply)
     }
 
-  # openstack_networking_router_v2.myRouter will be created
-  + resource "openstack_networking_router_v2" "myRouter" {
+  # openstack_networking_router_v2.my_router will be created
+  + resource "openstack_networking_router_v2" "my_router" {
       + admin_state_up          = true
       + all_tags                = (known after apply)
       + availability_zone_hints = (known after apply)
@@ -222,7 +222,7 @@ Terraform will perform the following actions:
       + external_gateway        = (known after apply)
       + external_network_id     = "xxxxxxxx-ffdf-40f6-9722-xxxxxxxxxxxx"
       + id                      = (known after apply)
-      + name                    = "myRouter"
+      + name                    = "my_router"
       + region                  = (known after apply)
       + tenant_id               = (known after apply)
 
@@ -232,8 +232,8 @@ Terraform will perform the following actions:
         }
     }
 
-  # openstack_networking_subnet_v2.mySubnet will be created
-  + resource "openstack_networking_subnet_v2" "mySubnet" {
+  # openstack_networking_subnet_v2.my_subnet will be created
+  + resource "openstack_networking_subnet_v2" "my_subnet" {
       + all_tags          = (known after apply)
       + cidr              = "192.168.2.0/24"
       + dns_nameservers   = [
@@ -246,7 +246,7 @@ Terraform will perform the following actions:
       + ip_version        = 4
       + ipv6_address_mode = (known after apply)
       + ipv6_ra_mode      = (known after apply)
-      + name              = "mySubnet"
+      + name              = "my_subnet"
       + network_id        = (known after apply)
       + no_gateway        = false
       + region            = "GRA9"
@@ -263,10 +263,10 @@ Terraform will perform the following actions:
         }
     }
 
-  # ovh_cloud_project_network_private.myPrivateNetwork will be created
-  + resource "ovh_cloud_project_network_private" "myPrivateNetwork" {
+  # ovh_cloud_project_network_private.my_private_network will be created
+  + resource "ovh_cloud_project_network_private" "my_private_network" {
       + id                 = (known after apply)
-      + name               = "myPrivateNetwork"
+      + name               = "my_private_network"
       + regions            = [
           + "GRA9",
         ]
@@ -281,28 +281,28 @@ Terraform will perform the following actions:
 Plan: 4 to add, 0 to change, 0 to destroy.
 
 Changes to Outputs:
-  + myPrivateNetworkID = (known after apply)
-  + mySubnetID         = (known after apply)
-openstack_networking_router_v2.myRouter: Creating...
-ovh_cloud_project_network_private.myPrivateNetwork: Creating...
-openstack_networking_router_v2.myRouter: Still creating... [10s elapsed]
-ovh_cloud_project_network_private.myPrivateNetwork: Still creating... [10s elapsed]
-ovh_cloud_project_network_private.myPrivateNetwork: Creation complete after 16s [id=pn-xxxxxxxx_30]
-openstack_networking_subnet_v2.mySubnet: Creating...
-openstack_networking_router_v2.myRouter: Creation complete after 17s [id=xxxxxx-e0d3-4889-ae7e-xxxxxxxxxxxx]
-openstack_networking_subnet_v2.mySubnet: Creation complete after 6s [id=xxxxxxxx-6a1d-4027-8ebe-xxxxxxxxxxxx]
-openstack_networking_router_interface_v2.myRouterInterface: Creating...
-openstack_networking_router_interface_v2.myRouterInterface: Still creating... [10s elapsed]
-openstack_networking_router_interface_v2.myRouterInterface: Creation complete after 12s [id=xxxxxxxx-038e-4572-ad80-xxxxxxxxxxxx]
+  + my_private_networkID = (known after apply)
+  + my_subnetID         = (known after apply)
+openstack_networking_router_v2.my_router: Creating...
+ovh_cloud_project_network_private.my_private_network: Creating...
+openstack_networking_router_v2.my_router: Still creating... [10s elapsed]
+ovh_cloud_project_network_private.my_private_network: Still creating... [10s elapsed]
+ovh_cloud_project_network_private.my_private_network: Creation complete after 16s [id=pn-xxxxxxxx_30]
+openstack_networking_subnet_v2.my_subnet: Creating...
+openstack_networking_router_v2.my_router: Creation complete after 17s [id=xxxxxx-e0d3-4889-ae7e-xxxxxxxxxxxx]
+openstack_networking_subnet_v2.my_subnet: Creation complete after 6s [id=xxxxxxxx-6a1d-4027-8ebe-xxxxxxxxxxxx]
+openstack_networking_router_interface_v2.my_routerInterface: Creating...
+openstack_networking_router_interface_v2.my_routerInterface: Still creating... [10s elapsed]
+openstack_networking_router_interface_v2.my_routerInterface: Creation complete after 12s [id=xxxxxxxx-038e-4572-ad80-xxxxxxxxxxxx]
 
 Apply complete! Resources: 4 added, 0 changed, 0 destroyed.
 
 Outputs:
 
-Ext-NetID = "xxxxxxxx-ffdf-40f6-9722-xxxxxxxxxxxx"
-myPrivateNetworkID = "xxxxxxxx-cc06-49f7-8966-xxxxxxxxxxxx"
-mySubnetID = "xxxxxxxx-6a1d-4027-8ebe-xxxxxxxxxxxx"
-serviceName = "xxxxxxxxxxxx4017a6a6f6bxxxxxxxxx"
+ext_net_id = "xxxxxxxx-ffdf-40f6-9722-xxxxxxxxxxxx"
+my_private_networkID = "xxxxxxxx-cc06-49f7-8966-xxxxxxxxxxxx"
+my_subnetID = "xxxxxxxx-6a1d-4027-8ebe-xxxxxxxxxxxx"
+service_name = "xxxxxxxxxxxx4017a6a6f6bxxxxxxxxx"
 ```
 
 </details>
@@ -327,18 +327,18 @@ Or execute the `deleteNetwork.sh` script:
 ```bash
 Removed openstack_networking_network_v2.Ext-Net
 Successfully removed 1 resource instance(s).
-openstack_networking_router_v2.myRouter: Refreshing state... [id=xxxxxx-e0d3-4889-ae7e-xxxxxxxxxxxx]
-ovh_cloud_project_network_private.myPrivateNetwork: Refreshing state... [id=pn-xxxxxxxx_30]
-openstack_networking_subnet_v2.mySubnet: Refreshing state... [id=xxxxxxxx-6a1d-4027-8ebe-xxxxxxxxxxxx]
-openstack_networking_router_interface_v2.myRouterInterface: Refreshing state... [id=xxxxxxxx-038e-4572-ad80-xxxxxxxxxxxx]
+openstack_networking_router_v2.my_router: Refreshing state... [id=xxxxxx-e0d3-4889-ae7e-xxxxxxxxxxxx]
+ovh_cloud_project_network_private.my_private_network: Refreshing state... [id=pn-xxxxxxxx_30]
+openstack_networking_subnet_v2.my_subnet: Refreshing state... [id=xxxxxxxx-6a1d-4027-8ebe-xxxxxxxxxxxx]
+openstack_networking_router_interface_v2.my_routerInterface: Refreshing state... [id=xxxxxxxx-038e-4572-ad80-xxxxxxxxxxxx]
 
 Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
   - destroy
 
 Terraform will perform the following actions:
 
-  # openstack_networking_router_interface_v2.myRouterInterface will be destroyed
-  - resource "openstack_networking_router_interface_v2" "myRouterInterface" {
+  # openstack_networking_router_interface_v2.my_routerInterface will be destroyed
+  - resource "openstack_networking_router_interface_v2" "my_routerInterface" {
       - id        = "xxxxxxxx-038e-4572-ad80-xxxxxxxxxxxx" -> null
       - port_id   = "xxxxxxxx-038e-4572-ad80-xxxxxxxxxxxx" -> null
       - region    = "GRA9" -> null
@@ -348,8 +348,8 @@ Terraform will perform the following actions:
       - timeouts {}
     }
 
-  # openstack_networking_router_v2.myRouter will be destroyed
-  - resource "openstack_networking_router_v2" "myRouter" {
+  # openstack_networking_router_v2.my_router will be destroyed
+  - resource "openstack_networking_router_v2" "my_router" {
       - admin_state_up          = true -> null
       - all_tags                = [] -> null
       - availability_zone_hints = [] -> null
@@ -358,7 +358,7 @@ Terraform will perform the following actions:
       - external_gateway        = "xxxxxxxx-ffdf-40f6-9722-xxxxxxxxxxxx" -> null
       - external_network_id     = "xxxxxxxx-ffdf-40f6-9722-xxxxxxxxxxxx" -> null
       - id                      = "xxxxxx-e0d3-4889-ae7e-xxxxxxxxxxxx" -> null
-      - name                    = "myRouter" -> null
+      - name                    = "my_router" -> null
       - region                  = "GRA9" -> null
       - tags                    = [] -> null
       - tenant_id               = "xxxxxxxxxxxx4017a6a6f6bxxxxxxxxx" -> null
@@ -371,8 +371,8 @@ Terraform will perform the following actions:
       - timeouts {}
     }
 
-  # openstack_networking_subnet_v2.mySubnet will be destroyed
-  - resource "openstack_networking_subnet_v2" "mySubnet" {
+  # openstack_networking_subnet_v2.my_subnet will be destroyed
+  - resource "openstack_networking_subnet_v2" "my_subnet" {
       - all_tags        = [] -> null
       - cidr            = "192.168.2.0/24" -> null
       - dns_nameservers = [
@@ -383,7 +383,7 @@ Terraform will perform the following actions:
       - gateway_ip      = "192.168.2.1" -> null
       - id              = "xxxxxxxx-6a1d-4027-8ebe-xxxxxxxxxxxx" -> null
       - ip_version      = 4 -> null
-      - name            = "mySubnet" -> null
+      - name            = "my_subnet" -> null
       - network_id      = "xxxxxxxx-cc06-49f7-8966-xxxxxxxxxxxx" -> null
       - no_gateway      = false -> null
       - region          = "GRA9" -> null
@@ -403,10 +403,10 @@ Terraform will perform the following actions:
       - timeouts {}
     }
 
-  # ovh_cloud_project_network_private.myPrivateNetwork will be destroyed
-  - resource "ovh_cloud_project_network_private" "myPrivateNetwork" {
+  # ovh_cloud_project_network_private.my_private_network will be destroyed
+  - resource "ovh_cloud_project_network_private" "my_private_network" {
       - id                 = "pn-xxxxxxxx_30" -> null
-      - name               = "myPrivateNetwork" -> null
+      - name               = "my_private_network" -> null
       - regions            = [
           - "GRA9",
         ] -> null
@@ -432,25 +432,23 @@ Terraform will perform the following actions:
 Plan: 0 to add, 0 to change, 4 to destroy.
 
 Changes to Outputs:
-  - Ext-NetID          = "xxxxxxxx-ffdf-40f6-9722-xxxxxxxxxxxx" -> null
-  - myPrivateNetworkID = "xxxxxxxx-cc06-49f7-8966-xxxxxxxxxxxx" -> null
-  - mySubnetID         = "xxxxxxxx-6a1d-4027-8ebe-xxxxxxxxxxxx" -> null
-  - serviceName        = "xxxxxxxxxxxx4017a6a6f6bxxxxxxxxx" -> null
-openstack_networking_router_interface_v2.myRouterInterface: Destroying... [id=xxxxxxxx-038e-4572-ad80-xxxxxxxxxxxx]
-openstack_networking_router_interface_v2.myRouterInterface: Still destroying... [id=xxxxxxxx-038e-4572-ad80-xxxxxxxxxxxx, 10s elapsed]
-openstack_networking_router_interface_v2.myRouterInterface: Destruction complete after 15s
-openstack_networking_router_v2.myRouter: Destroying... [id=xxxxxx-e0d3-4889-ae7e-xxxxxxxxxxxx]
-openstack_networking_subnet_v2.mySubnet: Destroying... [id=xxxxxxxx-6a1d-4027-8ebe-xxxxxxxxxxxx]
-openstack_networking_router_v2.myRouter: Destruction complete after 10s
-openstack_networking_subnet_v2.mySubnet: Still destroying... [id=xxxxxxxx-6a1d-4027-8ebe-xxxxxxxxxxxx, 10s elapsed]
-openstack_networking_subnet_v2.mySubnet: Destruction complete after 12s
-ovh_cloud_project_network_private.myPrivateNetwork: Destroying... [id=pn-xxxxxxxx_30]
-ovh_cloud_project_network_private.myPrivateNetwork: Still destroying... [id=pn-xxxxxxxx_30, 10s elapsed]
-ovh_cloud_project_network_private.myPrivateNetwork: Destruction complete after 16s
+  - ext_net_id          = "xxxxxxxx-ffdf-40f6-9722-xxxxxxxxxxxx" -> null
+  - my_private_networkID = "xxxxxxxx-cc06-49f7-8966-xxxxxxxxxxxx" -> null
+  - my_subnetID         = "xxxxxxxx-6a1d-4027-8ebe-xxxxxxxxxxxx" -> null
+  - service_name        = "xxxxxxxxxxxx4017a6a6f6bxxxxxxxxx" -> null
+openstack_networking_router_interface_v2.my_routerInterface: Destroying... [id=xxxxxxxx-038e-4572-ad80-xxxxxxxxxxxx]
+openstack_networking_router_interface_v2.my_routerInterface: Still destroying... [id=xxxxxxxx-038e-4572-ad80-xxxxxxxxxxxx, 10s elapsed]
+openstack_networking_router_interface_v2.my_routerInterface: Destruction complete after 15s
+openstack_networking_router_v2.my_router: Destroying... [id=xxxxxx-e0d3-4889-ae7e-xxxxxxxxxxxx]
+openstack_networking_subnet_v2.my_subnet: Destroying... [id=xxxxxxxx-6a1d-4027-8ebe-xxxxxxxxxxxx]
+openstack_networking_router_v2.my_router: Destruction complete after 10s
+openstack_networking_subnet_v2.my_subnet: Still destroying... [id=xxxxxxxx-6a1d-4027-8ebe-xxxxxxxxxxxx, 10s elapsed]
+openstack_networking_subnet_v2.my_subnet: Destruction complete after 12s
+ovh_cloud_project_network_private.my_private_network: Destroying... [id=pn-xxxxxxxx_30]
+ovh_cloud_project_network_private.my_private_network: Still destroying... [id=pn-xxxxxxxx_30, 10s elapsed]
+ovh_cloud_project_network_private.my_private_network: Destruction complete after 16s
 
 Destroy complete! Resources: 4 destroyed.
 ```
 
 </details>
-
-
