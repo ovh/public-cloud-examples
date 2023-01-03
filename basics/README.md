@@ -58,6 +58,8 @@ The second part of the `ovhrc` file is for accessing the [OVHcloud API](https://
 
 The `OVH_ENDPOINT` and `OVH_BASEURL` variables depends on your location.
 
+The `OVH_CLOUD_PROJECT_SERVICE` must be setted with the Openstack service is, known in the openrc file as `OS_TENANT_ID`. This variable is mainly used by the OVHcloud Terraform provider.
+
 Get the other variables values by following the first step of the [First Steps with the OVHcloud APIs](https://docs.ovh.com/gb/en/api/first-steps-with-ovh-api) tutorial.
 
 ```bash
@@ -67,6 +69,7 @@ export OVH_BASEURL=""
 export OVH_APPLICATION_KEY=""
 export OVH_APPLICATION_SECRET=""
 export OVH_CONSUMER_KEY=""
+export OVH_CLOUD_PROJECT_SERVICE="$OS_TENANT_ID"
 
 ### OVHcloud API endpoints
 #   OVH_ENDPOINT        :       OVH_BASEURL
