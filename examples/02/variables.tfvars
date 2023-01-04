@@ -38,3 +38,24 @@ db_engine = {
   user_role       = ["readWriteAnyDatabase"]
   allowed_ip      = ["192.168.12.0/24"]
 }
+
+# SSH Keypair
+
+keypair = {
+  name                 = "myMainKeypair"
+  main_region          = "GRA7"
+  to_reproduce_regions = []
+  keys_path            = "."
+}
+
+# Instance - instance
+
+instance = {
+  region       = "GRA7"
+  network_name = "myNetwork"
+  keypair_name = "myMainKeypair"
+  name         = "myserver"
+  flavor       = "b2-7"
+  image        = "Ubuntu 20.04"
+  user         = "ubuntu"
+}
