@@ -48,7 +48,7 @@ network = {
 }
 ```
 
-- name: The private network only need a name to be configured
+- `name`: The private network only need a name to be configured
 
 #### Subnet
 
@@ -61,13 +61,13 @@ subnet = {
 }
 ```
 
-- name: The subnet name.
+- `name`: The subnet name.
 
-- cidr: The subnet networking range, CIDR format.
+- `cidr`: The subnet networking range, CIDR format.
 
-- dhcp_start: The first IP address of the DHCP range.
+- `dhcp_start`: The first IP address of the DHCP range.
 
-- dhcp_end: The last IP address of the DHCP range.
+- `dhcp_end`: The last IP address of the DHCP range.
 
 
 #### Virtual Router
@@ -78,7 +78,7 @@ router = {
 }
 ```
 
-- name: The virtual router only need a name to be configured.
+- `name`: The virtual router only need a name to be configured.
 
 > Note: The router will be connected to the `Ext-Net` network associated to the given region, and to the private network. Its private IP address is automaticly the first of the subnet CIDR range.
 
@@ -95,13 +95,13 @@ keypair = {
 
 This variables are needed by the [SSH keypair module](../../modules/ssh_keypair)
 
-- name: The keypair name.
+- `name`: The keypair name.
 
-- main_region: The region where the SSH keypair is deployed.
+- `main_region`: The region where the SSH keypair is deployed.
 
-- to_reproduce_regions: (Not applicable in this example, let the `[]` value) Add another regions if you want to deploy the created SSH public key inside.
+- `to_reproduce_regions`: (Not applicable in this example, let the `[]` value) Add another regions if you want to deploy the created SSH public key inside.
 
-- keys_path: The path where the SSH private and public keys files will be created. 
+- `keys_path`: The path where the SSH private and public keys files will be created. 
 
 #### Virtual Machine part
 
@@ -121,17 +121,17 @@ bastion = {
 
 As this instance is only created to access to the private network components, it is called `bastion`.
 
-- region: The region where this instance is deployed, must be the same value as the network and SSH keypair modules.
+- `region`: The region where this instance is deployed, must be the same value as the network and SSH keypair modules.
 
-- network_name: The name of the private network, as previously defined.
+- `network_name`: The name of the private network, as previously defined.
 
-- keypair_name: The name of the SSH keypair, as previously defined.
+- `keypair_name`: The name of the SSH keypair, as previously defined.
 
-- flavor: The flavor type of the instance. Get the full list of possible values here: TODO
+- `flavor`: The flavor type of the instance. Get the full list of possible values here: TODO
 
-- image: The OS image of the instance. Get the full list of possible values here: TODO
+- `image`: The OS image of the instance. Get the full list of possible values here: TODO
 
-- user: The linux user created on the instance. The SSH public key will be deployed.
+- `user`: The linux user created on the instance. The SSH public key will be deployed.
 
 ## Deploy 
 
