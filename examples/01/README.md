@@ -127,11 +127,17 @@ As this instance is only created to access to the private network components, it
 
 - `keypair_name`: The name of the SSH keypair, as previously defined.
 
-- `flavor`: The flavor type of the instance. Get the full list of possible values here: TODO
+- `flavor`: The flavor type of the instance.
 
-- `image`: The OS image of the instance. Get the full list of possible values here: TODO
+- `image`: The OS image of the instance.
 
 - `user`: The linux user created on the instance. The SSH public key will be deployed.
+
+> Note: If you have followed the [Starting Pack to manage your OVHcloud Services from shell](../../basics/README.md) tutorial, and have an openstack cli well configured, you can get the image and flavor list with this commands:
+> ```bash
+> openstack flavor list
+> openstack image list
+> ```
 
 ## Deploy 
 
