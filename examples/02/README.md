@@ -42,7 +42,7 @@ ubuntu@myserver:~$
 ### Connect to the mongodb
 
 ```bash
-mongosh "mongodb+srv://myuser:wznB264atA1QdVSmi9Og@mongodb-3378aeb1-obf0d5312.database.cloud.ovh.net/admin?replicaSet=replicaset&tls=true"
+mongosh "mongodb+srv://myuser:xxxxxxxxxxxxxxxx@mongodb-3378aeb1-obf0d5312.database.cloud.ovh.net/admin?replicaSet=replicaset&tls=true"
 ```
 
 The output must be like this:
