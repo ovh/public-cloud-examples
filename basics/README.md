@@ -82,23 +82,6 @@ export OVH_CLOUD_PROJECT_SERVICE="$OS_TENANT_ID"
 #   soyoustart-ca       :       https://ca.api.soyoustart.com/1.0/
 ```
 
-### Helpers variables used by terraform cli
-
-The last part contains helpful variables that will be used (or not) by the terraform client.
-
-```bash
-### Terraform helpers variables
-export TF_VAR_IP="$(curl -s ifconfig.me)/32"
-export TF_VAR_service_name="$OS_TENANT_ID"
-export TF_VAR_keypair_admin="" # The ready to deployed SSH public key content
-```
-
-- `TF_VAR_IP` is filled with your public IP. This can helps you if you have to add your public IP address into an IP restriction list, to access to managed databases for example. If you don't want to use curl or send a http request, just add the desired value.
-
-- `TF_VAR_service_name` is the openstack project id, used in terraform by the OVHcloud and Openstack providers.
-
-- `TF_VAR_keypair_admin` is the content of a SSH public key that you want to deploy to instances that are created with terraform, and mainly necessary by Ansible.
-
 ### Load variables into your environemnt
 
 Now your `ovhrc` is ready, load its content into your environment:
