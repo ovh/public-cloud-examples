@@ -301,7 +301,7 @@ $ openstack --os-region-name=GRA7 image list
 terraform init
 ```
 
-<details><summary> 📍 Output (click to expand)</summary>
+<details><summary> 📍 Click to see console output</summary>
 
 ```log
 $ terraform init
@@ -347,7 +347,7 @@ commands will detect it and remind you to do so if necessary.
 terraform plan -var-file=variables.tfvars
 ```
 
-<details><summary> 📍 Output (click to expand)</summary>
+<details><summary> 📍 Click to see console output</summary>
 
 ```log
 $ terraform plan -var-file=variables.tfvars
@@ -545,7 +545,7 @@ these actions if you run "terraform apply" now.
 terraform apply -var-file=variables.tfvars
 ```
 
-<details><summary> 📍 Output (click to expand)</summary>
+<details><summary> 📍 Click to see console output</summary>
 
 ```log
 $ terraform apply -var-file=variables.tfvars
@@ -820,7 +820,7 @@ To destroy and remove everything, use the terraform destroy command:
 terraform destroy -var-file=variables.tfvars
 ```
 
-<details><summary> 📍 Output (click to expand)</summary>
+<details><summary> 📍 Click to see console output</summary>
 
 ```log
 $ terraform destroy -var-file=variables.tfvars
