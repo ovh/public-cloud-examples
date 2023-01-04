@@ -127,10 +127,66 @@ As this instance is only created to access to the private network components, it
 
 - keypair_name: The name of the SSH keypair, as previously defined.
 
-- flavor: The flavor type of the instance.
+- flavor: The flavor type of the instance. Get the full list of possible values here: TODO
 
-- image: The OS image of the instance. 
+- image: The OS image of the instance. Get the full list of possible values here: TODO
 
 - user: The linux user created on the instance. The SSH public key will be deployed.
 
+## Deploy 
 
+```bash
+terraform init
+terraform plan -var-file=variables.tfvars
+terraform apply -var-file=variables.tfvars
+```
+
+<details><summary> 📍 Output (click to expand)</summary>
+```log
+$ terraform init
+Initializing modules...
+- bastion in ../../modules/instance_simple
+- floatip in ../../modules/floating_ip
+- keypair in ../../modules/ssh_keypair
+- network in ../../modules/private_network
+
+Initializing the backend...
+
+Initializing provider plugins...
+- Finding terraform-provider-openstack/openstack versions matching "~> 1.49.0"...
+- Finding hashicorp/local versions matching "~> 2.2.3"...
+- Installing terraform-provider-openstack/openstack v1.49.0...
+- Installed terraform-provider-openstack/openstack v1.49.0 (self-signed, key ID 4F80527A391BEFD2)
+- Installing hashicorp/local v2.2.3...
+- Installed hashicorp/local v2.2.3 (signed by HashiCorp)
+
+Partner and community providers are signed by their developers.
+If you'd like to know more about provider signing, you can read about it here:
+https://www.terraform.io/docs/cli/plugins/signing.html
+
+Terraform has created a lock file .terraform.lock.hcl to record the provider
+selections it made above. Include this file in your version control repository
+so that Terraform can guarantee to make the same selections by default when
+you run "terraform init" in the future.
+
+Terraform has been successfully initialized!
+
+You may now begin working with Terraform. Try running "terraform plan" to see
+any changes that are required for your infrastructure. All Terraform commands
+should now work.
+
+If you ever set or change modules or backend configuration for Terraform,
+rerun this command to reinitialize your working directory. If you forget, other
+commands will detect it and remind you to do so if necessary.
+```
+</summary>
+
+## Usage
+
+Once deployed, get the Floating IP address value from the output value ``
+
+## Destroy
+
+```bash
+terraform destroy -var-file=variables.tfvars
+```
