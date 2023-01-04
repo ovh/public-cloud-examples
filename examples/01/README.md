@@ -142,6 +142,7 @@ terraform apply -var-file=variables.tfvars
 ```
 
 <details><summary> 📍 Output (click to expand)</summary>
+
 ```log
 $ terraform init
 Initializing modules...
@@ -179,6 +180,7 @@ If you ever set or change modules or backend configuration for Terraform,
 rerun this command to reinitialize your working directory. If you forget, other
 commands will detect it and remind you to do so if necessary.
 ```
+
 </summary>
 
 ## Usage
