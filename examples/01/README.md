@@ -2,7 +2,7 @@
 
 ![Example 01 schema](./img/01.png)
 
-Private network with : 
+Private network with :
 
 > - Subnet with a defined DHCP range
 >
@@ -99,7 +99,7 @@ This variables are needed by the [SSH keypair module](../../modules/ssh_keypair)
 
 - `to_reproduce_regions`: (Not applicable in this example, let the `[]` value) Add another regions if you want to deploy the created SSH public key inside.
 
-- `keys_path`: The path where the SSH private and public keys files will be created. 
+- `keys_path`: The path where the SSH private and public keys files will be created.
 
 ### Virtual Machine part
 
@@ -293,7 +293,7 @@ $ openstack --os-region-name=GRA7 image list
 
 </details>
 
-## Deploy 
+## Deploy
 
 ```bash
 terraform init
@@ -788,7 +788,7 @@ bastion_private_ip = "192.168.12.184"
 
 ## Usage and test
 
-Connect to the `bastion` instance via SSH. 
+Connect to the `bastion` instance via SSH.
 
 Use the created SSH keypair file and the IP address given by the `bastion_private_ip` value:
 
@@ -812,7 +812,7 @@ Congrats! You've reached the end of this tutorial.
 
 ## Destroy
 
-To destroy and remove everything, use the terraform destroy command: 
+To destroy and remove everything, use the terraform destroy command:
 
 ```bash
 terraform destroy -var-file=variables.tfvars

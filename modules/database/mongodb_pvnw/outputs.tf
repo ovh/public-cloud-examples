@@ -11,10 +11,10 @@ output "db_user_password" {
 
 output "db_connection_string" {
   description = "DB Connection String"
-  value = ovh_cloud_project_database.mongodb.endpoints.0.uri
+  value       = ovh_cloud_project_database.mongodb.endpoints.0.uri
 }
 
 output "db_service_connection_string" {
   description = "DB Connection String"
-  value = ovh_cloud_project_database.mongodb.endpoints.1.uri
+  value       = ovh_cloud_project_database.mongodb.endpoints.1.uri
 }

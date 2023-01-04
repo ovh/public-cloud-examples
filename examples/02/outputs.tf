@@ -5,7 +5,7 @@ output "instance_floating_ip" {
 
 output "mongodb_connection_string" {
   description = "MongoDB Connection String"
-  value = module.db_engine.db_service_connection_string
+  value       = module.db_engine.db_service_connection_string
 }
 
 output "mongodb_user_password" {

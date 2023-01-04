@@ -1,0 +1,5 @@
+---
+- name: Install mongodb-mongosh
+  become: yes
+  ansible.builtin.apt:
+    deb: "{{ mongosh_package_url }}"

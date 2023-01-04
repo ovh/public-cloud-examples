@@ -1,0 +1,2 @@
+# mongosh role vars
+mongosh_package_url: https://downloads.mongodb.com/compass/mongodb-mongosh_1.6.1_amd64.deb
