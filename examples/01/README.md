@@ -622,9 +622,9 @@ bastion_floating_ip = "51.xx.xx.xx"
 bastion_private_ip = "192.168.12.184"
 ```
 
-- bastion_floating_ip: The public IP address to access the bastion instance.
+- `bastion_floating_ip`: The public IP address to access the bastion instance.
 
-- bastion_private_ip: The private IP address of the bastion instance.
+- `bastion_private_ip`: The private IP address of the bastion instance.
 
 ## Usage and test
 
