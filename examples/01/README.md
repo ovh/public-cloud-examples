@@ -179,7 +179,7 @@ rerun this command to reinitialize your working directory. If you forget, other
 commands will detect it and remind you to do so if necessary.
 ```
 
-</summary>
+</details>
 
 ```bash
 terraform plan -var-file=variables.tfvars
