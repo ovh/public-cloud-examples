@@ -4,9 +4,9 @@
 
 Private network with : 
 
-- Subnet with a defined DHCP range
-
-- Virtual router as gateway
+> - Subnet with a defined DHCP range
+>
+> - Virtual router as gateway
 
 SSH keypair
 
@@ -16,11 +16,11 @@ Floating IP
 
 ## Description
 
-This example show you how create an access to a virtual machine that is connected to a private network with [Terraform](https://www.terraform.io).
+This example shows you how to create and access to a virtual machine that is connected to a private network, with [Terraform](https://www.terraform.io).
 
 ## Pre-requisites
 
-Follow the [Starting Pack to manage your OVHcloud Services from shell](../../basics/README.md) tutorial to make your terraform client working with your [OVHcloud Public Cloud project](https://www.ovhcloud.com/en-gb/public-cloud).
+Follow the [Starting Pack to manage your OVHcloud Services from shell](../../basics/README.md) tutorial to make your terraform client works with your [OVHcloud Public Cloud project](https://www.ovhcloud.com/en-gb/public-cloud).
 
 ## Variables
 
@@ -28,13 +28,11 @@ Create (or modify the existing one) a file `variables.tfvars` and add the follow
 
 ### Region part
 
-The region where this example is deployed.
-
-Example : 
-
 ```terraform
 region = "GRA7"
 ```
+
+- `region`: The region to deploy this example.
 
 ### Networking part
 
@@ -48,7 +46,7 @@ network = {
 }
 ```
 
-- `name`: The private network only need a name to be configured
+- `name`: The private network only needs a name to be configured
 
 #### Subnet
 
@@ -78,7 +76,7 @@ router = {
 }
 ```
 
-- `name`: The virtual router only need a name to be configured.
+- `name`: The virtual router only needs a name to be configured.
 
 > Note: The router will be connected to the `Ext-Net` network associated to the given region, and to the private network. Its private IP address is automaticly the first of the subnet CIDR range.
 
