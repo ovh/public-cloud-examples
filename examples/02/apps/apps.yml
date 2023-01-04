@@ -6,7 +6,7 @@
   - name:
     ansible.builtin.wait_for_connection:
 
-- name: Install Mongo Shell
+- name: Install Apps
   hosts: server
   
   roles:
