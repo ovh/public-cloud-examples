@@ -103,7 +103,7 @@ This variables are needed by the [SSH keypair module](../../modules/ssh_keypair)
 
 - `keys_path`: The path where the SSH private and public keys files will be created. 
 
-#### Virtual Machine part
+### Virtual Machine part
 
 This variables are needed by the [Simple instance module](../../modules/instance_simple)
 
