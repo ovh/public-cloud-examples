@@ -93,7 +93,7 @@ keypair = {
 }
 ```
 
-This variables are needed by the [private network module](../../modules/ssh_keypair)
+This variables are needed by the [SSH keypair module](../../modules/ssh_keypair)
 
 - name: The keypair name.
 
@@ -105,7 +105,7 @@ This variables are needed by the [private network module](../../modules/ssh_keyp
 
 #### Virtual Machine part
 
-This variables are needed by the [private network module](../../modules/instance_simple)
+This variables are needed by the [Simple instance module](../../modules/instance_simple)
 
 ```terraform
 bastion = {
