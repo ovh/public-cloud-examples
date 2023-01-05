@@ -318,13 +318,13 @@ db_engine = {
 
 - `description`: The name of the database engine.
 
-- `engine`: The engine type. Get the complete list of engines and prices on the [OVHcloud prices page](https://www.ovhcloud.com/en-gb/public-cloud/prices), in the `Databases` section. 
+- `engine`: The engine type. Get the complete list of engines and prices on the [OVHcloud prices page](https://www.ovhcloud.com/en-gb/public-cloud/prices/#databases), in the `Databases` section. 
 
 - `version`: The engine version.
 
 - `plan`: The financial plan. Possible values are `essential`, `business` and `enterprise`.
 
-- `flavor`: The flavor type of the nodes. Get the complete list of possible flavors on the [OVHcloud prices page](https://www.ovhcloud.com/en-gb/public-cloud/prices), in the `Databases`/`MongoDB` section.
+- `flavor`: The flavor type of the nodes. Get the complete list of possible flavors on the [OVHcloud prices page](https://www.ovhcloud.com/en-gb/public-cloud/prices/#4951), in the `Databases`/`MongoDB` section.
 
 - `user_name`: The name of the created user on the engine.
 
@@ -474,7 +474,7 @@ Terraform will perform the following actions:
       + maintenance_time = (known after apply)
       + network_type     = (known after apply)
       + plan             = "business"
-      + service_name     = "xxxxxxxx1da24017a6a6f6b6ef1cf53a"
+      + service_name     = "xxxxxxxx1da24017a6a6f6b6xxxxxxxx"
       + status           = (known after apply)
       + version          = "6.0"
 
@@ -501,7 +501,7 @@ Terraform will perform the following actions:
       + engine       = "mongodb"
       + id           = (known after apply)
       + ip           = "192.168.12.0/24"
-      + service_name = "xxxxxxxx1da24017a6a6f6b6ef1cf53a"
+      + service_name = "xxxxxxxx1da24017a6a6f6b6xxxxxxxx"
       + status       = (known after apply)
     }
 
@@ -516,7 +516,7 @@ Terraform will perform the following actions:
       + roles          = [
           + "readWriteAnyDatabase",
         ]
-      + service_name   = "xxxxxxxx1da24017a6a6f6b6ef1cf53a"
+      + service_name   = "xxxxxxxx1da24017a6a6f6b6xxxxxxxx"
       + status         = (known after apply)
     }
 
@@ -789,7 +789,7 @@ Terraform will perform the following actions:
       + maintenance_time = (known after apply)
       + network_type     = (known after apply)
       + plan             = "business"
-      + service_name     = "xxxxxxxx1da24017a6a6f6b6ef1cf53a"
+      + service_name     = "xxxxxxxx1da24017a6a6f6b6xxxxxxxx"
       + status           = (known after apply)
       + version          = "6.0"
 
@@ -816,7 +816,7 @@ Terraform will perform the following actions:
       + engine       = "mongodb"
       + id           = (known after apply)
       + ip           = "192.168.12.0/24"
-      + service_name = "xxxxxxxx1da24017a6a6f6b6ef1cf53a"
+      + service_name = "xxxxxxxx1da24017a6a6f6b6xxxxxxxx"
       + status       = (known after apply)
     }
 
@@ -831,7 +831,7 @@ Terraform will perform the following actions:
       + roles          = [
           + "readWriteAnyDatabase",
         ]
-      + service_name   = "xxxxxxxx1da24017a6a6f6b6ef1cf53a"
+      + service_name   = "xxxxxxxx1da24017a6a6f6b6xxxxxxxx"
       + status         = (known after apply)
     }
 
