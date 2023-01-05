@@ -356,6 +356,8 @@ resource "local_file" "ansible_config" {
 
 ## Ansible Playbook Execution Part
 
+Once infrastructure is deployed and the Ansible inventory file created, the Ansible playbook is launched via a a `local-exec` provisioner inside a `null_resource`.
+
 ```terraform
 resource "null_resource" "ansible_exec" {
   depends_on = [local_file.ansible_config]
@@ -365,6 +367,8 @@ resource "null_resource" "ansible_exec" {
   }
 }
 ```
+
+- `triggers`: This trick permits to execute the command each time the `terraform apply` is performed.
 
 ## Deploy
 
