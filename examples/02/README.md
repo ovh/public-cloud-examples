@@ -107,11 +107,11 @@ This variables are needed by the [SSH keypair module](../../modules/ssh_keypair)
 This variables are needed by the [Simple instance module](../../modules/instance_simple)
 
 ```terraform
-bastion = {
+instance = {
   region       = "GRA7"
   network_name = "myNetwork"
   keypair_name = "myMainKeypair"
-  name         = "bastion"
+  name         = "myserver"
   flavor       = "b2-7"
   image        = "Ubuntu 20.04"
   user         = "ubuntu"
@@ -292,6 +292,46 @@ $ openstack --os-region-name=GRA7 image list
 
 </details>
 
+### MongoDB part
+
+```terraform
+db_engine = {
+  region          = "GRA"
+  pv_network_name = "myNetwork"
+  subnet_name     = "mySubnet"
+  description     = "myMongoDb"
+  engine          = "mongodb"
+  version         = "6.0"
+  plan            = "business"
+  flavor          = "db1-7"
+  user_name       = "myuser"
+  user_role       = ["readWriteAnyDatabase"]
+  allowed_ip      = ["192.168.12.0/24"]
+}
+```
+
+- `region`: The region where this database engine is deployed. Get the region full list on the [capabilities](https://docs.ovh.com/gb/en/publiccloud/databases/mongodb/capabilities/) page.
+
+- `pv_network_name`: The private network on which the engine is accessed.
+
+- `subnet_name`: The subnet name where engine nodes are deployed.
+
+- `description`: The name of the database engine.
+
+- `engine`: The engine type. Get the complete list of engines and prices on the [OVHcloud prices page](https://www.ovhcloud.com/en-gb/public-cloud/prices), in the `Databases` section. 
+
+- `version`: The engine version.
+
+- `plan`: The financial plan. Possible values are `essential`, `business` and `enterprise`.
+
+- `flavor`: The flavor type of the nodes. Get the complete list of possible flavors on the [OVHcloud prices page](https://www.ovhcloud.com/en-gb/public-cloud/prices), in the `Databases`/`MongoDB` section.
+
+- `user_name`: The name of the created user on the engine.
+
+- `user_role`: The list of user roles.
+
+- `allowed_ip`: The list of IP ranges (CIDR format).
+
 ## Deploy
 
 ```bash
@@ -356,7 +396,7 @@ terraform plan -var-file=variables.tfvars
 ```log
 $ terraform plan -var-file=variables.tfvars 
 module.network.data.openstack_networking_network_v2.ext_net: Reading...
-module.network.data.openstack_networking_network_v2.ext_net: Read complete after 2s [id=393d06cc-a82c-4dc4-a576-c79e8dd67ba3]
+module.network.data.openstack_networking_network_v2.ext_net: Read complete after 2s [id=xxxxxxxx-a82c-4dc4-a576-xxxxxxxx]
 
 Terraform used the selected providers to generate the following execution plan. Resource actions are
 indicated with the following symbols:
@@ -434,7 +474,7 @@ Terraform will perform the following actions:
       + maintenance_time = (known after apply)
       + network_type     = (known after apply)
       + plan             = "business"
-      + service_name     = "706b47d91da24017a6a6f6b6ef1cf53a"
+      + service_name     = "xxxxxxxx1da24017a6a6f6b6ef1cf53a"
       + status           = (known after apply)
       + version          = "6.0"
 
@@ -461,7 +501,7 @@ Terraform will perform the following actions:
       + engine       = "mongodb"
       + id           = (known after apply)
       + ip           = "192.168.12.0/24"
-      + service_name = "706b47d91da24017a6a6f6b6ef1cf53a"
+      + service_name = "xxxxxxxx1da24017a6a6f6b6ef1cf53a"
       + status       = (known after apply)
     }
 
@@ -476,7 +516,7 @@ Terraform will perform the following actions:
       + roles          = [
           + "readWriteAnyDatabase",
         ]
-      + service_name   = "706b47d91da24017a6a6f6b6ef1cf53a"
+      + service_name   = "xxxxxxxx1da24017a6a6f6b6ef1cf53a"
       + status         = (known after apply)
     }
 
@@ -603,7 +643,7 @@ Terraform will perform the following actions:
       + distributed             = (known after apply)
       + enable_snat             = (known after apply)
       + external_gateway        = (known after apply)
-      + external_network_id     = "393d06cc-a82c-4dc4-a576-c79e8dd67ba3"
+      + external_network_id     = "xxxxxxxx-a82c-4dc4-a576-xxxxxxxx"
       + id                      = (known after apply)
       + name                    = "myRouter"
       + region                  = "GRA7"
@@ -669,7 +709,457 @@ terraform apply -var-file=variables.tfvars
 <details><summary> 📍 Click to see console output</summary>
 
 ```log
+$ terraform apply -var-file=variables.tfvars 
+module.network.data.openstack_networking_network_v2.ext_net: Reading...
+module.network.data.openstack_networking_network_v2.ext_net: Read complete after 2s [id=xxxxxxxx-a82c-4dc4-a576-xxxxxxxx]
 
+Terraform used the selected providers to generate the following execution plan. Resource actions are
+indicated with the following symbols:
+  + create
+ <= read (data resources)
+
+Terraform will perform the following actions:
+
+  # local_file.ansible_config will be created
+  + resource "local_file" "ansible_config" {
+      + content              = (known after apply)
+      + directory_permission = "0777"
+      + file_permission      = "0644"
+      + filename             = "./apps/hosts"
+      + id                   = (known after apply)
+    }
+
+  # null_resource.ansible_exec will be created
+  + resource "null_resource" "ansible_exec" {
+      + id       = (known after apply)
+      + triggers = {
+          + "always_run" = (known after apply)
+        }
+    }
+
+  # module.db_engine.data.openstack_networking_network_v2.my_private_network will be read during apply
+  # (depends on a resource or a module with changes pending)
+ <= data "openstack_networking_network_v2" "my_private_network" {
+      + admin_state_up          = (known after apply)
+      + all_tags                = (known after apply)
+      + availability_zone_hints = (known after apply)
+      + dns_domain              = (known after apply)
+      + id                      = (known after apply)
+      + name                    = "myNetwork"
+      + region                  = "GRA7"
+      + shared                  = (known after apply)
+      + subnets                 = (known after apply)
+    }
+
+  # module.db_engine.data.openstack_networking_subnet_v2.my_subnet will be read during apply
+  # (depends on a resource or a module with changes pending)
+ <= data "openstack_networking_subnet_v2" "my_subnet" {
+      + all_tags          = (known after apply)
+      + allocation_pools  = (known after apply)
+      + cidr              = (known after apply)
+      + description       = (known after apply)
+      + dns_nameservers   = (known after apply)
+      + enable_dhcp       = (known after apply)
+      + gateway_ip        = (known after apply)
+      + host_routes       = (known after apply)
+      + id                = (known after apply)
+      + ip_version        = (known after apply)
+      + ipv6_address_mode = (known after apply)
+      + ipv6_ra_mode      = (known after apply)
+      + name              = "mySubnet"
+      + network_id        = (known after apply)
+      + region            = "GRA7"
+      + service_types     = (known after apply)
+      + subnet_id         = (known after apply)
+      + subnetpool_id     = (known after apply)
+      + tenant_id         = (known after apply)
+    }
+
+  # module.db_engine.ovh_cloud_project_database.mongodb will be created
+  + resource "ovh_cloud_project_database" "mongodb" {
+      + backup_time      = (known after apply)
+      + created_at       = (known after apply)
+      + description      = "myMongoDb"
+      + disk_size        = (known after apply)
+      + disk_type        = (known after apply)
+      + endpoints        = (known after apply)
+      + engine           = "mongodb"
+      + flavor           = "db1-7"
+      + id               = (known after apply)
+      + maintenance_time = (known after apply)
+      + network_type     = (known after apply)
+      + plan             = "business"
+      + service_name     = "xxxxxxxx1da24017a6a6f6b6ef1cf53a"
+      + status           = (known after apply)
+      + version          = "6.0"
+
+      + nodes {
+          + network_id = (known after apply)
+          + region     = "GRA"
+          + subnet_id  = (known after apply)
+        }
+      + nodes {
+          + network_id = (known after apply)
+          + region     = "GRA"
+          + subnet_id  = (known after apply)
+        }
+      + nodes {
+          + network_id = (known after apply)
+          + region     = "GRA"
+          + subnet_id  = (known after apply)
+        }
+    }
+
+  # module.db_engine.ovh_cloud_project_database_ip_restriction.iprestriction["192.168.12.0/24"] will be created
+  + resource "ovh_cloud_project_database_ip_restriction" "iprestriction" {
+      + cluster_id   = (known after apply)
+      + engine       = "mongodb"
+      + id           = (known after apply)
+      + ip           = "192.168.12.0/24"
+      + service_name = "xxxxxxxx1da24017a6a6f6b6ef1cf53a"
+      + status       = (known after apply)
+    }
+
+  # module.db_engine.ovh_cloud_project_database_mongodb_user.mongouser will be created
+  + resource "ovh_cloud_project_database_mongodb_user" "mongouser" {
+      + cluster_id     = (known after apply)
+      + created_at     = (known after apply)
+      + id             = (known after apply)
+      + name           = "myuser@admin"
+      + password       = (sensitive value)
+      + password_reset = "changeMeToResetPassword"
+      + roles          = [
+          + "readWriteAnyDatabase",
+        ]
+      + service_name   = "xxxxxxxx1da24017a6a6f6b6ef1cf53a"
+      + status         = (known after apply)
+    }
+
+  # module.floatip.openstack_compute_floatingip_associate_v2.floatip_association will be created
+  + resource "openstack_compute_floatingip_associate_v2" "floatip_association" {
+      + floating_ip = (known after apply)
+      + id          = (known after apply)
+      + instance_id = (known after apply)
+      + region      = "GRA7"
+    }
+
+  # module.floatip.openstack_networking_floatingip_v2.floatip will be created
+  + resource "openstack_networking_floatingip_v2" "floatip" {
+      + address    = (known after apply)
+      + all_tags   = (known after apply)
+      + dns_domain = (known after apply)
+      + dns_name   = (known after apply)
+      + fixed_ip   = (known after apply)
+      + id         = (known after apply)
+      + pool       = "Ext-Net"
+      + port_id    = (known after apply)
+      + region     = "GRA7"
+      + subnet_id  = (known after apply)
+      + tenant_id  = (known after apply)
+    }
+
+  # module.instance.openstack_compute_instance_v2.simple_instance will be created
+  + resource "openstack_compute_instance_v2" "simple_instance" {
+      + access_ip_v4        = (known after apply)
+      + access_ip_v6        = (known after apply)
+      + all_metadata        = (known after apply)
+      + all_tags            = (known after apply)
+      + availability_zone   = (known after apply)
+      + created             = (known after apply)
+      + flavor_id           = (known after apply)
+      + flavor_name         = "b2-7"
+      + force_delete        = false
+      + id                  = (known after apply)
+      + image_id            = (known after apply)
+      + image_name          = "Ubuntu 20.04"
+      + key_pair            = "myMainKeypair"
+      + name                = "myserver"
+      + power_state         = "active"
+      + region              = "GRA7"
+      + security_groups     = [
+          + "default",
+        ]
+      + stop_before_destroy = false
+      + updated             = (known after apply)
+
+      + network {
+          + access_network = false
+          + fixed_ip_v4    = (known after apply)
+          + fixed_ip_v6    = (known after apply)
+          + floating_ip    = (known after apply)
+          + mac            = (known after apply)
+          + name           = "myNetwork"
+          + port           = (known after apply)
+          + uuid           = (known after apply)
+        }
+    }
+
+  # module.keypair.local_file.ssh_private_key will be created
+  + resource "local_file" "ssh_private_key" {
+      + content              = (known after apply)
+      + directory_permission = "0777"
+      + file_permission      = "0600"
+      + filename             = "./myMainKeypair_rsa"
+      + id                   = (known after apply)
+    }
+
+  # module.keypair.local_file.ssh_public_key will be created
+  + resource "local_file" "ssh_public_key" {
+      + content              = (known after apply)
+      + directory_permission = "0777"
+      + file_permission      = "0600"
+      + filename             = "./myMainKeypair_rsa.pub"
+      + id                   = (known after apply)
+    }
+
+  # module.keypair.openstack_compute_keypair_v2.main_keypair will be created
+  + resource "openstack_compute_keypair_v2" "main_keypair" {
+      + fingerprint = (known after apply)
+      + id          = (known after apply)
+      + name        = "myMainKeypair"
+      + private_key = (known after apply)
+      + public_key  = (known after apply)
+      + region      = "GRA7"
+      + user_id     = (known after apply)
+    }
+
+  # module.network.openstack_networking_network_v2.my_private_network will be created
+  + resource "openstack_networking_network_v2" "my_private_network" {
+      + admin_state_up          = true
+      + all_tags                = (known after apply)
+      + availability_zone_hints = (known after apply)
+      + dns_domain              = (known after apply)
+      + external                = (known after apply)
+      + id                      = (known after apply)
+      + mtu                     = (known after apply)
+      + name                    = "myNetwork"
+      + port_security_enabled   = (known after apply)
+      + qos_policy_id           = (known after apply)
+      + region                  = "GRA7"
+      + shared                  = (known after apply)
+      + tenant_id               = (known after apply)
+      + transparent_vlan        = (known after apply)
+    }
+
+  # module.network.openstack_networking_router_interface_v2.my_router_interface will be created
+  + resource "openstack_networking_router_interface_v2" "my_router_interface" {
+      + id        = (known after apply)
+      + port_id   = (known after apply)
+      + region    = "GRA7"
+      + router_id = (known after apply)
+      + subnet_id = (known after apply)
+    }
+
+  # module.network.openstack_networking_router_v2.my_router will be created
+  + resource "openstack_networking_router_v2" "my_router" {
+      + admin_state_up          = true
+      + all_tags                = (known after apply)
+      + availability_zone_hints = (known after apply)
+      + distributed             = (known after apply)
+      + enable_snat             = (known after apply)
+      + external_gateway        = (known after apply)
+      + external_network_id     = "xxxxxxxx-a82c-4dc4-a576-xxxxxxxx"
+      + id                      = (known after apply)
+      + name                    = "myRouter"
+      + region                  = "GRA7"
+      + tenant_id               = (known after apply)
+
+      + external_fixed_ip {
+          + ip_address = (known after apply)
+          + subnet_id  = (known after apply)
+        }
+    }
+
+  # module.network.openstack_networking_subnet_v2.my_subnet will be created
+  + resource "openstack_networking_subnet_v2" "my_subnet" {
+      + all_tags          = (known after apply)
+      + cidr              = "192.168.12.0/24"
+      + dns_nameservers   = [
+          + "1.1.1.1",
+          + "1.0.0.1",
+        ]
+      + enable_dhcp       = true
+      + gateway_ip        = (known after apply)
+      + id                = (known after apply)
+      + ip_version        = 4
+      + ipv6_address_mode = (known after apply)
+      + ipv6_ra_mode      = (known after apply)
+      + name              = "mySubnet"
+      + network_id        = (known after apply)
+      + no_gateway        = false
+      + region            = "GRA7"
+      + service_types     = (known after apply)
+      + tenant_id         = (known after apply)
+
+      + allocation_pool {
+          + end   = "192.168.12.254"
+          + start = "192.168.12.100"
+        }
+
+      + allocation_pools {
+          + end   = (known after apply)
+          + start = (known after apply)
+        }
+    }
+
+Plan: 15 to add, 0 to change, 0 to destroy.
+
+Changes to Outputs:
+  + instance_floating_ip      = (known after apply)
+  + mongodb_connection_string = (known after apply)
+  + mongodb_user_password     = (sensitive value)
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+module.keypair.openstack_compute_keypair_v2.main_keypair: Creating...
+module.network.openstack_networking_network_v2.my_private_network: Creating...
+module.network.openstack_networking_router_v2.my_router: Creating...
+module.keypair.openstack_compute_keypair_v2.main_keypair: Creation complete after 2s [id=myMainKeypair]
+module.keypair.local_file.ssh_private_key: Creating...
+module.keypair.local_file.ssh_public_key: Creating...
+module.keypair.local_file.ssh_public_key: Creation complete after 0s [id=xxxxxxxx3ad39eacd6391cb30227c868xxxxxxxx]
+module.keypair.local_file.ssh_private_key: Creation complete after 0s [id=xxxxxxxx6d1ce482da9aaa1c1e99b3f2xxxxxxxx]
+module.network.openstack_networking_network_v2.my_private_network: Creation complete after 7s [id=xxxxxxxx-2c6f-4309-987b-xxxxxxxx]
+module.network.openstack_networking_subnet_v2.my_subnet: Creating...
+module.network.openstack_networking_router_v2.my_router: Still creating... [10s elapsed]
+module.network.openstack_networking_subnet_v2.my_subnet: Creation complete after 6s [id=xxxxxxxx-f191-4b8d-aa63-xxxxxxxx]
+module.network.openstack_networking_router_v2.my_router: Still creating... [20s elapsed]
+module.network.openstack_networking_router_v2.my_router: Creation complete after 21s [id=xxxxxxxx-8e30-4f39-8be9-xxxxxxxx]
+module.network.openstack_networking_router_interface_v2.my_router_interface: Creating...
+module.network.openstack_networking_router_interface_v2.my_router_interface: Still creating... [10s elapsed]
+module.network.openstack_networking_router_interface_v2.my_router_interface: Creation complete after 10s [id=xxxxxxxx-9aa5-41d7-8f1c-xxxxxxxx]
+module.db_engine.data.openstack_networking_network_v2.my_private_network: Reading...
+module.db_engine.data.openstack_networking_subnet_v2.my_subnet: Reading...
+module.instance.openstack_compute_instance_v2.simple_instance: Creating...
+module.db_engine.data.openstack_networking_subnet_v2.my_subnet: Read complete after 0s [id=xxxxxxxx-f191-4b8d-aa63-xxxxxxxx]
+module.db_engine.data.openstack_networking_network_v2.my_private_network: Read complete after 1s [id=xxxxxxxx-2c6f-4309-987b-xxxxxxxx]
+module.db_engine.ovh_cloud_project_database.mongodb: Creating...
+module.instance.openstack_compute_instance_v2.simple_instance: Still creating... [10s elapsed]
+module.db_engine.ovh_cloud_project_database.mongodb: Still creating... [10s elapsed]
+module.instance.openstack_compute_instance_v2.simple_instance: Still creating... [20s elapsed]
+module.db_engine.ovh_cloud_project_database.mongodb: Still creating... [20s elapsed]
+module.instance.openstack_compute_instance_v2.simple_instance: Still creating... [30s elapsed]
+module.db_engine.ovh_cloud_project_database.mongodb: Still creating... [30s elapsed]
+module.instance.openstack_compute_instance_v2.simple_instance: Still creating... [40s elapsed]
+module.db_engine.ovh_cloud_project_database.mongodb: Still creating... [40s elapsed]
+module.instance.openstack_compute_instance_v2.simple_instance: Still creating... [50s elapsed]
+module.db_engine.ovh_cloud_project_database.mongodb: Still creating... [50s elapsed]
+module.instance.openstack_compute_instance_v2.simple_instance: Creation complete after 57s [id=xxxxxxxx-0127-4c05-b28c-xxxxxxxx]
+module.floatip.openstack_networking_floatingip_v2.floatip: Creating...
+module.db_engine.ovh_cloud_project_database.mongodb: Still creating... [1m0s elapsed]
+module.floatip.openstack_networking_floatingip_v2.floatip: Still creating... [10s elapsed]
+module.floatip.openstack_networking_floatingip_v2.floatip: Creation complete after 11s [id=xxxxxxxx-cbbc-4ce3-b00b-xxxxxxxx]
+module.floatip.openstack_compute_floatingip_associate_v2.floatip_association: Creating...
+local_file.ansible_config: Creating...
+local_file.ansible_config: Creation complete after 0s [id=xxxxxxxxa1e66a2e56705050fb968b01xxxxxxxx]
+null_resource.ansible_exec: Creating...
+null_resource.ansible_exec: Provisioning with 'local-exec'...
+null_resource.ansible_exec (local-exec): Executing: ["/bin/sh" "-c" "ansible-playbook -i apps/hosts apps/apps.yml"]
+
+null_resource.ansible_exec (local-exec): PLAY [Running pre-requisites] **************************************************
+
+null_resource.ansible_exec (local-exec): TASK [ansible.builtin.wait_for_connection] *************************************
+module.db_engine.ovh_cloud_project_database.mongodb: Still creating... [1m10s elapsed]
+module.floatip.openstack_compute_floatingip_associate_v2.floatip_association: Creation complete after 5s [id=51.xx.xx.xx/xxxxxxxx-0127-4c05-b28c-xxxxxxxx/]
+null_resource.ansible_exec: Still creating... [10s elapsed]
+null_resource.ansible_exec (local-exec): ok: [51.xx.xx.xx]
+
+null_resource.ansible_exec (local-exec): PLAY [Install Apps] ************************************************************
+
+null_resource.ansible_exec (local-exec): TASK [Gathering Facts] *********************************************************
+null_resource.ansible_exec (local-exec): ok: [51.xx.xx.xx]
+
+null_resource.ansible_exec (local-exec): TASK [mongoshell : Install mongodb-mongosh] ************************************
+module.db_engine.ovh_cloud_project_database.mongodb: Still creating... [1m20s elapsed]
+null_resource.ansible_exec: Still creating... [20s elapsed]
+null_resource.ansible_exec (local-exec): changed: [51.xx.xx.xx]
+
+null_resource.ansible_exec (local-exec): PLAY RECAP *********************************************************************
+null_resource.ansible_exec (local-exec): 51.xx.xx.xx              : ok=3    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+null_resource.ansible_exec: Creation complete after 21s [id=2926510180486612555]
+module.db_engine.ovh_cloud_project_database.mongodb: Still creating... [1m30s elapsed]
+module.db_engine.ovh_cloud_project_database.mongodb: Still creating... [1m40s elapsed]
+module.db_engine.ovh_cloud_project_database.mongodb: Still creating... [1m50s elapsed]
+module.db_engine.ovh_cloud_project_database.mongodb: Still creating... [2m0s elapsed]
+module.db_engine.ovh_cloud_project_database.mongodb: Still creating... [2m10s elapsed]
+module.db_engine.ovh_cloud_project_database.mongodb: Still creating... [2m20s elapsed]
+module.db_engine.ovh_cloud_project_database.mongodb: Still creating... [2m30s elapsed]
+module.db_engine.ovh_cloud_project_database.mongodb: Still creating... [2m40s elapsed]
+module.db_engine.ovh_cloud_project_database.mongodb: Still creating... [2m50s elapsed]
+module.db_engine.ovh_cloud_project_database.mongodb: Still creating... [3m0s elapsed]
+module.db_engine.ovh_cloud_project_database.mongodb: Still creating... [3m10s elapsed]
+module.db_engine.ovh_cloud_project_database.mongodb: Still creating... [3m20s elapsed]
+module.db_engine.ovh_cloud_project_database.mongodb: Still creating... [3m30s elapsed]
+module.db_engine.ovh_cloud_project_database.mongodb: Still creating... [3m40s elapsed]
+module.db_engine.ovh_cloud_project_database.mongodb: Still creating... [3m50s elapsed]
+module.db_engine.ovh_cloud_project_database.mongodb: Still creating... [4m0s elapsed]
+module.db_engine.ovh_cloud_project_database.mongodb: Still creating... [4m10s elapsed]
+module.db_engine.ovh_cloud_project_database.mongodb: Still creating... [4m20s elapsed]
+module.db_engine.ovh_cloud_project_database.mongodb: Still creating... [4m30s elapsed]
+module.db_engine.ovh_cloud_project_database.mongodb: Still creating... [4m40s elapsed]
+module.db_engine.ovh_cloud_project_database.mongodb: Still creating... [4m50s elapsed]
+module.db_engine.ovh_cloud_project_database.mongodb: Still creating... [5m0s elapsed]
+module.db_engine.ovh_cloud_project_database.mongodb: Still creating... [5m10s elapsed]
+module.db_engine.ovh_cloud_project_database.mongodb: Still creating... [5m20s elapsed]
+module.db_engine.ovh_cloud_project_database.mongodb: Still creating... [5m30s elapsed]
+module.db_engine.ovh_cloud_project_database.mongodb: Still creating... [5m40s elapsed]
+module.db_engine.ovh_cloud_project_database.mongodb: Still creating... [5m50s elapsed]
+module.db_engine.ovh_cloud_project_database.mongodb: Still creating... [6m0s elapsed]
+module.db_engine.ovh_cloud_project_database.mongodb: Still creating... [6m10s elapsed]
+module.db_engine.ovh_cloud_project_database.mongodb: Still creating... [6m20s elapsed]
+module.db_engine.ovh_cloud_project_database.mongodb: Still creating... [6m30s elapsed]
+module.db_engine.ovh_cloud_project_database.mongodb: Still creating... [6m40s elapsed]
+module.db_engine.ovh_cloud_project_database.mongodb: Still creating... [6m50s elapsed]
+module.db_engine.ovh_cloud_project_database.mongodb: Still creating... [7m0s elapsed]
+module.db_engine.ovh_cloud_project_database.mongodb: Still creating... [7m10s elapsed]
+module.db_engine.ovh_cloud_project_database.mongodb: Still creating... [7m20s elapsed]
+module.db_engine.ovh_cloud_project_database.mongodb: Still creating... [7m30s elapsed]
+module.db_engine.ovh_cloud_project_database.mongodb: Still creating... [7m40s elapsed]
+module.db_engine.ovh_cloud_project_database.mongodb: Still creating... [7m50s elapsed]
+module.db_engine.ovh_cloud_project_database.mongodb: Still creating... [8m0s elapsed]
+module.db_engine.ovh_cloud_project_database.mongodb: Still creating... [8m10s elapsed]
+module.db_engine.ovh_cloud_project_database.mongodb: Still creating... [8m20s elapsed]
+module.db_engine.ovh_cloud_project_database.mongodb: Still creating... [8m30s elapsed]
+module.db_engine.ovh_cloud_project_database.mongodb: Still creating... [8m40s elapsed]
+module.db_engine.ovh_cloud_project_database.mongodb: Still creating... [8m50s elapsed]
+module.db_engine.ovh_cloud_project_database.mongodb: Still creating... [9m0s elapsed]
+module.db_engine.ovh_cloud_project_database.mongodb: Still creating... [9m10s elapsed]
+module.db_engine.ovh_cloud_project_database.mongodb: Still creating... [9m20s elapsed]
+module.db_engine.ovh_cloud_project_database.mongodb: Still creating... [9m30s elapsed]
+module.db_engine.ovh_cloud_project_database.mongodb: Still creating... [9m40s elapsed]
+module.db_engine.ovh_cloud_project_database.mongodb: Still creating... [9m50s elapsed]
+module.db_engine.ovh_cloud_project_database.mongodb: Still creating... [10m0s elapsed]
+module.db_engine.ovh_cloud_project_database.mongodb: Still creating... [10m10s elapsed]
+module.db_engine.ovh_cloud_project_database.mongodb: Still creating... [10m20s elapsed]
+module.db_engine.ovh_cloud_project_database.mongodb: Still creating... [10m30s elapsed]
+module.db_engine.ovh_cloud_project_database.mongodb: Still creating... [10m40s elapsed]
+module.db_engine.ovh_cloud_project_database.mongodb: Still creating... [10m50s elapsed]
+module.db_engine.ovh_cloud_project_database.mongodb: Still creating... [11m0s elapsed]
+module.db_engine.ovh_cloud_project_database.mongodb: Still creating... [11m10s elapsed]
+module.db_engine.ovh_cloud_project_database.mongodb: Creation complete after 11m17s [id=xxxxxxxx-f86a-43d5-a495-xxxxxxxx]
+module.db_engine.ovh_cloud_project_database_ip_restriction.iprestriction["192.168.12.0/24"]: Creating...
+module.db_engine.ovh_cloud_project_database_mongodb_user.mongouser: Creating...
+module.db_engine.ovh_cloud_project_database_mongodb_user.mongouser: Still creating... [10s elapsed]
+module.db_engine.ovh_cloud_project_database_ip_restriction.iprestriction["192.168.12.0/24"]: Still creating... [10s elapsed]
+module.db_engine.ovh_cloud_project_database_ip_restriction.iprestriction["192.168.12.0/24"]: Still creating... [20s elapsed]
+module.db_engine.ovh_cloud_project_database_mongodb_user.mongouser: Still creating... [20s elapsed]
+module.db_engine.ovh_cloud_project_database_mongodb_user.mongouser: Creation complete after 30s [id=xxxxxxxx-f324-4694-9a18-xxxxxxxx]
+module.db_engine.ovh_cloud_project_database_ip_restriction.iprestriction["192.168.12.0/24"]: Still creating... [30s elapsed]
+module.db_engine.ovh_cloud_project_database_ip_restriction.iprestriction["192.168.12.0/24"]: Still creating... [40s elapsed]
+module.db_engine.ovh_cloud_project_database_ip_restriction.iprestriction["192.168.12.0/24"]: Creation complete after 50s [id=xxxxxxxxxx]
+
+Apply complete! Resources: 15 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+instance_floating_ip = "51.xx.xx.xx"
+mongodb_connection_string = "mongodb+srv://<username>:<password>@mongodb-xxxxxxxx-xxxxxxxxx.database.cloud.ovh.net/admin?replicaSet=replicaset&tls=true"
+mongodb_user_password = <sensitive>
 ```
 
 </details>
@@ -708,7 +1198,7 @@ When asked for continuing, answer yes:
 Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
 ```
 
-You should have the bastion prompt:
+You should have the server prompt:
 
 ```bash
 ubuntu@myserver:~$
