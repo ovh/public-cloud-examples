@@ -1,8 +1,8 @@
-# Hello world for Mysql with terraform
+# Hello world for Wordpress and Mysql with terraform
 
-The purpose of this tutorial is to create a mysql database and a wordpress website and link them together.
+The purpose of this tutorial is to create a mysql database and a wordpress website and link them together in a Kubernetes cluster.
 
-We will divide the project into two layers. The first layer is used to deploy the cluster and fetch the nodes. The second layer is used to deploy the services.
+We will divide the project into two layers. The first layer is used to deploy the cluster and fetch the nodes. The second layer is used to deploy the services. Each layer is executed one by one.
 
 ![Infrastructure diagram](./img/diagram.png)
 
@@ -17,13 +17,11 @@ You need the following:
 
 ## Operation
 
-### Steps
-
-#### Layer 1
+### Layer 1
 * Deployment of a managed kubernetes cluster with its node-pool
 
-#### Layer 2
-* Deployment of a managed MySQL DB with its OVH user with OVHcloud provider resources
+### Layer 2
+* Deployment of a managed MySQL DB with its OVHcloud user
 * IP restriction on DBs
 * Deployment of a wordpress website with Helm
 * Interconnection of the DB and the website
@@ -35,6 +33,27 @@ You need the following:
 * secrets.tfvars : Contains the value of the variables
 * output.tf      : Contains the output we want
 * backend.tf     : Create the backend for the layering
+
+### Variables
+
+|Variable name        |Variable parameter   |Parameter description|
+|---------------------|---------------------|---------------------|
+|ovh|endpoint|API endpoint to use|
+|ovh|application_key|API Application Key|
+|ovh|application_secret|API application secret|
+|ovh|consumer_key|API consumer key|
+|kubernetes|project_id|Public cloud project service name|
+|kubernetes|region|Region of the Kubernetes cluster|
+|database|project_id|Public cloud project service name|
+|database|region|Region of the database|
+|database|plan|Plan of the cluster|
+|database|flavor|A valid OVHcloud public cloud database flavor name|
+|database|version|The version of the engine in which the service should be deployed|
+|openstack|user_name|The Username to login with|
+|openstack|tenant_name|The Name of the Tenant to login with|
+|openstack|password|The Password to login with|
+|openstack|auth_url|The Identity authentication URL|
+|openstack|region|The region of the OpenStack cloud to use|
 
 ## Build and run
 
@@ -67,14 +86,27 @@ access = {
 EOF
 ```
 
-### Validate the configuration
+### Validate the configuration - Layer 1
 
 ```console
 terraform init
 terraform plan -var-file=secrets.tfvars
 ```
 
-### Create the cluster 
+### Create the cluster and the nodes-pool - Layer 1
+
+```console
+terraform apply -var-file=secrets.tfvars -auto-approve
+```
+
+### Validate the configuration - Layer 2
+
+```console
+terraform init
+terraform plan -var-file=secrets.tfvars
+```
+
+### Create the DB, website and the monitoring services - Layer 2
 
 ```console
 terraform apply -var-file=secrets.tfvars -auto-approve

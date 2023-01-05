@@ -41,9 +41,8 @@ resource "ovh_cloud_project_database_user" "wordpress_db_user" {
 # Fetch the openstack instances to get their id
 data "openstack_compute_instance_v2" "instances" {
   for_each = { 
-    #for vm in data.ovh_cloud_project_kube_nodepool_nodes.nodes.nodes : vm.instance_id => vm
     for vm in data.terraform_remote_state.layer1.outputs.nodepool_nodes.nodes : vm.instance_id => vm 
-    }
+  }
   id = each.value.instance_id
 }
 

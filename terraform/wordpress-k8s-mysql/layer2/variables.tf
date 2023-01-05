@@ -1,9 +1,11 @@
 variable service_name {
+  description = "Public cloud project service name"
   type        = string
   default     = ""
 }
 
 variable ovh {
+  description = "OVHcloud provider parameters"
   type    = map
   default = {
     endpoint           = ""
@@ -14,6 +16,7 @@ variable ovh {
 }
 
 variable database { 
+  description = "Wordpress website database parameters"
   type     = map
   default = {
     project_id = ""
@@ -25,6 +28,7 @@ variable database {
 }
 
 variable kubernetes {
+  description = "Kubernetes cluster definition"
   type    = map
   default ={
     project_id = ""
@@ -32,14 +36,8 @@ variable kubernetes {
   }
 }
 
-variable access {
-  type    = map
-  default = {
-    ip = ""
-  } 
-}
-
 variable openstack {
+  description = "Personnal Openstack connection informations"
   type   = map
   default = {
     user_name   = ""

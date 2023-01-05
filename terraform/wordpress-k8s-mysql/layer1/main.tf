@@ -17,6 +17,7 @@ resource "ovh_cloud_project_kube_nodepool" "wordpress_node_pool" {
    min_nodes     = 3
 }
 
+# Create a local file for the kubeconfig file
 resource "local_file" "kubeconfig_file" {
   depends_on = [
     ovh_cloud_project_kube.wordpress_kube_cluster
