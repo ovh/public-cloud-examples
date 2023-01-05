@@ -162,8 +162,7 @@ $ openstack --os-region-name=GRA7 flavor list
 | 23ac7b50-fe38-463c-a30f-89ebb20f9683 | win-b2-60       |  60000 |  400 |         0 |    16 | True      |
 | 257eb411-5cb8-4f7c-96b8-8d73837296ea | win-c2-15-flex  |  15000 |   50 |         0 |     4 | True      |
 | 25e279cb-a9ee-4b21-bc13-65fb0a5e853f | c2-120-flex     | 120000 |   50 |         0 |    32 | True      |
-| 2771688c-ee37-418d-8ff1-79825d390743 | win-t1-180      | 180000 |   50 |         0 |    36 | True    
-  |
+| 2771688c-ee37-418d-8ff1-79825d390743 | win-t1-180      | 180000 |   50 |         0 |    36 | True      |
 | 287e6c47-9482-4799-a70c-0b3f042dd10d | win-b2-120-flex | 120000 |   50 |         0 |    32 | True      |
 | 29bfbf68-9249-485e-a407-7936de0125bc | win-c2-60       |  60000 |  400 |         0 |    16 | True      |
 | 2f77f829-cb5e-4548-bac8-8cc4c6c737c6 | win-b2-15       |  15000 |  100 |         0 |     4 | True      |
@@ -190,8 +189,7 @@ $ openstack --os-region-name=GRA7 flavor list
 | 8ab060cc-e259-454b-a4e0-1b81d6f8563e | t1-180          | 180000 |   50 |         0 |    36 | True      |
 | 8ce73a56-29dd-46da-b7c5-63aa976bb80d | d2-8            |   8000 |   50 |         0 |     4 | True      |
 | 8fbec0a1-03cf-47ec-9c59-0dbaa7d40a99 | c2-120          | 120000 |  400 |         0 |    32 | True      |
-| 939c7293-5696-491c-b5b8-eb36ac95582a | r2-15           |  15000 |   50 |         0 |     2 | True    
-  |
+| 939c7293-5696-491c-b5b8-eb36ac95582a | r2-15           |  15000 |   50 |         0 |     2 | True      |
 | 97d824f9-d8a4-42c4-85b1-275bdd86eafc | r2-60           |  60000 |  100 |         0 |     4 | True      |
 | 9aaed1aa-8601-4783-a966-0469bf7f5781 | r2-120-flex     | 120000 |   50 |         0 |     8 | True      |
 | 9c58101b-62a4-4205-93d2-f7cddba586d3 | c2-7            |   7000 |   50 |         0 |     2 | True      |
@@ -218,8 +216,7 @@ $ openstack --os-region-name=GRA7 flavor list
 | dc9d4cdd-bac1-4fbb-9615-5834956ee4e9 | c2-15           |  15000 |  100 |         0 |     4 | True      |
 | dcde8fb2-9fcc-4da5-bbb3-5c181e68dfe7 | win-b2-30-flex  |  30000 |   50 |         0 |     8 | True      |
 | df39c77e-6503-41da-8781-dc79edcd0138 | win-r2-120-flex | 120000 |   50 |         0 |     8 | True      |
-| df647799-904e-4d8e-8575-7d26f13e1af4 | win-b2-120      | 120000 |  400 |         0 |    32 | True    
-  |
+| df647799-904e-4d8e-8575-7d26f13e1af4 | win-b2-120      | 120000 |  400 |         0 |    32 | True      |
 | e19ede71-744e-482a-a635-12732c39cab2 | d2-2            |   2000 |   25 |         0 |     1 | True      |
 | e5235900-ed7d-4487-a910-21c8b95cad52 | win-c2-15       |  15000 |  100 |         0 |     4 | True      |
 | e96620a0-1d3a-48d3-b27d-fa8829560b30 | r2-15-flex      |  15000 |   50 |         0 |     2 | True      |
