@@ -332,6 +332,40 @@ db_engine = {
 
 - `allowed_ip`: The list of IP ranges (CIDR format).
 
+## Ansible Inventory File Creation Part
+
+This resource is creating the Ansible inventory file `apps/hosts` from the template file `templates/hosts.tftpl`.
+
+```terraform
+resource "local_file" "ansible_config" {
+  content = templatefile("./templates/hosts.tftpl", {
+    instance_public_ip = module.floatip.floating_ip
+    instance_user_name = var.instance.user
+    ssh_private_key_name = var.keypair.name
+  })
+  filename        = "${path.module}/apps/hosts"
+  file_permission = "0644"
+}
+```
+
+- `instance_public_ip`: The instance IP address, from the floating IP address value.
+
+- `instance_user_name`: The main user on the instance, that have sudoers rights.
+
+- `ssh_private_key_name`: The SSH keypair name, that is deployed into the user SSH environment.
+
+## Ansible Playbook Execution Part
+
+```terraform
+resource "null_resource" "ansible_exec" {
+  depends_on = [local_file.ansible_config]
+  triggers   = { always_run = "${timestamp()}" }
+  provisioner "local-exec" {
+    command = "ansible-playbook -i apps/hosts apps/apps.yml"
+  }
+}
+```
+
 ## Deploy
 
 ```bash
