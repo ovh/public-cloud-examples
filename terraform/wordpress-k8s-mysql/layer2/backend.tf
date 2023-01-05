@@ -2,6 +2,6 @@
 data "terraform_remote_state" "layer1" {
     backend = "local"
     config = {
-        path = "/path_to_layer1/terraform.tfstate"
+        path = "${path.cwd}/../layer1/terraform.tfstate"
     } 
 }
