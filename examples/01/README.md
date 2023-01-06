@@ -1,4 +1,4 @@
-# Example 01
+# How to create and access to a virtual machine that is connected to a private network
 
 ![Example 01 schema](./img/01.png)
 
