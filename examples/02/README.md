@@ -1,24 +1,28 @@
-# Example 02
-  
-![Example 02 schema](./img/02.png)
-
-Private network with :
-
-> - Subnet with a defined DHCP range
->
-> - Virtual router as gateway
-
-SSH keypair
-
-Virtual Machine Instance with pre-installed [mongosh]()
-
-Floating IP
-
-[Managed MongoDB Database]()
+# A virtual machine and a managed MongoDB database connected to a private network and the `mongosh` to access the database
 
 ## Description
 
-This example shows you how to create and access to a virtual machine and a managed MongoDB datbase that are connected to a private network, with [Terraform](https://www.terraform.io), and how to install and use the `mongosh` to access the database from the instance.
+This example shows you how to create and access to a virtual machine and a managed MongoDB datbase that are connected to a private network, with [Terraform](https://www.terraform.io)
+
+Once the infrastucture deployed, we are using [Ansible](https://www.ansible.com) to install the [mongosh](https://www.mongodb.com/docs/mongodb-shell) CLI, a tool used to access the database from the instance.
+
+This example handle following resources:
+
+- Private Network
+
+- Subnet with DHCP range
+
+- Virtual Router
+
+- Floating IP
+
+- SSH keypair
+
+- Virtual Machine Instance
+
+- [Managed MongoDB Database]()
+
+![Example 02 schema](./img/02.png)
 
 ## Pre-requisites
 
