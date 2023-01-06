@@ -1,22 +1,26 @@
-# How to create and access to a virtual machine that is connected to a private network
-
-![Example 01 schema](./img/01.png)
-
-Private network with :
-
-> - Subnet with a defined DHCP range
->
-> - Virtual router as gateway
-
-SSH keypair
-
-Virtual Machine Instance
-
-Floating IP
+# A virtual machine connected to a private network
 
 ## Description
 
 This example shows you how to create and access to a virtual machine that is connected to a private network, with [Terraform](https://www.terraform.io).
+
+This server, called `bastion`, will be accessed with SSH protocol, and served by an openstack floating IP.
+
+This example handle following resources: 
+
+- Private network
+
+- Subnet with DHCP range
+
+- Virtual Router
+
+- Floating IP
+
+- SSH Keypair
+
+- Vitual Machine (VM) Instance
+
+![Example 01 schema](./img/01.png)
 
 ## Pre-requisites
 
