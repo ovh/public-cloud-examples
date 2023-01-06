@@ -2,12 +2,9 @@
 
 ![Work in progess](./docs/assets/wip.jpg)
 
-Here you find a list of examples that use several OVHcloud [public cloud products](https://www.ovhcloud.com/fr/public-cloud/).
+Here is a list of examples which use multiple OVHcloud [Public Cloud products](https://www.ovhcloud.com/fr/public-cloud/).
 
-You've developed a new cool feature? Fixed an annoying bug? We'd be happy
-to hear from you!
-
-Have a look in [CONTRIBUTING.md](https://github.com/ovh/public-cloud-examples/blob/master/CONTRIBUTING.md)
+You've developed a new cool feature? Fixed an annoying bug? We'd be happy to hear from you!
 
 # 👀 Getting Started
 
@@ -34,6 +31,16 @@ That gives you the procedure to install and use many tools to manage the compone
 
  * Contribute: https://github.com/ovh/public-cloud-examples/blob/master/CONTRIBUTING.md
  * Report bugs: https://github.com/ovh/public-cloud-examples/issues
+
+# Contributing
+
+Please read the [contributing guide](https://github.com/ovh/public-cloud-examples/blob/master/CONTRIBUTING.md) to learn about how you can contribute to this repository ;-). There is no small contribution, don't hesitate!
+
+Our awesome contributors:
+
+<a href="https://github.com/ovh/public-cloud-examples/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=ovh/public-cloud-examples" />
+</a>
 
 # License
 
