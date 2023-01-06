@@ -19,12 +19,12 @@ That gives you the procedure to install and use many tools to manage the compone
 
 # ✍️  Examples
 
-|  | | Resources | App | Necessary tools
-|---|---|---|---|---
-| **01** - How to create and access to a virtual machine that is connected to a private network, with [Terraform](https://www.terraform.io). | [![Schema example 01](./img/01.png)](./examples/01) | Private network<br/>Instance<br/>SSH keypair | N/A | Terraform
-| **02** - How to create and access to a virtual machine and a managed MongoDB database that are connected to a private network, with [Terraform](https://www.terraform.io), and how to install and use the `mongosh` to access the database from the instance. | [![Schema example 02](./img/02.png)](./examples/02) | Private network<br/>Instance<br/>SSH keypair<br/>MongoDB | mongosh CLI| Terraform<br/>Ansible
-| **03** | [![Schema example 03](./img/00.png)](./examples/03) | Private network<br/>Kubernetes<br>MySQL | Wordpress | Terraform<br/>Ansible
-| **04** | [![Schema example 04](./img/00.png)](./examples/04) | Private network<br>Instance | Mastodon | Terraform<br/>Ansible
+|  | | | Resources | App | Necessary tools
+|---|---|---|---|---|---
+| [🔗](./examples/01) | **01** - How to create and access to a virtual machine that is connected to a private network, with [Terraform](https://www.terraform.io). | [![Schema example 01](./img/01.png)](./examples/01) | Private network<br/>Instance<br/>SSH keypair | N/A | Terraform
+| [🔗](./examples/02) | **02** - How to create and access to a virtual machine and a managed MongoDB database that are connected to a private network, with [Terraform](https://www.terraform.io), and how to install and use the `mongosh` to access the database from the instance. | [![Schema example 02](./img/02.png)](./examples/02) | Private network<br/>Instance<br/>SSH keypair<br/>MongoDB | mongosh CLI| Terraform<br/>Ansible
+| [🔗](./examples/03) | **03** | [![Schema example 03](./img/00.png)](./examples/03) | Private network<br/>Kubernetes<br>MySQL | Wordpress | Terraform<br/>Ansible
+| [🔗](./examples/04) | **04** | [![Schema example 04](./img/00.png)](./examples/04) | Private network<br>Instance | Mastodon | Terraform<br/>Ansible
 
 # 🔬 Tools for labs
 
