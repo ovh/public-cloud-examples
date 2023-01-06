@@ -13,10 +13,16 @@ Have a look in [CONTRIBUTING.md](https://github.com/ovh/public-cloud-examples/bl
 
  - [Starting Pack to manage your OVHcloud Services from shell](./basics/README.md)
 
-# Examples 
+Follow this tutorial to setup your Public Cloud environment. 
 
-| ![Schema example 01](./img/01.png) | [01](./examples/01/README.md) - Private network + Instance + SSH keypair (Terraform) |
-| ![Schema example 02](./img/02.png) | [02](./examples/02/README.md) - Private network + Instance + SSH keypair + MongoDB + mongosh (Terraform & Ansible) |
+That gives you the procedure to install and use many tools to manage the components described in examples, like Terraform, Ansible, Openstack CLI, OVHcloud API, and more.
+
+# ✍️  Examples
+
+|  | <p></p>
+|---|---
+| [![Schema example 01](./img/01.png)](./examples/01/README.md) | **01 - Private network + Instance + SSH keypair (Terraform)** 
+| [![Schema example 02](./img/02.png)](./examples/02/README.md) | **02 - Private network + Instance + SSH keypair + MongoDB + mongosh (Terraform & Ansible)**
 
 # 🔬 Tools for labs
 
