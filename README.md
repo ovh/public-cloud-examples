@@ -19,10 +19,10 @@ That gives you the procedure to install and use many tools to manage the compone
 
 # ✍️  Examples
 
-|  | | Resources | Necessary tools
-|---|---|---|---
-| **01** | [![Schema example 01](./img/01.png)](./examples/01/README.md) | Private network<br/>Instance<br/>SSH keypair | Terraform
-| **02** | [![Schema example 02](./img/02.png)](./examples/02/README.md) | Private network<br/>Instance<br/>SSH keypair<br/>MongoDB<br/>mongosh CLI| Terraform<br/>Ansible
+|  | | Resources | App | Necessary tools
+|---|---|---|---|---
+| **01** | [![Schema example 01](./img/01.png)](./examples/01/README.md) | Private network<br/>Instance<br/>SSH keypair | N/A | Terraform
+| **02** | [![Schema example 02](./img/02.png)](./examples/02/README.md) | Private network<br/>Instance<br/>SSH keypair<br/>MongoDB | mongosh CLI| Terraform<br/>Ansible
 
 # 🔬 Tools for labs
 
