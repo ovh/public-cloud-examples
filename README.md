@@ -13,25 +13,14 @@ Have a look in [CONTRIBUTING.md](https://github.com/ovh/public-cloud-examples/bl
 
  - [Starting Pack to manage your OVHcloud Services from shell](./basics/README.md)
 
-# 📡 Networking
+# Examples 
 
-- [Simple private network](./networking/private-network-mono-region/README.md)
-
-# ![Kubernetes logo](./docs/assets/kubernetes-32x32.png) Kubernetes
-
-- [Managed Kubernetes Cluster with private network](./kubernetes/k8s-private-network/README.md)
+| ![Schema example 01](./img/01.png) | [01](./examples/01/README.md) - Private network + Instance + SSH keypair (Terraform) |
+| ![Schema example 02](./img/02.png) | [02](./examples/02/README.md) - Private network + Instance + SSH keypair + MongoDB + mongosh (Terraform & Ansible) |
 
 # 🔬 Tools for labs
 
  - [Create instances with K3s installed on OVHcloud Public Cloud](./labs/labk3s/README.md)
-
-# ![iDatabase Icon](./docs/assets/database-32x32.png) Storage
-
-- [Managed MongoDb database with private network](./databases/mongodb/README.md)
-
-- [Managed PostgreSQL database with private network](./databases/pgsql/README.md)
-
-- [Simple Block Storage Volume](./storage/block-storage/README.md)
 
 # Related links
 
