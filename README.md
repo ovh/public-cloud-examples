@@ -23,6 +23,8 @@ That gives you the procedure to install and use many tools to manage the compone
 |---|---|---|---|---
 | **01** | [![Schema example 01](./img/01.png)](./examples/01/README.md) | Private network<br/>Instance<br/>SSH keypair | N/A | Terraform
 | **02** | [![Schema example 02](./img/02.png)](./examples/02/README.md) | Private network<br/>Instance<br/>SSH keypair<br/>MongoDB | mongosh CLI| Terraform<br/>Ansible
+| **03** | [![Schema example 03](./img/00.png)](./examples/03/README.md) | Private network<br/>Kubernetes<br>MySQL | Wordpress | Terraform<br/>Ansible
+| **04** | [![Schema example 04](./img/00.png)](./examples/04/README.md) | Private network<br>Instance | Mastodon | Terraform<br/>Ansible
 
 # 🔬 Tools for labs
 
