@@ -1,4 +1,4 @@
-# A virtual machine and a managed MongoDB database connected to a private network and the `mongosh` to access the database
+# A virtual machine and a managed MongoDB database both connected to a private network, and a `mongosh` CLI.
 
 ## Description
 
