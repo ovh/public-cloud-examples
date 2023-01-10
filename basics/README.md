@@ -58,6 +58,8 @@ The second part of the `ovhrc` file is for accessing the [OVHcloud API](https://
 
 The `OVH_ENDPOINT` and `OVH_BASEURL` variables depends on your location.
 
+The `OVH_CLOUD_PROJECT_SERVICE` must be setted with the Openstack service is, known in the openrc file as `OS_TENANT_ID`. This variable is mainly used by the OVHcloud Terraform provider.
+
 Get the other variables values by following the first step of the [First Steps with the OVHcloud APIs](https://docs.ovh.com/gb/en/api/first-steps-with-ovh-api) tutorial.
 
 ```bash
@@ -67,6 +69,7 @@ export OVH_BASEURL=""
 export OVH_APPLICATION_KEY=""
 export OVH_APPLICATION_SECRET=""
 export OVH_CONSUMER_KEY=""
+export OVH_CLOUD_PROJECT_SERVICE="$OS_TENANT_ID"
 
 ### OVHcloud API endpoints
 #   OVH_ENDPOINT        :       OVH_BASEURL
@@ -78,23 +81,6 @@ export OVH_CONSUMER_KEY=""
 #   soyoustart-eu       :       https://eu.api.soyoustart.com/1.0/
 #   soyoustart-ca       :       https://ca.api.soyoustart.com/1.0/
 ```
-
-### Helpers variables used by terraform cli
-
-The last part contains helpful variables that will be used (or not) by the terraform client.
-
-```bash
-### Terraform helpers variables
-export TF_VAR_IP="$(curl -s ifconfig.me)/32"
-export TF_VAR_service_name="$OS_TENANT_ID"
-export TF_VAR_keypair_admin="" # The ready to deployed SSH public key content
-```
-
-- `TF_VAR_IP` is filled with your public IP. This can helps you if you have to add your public IP address into an IP restriction list, to access to managed databases for example. If you don't want to use curl or send a http request, just add the desired value.
-
-- `TF_VAR_service_name` is the openstack project id, used in terraform by the OVHcloud and Openstack providers.
-
-- `TF_VAR_keypair_admin` is the content of a SSH public key that you want to deploy to instances that are created with terraform, and mainly necessary by Ansible.
 
 ### Load variables into your environemnt
 

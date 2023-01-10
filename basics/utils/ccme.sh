@@ -5,14 +5,12 @@
 # service_name;service_name
 # pv_network_name;pv_network_name
 
-for line in $(cat vars.csv)
+file="$1"
+varfile="$2"
+
+for line in $(cat ${varfile})
 do
 	orig="$(echo $line | cut -d ';' -f1)"
 	dest="$(echo $line | cut -d ';' -f2)"
-
-	for fic in $(grep $orig * 2>>/dev/null | cut -d ':' -f1 | grep -v vars.csv)
-	do
-		echo "$orig in $fic"
-		sed -i "s/$orig/$dest/g" $fic
-	done
+	sed -i "s/$orig/$dest/g" $file
 done

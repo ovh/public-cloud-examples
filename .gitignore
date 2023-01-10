@@ -5,3 +5,10 @@ ovhrc
 networking/private-networks-multi-region/bastion/*_ssh_config
 networking/private-networks-multi-region/keypair/*_rsa
 networking/private-networks-multi-region/keypair/*_rsa.pub
+examples/01/myMainKeypair_rsa
+.gitignore
+examples/01/myMainKeypair_rsa.pub
+examples/02/apps/hosts
+examples/02/myMainKeypair_rsa
+examples/02/myMainKeypair_rsa.pub
+basics/utils/vars.csv

@@ -16,11 +16,7 @@ export OVH_BASEURL=""
 export OVH_APPLICATION_KEY=""
 export OVH_APPLICATION_SECRET=""
 export OVH_CONSUMER_KEY=""
-
-### Terraform helpers variables
-export TF_VAR_IP="$(curl -s ifconfig.me)/32"
-export TF_VAR_service_name="$OS_TENANT_ID"
-export TF_VAR_keypair_admin="" # The ready to deployed SSH public key content
+export OVH_CLOUD_PROJECT_SERVICE="$OS_TENANT_ID"
 
 ### OVHcloud API endpoints
 #   OVH_ENDPOINT 	: 	OVH_BASEURL

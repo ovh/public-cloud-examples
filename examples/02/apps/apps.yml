@@ -1,0 +1,13 @@
+---
+- name: Running pre-requisites
+  hosts: server
+  gather_facts: no
+  tasks:
+  - name:
+    ansible.builtin.wait_for_connection:
+
+- name: Install Apps
+  hosts: server
+  
+  roles:
+    - mongoshell
