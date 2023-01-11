@@ -1,13 +1,16 @@
-# OVHcloud Managed MongoDB connected to Private Network
+# OVHcloud Managed M3DB connected to Private Network
 
-This module create a Managed MongoDb, with user and acl, that is connected to a private network.
+This module create a Managed M3DB, with user and namespace, that is connected to a private network.
 
 # Usage
 
 ```terraform
-module "db_engine" {
-  source    = "../../modules/database/mongodb_pvnw"
+module "m3db" {
+  source    = "../../modules/database/m3db_pvnw"
+  region = var.region
   db_engine = var.db_engine
+  user = var.user
+  namespace = var.namespace
 }
 ```
 
@@ -29,64 +32,76 @@ variable "db_engine" {
     version         = string
     plan            = string
     flavor          = string
-    user_name       = string
-    user_role       = list(string)
     allowed_ip      = list(string)
   })
 }
 ```
 
-### region
+- `region`: The region where the db engine is deployed. Get the region full list on the [capabilities](https://docs.ovh.com/gb/en/publiccloud/databases/mongodb/capabilities/) page.
 
-The region where the db engine is deployed.
+- `pv_network_name`: The name of an existing private network.
 
-Get the region full list on the [capabilities](https://docs.ovh.com/gb/en/publiccloud/databases/mongodb/capabilities/) page.
+- `subnet_name`: The name of the subnet.
 
-### pv_network_name
+- `description`: The name of the database engine.`:
 
-The name of an existing private network.
+- `engine`: The database engine type.
 
-### subnet_name
+- `version`: The database engine version.
 
-The name of the subnet.
+- `plan`: The database engine plan.
 
-### description
+- `flavor`: The nodes flavor type.
 
-The name of the database engine.
+- `allowed_ip`: The list of IP adresse(s) allowed to connect to the database engine (CIDR format).
 
-### engine
+## User
 
-The database engine type.
+`user` is an object type variable:
 
-### version
+```terraform
+variable "user" {
+  description = "Db User"
+  type = object({
+    name = string
+    group = string
+    password_reset = string
+  })
+}
+```
 
-The database engine version.
+- `name`: The user name.
 
-### plan
+- `group`: The user group.
 
-The database engine plan.
+- `password_reset`: A random value, change it to initiate a passorwd reset.
 
-### flavor
+## Namespace
 
-The nodes flavor type.
+`namespace` is an object type variable:
 
-### user_name
+```terraform
+variable "namespace" {
+  description = "M3DB Namespace parameters"
+  type = object({
+    name = string
+    resolution = string
+    retention_period_duration = string
+  })
+}
+```
 
-The user that will be created on the database engine.
+- `name`: The namespace name.
 
-### user_role
+- `resolution`: The namespace resolution.
 
-The list of given roles to the user.
-
-### allowed_ip
-
-The list of IP adresse(s) allowed to connect to the database engine (CIDR format).
+- `retention_period_duration`: The namespace period duration.
 
 ## Example
 
 ```terraform
 # Region
-
+  
 region = "GRA7"
 
 # Database Engine
@@ -95,13 +110,23 @@ db_engine = {
   region          = "GRA"
   pv_network_name = "myNetwork"
   subnet_name     = "mySubnet"
-  description     = "myMongoDb"
-  engine          = "mongodb"
-  version         = "6.0"
-  plan            = "business"
+  description     = "metricsDB"
+  engine          = "m3db"
+  version         = "1.5"
+  plan            = "essential"
   flavor          = "db1-7"
-  user_name       = "myuser"
-  user_role       = ["readWriteAnyDatabase"]
-  allowed_ip      = ["192.168.12.0/24"]
+  allowed_ip      = ["192.168.29.0/24"]
+}
+
+user = {
+  name = "metrics"
+  group = "metrics"
+  password_reset = "ChangeMeToResetPassword"
+}
+
+namespace = {
+  name = "metricsns"
+  resolution = "P2D"
+  retention_period_duration = "PT48H"
 }
 ```
