@@ -1,15 +1,14 @@
-# OVHcloud Managed MongoDB connected to Private Network
+# OVHcloud Managed Grafana connected to Private Network
 
-This module create a Managed MongoDb, with user and acl, that is connected to a private network.
+This module create a Managed Grafana that is connected to a private network.
 
 # Usage
 
 ```terraform
-# Managed MongoDB Database
-module "db_engine" {
-  source     = "../../modules/database/mongodb_pvnw"
-  region     = var.region
-  db_engine  = var.db_engine
+module "grafana" {
+  source    = "../../modules/database/grafana_pvnw"
+  region    = var.region
+  db_engine = var.db_engine
 }
 ```
 
@@ -31,8 +30,6 @@ variable "db_engine" {
     version         = string
     plan            = string
     flavor          = string
-    user_name       = string
-    user_role       = list(string)
     allowed_ip      = list(string)
   })
 }
@@ -44,7 +41,7 @@ variable "db_engine" {
 
 - `subnet_name`: The name of the subnet.
 
-- `description`: The name of the database engine.
+- `description`: The name of the database engine.`:
 
 - `engine`: The database engine type.
 
@@ -54,32 +51,26 @@ variable "db_engine" {
 
 - `flavor`: The nodes flavor type.
 
-- `user_name`: The user that will be created on the database engine.
-
-- `user_role`: The list of given roles to the user.
-
 - `allowed_ip`: The list of IP adresse(s) allowed to connect to the database engine (CIDR format).
 
 ## Example
 
 ```terraform
 # Region
-
+  
 region = "GRA7"
 
-# Database Engine
+# Grafana
 
 db_engine = {
   region          = "GRA"
   pv_network_name = "myNetwork"
   subnet_name     = "mySubnet"
-  description     = "myMongoDb"
-  engine          = "mongodb"
-  version         = "6.0"
-  plan            = "business"
+  description     = "grafamoi"
+  engine          = "grafana"
+  version         = "9.1"
+  plan            = "essential"
   flavor          = "db1-7"
-  user_name       = "myuser"
-  user_role       = ["readWriteAnyDatabase"]
-  allowed_ip      = ["192.168.12.0/24"]
+  allowed_ip      = ["192.168.29.0/24"]
 }
 ```

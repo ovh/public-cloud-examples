@@ -12,9 +12,9 @@ network = {
 
 subnet = {
   name       = "mySubnet"
-  cidr       = "192.168.12.0/24"
-  dhcp_start = "192.168.12.100"
-  dhcp_end   = "192.168.12.254"
+  cidr       = "192.168.29.0/24"
+  dhcp_start = "192.168.29.100"
+  dhcp_end   = "192.168.29.254"
 }
 
 # Network - Router
@@ -28,7 +28,7 @@ router = {
 kube = {
   name            = "mykubernetesCluster"
   pv_network_name = "myNetwork"
-  gateway_ip      = "192.168.12.1"
+  gateway_ip      = "192.168.29.1"
 }
 
 pool = {
@@ -51,7 +51,7 @@ db_engine = {
   plan            = "business"
   flavor          = "db1-7"
   user_name       = "myuser"
-  allowed_ip      = ["192.168.12.0/24"]
+  allowed_ip      = ["192.168.29.0/24"]
 }
 
 db = {
