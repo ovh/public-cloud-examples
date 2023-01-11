@@ -1,4 +1,4 @@
-# A Wordpress application deployed on a managed Kubernetes taht is connected to a managed MySQL database.
+# A Wordpress application deployed on a managed Kubernetes, connected to a managed MySQL database.
 
 (Work in progress)
 
@@ -984,9 +984,30 @@ Do you want to perform these actions?
 
 ### Get necessary informations
 
-```bash
+The deployed wordpress can be accessed by its **Load-Balancer Service public IP**. To get the address, use the `kubectl` cli.
 
+First, configure your kubectl environment to use the generated `kubeconfig_file`:
+
+```bash
+export KUBECONFIG="$(pwd)/kubeconfig_file"
 ```
+
+Then, request the wordpress service IP:
+
+```bash
+kubectl get svc wordpress
+```
+
+You should have a result like:
+
+```console
+NAME        TYPE           CLUSTER-IP     EXTERNAL-IP      PORT(S)                      AGE
+wordpress   LoadBalancer   10.x.xxx.xxx   135.xxx.xx.xxx   80:31746/TCP,443:30304/TCP   3h2m
+```
+
+Copy the IP address under **EXTERNAL-IP** and paste it inside a web browser, you should get the welcome page like this:
+
+![Wordpress Welcome Page](./img/ex03_01.png)
 
 ## Destroy
 
