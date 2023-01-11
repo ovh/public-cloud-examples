@@ -5,9 +5,12 @@ This module create a Managed MongoDb, with user and acl, that is connected to a 
 # Usage
 
 ```terraform
-module "db_engine" {
-  source    = "../../modules/database/mongodb_pvnw"
-  db_engine = var.db_engine
+module "mysql" {
+  source     = "../../modules/database/mysql_pvnw"
+  depends_on = [module.network]
+  region     = var.region
+  db_engine  = var.db_engine
+  db         = var.db
 }
 ```
 
@@ -36,51 +39,42 @@ variable "db_engine" {
 }
 ```
 
-### region
+- `region`: The region where the db engine is deployed. Get the region full list on the [capabilities](https://docs.ovh.com/gb/en/publiccloud/databases/mongodb/capabilities/) page.
 
-The region where the db engine is deployed.
+- `pv_network_name`: The name of an existing private network.
 
-Get the region full list on the [capabilities](https://docs.ovh.com/gb/en/publiccloud/databases/mongodb/capabilities/) page.
+- `subnet_name`: The name of the subnet.
 
-### pv_network_name
+- `description`: The name of the database engine.
 
-The name of an existing private network.
+- `engine`: The database engine type.
 
-### subnet_name
+- `version`: The database engine version.
 
-The name of the subnet.
+- `plan`: The database engine plan.
 
-### description
+- `flavor`: The nodes flavor type.
 
-The name of the database engine.
+- `user_name`: The user that will be created on the database engine.
 
-### engine
+- `user_role`: The list of given roles to the user.
 
-The database engine type.
+- `allowed_ip`: The list of IP adresse(s) allowed to connect to the database engine (CIDR format).
 
-### version
+## Database
 
-The database engine version.
+`db` is an object type variable:
 
-### plan
+```terraform
+variable "db" {
+  description = "Db parameters"
+  type = object({
+    name = string
+  })
+}
+```
 
-The database engine plan.
-
-### flavor
-
-The nodes flavor type.
-
-### user_name
-
-The user that will be created on the database engine.
-
-### user_role
-
-The list of given roles to the user.
-
-### allowed_ip
-
-The list of IP adresse(s) allowed to connect to the database engine (CIDR format).
+- `name`: The database name.
 
 ## Example
 
