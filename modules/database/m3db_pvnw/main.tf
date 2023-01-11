@@ -12,10 +12,10 @@ resource "ovh_cloud_project_database" "m3db_engine" {
 }
 
 resource "ovh_cloud_project_database_ip_restriction" "iprestriction" {
-  for_each     = toset(var.db_engine.allowed_ip)
-  engine       = ovh_cloud_project_database.m3db_engine.engine
-  cluster_id   = ovh_cloud_project_database.m3db_engine.id
-  ip           = each.key
+  for_each   = toset(var.db_engine.allowed_ip)
+  engine     = ovh_cloud_project_database.m3db_engine.engine
+  cluster_id = ovh_cloud_project_database.m3db_engine.id
+  ip         = each.key
 }
 
 resource "ovh_cloud_project_database_m3db_namespace" "namespace" {
@@ -26,8 +26,8 @@ resource "ovh_cloud_project_database_m3db_namespace" "namespace" {
 }
 
 resource "ovh_cloud_project_database_m3db_user" "user" {
-  cluster_id    = ovh_cloud_project_database.m3db_engine.id
-  group         = var.user.group
-  name          = var.user.name
+  cluster_id     = ovh_cloud_project_database.m3db_engine.id
+  group          = var.user.group
+  name           = var.user.name
   password_reset = var.user.password_reset
 }

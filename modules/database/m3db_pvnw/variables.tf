@@ -27,8 +27,8 @@ variable "db_engine" {
 variable "user" {
   description = "Db User"
   type = object({
-    name = string
-    group = string
+    name           = string
+    group          = string
     password_reset = string
   })
 }
@@ -38,8 +38,8 @@ variable "user" {
 variable "namespace" {
   description = "M3DB Namespace parameters"
   type = object({
-    name = string
-    resolution = string
+    name                      = string
+    resolution                = string
     retention_period_duration = string
   })
 }

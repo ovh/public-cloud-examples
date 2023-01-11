@@ -17,13 +17,13 @@ db_engine = {
 }
 
 user = {
-  name = "metrics"
-  group = "metrics"
+  name           = "metrics"
+  group          = "metrics"
   password_reset = "ChangeMeToResetPassword"
 }
 
 namespace = {
-  name = "metricsns"
-  resolution = "P2D"
+  name                      = "metricsns"
+  resolution                = "P2D"
   retention_period_duration = "PT48H"
 }
