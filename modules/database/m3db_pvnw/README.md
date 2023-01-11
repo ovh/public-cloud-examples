@@ -43,7 +43,7 @@ variable "db_engine" {
 
 - `subnet_name`: The name of the subnet.
 
-- `description`: The name of the database engine.`:
+- `description`: The name of the database engine.
 
 - `engine`: The database engine type.
 
