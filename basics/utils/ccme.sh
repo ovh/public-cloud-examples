@@ -1,9 +1,7 @@
 #!/bin/bash
 
-# cat variables.tf | grep ^variable | cut -d '"' -f2 > vars.csv && cat resources.tf | grep ^resource | cut -d '"' -f4 >> vars.csv && cat data.tf | grep ^data | cut -d '"' -f4 >> vars.csv && cat outputs.tf | grep ^output | cut -d '"' -f2 >> vars.csv
-#
-# service_name;service_name
-# pv_network_name;pv_network_name
+# :1,.s/;.\{0,8\}/;xxxxxxxx/g
+# :1,.s/.\{0,12\}$/xxxxxxxx/g
 
 file="$1"
 varfile="$2"
