@@ -1,4 +1,4 @@
-# A Wordpress application deployed on a managed Kubernetes taht is connected to a managed MySQL database.
+# A Wordpress application deployed on a managed Kubernetes, connected to a managed MySQL database.
 
 (Work in progress)
 
