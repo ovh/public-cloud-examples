@@ -1,6 +1,6 @@
-# OVHcloud Managed MongoDB connected to Private Network
+# OVHcloud Managed MySQL connected to Private Network
 
-This module create a Managed MongoDb, with user and acl, that is connected to a private network.
+This module create a Managed MySQL, with user, that is connected to a private network.
 
 # Usage
 
