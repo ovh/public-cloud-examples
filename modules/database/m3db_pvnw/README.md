@@ -7,9 +7,9 @@ This module create a Managed M3DB, with user and namespace, that is connected to
 ```terraform
 module "m3db" {
   source    = "../../modules/database/m3db_pvnw"
-  region = var.region
+  region    = var.region
   db_engine = var.db_engine
-  user = var.user
+  user      = var.user
   namespace = var.namespace
 }
 ```
@@ -63,8 +63,8 @@ variable "db_engine" {
 variable "user" {
   description = "Db User"
   type = object({
-    name = string
-    group = string
+    name           = string
+    group          = string
     password_reset = string
   })
 }
@@ -84,8 +84,8 @@ variable "user" {
 variable "namespace" {
   description = "M3DB Namespace parameters"
   type = object({
-    name = string
-    resolution = string
+    name                      = string
+    resolution                = string
     retention_period_duration = string
   })
 }
@@ -119,14 +119,14 @@ db_engine = {
 }
 
 user = {
-  name = "metrics"
-  group = "metrics"
+  name           = "metrics"
+  group          = "metrics"
   password_reset = "ChangeMeToResetPassword"
 }
 
 namespace = {
-  name = "metricsns"
-  resolution = "P2D"
+  name                      = "metricsns"
+  resolution                = "P2D"
   retention_period_duration = "PT48H"
 }
 ```
