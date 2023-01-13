@@ -1,6 +1,4 @@
-# A Wordpress application deployed on a managed Kubernetes, connected to a managed MySQL database.
-
-(Work in progress)
+# A Wordpress application deployed on a managed Kubernetes, connected to a managed MySQL database, everything inside a private network.
 
 ## Description
 
