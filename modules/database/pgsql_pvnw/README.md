@@ -5,7 +5,7 @@ This module create a Managed PostgreSQL, with user, that is connected to a priva
 # Usage
 
 ```terraform
-module "mysql" {
+module "postgre" {
   source     = "../../modules/database/postgresql_pvnw"
   depends_on = [module.network]
   region     = var.region
