@@ -1,0 +1,29 @@
+# Openstack vars from openrc file
+export OS_AUTH_URL=https://auth.cloud.ovh.net/v3
+export OS_IDENTITY_API_VERSION=3
+export OS_USER_DOMAIN_NAME=${OS_USER_DOMAIN_NAME:-"Default"}
+export OS_PROJECT_DOMAIN_NAME=${OS_PROJECT_DOMAIN_NAME:-"Default"}
+export OS_TENANT_ID=xxxxxxxxxxxxxxxxxxxxxxxxxx"
+export OS_TENANT_NAME="xxxxxxxxxxxxxxxxxxxxxxx"
+export OS_USERNAME="xxxxxxxxxxxxxxxxxxxxxxxxxx"
+export OS_PASSWORD="xxxxxxxxxxxxxxxxxxxxxxxxxx"
+export OS_REGION_NAME="GRA9"
+if [ -z "$OS_REGION_NAME" ]; then unset OS_REGION_NAME; fi
+
+# OVH API vars from OVHcloud manager
+export OVH_ENDPOINT=ovh-eu
+export OVH_BASEURL="https://eu.api.ovh.com/1.0"
+export OVH_APPLICATION_KEY="xxxxxxxxxxxxxxx"
+export OVH_APPLICATION_SECRET="xxxxxxxxxxxx"
+export OVH_CONSUMER_KEY="xxxxxxxxxxxxxxxxxx"
+export OVH_CLOUD_PROJECT_SERVICE="$OS_TENANT_ID"
+
+### OVHcloud API endpoints
+#   OVH_ENDPOINT        :       OVH_BASEURL
+#   ovh-eu              :       https://eu.api.ovh.com/1.0
+#   ovh-us              :       https://api.us.ovhcloud.com/1.0
+#   ovh-ca              :       https://ca.api.ovh.com/1.0
+#   kimsufi-eu          :       https://eu.api.kimsufi.com/1.0
+#   kimsufi-ca          :       https://ca.api.kimsufi.com/1.0
+#   soyoustart-eu       :       https://eu.api.soyoustart.com/1.0
+#   soyoustart-ca       :       https://ca.api.soyoustart.com/1.0
