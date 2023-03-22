@@ -1,5 +1,7 @@
 # Public cloud examples
 
+DEMO
+
 ![Work in progess](./docs/assets/wip.jpg)
 
 Here is a list of examples which use multiple OVHcloud [Public Cloud products](https://www.ovhcloud.com/fr/public-cloud/).
