@@ -6,8 +6,8 @@ cd $SCRIPTROOTDIR
 source ./ovhrc
 source ./properties
 
-image_id="$(openstack image list -f json | jq -r --arg image_name "$image_name" '.[] | select(.Name==$image_name) | .ID')"
-flavor_id="$(openstack flavor list -f json | jq -r --arg flavor_name "$flavor_name" '.[] | select(.Name==$flavor_name) | .ID')"
+image_id="$(openstack image list -f csv | grep "\"$image_name\"" | cut -d ',' -f1 | tr -d '"')"
+flavor_id="$(openstack flavor list -f csv | grep "\"$flavor_name\"" | cut -d ',' -f1 | tr -d '"')"
 
 # RAZ variables.tf
 rm -f variables.tf
