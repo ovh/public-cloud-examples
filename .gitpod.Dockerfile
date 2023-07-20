@@ -6,7 +6,7 @@ RUN sudo apt update && sudo apt -y install \
     jq \
     python3-aodhclient \
     python3-barbicanclient \
-    python3-ceilometerclient \
+    python3-ceilometer \
     python3-cinderclient \
     python3-cloudkittyclient \
     python3-designateclient \
