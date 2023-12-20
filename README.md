@@ -8,7 +8,7 @@ You've developed a new cool feature? Fixed an annoying bug? We'd be happy to hea
 
 # 👀 Getting Started / configuration 🛠️
 
- - [Starting Pack to manage your OVHcloud Services from shell](./basics/README.md)
+ - [Starting Pack to manage your OVHcloud Services from shell](./configuration/shell/README.md)
 Follow this tutorial to setup your Public Cloud environment with your shell. 
 That gives you the procedure to install and use many tools to manage the components described in examples, like Terraform, Ansible, Openstack CLI, OVHcloud API, and more.
 
