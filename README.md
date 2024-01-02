@@ -6,26 +6,29 @@ Here is a list of examples which use multiple OVHcloud [Public Cloud products](h
 
 You've developed a new cool feature? Fixed an annoying bug? We'd be happy to hear from you!
 
-# 👀 Getting Started
+# 👀 Getting Started / configuration 🛠️
 
- - [Starting Pack to manage your OVHcloud Services from shell](./basics/README.md)
-
-Follow this tutorial to setup your Public Cloud environment. 
-
+ - [Starting Pack to manage your OVHcloud Services from shell](./configuration/shell/README.md)
+Follow this tutorial to setup your Public Cloud environment with your shell. 
 That gives you the procedure to install and use many tools to manage the components described in examples, like Terraform, Ansible, Openstack CLI, OVHcloud API, and more.
 
 # ✍️  Examples
 
-| Link | Description | | Resources | App | Necessary tools
-|---|---|---|---|---|---
-| [🔗](./examples/01) | **01** - A virtual machine connected to a private network. | [![Schema example 01](./img/01.png)](./examples/01) | Private network<br/>Instance<br/>SSH keypair | N/A | Terraform
-| [🔗](./examples/02) | **02** - A virtual machine and a managed MongoDB database both connected to a private network, and a `mongosh` CLI. | [![Schema example 02](./img/02.png)](./examples/02) | Private network<br/>Instance<br/>SSH keypair<br/>MongoDB | mongosh CLI| Terraform<br/>Ansible
-| [🔗](./examples/03) | **03** - A Wordpress application deployed on a managed Kubernetes, connected to a managed MySQL database, everything inside a private network.| [![Schema example 03](./img/03.png)](./examples/03) | Private network<br/>Kubernetes<br>MySQL | Wordpress | Terraform<br/>Ansible
-| [🔗](./examples/04) | **04** | [![Schema example 04](./img/00.png)](./examples/04) | Private network<br>Instance | Mastodon | Terraform<br/>Ansible
+All examples are organized depending on the main used product (Network, AI, ...).
+Here is the several topics:
+```bash
+.
+├── ai-machine-learning             ## Here you find demos about AI Products: AI Notebooks, AI Training and AI Deploy
+├── containers-orchestration        ## Here you find demos about Kubernetes, Rancher and Harbor
+│   ├── managed-kubernetes
+│   └── managed-private-registry
+├── databases-analytics             ## Here you find demo about databases, data streaming, data integration, ...
+│   └── databases
+├── iam                             ## Here you find demo about IAM (roles, identity, ...)
+└── network                         ## Here you find demo about network (private network, load balancer, gateway, ...)
+    └── private-network
+```
 
-# 🔬 Tools for labs
-
- - [Create instances with K3s installed on OVHcloud Public Cloud](./labs/labk3s/README.md)
 
 # Related links
 
