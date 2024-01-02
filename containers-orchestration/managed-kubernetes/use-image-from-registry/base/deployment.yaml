@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-ovh-deployment
+  labels:
+    app: hello-ovh
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-ovh
+  template:
+    metadata:
+      labels:
+        app: hello-ovh
+    spec:
+      containers:
+      - name: hello-ovh
+        image: hello-ovh:1.0.0
+        ports:
+        - containerPort: 80
