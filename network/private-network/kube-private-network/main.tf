@@ -1,5 +1,5 @@
 module "network" {
-  source  = "../../../configuration/terrafor/modules/private_network"
+  source  = "../../../configuration/terraform/modules/private_network"
   region  = var.region
   network = var.network
   subnet  = var.subnet
