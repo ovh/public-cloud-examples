@@ -52,12 +52,12 @@ Example: Associate a floating IP to an instance.
 
 ```terraform
 module "bastion" {
-  source     = "../../configuration/terrafor/modules/instance_simple"
+  source     = "../../configuration/terraform/modules/instance_simple"
   instance   = var.bastion
 }
 
 module "floatip" {
-  source     = "../../configuration/terrafor/modules/floating_ip"
+  source     = "../../configuration/terraform/modules/floating_ip"
   depends_on = [module.bastion]
   floatip = {
     region       = var.region

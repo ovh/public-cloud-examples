@@ -7,7 +7,7 @@ This module create a Managed MongoDb, with user and acl, that is connected to a 
 ```terraform
 # Managed MongoDB Database
 module "db_engine" {
-  source     = "../../configuration/terrafor/mmodules/database/mongodb_pvnw"
+  source     = "../../configuration/terraform/mmodules/database/mongodb_pvnw"
   region     = var.region
   db_engine  = var.db_engine
 }

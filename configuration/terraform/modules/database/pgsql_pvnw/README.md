@@ -6,7 +6,7 @@ This module create a Managed PostgreSQL, with user, that is connected to a priva
 
 ```terraform
 module "postgre" {
-  source     = "../../configuration/terrafor/modules/database/postgresql_pvnw"
+  source     = "../../configuration/terraform/modules/database/postgresql_pvnw"
   depends_on = [module.network]
   region     = var.region
   db_engine  = var.db_engine
