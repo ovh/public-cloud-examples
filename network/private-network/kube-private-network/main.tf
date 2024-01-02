@@ -7,7 +7,7 @@ module "network" {
 }
 
 module "kube" {
-  source     = "../../../configuration/terrafor/modules/kubernetes/k8s_pvnw"
+  source     = "../../../configuration/terraform/modules/kubernetes/k8s_pvnw"
   depends_on = [module.network]
   region     = var.region
   kube       = var.kube
