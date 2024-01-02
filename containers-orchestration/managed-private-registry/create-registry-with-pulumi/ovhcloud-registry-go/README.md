@@ -45,7 +45,14 @@ echo $PRIVATE_REGISTRY_PASSWORD
 echo $PRIVATE_REGISTRY_PROJECT
 ```
 
+Note: you can run the `create.sh` script instead of executing each previous commands manually ;-)
+
+### Destroy
+
   - destroy all the resources (registry, user, project): `pulumi destroy`
+
+Note: you can run the `destroy.sh` script instead of executing the previous command manually ;-)
+
 
 ### After the demo
 

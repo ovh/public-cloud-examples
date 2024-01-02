@@ -43,7 +43,7 @@ kustomize edit set image hello-ovh="${PRIVATE_REGISTRY_URL_WITHOUT_SCHEME}/${PRI
 cd ../..
 ```
 
- - Deploy an app (linked to the )
+ - Deploy an app (linked to the created private registry)
 
 ```bash
 kustomize build overlays/wescale | kubectl --kubeconfig=$KUBE_CLUSTER apply -f -

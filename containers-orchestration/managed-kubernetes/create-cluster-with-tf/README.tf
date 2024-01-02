@@ -54,7 +54,14 @@ export KUBE_CLUSTER=$(pwd)/my_kube_cluster.yml
 
 `kubectl --kubeconfig=$KUBE_CLUSTER get no`
 
+Note: you can run the `create.sh` script instead of executing each previous commands manually ;-)
+
+### Destroy
+
   - destroy the cluster: `terraform destroy`
+
+Note: you can run the `destroy.sh` script instead of executing the previous command manually ;-)
+
 
 ### After the demo
 
