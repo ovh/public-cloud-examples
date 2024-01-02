@@ -1,6 +1,6 @@
 # Private Network
 module "network" {
-  source  = "../../modules/private_network"
+  source  = "../../../configuration/terraform/modules/private_network"
   region  = var.region
   network = var.network
   subnet  = var.subnet
@@ -9,7 +9,7 @@ module "network" {
 
 # Managed MongoDB Database
 module "db_engine" {
-  source     = "../../modules/database/mongodb_pvnw"
+  source     = "../../../configuration/terraform/modules/database/mongodb_pvnw"
   depends_on = [module.network]
   region     = var.region
   db_engine  = var.db_engine
@@ -17,20 +17,20 @@ module "db_engine" {
 
 # SSH Keypair
 module "keypair" {
-  source  = "../../modules/ssh_keypair"
+  source  = "../../../configuration/terraform/modules/ssh_keypair"
   keypair = var.keypair
 }
 
 # Virtual Machine Instance
 module "instance" {
-  source     = "../../modules/instance_simple"
+  source     = "../../../configuration/terraform/modules/instance_simple"
   depends_on = [module.keypair, module.network]
   instance   = var.instance
 }
 
 # Floating IP
 module "floatip" {
-  source     = "../../modules/floating_ip"
+  source     = "../../../configuration/terraform/modules/floating_ip"
   depends_on = [module.instance]
   floatip = {
     region       = var.region

@@ -6,7 +6,7 @@ Simple module to create an instance that is connected to an existing private net
 
 ```terraform
 module "instance" {
-  source     = "../../modules/instance_simple"
+  source     = "../../../configuration/terraform/modules/instance_simple"
   instance   = var.instance
 }
 ```

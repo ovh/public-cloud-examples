@@ -1,16 +1,15 @@
-# OVHcloud Managed MySQL connected to Private Network
+# OVHcloud Managed MongoDB connected to Private Network
 
-This module create a Managed MySQL, with user, that is connected to a private network.
+This module create a Managed MongoDb, with user and acl, that is connected to a private network.
 
 # Usage
 
 ```terraform
-module "mysql" {
-  source     = "../../modules/database/mysql_pvnw"
-  depends_on = [module.network]
+# Managed MongoDB Database
+module "db_engine" {
+  source     = "../../configuration/terrafor/mmodules/database/mongodb_pvnw"
   region     = var.region
   db_engine  = var.db_engine
-  db         = var.db
 }
 ```
 
@@ -60,21 +59,6 @@ variable "db_engine" {
 - `user_role`: The list of given roles to the user.
 
 - `allowed_ip`: The list of IP adresse(s) allowed to connect to the database engine (CIDR format).
-
-## Database
-
-`db` is an object type variable:
-
-```terraform
-variable "db" {
-  description = "Db parameters"
-  type = object({
-    name = string
-  })
-}
-```
-
-- `name`: The database name.
 
 ## Example
 

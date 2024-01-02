@@ -36,7 +36,7 @@ region = "GRA7"
 
 ### Networking part
 
-This variables are needed by the [private network module](../../modules/private_network)
+This variables are needed by the [private network module](../../../configuration/shell/)
 
 #### Private Network
 
@@ -81,7 +81,7 @@ router = {
 
 ### Managed Kubernetes part
 
-This variables are needed by the [Managed Kubernetes with private network Module](../../modules/kubernetes/k8s_pvnw).
+This variables are needed by the [Managed Kubernetes with private network Module](../../../configuration/terraform/modules/kubernetes/k8s_pvnw).
 
 #### Kubernetes Master parameters
 
@@ -225,7 +225,7 @@ $ openstack --os-region-name=GRA7 flavor list
 
 ### MySQL database part
 
-This variables are needed by the [Managed MySQL Database with private network Module](../../modules/kubernetes/database/mysql_pvnw).
+This variables are needed by the [Managed MySQL Database with private network Module](../../../configuration/terraform/modules/kubernetes/database/mysql_pvnw).
 
 #### MySQL Engine
 
@@ -285,9 +285,9 @@ terraform init
 ```log
 $ terraform init
 Initializing modules...
-- kube in ../../modules/kubernetes/k8s_pvnw
-- mysql in ../../modules/database/mysql_pvnw
-- network in ../../modules/private_network
+- kube in ../../../configuration/terraform/modules/kubernetes/k8s_pvnw
+- mysql in ../../../configuration/terraform/modules/database/mysql_pvnw
+- network in ../../../configuration/terraform/modules/private_network
 
 Initializing the backend...
 

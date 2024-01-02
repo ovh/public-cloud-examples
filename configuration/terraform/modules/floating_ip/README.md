@@ -8,7 +8,7 @@ This module will create the floating IP from the `Ext-Net` public network associ
 
 ```terraform
 module "floatip" {
-  source     = "../../modules/floating_ip"
+  source     = "../../../configuration/terraform/modules/floating_ip"
   floatip = {
     region       = "<REGION>"
     component_id = "<OPENSTACK COMPONENT ID>"
@@ -52,12 +52,12 @@ Example: Associate a floating IP to an instance.
 
 ```terraform
 module "bastion" {
-  source     = "../../modules/instance_simple"
+  source     = "../../configuration/terrafor/modules/instance_simple"
   instance   = var.bastion
 }
 
 module "floatip" {
-  source     = "../../modules/floating_ip"
+  source     = "../../configuration/terrafor/modules/floating_ip"
   depends_on = [module.bastion]
   floatip = {
     region       = var.region

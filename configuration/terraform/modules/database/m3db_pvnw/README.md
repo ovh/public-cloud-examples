@@ -6,7 +6,7 @@ This module create a Managed M3DB, with user and namespace, that is connected to
 
 ```terraform
 module "m3db" {
-  source    = "../../modules/database/m3db_pvnw"
+  source    = "../../../configuration/terraform/modules/database/m3db_pvnw"
   region    = var.region
   db_engine = var.db_engine
   user      = var.user

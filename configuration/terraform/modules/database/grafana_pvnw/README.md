@@ -6,7 +6,7 @@ This module create a Managed Grafana that is connected to a private network.
 
 ```terraform
 module "grafana" {
-  source    = "../../modules/database/grafana_pvnw"
+  source    = "../../configuration/terraform/modules/database/grafana_pvnw"
   region    = var.region
   db_engine = var.db_engine
 }

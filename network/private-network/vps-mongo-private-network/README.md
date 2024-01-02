@@ -42,7 +42,7 @@ region = "GRA7"
 
 ### Networking part
 
-This variables are needed by the [private network module](../../modules/private_network)
+This variables are needed by the [private network module](../../../configuration/terraform/modules/private_network)
 
 #### Private Network
 
@@ -96,7 +96,7 @@ keypair = {
 }
 ```
 
-This variables are needed by the [SSH keypair module](../../modules/ssh_keypair)
+This variables are needed by the [SSH keypair module](../../../configuration/terraform/modules/ssh_keypair)
 
 - `name`: The keypair name.
 
@@ -108,7 +108,7 @@ This variables are needed by the [SSH keypair module](../../modules/ssh_keypair)
 
 ### Virtual Machine part
 
-This variables are needed by the [Simple instance module](../../modules/instance_simple)
+This variables are needed by the [Simple instance module](../../../configuration/terraform/modules/instance_simple)
 
 ```terraform
 instance = {
@@ -385,11 +385,11 @@ terraform init
 ```log
 $ terraform init
 Initializing modules...
-- db_engine in ../../modules/database/mongodb_pvnw
-- floatip in ../../modules/floating_ip
-- instance in ../../modules/instance_simple
-- keypair in ../../modules/ssh_keypair
-- network in ../../modules/private_network
+- db_engine in ../../../configuration/terraform/modules/database/mongodb_pvnw
+- floatip in ../../../configuration/terraform/modules/floating_ip
+- instance in ../../../configuration/terraform/modules/instance_simple
+- keypair in ../../../configuration/terraform/modules/ssh_keypair
+- network in ../../../configuration/terraform/modules/private_network
 
 Initializing the backend...
 

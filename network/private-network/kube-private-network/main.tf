@@ -1,5 +1,5 @@
 module "network" {
-  source  = "../../modules/private_network"
+  source  = "../../../configuration/terrafor/modules/private_network"
   region  = var.region
   network = var.network
   subnet  = var.subnet
@@ -7,7 +7,7 @@ module "network" {
 }
 
 module "kube" {
-  source     = "../../modules/kubernetes/k8s_pvnw"
+  source     = "../../../configuration/terrafor/modules/kubernetes/k8s_pvnw"
   depends_on = [module.network]
   region     = var.region
   kube       = var.kube
@@ -22,7 +22,7 @@ resource "local_file" "kubeconfig_file" {
 }
 
 module "mysql" {
-  source     = "../../modules/database/mysql_pvnw"
+  source     = "../../../configuration/terrafor/database/mysql_pvnw"
   depends_on = [module.network]
   region     = var.region
   db_engine  = var.db_engine
