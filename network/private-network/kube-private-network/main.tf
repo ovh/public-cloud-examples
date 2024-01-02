@@ -22,7 +22,7 @@ resource "local_file" "kubeconfig_file" {
 }
 
 module "mysql" {
-  source     = "../../../configuration/terrafor/database/mysql_pvnw"
+  source     = "../../../configuration/terraform/database/mysql_pvnw"
   depends_on = [module.network]
   region     = var.region
   db_engine  = var.db_engine
