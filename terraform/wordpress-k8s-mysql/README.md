@@ -65,7 +65,7 @@ export OVH_CLOUD_PROJECT_SERVICE="xxx"
 read -s OVH_APPLICATION_KEY
 read -s OVH_APPLICATION_SECRET
 read -s OVH_CONSUMER_KEY
-read CLOUD_PROJECT_ID
+read OVH_CLOUD_PROJECT_SERVICE
 
 cat << EOF > secrets.tfvars
 ovh = {
