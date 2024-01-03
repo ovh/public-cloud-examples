@@ -15,7 +15,6 @@ terraform {
 }
 
 provider "ovh" {
-  application_secret = var.ovh.application_secret
 }
 
 provider "helm" {
