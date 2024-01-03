@@ -16,7 +16,6 @@ terraform {
 
 provider "ovh" {
   application_secret = var.ovh.application_secret
-  consumer_key       = var.ovh.consumer_key
 }
 
 provider "helm" {
