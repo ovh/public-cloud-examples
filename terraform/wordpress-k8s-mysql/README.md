@@ -123,7 +123,7 @@ export URI=$(terraform output -raw cluster_uri)
 
 With these exports you can go directly in any other example (e.g: go) to docker build and run it and see it working.
 
-### Delete the cluster
+### Delete the DB and the cluster
 
 ```console
 terraform destroy -var-file=secrets.tfvars -auto-approve
