@@ -31,7 +31,6 @@ data "ovh_cloud_project_kube_nodepool_nodes" "nodes" {
   depends_on = [
     ovh_cloud_project_kube_nodepool.wordpress_node_pool
   ]
-  service_name  = ovh_cloud_project_kube.wordpress_kube_cluster.service_name
   kube_id       = ovh_cloud_project_kube.wordpress_kube_cluster.id
   name          = ovh_cloud_project_kube_nodepool.wordpress_node_pool.name
 }
