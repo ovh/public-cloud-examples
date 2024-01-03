@@ -47,7 +47,7 @@ Our awesome contributors:
 
 # License
 
-Copyright 2022-2023 OVH SAS
+Copyright 2022-2024 OVH SAS
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
