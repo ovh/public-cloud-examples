@@ -1,4 +1,3 @@
-  description = "Public cloud project service name"
   type        = string
   default     = ""
 }
