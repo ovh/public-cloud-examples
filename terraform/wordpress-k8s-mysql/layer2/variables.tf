@@ -1,5 +1,4 @@
 
-  description = "OVHcloud provider parameters"
   default = {
     endpoint           = ""
     application_key    = ""
