@@ -1,5 +1,4 @@
 
-}
 
 variable kubernetes {
   description = "Kubernetes cluster definition"
