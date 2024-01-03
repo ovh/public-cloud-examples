@@ -68,7 +68,6 @@ read -s OVH_CONSUMER_KEY
 read OVH_CLOUD_PROJECT_SERVICE
 
 cat << EOF > secrets.tfvars
-    consumer_key       = "$CONSUMER_KEY"
 }
 
 product = {
