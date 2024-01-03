@@ -72,7 +72,6 @@ cat << EOF > secrets.tfvars
 }
 
 product = {
-    project_id = "$CLOUD_PROJECT_ID"
     region     = "DE"
     plan       = "essential"
     flavor     = "db1-7"
