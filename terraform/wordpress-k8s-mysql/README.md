@@ -1,4 +1,4 @@
-# Hello world for Wordpress and Mysql with terraform
+# Hello world for Wordpress and Mysql with Terraform
 
 The purpose of this tutorial is to create a mysql database and a wordpress website and link them together in a Kubernetes cluster.
 
