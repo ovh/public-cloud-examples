@@ -6,7 +6,6 @@ resource "ovh_cloud_project_kube" "wordpress_kube_cluster" {
 
 # Create the node-pool
 resource "ovh_cloud_project_kube_nodepool" "wordpress_node_pool" {
-   service_name  = "${var.service_name}"
    kube_id       = ovh_cloud_project_kube.wordpress_kube_cluster.id
    name          = "wordpress-node-pool" //Warning: "_" char is not allowed!
    flavor_name   = "b2-7"
