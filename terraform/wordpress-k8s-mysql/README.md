@@ -18,7 +18,7 @@ You need the following:
 ## Operation
 
 ### Layer 1
-* Deployment of a managed kubernetes cluster with its node-pool
+* Deployment of a managed Kubernetes cluster with its node-pool
 
 ### Layer 2
 * Deployment of a managed MySQL DB with its OVHcloud user
