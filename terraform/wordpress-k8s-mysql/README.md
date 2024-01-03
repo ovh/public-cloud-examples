@@ -89,6 +89,7 @@ EOF
 ### Validate the configuration - Layer 1
 
 ```console
+cd layer1
 terraform init
 terraform plan -var-file=secrets.tfvars
 ```
