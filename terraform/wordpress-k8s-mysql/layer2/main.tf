@@ -5,7 +5,6 @@ resource "local_file" "kubeconfig_file" {
 
 #Create the DB service
 resource "ovh_cloud_project_database" "database_service" {
-  service_name = var.database.project_id
   description  = "wordpress_db_service"
   engine       = "mysql"
   version      = var.database.version
