@@ -2,7 +2,6 @@
 resource "ovh_cloud_project_kube" "wordpress_kube_cluster" {
    name         = "wordpress_kube_cluster"
    region       = "${var.kubernetes.region}"
-   version      = "1.24"
 }
 
 # Create the node-pool
