@@ -7,5 +7,4 @@ terraform {
 }
 
 provider "ovh" {
-  consumer_key       = var.ovh.consumer_key
 }
