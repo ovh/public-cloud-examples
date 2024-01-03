@@ -15,7 +15,15 @@ You need the following:
     * [EU](https://www.ovh.com/auth/?onsuccess=https%3A%2F%2Fwww.ovh.com%2Fauth%2FcreateToken%2F%3F)
     * [CA](https://ca.ovh.com/auth/?onsuccess=https%3A//ca.ovh.com%2Fauth%2FcreateToken%2F%3F)
 
-## Operation
+## Set the environment variables
+
+```bash
+# OVHcloud provider needed keys
+export OVH_ENDPOINT="ovh-eu"
+export OVH_APPLICATION_KEY="xxx"
+export OVH_APPLICATION_SECRET="xxx"
+export OVH_CONSUMER_KEY="xxx"
+export OVH_CLOUD_PROJECT_SERVICE="xxx"
 
 ### Layer 1
 * Deployment of a managed Kubernetes cluster with its node-pool
