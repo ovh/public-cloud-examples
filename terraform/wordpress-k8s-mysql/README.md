@@ -10,6 +10,7 @@ We will divide the project into two layers. The first layer is used to deploy th
 
 You need the following:
 * [terraform](https://www.terraform.io/) installed
+* [curl](https://curl.se/) installed
 * an [OVHcloud Public cloud project](https://www.ovhcloud.com/en/public-cloud/)
 * OVHcloud API credentials
     * [EU](https://www.ovh.com/auth/?onsuccess=https%3A%2F%2Fwww.ovh.com%2Fauth%2FcreateToken%2F%3F)
