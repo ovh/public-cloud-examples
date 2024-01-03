@@ -1,5 +1,4 @@
 
-    consumer_key       = ""
   }
 }
 
