@@ -1,5 +1,4 @@
 
-}
 
 variable database { 
   description = "Wordpress website database parameters"
