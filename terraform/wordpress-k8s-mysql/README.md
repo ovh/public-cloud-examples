@@ -102,7 +102,7 @@ terraform apply -var-file=../secrets.tfvars -auto-approve
 ```console
 cd ../layer2
 terraform init
-terraform plan -var-file=secrets.tfvars
+terraform plan -var-file=../secrets.tfvars
 ```
 
 ### Create the DB, website and the monitoring services - Layer 2
