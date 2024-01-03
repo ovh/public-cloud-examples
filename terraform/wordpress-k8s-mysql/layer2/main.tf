@@ -20,7 +20,6 @@ resource "ovh_cloud_project_database_database" "wordpress_db" {
   depends_on = [
     ovh_cloud_project_database.database_service
   ]
-  service_name  = var.database.project_id
   engine        = "mysql"
   cluster_id    = ovh_cloud_project_database.database_service.id
   name          = "wordpress_db"
