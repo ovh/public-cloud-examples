@@ -100,6 +100,7 @@ terraform apply -var-file=../secrets.tfvars -auto-approve
 ### Validate the configuration - Layer 2
 
 ```console
+cd ../layer2
 terraform init
 terraform plan -var-file=secrets.tfvars
 ```
