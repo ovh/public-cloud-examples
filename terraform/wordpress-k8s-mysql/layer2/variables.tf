@@ -1,5 +1,4 @@
 
-variable ovh {
   description = "OVHcloud provider parameters"
   default = {
     endpoint           = ""
