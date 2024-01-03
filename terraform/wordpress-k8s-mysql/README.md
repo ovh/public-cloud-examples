@@ -47,7 +47,6 @@ export OVH_CLOUD_PROJECT_SERVICE="xxx"
 
 |Variable name        |Variable parameter   |Parameter description|
 |---------------------|---------------------|---------------------|
-|ovh|endpoint|API endpoint to use|
 |ovh|application_key|API Application Key|
 |ovh|application_secret|API application secret|
 |ovh|consumer_key|API consumer key|
