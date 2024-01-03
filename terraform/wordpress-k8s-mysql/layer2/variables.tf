@@ -1,5 +1,4 @@
   default     = ""
-}
 
 variable ovh {
   description = "OVHcloud provider parameters"
