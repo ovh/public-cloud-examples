@@ -1,7 +1,6 @@
 
 variable ovh {
   description = "OVHcloud provider parameters"
-  type    = map
   default = {
     endpoint           = ""
     application_key    = ""
