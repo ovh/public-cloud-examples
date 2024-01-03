@@ -62,7 +62,7 @@ export OVH_CLOUD_PROJECT_SERVICE="xxx"
 
 ### Create the terraform variables file
 ```console
-read -s APPLICATION_KEY
+read -s OVH_APPLICATION_KEY
 read -s OVH_APPLICATION_SECRET
 read -s CONSUMER_KEY
 read CLOUD_PROJECT_ID
