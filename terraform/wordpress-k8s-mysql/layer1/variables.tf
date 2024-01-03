@@ -1,6 +1,5 @@
 
   type    = map
-  default = {
     endpoint           = ""
     application_key    = ""
     application_secret = ""
