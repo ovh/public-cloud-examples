@@ -1,6 +1,5 @@
 # Create the Kubernetes Cluster
 resource "ovh_cloud_project_kube" "wordpress_kube_cluster" {
-   service_name = "${var.service_name}"
    name         = "wordpress_kube_cluster"
    region       = "${var.kubernetes.region}"
    version      = "1.24"
