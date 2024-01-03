@@ -1,6 +1,6 @@
 # Hello world for Wordpress and Mysql with Terraform
 
-The purpose of this tutorial is to create a mysql database and a wordpress website and link them together in a Kubernetes cluster.
+The purpose of this tutorial is to create a Mysql database and a Wordpress website and link them together in a Kubernetes cluster.
 
 We will divide the project into two layers. The first layer is used to deploy the cluster and fetch the nodes. The second layer is used to deploy the services. Each layer is executed one by one.
 
