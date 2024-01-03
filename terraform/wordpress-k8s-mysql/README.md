@@ -62,7 +62,6 @@ export OVH_CLOUD_PROJECT_SERVICE="xxx"
 
 ### Create the terraform variables file
 ```console
-read OVH_CLOUD_PROJECT_SERVICE
 
 cat << EOF > secrets.tfvars
 }
