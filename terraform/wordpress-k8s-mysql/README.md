@@ -48,7 +48,6 @@ export OVH_CLOUD_PROJECT_SERVICE="xxx"
 |Variable name        |Variable parameter   |Parameter description|
 |---------------------|---------------------|---------------------|
 |ovh|application_key|API Application Key|
-|ovh|application_secret|API application secret|
 |ovh|consumer_key|API consumer key|
 |kubernetes|project_id|Public cloud project service name|
 |kubernetes|region|Region of the Kubernetes cluster|
