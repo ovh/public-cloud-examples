@@ -23,7 +23,7 @@ You need the following:
 ### Layer 2
 * Deployment of a managed MySQL DB with its OVHcloud user
 * IP restriction on DBs
-* Deployment of a wordpress website with Helm
+* Deployment of a Wordpress website with Helm
 * Interconnection of the DB and the website
 
 ### Configuration files
