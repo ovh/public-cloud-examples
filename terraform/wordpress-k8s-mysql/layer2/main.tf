@@ -30,7 +30,6 @@ resource "ovh_cloud_project_database_user" "wordpress_db_user" {
   depends_on = [
     ovh_cloud_project_database_database.wordpress_db
   ]
-  service_name = ovh_cloud_project_database.database_service.service_name
   engine       = ovh_cloud_project_database.database_service.engine
   cluster_id   = ovh_cloud_project_database.database_service.id
   name         = "wordpress_db_user"
