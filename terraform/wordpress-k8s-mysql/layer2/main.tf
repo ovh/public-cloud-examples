@@ -49,7 +49,6 @@ resource "ovh_cloud_project_database_ip_restriction" "nodes_iprestriction" {
     ovh_cloud_project_database_database.wordpress_db
   ]
   for_each = data.openstack_compute_instance_v2.instances
-  service_name = ovh_cloud_project_database.database_service.service_name
   engine = ovh_cloud_project_database.database_service.engine
   cluster_id = ovh_cloud_project_database.database_service.id
   ip = "${each.value.access_ip_v4}/32"
