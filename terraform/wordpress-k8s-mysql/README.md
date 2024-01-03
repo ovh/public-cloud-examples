@@ -108,7 +108,7 @@ terraform plan -var-file=../secrets.tfvars
 ### Create the DB, website and the monitoring services - Layer 2
 
 ```console
-terraform apply -var-file=secrets.tfvars -auto-approve
+terraform apply -var-file=../secrets.tfvars -auto-approve
 ```
 
 ### Export the credentials
