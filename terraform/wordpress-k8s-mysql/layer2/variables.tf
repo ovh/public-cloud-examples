@@ -1,5 +1,4 @@
 
-    application_key    = ""
     application_secret = ""
     consumer_key       = ""
   }
