@@ -4,7 +4,6 @@ variable database {
   description = "Wordpress website database parameters"
   type     = map
   default = {
-    project_id = ""
     region     = ""
     plan       = ""
     flavor     = ""
