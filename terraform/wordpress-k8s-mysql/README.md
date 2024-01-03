@@ -126,5 +126,8 @@ With these exports you can go directly in any other example (e.g: go) to docker 
 ### Delete the DB and the cluster
 
 ```console
-terraform destroy -var-file=secrets.tfvars -auto-approve
+cd layer2
+terraform destroy -var-file=../secrets.tfvars -auto-approve
+cd ../layer1
+terraform destroy -var-file=../secrets.tfvars -auto-approve
 ```
