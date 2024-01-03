@@ -1,5 +1,4 @@
 
-  type    = map
     endpoint           = ""
     application_key    = ""
     application_secret = ""
