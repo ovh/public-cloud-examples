@@ -88,7 +88,7 @@ EOF
 ```console
 cd layer1
 terraform init
-terraform plan -var-file=secrets.tfvars
+terraform plan -var-file=../secrets.tfvars
 ```
 
 ### Create the cluster and the nodes-pool - Layer 1
