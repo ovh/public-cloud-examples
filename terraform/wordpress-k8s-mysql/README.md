@@ -48,7 +48,6 @@ export OVH_CLOUD_PROJECT_SERVICE="xxx"
 |Variable name        |Variable parameter   |Parameter description|
 |---------------------|---------------------|---------------------|
 |kubernetes|region|Region of the Kubernetes cluster|
-|database|project_id|Public cloud project service name|
 |database|region|Region of the database|
 |database|plan|Plan of the cluster|
 |database|flavor|A valid OVHcloud public cloud database flavor name|
