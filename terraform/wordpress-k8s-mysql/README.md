@@ -94,7 +94,7 @@ terraform plan -var-file=../secrets.tfvars
 ### Create the cluster and the nodes-pool - Layer 1
 
 ```console
-terraform apply -var-file=secrets.tfvars -auto-approve
+terraform apply -var-file=../secrets.tfvars -auto-approve
 ```
 
 ### Validate the configuration - Layer 2
