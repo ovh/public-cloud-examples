@@ -51,7 +51,7 @@ func main() {
 		ctx.Export("registryUser", myRegistryUser.User)
 		ctx.Export("registryPassword", myRegistryUser.Password)
 
-		//Use the created regsitry to initiate the harbor provider
+		//Use the created registry to initiate the harbor provider
 		harborProvider, err := harbor.NewProvider(ctx, "harbor", &harbor.ProviderArgs{
 			Username: myRegistryUser.User,
 			Password: myRegistryUser.Password,

@@ -48,7 +48,7 @@ cd ../..
  - Deploy an app (linked to the created private registry)
 
 ```bash
-kustomize build overlays/wescale | kubectl --kubeconfig=$KUBE_CLUSTER apply -f -
+kustomize build . | kubectl --kubeconfig=$KUBE_CLUSTER apply -f -
 ```
 
   - Check the app is running correctly (and image have been pulled successfully)
@@ -56,4 +56,12 @@ kustomize build overlays/wescale | kubectl --kubeconfig=$KUBE_CLUSTER apply -f -
 ```bash
 kubectl --kubeconfig=$KUBE_CLUSTER get po -l app=hello-ovh
 kubectl --kubeconfig=$KUBE_CLUSTER describe po -l app=hello-ovh 
+```
+
+  - Display the result
+
+```bash
+export SERVICE_URL=$(kubectl --kubeconfig=$KUBE_CLUSTER get svc hello-ovh -o jsonpath='{.status.loadBalancer.ingress[].ip}')
+
+curl $SERVICE_URL
 ```
