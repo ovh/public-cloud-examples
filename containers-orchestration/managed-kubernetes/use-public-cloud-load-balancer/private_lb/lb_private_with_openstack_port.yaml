@@ -1,0 +1,23 @@
+# Only available with a MKS cluster attached to a Private network
+apiVersion: v1
+kind: Service
+metadata:
+  name: octavia-private-with-openstack-port
+  annotations:
+    loadbalancer.ovhcloud.com/class: "octavia"
+    service.beta.kubernetes.io/openstack-internal-load-balancer: "true"
+    # Create a OpenStack port and use this as LB Ip address
+    # openstack port create --network bdd4fc7c-6a27-43d6-940a-8ed51e1fd22c --fixed-ip subnet=187dc936-c4ea-49ca-aff5-0a5eb7062ed9 my-lb-app-port
+    # openstack port create --network bdd4fc7c-6a27-43d6-940a-8ed51e1fd22c --fixed-ip subnet=187dc936-c4ea-49ca-aff5-0a5eb7062ed9,ip-address=10.0.2.2 my-lb-app-port-2
+    loadbalancer.openstack.org/port-id: "4c758644-af77-4e60-9e24-bc5e67295ac0"
+  labels:
+    app: test-octavia
+spec:
+  ports:
+  - name: client
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: nginx
+  type: LoadBalancer

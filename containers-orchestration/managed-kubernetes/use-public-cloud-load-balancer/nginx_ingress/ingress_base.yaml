@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: "main"
+  name: ngx-deploy-ingress
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - octavia.lgr-k8s.ovh
+    secretName: octavia-secret
+  rules:
+  - host: octavia.lgr-k8s.ovh
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: nginx-deployment
+            port:
+              number: 80

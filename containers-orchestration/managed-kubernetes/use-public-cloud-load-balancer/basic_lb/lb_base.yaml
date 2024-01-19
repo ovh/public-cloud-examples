@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: octavia-basic
+  annotations:
+    loadbalancer.ovhcloud.com/class: "octavia"
+  labels:
+    app: test-octavia
+spec:
+  ports:
+  - name: client
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: nginx
+  type: LoadBalancer
