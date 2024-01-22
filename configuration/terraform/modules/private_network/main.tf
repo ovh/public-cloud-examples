@@ -11,7 +11,7 @@ resource "openstack_networking_subnet_v2" "my_subnet" {
   cidr            = var.subnet.cidr
   enable_dhcp     = true
   no_gateway      = false
-  dns_nameservers = ["1.1.1.1", "1.0.0.1"]
+  dns_nameservers = ["213.186.33.99"]
 
   allocation_pool {
     start = var.subnet.dhcp_start

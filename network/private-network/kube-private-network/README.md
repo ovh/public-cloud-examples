@@ -615,8 +615,7 @@ Terraform will perform the following actions:
       + all_tags          = (known after apply)
       + cidr              = "192.168.29.0/24"
       + dns_nameservers   = [
-          + "1.1.1.1",
-          + "1.0.0.1",
+          + "213.186.33.99",
         ]
       + enable_dhcp       = true
       + gateway_ip        = (known after apply)
@@ -939,8 +938,7 @@ Terraform will perform the following actions:
       + all_tags          = (known after apply)
       + cidr              = "192.168.29.0/24"
       + dns_nameservers   = [
-          + "1.1.1.1",
-          + "1.0.0.1",
+          + "213.186.33.99",
         ]
       + enable_dhcp       = true
       + gateway_ip        = (known after apply)
@@ -1312,8 +1310,7 @@ Terraform will perform the following actions:
       - all_tags        = [] -> null
       - cidr            = "192.168.29.0/24" -> null
       - dns_nameservers = [
-          - "1.1.1.1",
-          - "1.0.0.1",
+          - "213.186.33.99",
         ] -> null
       - enable_dhcp     = true -> null
       - gateway_ip      = "192.168.29.1" -> null
