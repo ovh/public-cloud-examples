@@ -32,7 +32,7 @@ Get the public IP (EXTERNAL-IP) of your existing service
 ```shell
 $ kubectl get service octavia-small-to-upgrade -n demo-resize
 NAME                       TYPE           CLUSTER-IP    EXTERNAL-IP     PORT(S)        AGE
-octavia-small-to-upgrade   LoadBalancer   10.3.36.237   57.128.57.47    80:31146/TCP   2m15s
+octavia-small-to-upgrade   LoadBalancer   10.3.36.237   xx.xx.xx.xx    80:31146/TCP   2m15s
 ```
 
 Create a new service with the new expected flavor. To do so edit the `3_medium_service_deploy.yaml` manifest file to change the 'loadBalancerIP' then apply:
