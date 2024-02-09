@@ -49,7 +49,7 @@ Until the deletion of the previous service, this Service will only deploy the Lo
 $ kubectl get service -n demo-resize
 NAME                       TYPE           CLUSTER-IP     EXTERNAL-IP     PORT(S)        AGE
 octavia-medium-upgraded    LoadBalancer   10.3.182.241   <pending>       80:31619/TCP   88s
-octavia-small-to-upgrade   LoadBalancer   10.3.36.237    57.128.57.47    80:31146/TCP   5m5s
+octavia-small-to-upgrade   LoadBalancer   10.3.36.237    xx.xx.xx.xx    80:31146/TCP   5m5s
 ```
 
 Delete your old service to release the Floating IP so it can be assigned to the new one.
