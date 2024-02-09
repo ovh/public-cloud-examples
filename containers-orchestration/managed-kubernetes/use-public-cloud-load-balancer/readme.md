@@ -1,7 +1,7 @@
 ## Use OVHcloud Public Load Balancer
 
 ### Examples
-```
+
 ├── [basic_lb](./basic_lb)
 ├── [basic_lb_keepip](./basic_lb_keepip)
 ├── [basic_lb_udp_tcp](./basic_lb_udp_tcp)
@@ -11,7 +11,7 @@
 ├── [private_lb](./private_lb)
 ├── [resize_lb](./resize_lb)
 └── [tcp_tweak_lb](./tcp_tweak_lb)
-```
+
 
 ### General Information
 This set of example aim to help you to use OVHcloud Public Cloud Load Balancer to expose your app hosted on [Managed Kubernetes Service (MKS)](https://www.ovhcloud.com/en/public-cloud/kubernetes/).
