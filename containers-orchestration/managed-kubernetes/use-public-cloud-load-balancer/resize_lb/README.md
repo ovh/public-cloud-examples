@@ -65,7 +65,7 @@ This may take a few minutes as your service will make several retry (as long as 
 ```shell
 $ kubectl get service -n demo-resize
 NAME                       TYPE           CLUSTER-IP     EXTERNAL-IP     PORT(S)        AGE
-octavia-medium-upgraded    LoadBalancer   10.3.182.241   57.128.57.47    80:31619/TCP   5m3s
+octavia-medium-upgraded    LoadBalancer   10.3.182.241   xx.xx.xx.xx    80:31619/TCP   5m3s
 ```
 > [!warning]
 >
