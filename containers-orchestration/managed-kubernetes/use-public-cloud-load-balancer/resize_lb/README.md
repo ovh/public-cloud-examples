@@ -35,7 +35,7 @@ NAME                       TYPE           CLUSTER-IP    EXTERNAL-IP     PORT(S) 
 octavia-small-to-upgrade   LoadBalancer   10.3.36.237   57.128.57.47    80:31146/TCP   2m15s
 ```
 
-Create a new service with the new expected flavor. To do so edit the 3_medium_service_deploy manifest to change the 'loadBalancerIP' then apply:
+Create a new service with the new expected flavor. To do so edit the `3_medium_service_deploy.yaml` manifest file to change the 'loadBalancerIP' then apply:
 ```yaml
 spec:
   loadBalancerIP: 57.128.57.47 # Public Floating IP address from the previous service
