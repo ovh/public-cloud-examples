@@ -4,7 +4,7 @@ metadata:
   name: octavia-medium
   annotations:
     loadbalancer.ovhcloud.com/class: "octavia"
-    loadbalancer.ovhcloud.com/flavor: "medium" # OVHcloud Public Cloud loadbalancer flavor list: https://help.ovhcloud.com/csm/en-ie-public-cloud-network-octavia-use-lbaas-openstack?id=kb_article_view&sysparm_article=KB0050296
+    loadbalancer.ovhcloud.com/flavor: "medium" 
   labels:
     app: test-octavia
 spec:
