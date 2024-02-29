@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: python-cpu-load
+spec:
+  selector:
+    matchLabels:
+      run: python-cpu-load
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        run: python-cpu-load
+    spec:
+      containers:
+      - name: python-cpu-load
+        image: ovhcom/python-cpu-load:1.0.0
+        resources:
+          limits:
+            cpu: 300m
+            memory: 30Mi
+          requests:
+            cpu: 150m
+            memory: 15Mi
