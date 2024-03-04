@@ -11,6 +11,7 @@
 ### Set up
   - Install the [Terraform CLI](https://www.terraform.io/downloads.html)
   - Get the credentials from the OVHCloud Public Cloud project:
+    - `endpoint`
     - `application_key`
     - `application_secret`
     - `consumer_key`
