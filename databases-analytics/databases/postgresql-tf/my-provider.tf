@@ -7,5 +7,4 @@ terraform {
 }
 
 provider "ovh" {
-  endpoint           = "ovh-eu"
 }
