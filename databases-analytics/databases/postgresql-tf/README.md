@@ -16,7 +16,7 @@
     - `application_secret`
     - `consumer_key`
   - Get the `service_name` (Public Cloud project ID)
-  - Get your public IP address (you can use https://whatismyipaddress.com/ for example)
+  - Get your public IP address and export it in an `PUBLIC_IP` environment variable: `export PUBLIC_IP="$(curl ifconfig.me)"`
 
 ### Demo
   - set the environment variables `OVH_ENDPOINT`, `OVH_APPLICATION_KEY`, `OVH_APPLICATION_SECRET`, `OVH_CONSUMER_KEY`, `OVH_CLOUD_PROJECT_SERVICE` and `PUBLIC_IP`
