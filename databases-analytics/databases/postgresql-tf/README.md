@@ -16,18 +16,18 @@
     - `application_secret`
     - `consumer_key`
   - Get the `service_name` (Public Cloud project ID)
+  - Get your public IP address (you can use https://whatismyipaddress.com/ for example)
 
 ### Demo
-  - set the environment variables `OVH_ENDPOINT`, `OVH_APPLICATION_KEY`, `OVH_APPLICATION_SECRET`, `OVH_CONSUMER_KEY` and `OVH_CLOUD_PROJECT_SERVICE`
-  - replace the placeholder `<your ip here>` (see https://whatismyipaddress.com/)
+  - set the environment variables `OVH_ENDPOINT`, `OVH_APPLICATION_KEY`, `OVH_APPLICATION_SECRET`, `OVH_CONSUMER_KEY`, `OVH_CLOUD_PROJECT_SERVICE` and `PUBLIC_IP`
   - use the [my-ovh_postgresql_db.tf](my-ovh_postgresql_db.tf) file to define the resources to create
   - use the [output.tf](output.tf) file to display the PG informations (user, ...) at the end of Terraform execution
   - run the `terraform init` command
-  - run the `terraform plan -var="local_authorised_ip=<your IP>/32"` command if you need to run a gry run (optional) 
-  - run the `terraform apply -var="local_authorised_ip=<your IP>/32` command (~ 10 mins)
+  - run the `terraform plan -var="local_authorised_ip=$PUBLIC_IP/32"` command if you need to run a dry run (optional) 
+  - run the `terraform apply -var="local_authorised_ip=$PUBLIC_IP/32` command (~ 10 mins)
   - get the `outputs` value for the password: `terraform output -raw user_password`
   - test the connexion to the DB
-  - destroy the PostgreSQL: `terraform destroy -var="local_authorised_ip=<your IP>/32`
+  - destroy the PostgreSQL: `terraform destroy -var="local_authorised_ip=$PUBLIC_IP/32`
 
 
 ### After the demo
