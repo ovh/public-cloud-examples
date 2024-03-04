@@ -23,7 +23,7 @@
   - use the [my-ovh_postgresql_db.tf](my-ovh_postgresql_db.tf) file to define the resources to create
   - use the [output.tf](output.tf) file to display the PG informations (user, ...) at the end of Terraform execution
   - run the `terraform init` command
-  - run the `terraform plan -var="local_authorised_ip=<your IP>/32"` command
+  - run the `terraform plan -var="local_authorised_ip=<your IP>/32"` command if you need to run a gry run (optional) 
   - run the `terraform apply -var="local_authorised_ip=<your IP>/32` command (~ 10 mins)
   - get the `outputs` value for the password: `terraform output -raw user_password`
   - test the connexion to the DB
