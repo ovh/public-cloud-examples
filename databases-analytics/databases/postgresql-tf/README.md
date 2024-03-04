@@ -18,7 +18,7 @@
   - Get the `service_name` (Public Cloud project ID)
 
 ### Demo
-  - set the environment variables `OVH_APPLICATION_KEY`, `OVH_APPLICATION_SECRET`, `OVH_CONSUMER_KEY` and `OVH_CLOUD_PROJECT_SERVICE`
+  - set the environment variables `OVH_ENDPOINT`, `OVH_APPLICATION_KEY`, `OVH_APPLICATION_SECRET`, `OVH_CONSUMER_KEY` and `OVH_CLOUD_PROJECT_SERVICE`
   - replace the placeholder `<your ip here>` (see https://whatismyipaddress.com/)
   - use the [my-ovh_postgresql_db.tf](my-ovh_postgresql_db.tf) file to define the resources to create
   - use the [output.tf](output.tf) file to display the PG informations (user, ...) at the end of Terraform execution
