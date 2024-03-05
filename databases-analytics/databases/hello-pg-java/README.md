@@ -52,6 +52,6 @@
 ### After the demo
   - delete the app: `kubectl delete -f ./src/main/kubernetes/deploy-app.yml -n hello-pg-java`
   - delete the CR: `kubectl delete -f ./src/main/kubernetes/db-cr.yml`
-  - uninstall the operator: `helm delete public-cloud-databases-operator`
-  - delete the namespaces: `kubectl delete ns ovhcloud hello-pg`
+  - uninstall the operator: `helm delete public-cloud-databases-operator -n ovhcloud`
+  - delete the namespaces: `kubectl delete ns ovhcloud hello-pg-java`
   - if needed delete the token with https://api.ovh.com/console-preview/?section=%2Fme&branch=v1#delete-/me/api/credential/-credentialId-
