@@ -1,9 +1,0 @@
-image: bdmxla3s.gra7.container-registry.ovh.net/workshop_ia/101_ia:1.2.2
-
-tasks:
-  - name: Activate proper python and create environment file
-    init: echo 'init script' # runs during prebuild => https://www.gitpod.io/docs/configure/projects/prebuilds
-    command: |
-      source /home/gitpod/venv/bin/activate
-      source ./setup_env.sh
-
