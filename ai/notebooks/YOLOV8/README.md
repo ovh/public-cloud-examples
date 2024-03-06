@@ -1,4 +1,4 @@
-## Rock Paper Scissors game
+## Instructions to use the JupyterLab Notebook to create a model
 
 ### General information
   - 🔗 [AI Notebooks - Tutorial - Train YOLOv8 to play rock paper scissors](https://help.ovhcloud.com/csm/en-gb-public-cloud-ai-notebooks-tuto-rock-paper-scissors?id=kb_article_view&sysparm_article=KB0060272)
@@ -6,10 +6,9 @@
 
 ### Set up
   - install `ovhai` CLI, see [documentation](https://help.ovhcloud.com/csm/en-gb-public-cloud-ai-cli-install-client?id=kb_article_view&sysparm_article=KB0047844)
-  - create an S3 bucket named `rock-paper-scissors` ⚠️ This step is optional, this is more convenient to use the data with other demos or OVHckoud products ⚠️
+  - create an S3 bucket named `rock-paper-scissors` ⚠️ This step is optional, this is more convenient to use the data with other demos or OVHcloud products ⚠️
   - create an account on (roboflow)[https://universe.roboflow.com]
 
-### Demo
 #### AI Notebook with JupyterLab
   - create a notebook with the following command:
 ```bash
