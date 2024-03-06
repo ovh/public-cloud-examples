@@ -10,7 +10,7 @@
 ### Image build for AI Training
 
 	- build the image with the Python script: `docker build . -t ovhcom/rock-paper-scissors-training-job:1.0.0`
-	- push the image to the registry: `docker push . -t ovhcom/rock-paper-scissors-training-job:1.0.0`
+	- push the image to the registry: `docker push ovhcom/rock-paper-scissors-training-job:1.0.0`
 
 ### AI Training Job creation 
 
