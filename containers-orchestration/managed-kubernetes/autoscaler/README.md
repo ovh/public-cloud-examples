@@ -8,7 +8,7 @@
  - create a MKS cluster with activated autoscaler:
    - name: whatever you want
    - flavor: D2-4
-   - autoscalling set to `true` with 1 node pool as min and 10 as max
+   - autoscalling set to `true` with a node pool with 1 node minimum and 10 maximum
    - set the _kubeconfig_ file in the `KUBECONFIG` environment variable: `export KUBECONFIG=...`
  - if needed, build the heavy CPU load image:
    - `docker build -t <your-organisation>/python-cpu-load:1.0.0 .`, for example `docker build -t ovhcom/python-cpu-load:1.0.0 .`
