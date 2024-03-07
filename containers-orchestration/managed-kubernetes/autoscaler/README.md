@@ -2,6 +2,7 @@
 
 ### General information
  - 🔗 https://help.ovhcloud.com/csm/fr-public-cloud-kubernetes-cluster-autoscaler-example?id=kb_article_view&sysparm_article=KB0054914
+ - 🔗 https://help.ovhcloud.com/csm/fr-public-cloud-kubernetes-configure-cluster-autoscaler?id=kb_article_view&sysparm_article=KB0054929
 
 ### Set up
  - create a mks with activated autoscaler:
