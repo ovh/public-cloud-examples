@@ -7,7 +7,7 @@
 ### Set up
  - create a MKS cluster with activated autoscaler:
    - name: whatever you want
-   - flavor: D2-4
+   - flavor: D2-4 (for example)
    - autoscalling set to `true` with a node pool with 1 node minimum and 10 maximum
    - set the _kubeconfig_ file in the `KUBECONFIG` environment variable: `export KUBECONFIG=...`
  - if needed, build the heavy CPU load image:
