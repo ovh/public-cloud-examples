@@ -21,6 +21,7 @@
     - _CURRENT_ to `1`
     - _UP-TO-DATE_ to `1`
     - _AVAILABLE_ to `1`      
+  - optional, to scale down quicker you can decrease the thinking tile to 2 mins: `kubectl patch nodepool <node name> --type="merge" --patch='{"spec": {"autoscaling": {"scaleDownUnneededTimeSeconds": 120}}}'`
   - create a namespace: `kubectl create ns cluster-autoscaler`
   - apply the [cpu-load.yaml](cpu-load.yaml) manifest: `kubectl apply -f cpu-load.yml -n cluster-autoscaler`
   - display the created pods: `kubectl get pods -n cluster-autoscaler -w` (or use [k9s](https://k9scli.io/) 😉)
