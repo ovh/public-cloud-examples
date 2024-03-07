@@ -5,7 +5,7 @@
  - 🔗 https://help.ovhcloud.com/csm/fr-public-cloud-kubernetes-configure-cluster-autoscaler?id=kb_article_view&sysparm_article=KB0054929
 
 ### Set up
- - create a mks with activated autoscaler:
+ - create a MKS cluster with activated autoscaler:
    - name: whatever you want
    - flavor: D2-4
    - autoscalling set to `true` with 1 node pool as min and 10 as max
