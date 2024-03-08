@@ -26,12 +26,13 @@
   - apply the [cpu-load.yaml](cpu-load.yaml) manifest: `kubectl apply -f cpu-load.yml -n cluster-autoscaler`
   - display the created pods: `kubectl get pods -n cluster-autoscaler -w` (or use [k9s](https://k9scli.io/) 😉)
   - display the nodepools information: `kubectl get nodepools`
+  - display the nodes information: `kubectl get nodes -o wide`
   - increase the replicas to 10 and watch the pods and the nodepools:
-    - `kubectl patch deployment python-cpu-load --type="merge" --patch='{"spec": {"replicas": 10}}' -n cluster-autoscaler`
+    - `kubectl scale --replicas=10 deploy/python-cpu-load -n cluster-autoscaler`
     - `kubectl get pods -n cluster-autoscaler -w`
     - `kubectl get nodepools`
   - downsize the replicas to 3 and watch the pods and the nodepools (⚠️ the effective deletion occurs after 10 mins ⚠️):
-    - `kubectl patch deployment python-cpu-load --type="merge" --patch='{"spec": {"replicas": 3}}' -n cluster-autoscaler`
+    - `kubectl scale --replicas=3 deploy/python-cpu-load -n cluster-autoscaler`
     - `kubectl get pods -n cluster-autoscaler -w`
     - `kubectl get nodepools`
   - delete the deployment: `kubectl delete -f cpu-load.yml -n cluster-autoscaler`
