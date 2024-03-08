@@ -25,7 +25,14 @@
   - run the `terraform init` command
   - run the `terraform plan -var="local_authorised_ip=$PUBLIC_IP/32"` command if you need to run a dry run (optional) 
   - run the `terraform apply -var="local_authorised_ip=$PUBLIC_IP/32` command (~ 10 mins)
-  - get the `outputs` value for the password: `terraform output -raw user_password`
+  - get the `outputs` values and saved them in environment variables:
+  ```
+export DB_ID=$(terraform output db_id)
+export DB_URL=$(terraform output db_domain)
+export DB_PORT=$(terraform output db_port)
+export DB_USERNAME=$(terraform output user_name)
+export DB_PASSWORD=$(terraform output -raw user_password)
+```
   - test the connexion to the DB
   - destroy the PostgreSQL: `terraform destroy -var="local_authorised_ip=$PUBLIC_IP/32`
 
