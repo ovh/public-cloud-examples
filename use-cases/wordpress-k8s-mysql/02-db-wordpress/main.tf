@@ -10,16 +10,15 @@ resource "ovh_cloud_project_database" "database_service" {
   version     = var.database.version
   plan        = var.database.plan
   nodes {
-    region = var.database.region
+    region     = var.database.region
+    network_id = data.terraform_remote_state.kube.outputs.network.id
+    subnet_id  = data.terraform_remote_state.kube.outputs.subnet.id
   }
   flavor = var.database.flavor
 }
 
 # Create the managed mySQL DB
 resource "ovh_cloud_project_database_database" "wordpress_db" {
-  depends_on = [
-    ovh_cloud_project_database.database_service
-  ]
   engine     = "mysql"
   cluster_id = ovh_cloud_project_database.database_service.id
   name       = "wordpress_db"
@@ -48,17 +47,13 @@ resource "ovh_cloud_project_database_ip_restriction" "nodes_iprestriction" {
   depends_on = [
     ovh_cloud_project_database_database.wordpress_db
   ]
-  for_each   = data.openstack_compute_instance_v2.instances
   engine     = ovh_cloud_project_database.database_service.engine
   cluster_id = ovh_cloud_project_database.database_service.id
-  ip         = "${each.value.access_ip_v4}/32"
+  ip         = data.terraform_remote_state.kube.outputs.subnet.cidr
 }
 
 # Create the wordpress web site and connect it to the DB
 resource "helm_release" "wordpress" {
-  depends_on = [
-    ovh_cloud_project_database_user.wordpress_db_user
-  ]
   name       = "wordpress"
   repository = "https://charts.bitnami.com/bitnami"
   chart      = "wordpress"

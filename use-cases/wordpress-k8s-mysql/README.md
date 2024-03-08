@@ -69,21 +69,30 @@ export OS_REGION_NAME="XX"
 
 ### Create the Terraform variables file (configuration)
 
-Create the Terraform variables configuration file and fill the needed informations.
+Create the 2 Terraform variables configuration files and fill the needed information.
 
 ```bash
-vi variables.tfvars
+vi variables_01.tfvars
+```
+Add the following for the kubernetes cluster & customize if needed
+```
+kubernetes = {
+    region = "GRA11"
+}
+```
 
+Add the following & customize if needed
+```bash
+vim variables_02.tfvars
+```
+Add the following for the kubernetes cluster & customize if needed
+```
 database = {
-    region       = "DE"
+    region       = "GRA"
     plan         = "essential"
     flavor       = "db1-7"
     version      = "8"
-}
-
-kubernetes = {
-    region = "DE"
-}
+} 
 ```
 
 ### Validate the configuration - 01-kube
@@ -91,13 +100,13 @@ kubernetes = {
 ```bash
 cd 01-kube
 terraform init
-terraform plan -var-file=../variables.tfvars
+terraform plan -var-file=../variables_01.tfvars
 ```
 
 ### Create the cluster and the nodes-pool - 01-kube
 
 ```bash
-terraform apply -var-file=../variables.tfvars -auto-approve
+terraform apply -var-file=../variables_01.tfvars -auto-approve
 ```
 
 ### Validate the configuration - 02-db-wordpress
@@ -105,7 +114,7 @@ terraform apply -var-file=../variables.tfvars -auto-approve
 ```bash
 cd ../02-db-wordpress
 terraform init
-terraform plan -var-file=../variables.tfvars
+terraform plan -var-file=../variables_02.tfvars
 ```
 
 ### Create the DB, website and the monitoring services - 02-db-wordpress
@@ -130,7 +139,7 @@ With these exports you can go directly in any other example (e.g: go) to docker 
 
 ```bash
 cd 02-db-wordpress
-terraform destroy -var-file=../variables.tfvars -auto-approve
+terraform destroy -var-file=../variables_02.tfvars -auto-approve
 cd ../01-kube
-terraform destroy -var-file=../variables.tfvars -auto-approve
+terraform destroy -var-file=../variables_01.tfvars -auto-approve
 ```
