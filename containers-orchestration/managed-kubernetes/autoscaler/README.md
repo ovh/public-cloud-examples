@@ -19,7 +19,7 @@
     - _AUTOSCALED_ to `true`
     - _DESIRED_ to `1`
     - _CURRENT_ to `1`
-    - _UP-TO-DATE_ to `1`
+    - _UP-TO-DATE_ to `0`
     - _AVAILABLE_ to `1`      
   - optional, to scale down quicker you can decrease the thinking time to 2 mins: `kubectl patch nodepool <node name> --type="merge" --patch='{"spec": {"autoscaling": {"scaleDownUnneededTimeSeconds": 120}}}'`
   - create a namespace: `kubectl create ns cluster-autoscaler`
