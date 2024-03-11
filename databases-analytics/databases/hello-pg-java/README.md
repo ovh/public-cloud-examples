@@ -28,7 +28,7 @@
     - build the image: `docker build -f src/main/docker/Dockerfile.jvm -t ovhcom/hello-pg-java:1.0.0 .` (⚠️ Change the tag corresponding to the app version you build ⚠️)
     - after login to your registry, push the image `docker push ovhcom/hello-pg-java:1.0.0`
   - create the namespace `hello-pg-java`: `kubectl create ns hello-pg-java`
-  - deploy the Quarkus app: `envsubst < src/main/kubernetes/deploy-app.yml | kubectl apply -n hello-pg-java -f -`, ⚠️ Note the use of `envsubst` to use local environment variable when you run `kubectl apply` command. Off course you can (should?) use _configmap_, _secret_, _helm_, _kustomize_,... to manage this kind og data.
+  - deploy the Quarkus app: `envsubst < src/main/kubernetes/deploy-app.yml | kubectl apply -n hello-pg-java -f -`, ⚠️ Note the use of `envsubst` to use local environment variable when you run `kubectl apply` command. Of course you can (should?) use _configmap_, _secret_, _helm_, _kustomize_,... to manage this kind of data.
   - the app is deployed but there is an error in the Quarkus app: `Could not obtain connection to query metadata: java.sql.SQLException: Acquisition timeout while waiting for new connection`
     - the reason: you need to whitelist the MKS node IP to enable the Quarkus app access to the DB
   - create the namespace `ovhcloud`: `kubectl create ns ovhcloud`
