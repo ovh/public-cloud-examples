@@ -1,0 +1,8 @@
+apiVersion: cloud.ovh.net/v1alpha1
+kind: Database
+metadata:
+  name: mydatabase
+  namespace: ovhcloud
+spec:
+  projectId: $OVH_CLOUD_PROJECT_SERVICE
+  serviceId: $DB_ID

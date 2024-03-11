@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: quarkus-deployment
+  labels:
+    app: quarkus
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: quarkus
+  template:
+    metadata:
+      labels:
+        app: quarkus
+    spec:
+      containers:
+        - name: quarkus
+          image: "ovhcom/hello-pg-java:1.0.0"
+          env:
+          - name: DS_USERNAME
+            value: "$DB_USERNAME"
+          - name: DS_PASSWORD
+            value: "$DB_PASSWORD"
+          - name: DS_URL
+            value: "$DB_URL"
+          - name: DS_PORT
+            value: "$DB_PORT"
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "0"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"          
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          imagePullPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: quarkus-service
+  labels:
+    app: quarkus
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 8080
+    protocol: TCP
+    name: http
+  selector:
+    app: quarkus

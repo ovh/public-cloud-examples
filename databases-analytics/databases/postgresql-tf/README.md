@@ -24,7 +24,7 @@
   - use the [output.tf](output.tf) file to display the PG informations (user, ...) at the end of Terraform execution
   - run the `terraform init` command
   - run the `terraform plan -var="local_authorised_ip=$PUBLIC_IP/32"` command if you need to run a dry run (optional) 
-  - run the `terraform apply -var="local_authorised_ip=$PUBLIC_IP/32` command (~ 10 mins)
+  - run the `terraform apply -var="local_authorised_ip=$PUBLIC_IP/32"` command (~ 10 mins)
   - get the `outputs` value for the password: `terraform output -raw user_password`
   - test the connexion to the DB
   - destroy the PostgreSQL: `terraform destroy -var="local_authorised_ip=$PUBLIC_IP/32`
