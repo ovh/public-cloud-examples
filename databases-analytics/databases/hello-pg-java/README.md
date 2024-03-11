@@ -44,7 +44,7 @@
                  --namespace ovhcloud
 ```
   - apply the CR: `envsubst < src/main/kubernetes/db-cr.yml | kubectl apply -n ovhcloud -f -`  
-  - if needed, delete the pod to force restarting: `kubectl delete pod <podId> -n hello-pg-java`
+  - if needed, delete the pod to force restarting: `kubectl delete pod $(kubectl get pods -l app=quarkus -n hello-pg-java -o jsonpath='{.items[0].metadata.name}') -n hello-pg-java`
   - get the app root URL: `export APP_URL=$(kubectl get svc quarkus-service -o jsonpath='{.status.loadBalancer.ingress[0].ip}' -n hello-pg-java)`
   - test the app: `curl http://$APP_URL/heys`
 
