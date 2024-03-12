@@ -5,11 +5,11 @@ import os
 #######################################################################################################################
 ## 🎯 The aim of this script is to create an Rock/Paper/Scissors application based on a trained model (from YOLOv8). ##
 ## ℹ️ Note on the environments variables:                                                                            ##
-##      - WORK_PATH (default value: '/workspace/attendee/') is the path where get the model and store de snapshots   ##
+##      - WORK_PATH (default value: '/workspace/data/') is the path where get the model and store de snapshots       ##
 #######################################################################################################################
 
 # 🛠 Get configuration from environment variables
-WORK_PATH = os.getenv('WORK_PATH', '/workspace/attendee/')
+WORK_PATH = os.getenv('WORK_PATH', '/workspace/data/')
 
 # Save uploaded photo
 def save_photo(photo):

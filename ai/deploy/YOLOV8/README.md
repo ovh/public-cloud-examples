@@ -9,7 +9,7 @@
 
 ### Image build for AI Deploy
 
-    - build the image: `docker build . -t ovhcom/rock-paper-scissors-deploy-app:1.0.0`
+    - build the image: `docker build -t ovhcom/rock-paper-scissors-deploy-app:1.0.0 .`
     - push the image in the registry: `docker push ovhcom/rock-paper-scissors-deploy-app:1.0.0`
 
 ### Deploy the application with AI Deploy
@@ -22,7 +22,7 @@ ovhai app run \
     --default-http-port 8501 \
     --volume rock-paper-scissors-data@S3GRA/:/workspace/data:RW:cache \
     --unsecure-http \
-    rock-paper-scissors-deploy-app:1.0.0
+    ovhcom/rock-paper-scissors-deploy-app:1.0.0
 ```
 
 You can follow the training with the logs: `ovhai app logs -f <job id>`

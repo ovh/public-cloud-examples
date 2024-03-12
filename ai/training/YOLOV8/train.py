@@ -9,9 +9,9 @@ import os
 ##      - NB_OF_EPOCHS (default value: 50) is an environment variable passed to the Docker run command to specify    ##
 ## the number of epochs                                                                                              ##
 ##      - DEVICE_TO_USE (default value 0) is to specify to use GPU (0) or CPU (cpu)                                  ##
-##		  - PATH_TO_DATASET (default value is '/workspace/data/data.yaml') is to specify the path to the           ##
+##		  - PATH_TO_DATASET (default value is '/workspace/data/data.yaml') is to specify the path to the               ##
 ## training dataset                                                                                                  ##
-##		  - PATH_TO_EXPORTED_MODEL (default value is '/workspace/data/') is to specify the path where export the   ##
+##		  - PATH_TO_EXPORTED_MODEL (default value is '/workspace/data/') is to specify the path where export the       ##
 ## trained model                                                                                                     ##
 #######################################################################################################################
 
