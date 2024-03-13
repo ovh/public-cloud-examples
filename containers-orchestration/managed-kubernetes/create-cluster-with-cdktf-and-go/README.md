@@ -34,6 +34,7 @@ export OVH_CLOUD_PROJECT_SERVICE="xxx"
 ### Set up
   - Install the [CDKTF CLI](https://developer.hashicorp.com/terraform/tutorials/cdktf/cdktf-install)
   - Install the kubectl CLI
+  - Install Go
 
 ### Demo
 
