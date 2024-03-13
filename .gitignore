@@ -16,3 +16,6 @@ basics/utils/vars.csv
 containers-orchestration/managed-kubernetes/create-cluster-with-tf/my_kube_cluster.yml
 containers-orchestration/managed-private-registry/create-registry-with-pulumi/ovhcloud-registry-go/Pulumi.dev.yaml
 .quarkus/
+containers-orchestration/managed-kubernetes/create-cluster-with-cdktf-and-go/kubeconfig.yaml
+containers-orchestration/managed-kubernetes/create-cluster-with-cdktf-and-go/generated
+containers-orchestration/managed-kubernetes/create-cluster-with-cdktf-and-go/cdktf.out

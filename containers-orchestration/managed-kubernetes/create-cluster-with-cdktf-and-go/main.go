@@ -21,9 +21,6 @@ func NewMyStack(scope constructs.Construct, id string) cdktf.TerraformStack {
 	// Initialize the OVH provider
 	ovh.NewOvhProvider(stack, jsii.String("ovh"), &ovh.OvhProviderConfig{
 		Endpoint: jsii.String("ovh-eu"), //required
-		//ApplicationKey:    jsii.String(""),       //required OVH_APPLICATION_KEY
-		//ApplicationSecret: jsii.String(""),       //required OVH_APPLICATION_SECRET
-		//ConsumerKey:       jsii.String(""),       //required OVH_CONSUMER_KEY
 	})
 
 	// Initialize the Local provider
@@ -48,6 +45,7 @@ func NewMyStack(scope constructs.Construct, id string) cdktf.TerraformStack {
 	file.NewFile(stack, jsii.String("kubeconfig"), &file.FileConfig{
 		Filename: jsii.String(path.Join(pwd, "kubeconfig.yaml")),
 		Content:  kube.Kubeconfig(),
+		FilePermission: jsii.String("0644"),
 	})
 
 	// Deploy a Node Pool
