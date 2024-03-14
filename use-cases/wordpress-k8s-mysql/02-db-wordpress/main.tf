@@ -53,6 +53,7 @@ resource "ovh_cloud_project_database_ip_restriction" "nodes_iprestriction" {
 }
 
 # Create the wordpress web site and connect it to the DB
+# More details on parameter at https://github.com/bitnami/charts/tree/main/bitnami/wordpress
 resource "helm_release" "wordpress" {
   name       = "wordpress"
   repository = "https://charts.bitnami.com/bitnami"
@@ -82,4 +83,7 @@ resource "helm_release" "wordpress" {
     name  = "externalDatabase.database"
     value = ovh_cloud_project_database_database.wordpress_db.name
   }
+  depends_on = [
+    local_file.kubeconfig_file
+  ]
 }

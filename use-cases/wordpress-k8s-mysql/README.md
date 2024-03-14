@@ -37,13 +37,14 @@ export OS_REGION_NAME="XX"
 
 ### Layer 1 : kube
 
-* Deployment of a managed Kubernetes cluster with its node-pool
+* Create a private network with a [gateway](https://www.ovhcloud.com/en-gb/public-cloud/gateway/)
+* Deployment of a managed Kubernetes cluster with its node-pool deployed on the private network
 
 ### Layer 2 : db & wordpress
 
 * Deployment of a managed MySQL DB with its OVHcloud user
 * IP restriction on DBs
-* Deployment of a Wordpress website with Helm
+* Deployment of a Wordpress website with Helm using [bitnami package](https://github.com/bitnami/charts/tree/main/bitnami/wordpress/1)
 * Interconnection of the DB and the website
 
 ### Configuration files
@@ -117,23 +118,25 @@ terraform init
 terraform plan -var-file=../variables_02.tfvars
 ```
 
-### Create the DB, website and the monitoring services - 02-db-wordpress
+### Create the DB, website - 02-db-wordpress
 
 ```bash
 terraform apply -var-file=../variables.tfvars -auto-approve
 ```
 
-### Export the credentials
+### Login into Wordpress 
 
-If you need to re-use the credentials in other scripts, you can export the user credentials and the URI
-
+Get the Load Balancer service IP
 ```bash
-export PASSWORD=$(terraform output -raw user_password)
-export USER=$(terraform output -raw user_name)
-export URI=$(terraform output -raw cluster_uri)
+kubectl --kubeconfig=./kubeconfig_file get svc
 ```
 
-With these exports you can go directly in any other example (e.g: go) to docker build and run it and see it working.
+The wordpress site is available at this IP. 
+
+The back office is available under `/wp-admin/`. The default user is `user`, the generated password can be retrieved using :
+```bash
+kubectl --kubeconfig=./kubeconfig_file get secret --namespace default wordpress -o jsonpath="{.data.wordpress-password}" | base64 -d
+```
 
 ### Delete the DB and the cluster
 
