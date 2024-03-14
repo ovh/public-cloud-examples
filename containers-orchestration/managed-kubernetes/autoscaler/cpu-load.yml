@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: python-cpu-load
-        image: ovhcom/python-cpu-load:0.0.1
+        image: ovhcom/python-cpu-load:1.0.0
         resources:
           limits:
             cpu: 300m
