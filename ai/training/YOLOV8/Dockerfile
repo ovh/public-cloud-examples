@@ -1,4 +1,4 @@
-FROM alpine:3.19 AS certs
+FROM my-artifactory-namespace-my-artifactory-component-docker.artifactory.ovhcloud.tools/alpine:3.19 AS certs
 
 RUN apk update && \
     apk --no-cache add tzdata && \
