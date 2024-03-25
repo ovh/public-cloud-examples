@@ -2,7 +2,7 @@
 
 ### General information
  - 🔗 [Using Terraform with OVHcloud](https://help.ovhcloud.com/csm/fr-terraform-at-ovhcloud?id=kb_article_view&sysparm_article=KB0054776)
- - 🔗 [Creating a cluster through CDK for Terraform](TODO)
+ - 🔗 [Creating a cluster through CDK for Terraform](https://help.ovhcloud.com/csm/en-gb-public-cloud-kubernetes-create-cluster-with-cdktf?id=kb_article_view&sysparm_article=KB0062120)
  - 🔗 [ovh_cloud_project_kube](https://registry.terraform.io/providers/ovh/ovh/latest/docs/resources/cloud_project_kube)
  - 🔗 [OVH token generation page](https://www.ovh.com/auth/api/createToken?GET=/*&POST=/*&PUT=/*&DELETE=/*)
 
