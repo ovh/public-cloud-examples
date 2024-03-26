@@ -1,4 +1,4 @@
-## Create a MKS cluster through Rancher
+## Create a Managed Kubernetes cluster through Rancher
 
 ### General information
  - 🔗 [Getting started with Managed Rancher Service](https://help.ovhcloud.com/csm/en-gb-public-cloud-managed-rancher-service-getting-started?id=kb_article_view&sysparm_article=KB0061909)
