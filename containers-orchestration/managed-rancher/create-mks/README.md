@@ -30,7 +30,7 @@
 
 #### Create a MKS through Rancher
 
-  - In Rancher UI, click on the **Create** button to create a MKS cluster.
+  - In Rancher UI, click on the **Create** button to create a Managed Kubernetes cluster.
   - Click on the **OVHcloud MKS** driver
   - Fill a cluster name and the credentials you saved earlier then click on **Next: Cluster Configuration** button.
   - Select the region, the Kubernetes version and update policy then click on **Next: Network Configuration** button.
