@@ -40,7 +40,7 @@ export OVH_CLOUD_PROJECT_SERVICE="xxx"
 
   - run the `cdktf get` command (to download providers)
   - run the `cdktf deploy` command (~ 10 mins)
-  - save the path of kubeconfig in an environment variable
+  - the kubeconfig file have been created locally. Save its path in an environment variable:
 
 ```bash
 export KUBE_CLUSTER=$(pwd)/kubeconfig.yaml
