@@ -39,7 +39,7 @@
 
   - wait around 15-20 minutes... and then the cluster will be created.
 
-  - check the checkbow for your cluster and click on **Download KubeConfig** button and save the path of kubeconfig in an environment variable (for later ^^)
+  - check the checkbox for your cluster and click on **Download KubeConfig** button and save the path of kubeconfig in an environment variable (for later ^^)
 
 ```bash
 export KUBE_CLUSTER=$(pwd)/my_kube_cluster.yml
