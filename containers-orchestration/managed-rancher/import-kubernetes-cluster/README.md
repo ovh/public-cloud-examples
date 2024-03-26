@@ -22,7 +22,7 @@
   - fill a name (`my_demo_rancher` for example), choose the **Standard** plan, the recommended version then click on the **Create a Managed Rancher Service** button.
   Rancher instances are pre-provisioned, so your instance will be created immediately.
 
-  - In the list of existing MRS, click on your instance, then click on **Generate access code** button to generate the login and password to access to Rancher. Save the login and password and click on **Go to Rancher** button.
+  - In the list of existing Managed Rancher Service, click on your instance, then click on **Generate access code** button to generate the login and password to access to Rancher. Save the login and password and click on **Go to Rancher** button.
 
   -  Copy/paste the password in **password** field and click on **Log in with Local User** button.
 
