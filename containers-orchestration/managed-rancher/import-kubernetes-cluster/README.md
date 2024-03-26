@@ -10,7 +10,8 @@
     - `application_secret`
     - `consumer_key`
   - Get the `service_name` (Public Cloud project ID)
-  - Install the kubectl CLI
+  - Install the [kubectl CLI](https://kubernetes.io/docs/tasks/tools/#kubectl)
+  - [Create a Kubernetes cluster with Terraform](../managed-kubernetes/create-cluster-with-tf)
 
 ### Demo
 
@@ -28,12 +29,9 @@
 
   - A new password wil be generated, save it! Save the server URL too, check the **End User License Agreement** checkbox and click on the **Continue** button.
 
-#### Create a MKS
-
-  - Follow the [Create a Kubernetes cluster with Terraform](../managed-kubernetes/create-cluster-with-tf) guide
-
 #### Import an existing MKS through Rancher
 
   - In Rancher UI, click on the **Import Existing** button and then on the **Generic** driver.
   - fill the name of your cluster and then click on the **Create** button (**if the name contains `_` replace by `-`!**)
+  - In the Rancher UI Home Page, click on the **Manage** button then click on the name of your Kubernetes cluster you want to import
   - Run the instructions provided on the **Registration** tab

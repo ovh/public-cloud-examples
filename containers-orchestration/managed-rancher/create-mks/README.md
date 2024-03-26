@@ -10,7 +10,7 @@
     - `application_secret`
     - `consumer_key`
   - Get the `service_name` (Public Cloud project ID)
-  - Install the kubectl CLI
+  - Install the [kubectl CLI](https://kubernetes.io/docs/tasks/tools/#kubectl)
 
 ### Demo
 
