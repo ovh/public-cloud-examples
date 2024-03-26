@@ -35,5 +35,5 @@
 #### Import an existing MKS through Rancher
 
   - In Rancher UI, click on the **Import Existing** button and then on the **Generic** driver.
-  - fill the name of your cluster and then click on the **Create** button (if the name contains `_` replace by `-`!)
+  - fill the name of your cluster and then click on the **Create** button (**if the name contains `_` replace by `-`!**)
   - Run the instructions provided on the **Registration** tab
