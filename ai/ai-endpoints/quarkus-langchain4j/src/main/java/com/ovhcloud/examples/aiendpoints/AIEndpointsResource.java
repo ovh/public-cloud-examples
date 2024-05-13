@@ -19,4 +19,5 @@ public class AIEndpointsResource {
     // Call the Mistral AI chat model
     return  chatBotService.askAQuestion(question);    
   }
+
 }
