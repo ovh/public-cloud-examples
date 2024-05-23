@@ -32,7 +32,7 @@ export OVH_CLOUD_PROJECT_SERVICE="xxx"
 * Create a private network with a [gateway](https://www.ovhcloud.com/en-gb/public-cloud/gateway/)
 * Deployment of a Managed Kubernetes cluster with its node pool deployed on the private network
 
-### Layer 2 : Database & Wordpress
+### Layer 2 : MySQL & Wordpress
 
 * Deployment of a managed MySQL DB with its OVHcloud user
 * IP restriction on DBs
@@ -62,23 +62,24 @@ export OVH_CLOUD_PROJECT_SERVICE="xxx"
 
 ### Create the Terraform variables file (configuration)
 
-Create the 2 Terraform variables configuration files and fill the needed information.
+Two Terraform variables configuration files have been already created. Edit them to modify the needed information.
 
 ```bash
 vi variables_01.tfvars
 ```
-Add the following for the kubernetes cluster & customize if needed
+The following variable allows to deploy the Kubernetes cluster in GRA11 region:
 ```
 kubernetes = {
     region = "GRA11"
 }
 ```
+If you want to deploy it in another region, edit the file with the wanted region.
 
 Add the following & customize if needed
 ```bash
 vi variables_02.tfvars
 ```
-Add the following for the kubernetes cluster & customize if needed
+The following variable allows to deploy the MySQL DB v8 in GRA region with essential plan and db1-7 flavor:
 ```
 database = {
     region       = "GRA"
@@ -87,6 +88,7 @@ database = {
     version      = "8"
 } 
 ```
+Customize the values if needed.
 
 ### Validate the configuration - 01-kube
 
@@ -125,7 +127,7 @@ kubectl --kubeconfig=./kubeconfig.yml get svc
 
 The Wordpress site is available at this IP. 
 
-Workdpress back office is available under `/wp-admin/`. The default user is `user`, the generated password can be retrieved using :
+Wordpress' back-office is available under `/wp-admin/`. The default user is `user`, the generated password can be retrieved using :
 ```bash
 kubectl --kubeconfig=./kubeconfig.yml get secret -n default wordpress -o jsonpath="{.data.wordpress-password}" | base64 -d
 ```
