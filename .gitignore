@@ -20,3 +20,6 @@ containers-orchestration/managed-kubernetes/create-cluster-with-cdktf-and-go/kub
 containers-orchestration/managed-kubernetes/create-cluster-with-cdktf-and-go/generated
 containers-orchestration/managed-kubernetes/create-cluster-with-cdktf-and-go/cdktf.out
 .vscode/settings.json
+
+# Python 
+venv/
