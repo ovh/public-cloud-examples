@@ -1,22 +1,21 @@
-# Deploy a Wordpress website and Mysql DB with Terraform
+# Deploy a Wordpress website and MySQL DB with Terraform
 
 The purpose of this tutorial is to create a Mysql database and a Wordpress website and link them together in a Kubernetes cluster.
 
+![Infrastructure diagram](./img/diagram.png)
+
 We will divide the project into two layers. The first layer is used to deploy the cluster and fetch the nodes. The second layer is used to deploy the services. Each layer is executed one by one.
 
-![Infrastructure diagram](./img/diagram.png)
+
 
 ## Requirements
 
 You need the following:
 * [Terraform](https://www.terraform.io/) installed
-* [curl](https://curl.se/) installed
 * an [OVHcloud Public cloud project](https://www.ovhcloud.com/en/public-cloud/)
 * OVHcloud API credentials
     * [EU](https://www.ovh.com/auth/?onsuccess=https%3A%2F%2Fwww.ovh.com%2Fauth%2FcreateToken%2F%3F)
-    * [CA](https://ca.ovh.com/auth/?onsuccess=https%3A//ca.ovh.com%2Fauth%2FcreateToken%2F%3F)
-* [OpenStack credentials](https://help.ovhcloud.com/csm/en-public-cloud-compute-set-openstack-environment-variables?id=kb_article_view&sysparm_article=KB0050920)
-
+    * [CA](https://ca.ovh.com/auth/?onsuccess=https%3A//ca.ovh.com%2Fauth%2FcreateToken%2F%3F)cd 
 ## Set the environment variables
 
 ```bash
@@ -26,24 +25,18 @@ export OVH_APPLICATION_KEY="xxx"
 export OVH_APPLICATION_SECRET="xxx"
 export OVH_CONSUMER_KEY="xxx"
 export OVH_CLOUD_PROJECT_SERVICE="xxx"
-
-# OpenStack credentials
-export OS_AUTH_URL=https://auth.cloud.ovh.net/v3
-export OS_TENANT_NAME="11111111111"
-export OS_USERNAME="user-xxxxxxxx"
-export OS_PASSWORD="xx"
-export OS_REGION_NAME="XX"
 ```
 
-### Layer 1 : kube
+### Layer 1 : Kubernetes
 
-* Deployment of a managed Kubernetes cluster with its node-pool
+* Create a private network with a [gateway](https://www.ovhcloud.com/en-gb/public-cloud/gateway/)
+* Deployment of a Managed Kubernetes cluster with its node pool deployed on the private network
 
-### Layer 2 : db & wordpress
+### Layer 2 : MySQL & Wordpress
 
 * Deployment of a managed MySQL DB with its OVHcloud user
 * IP restriction on DBs
-* Deployment of a Wordpress website with Helm
+* Deployment of a Wordpress website with Helm using [bitnami package](https://github.com/bitnami/charts/tree/main/bitnami/wordpress/1)
 * Interconnection of the DB and the website
 
 ### Configuration files
@@ -69,35 +62,46 @@ export OS_REGION_NAME="XX"
 
 ### Create the Terraform variables file (configuration)
 
-Create the Terraform variables configuration file and fill the needed informations.
+Two Terraform variables configuration files have been already created. Edit them to modify the needed information.
 
 ```bash
-vi variables.tfvars
+vi variables_01.tfvars
+```
+The following variable allows to deploy the Kubernetes cluster in GRA11 region:
+```
+kubernetes = {
+    region = "GRA11"
+}
+```
+If you want to deploy it in another region, edit the file with the wanted region.
 
+Add the following & customize if needed
+```bash
+vi variables_02.tfvars
+```
+The following variable allows to deploy the MySQL DB v8 in GRA region with essential plan and db1-7 flavor:
+```
 database = {
-    region       = "DE"
+    region       = "GRA"
     plan         = "essential"
     flavor       = "db1-7"
     version      = "8"
-}
-
-kubernetes = {
-    region = "DE"
-}
+} 
 ```
+Customize the values if needed.
 
 ### Validate the configuration - 01-kube
 
 ```bash
 cd 01-kube
 terraform init
-terraform plan -var-file=../variables.tfvars
+terraform plan -var-file=../variables_01.tfvars
 ```
 
 ### Create the cluster and the nodes-pool - 01-kube
 
 ```bash
-terraform apply -var-file=../variables.tfvars -auto-approve
+terraform apply -var-file=../variables_01.tfvars -auto-approve
 ```
 
 ### Validate the configuration - 02-db-wordpress
@@ -105,32 +109,34 @@ terraform apply -var-file=../variables.tfvars -auto-approve
 ```bash
 cd ../02-db-wordpress
 terraform init
-terraform plan -var-file=../variables.tfvars
+terraform plan -var-file=../variables_02.tfvars
 ```
 
-### Create the DB, website and the monitoring services - 02-db-wordpress
+### Create the DB, website - 02-db-wordpress
 
 ```bash
-terraform apply -var-file=../variables.tfvars -auto-approve
+terraform apply -var-file=../variables_02.tfvars -auto-approve
 ```
 
-### Export the credentials
+### Login into Wordpress 
 
-If you need to re-use the credentials in other scripts, you can export the user credentials and the URI
-
+Get the Load Balancer service IP
 ```bash
-export PASSWORD=$(terraform output -raw user_password)
-export USER=$(terraform output -raw user_name)
-export URI=$(terraform output -raw cluster_uri)
+kubectl --kubeconfig=./kubeconfig.yml get svc
 ```
 
-With these exports you can go directly in any other example (e.g: go) to docker build and run it and see it working.
+The Wordpress site is available at this IP. 
 
-### Delete the DB and the cluster
+Wordpress' back-office is available under `/wp-admin/`. The default user is `user`, the generated password can be retrieved using :
+```bash
+kubectl --kubeconfig=./kubeconfig.yml get secret -n default wordpress -o jsonpath="{.data.wordpress-password}" | base64 -d
+```
+
+### Delete the DB and the Kubernetes cluster
 
 ```bash
 cd 02-db-wordpress
-terraform destroy -var-file=../variables.tfvars -auto-approve
+terraform destroy -var-file=../variables_02.tfvars -auto-approve
 cd ../01-kube
-terraform destroy -var-file=../variables.tfvars -auto-approve
+terraform destroy -var-file=../variables_01.tfvars -auto-approve
 ```
