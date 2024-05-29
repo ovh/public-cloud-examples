@@ -1,4 +1,4 @@
-This project illustrate how to use[ Qarkus LangChain4j](https://github.com/quarkiverse/quarkus-langchain4j) extension with [AI Endpoints](https://endpoints.ai.cloud.ovh.net/).
+This project illustrate how to use[Quarkus LangChain4j](https://github.com/quarkiverse/quarkus-langchain4j) extension with [AI Endpoints](https://endpoints.ai.cloud.ovh.net/).
 
 ## How to use the project
   - start `quarkus dev` mode

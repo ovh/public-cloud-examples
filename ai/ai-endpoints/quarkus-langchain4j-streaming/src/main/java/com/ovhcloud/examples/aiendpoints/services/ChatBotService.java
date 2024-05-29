@@ -1,51 +1,14 @@
 package com.ovhcloud.examples.aiendpoints.services;
 
-import dev.langchain4j.data.message.AiMessage;
-import dev.langchain4j.model.StreamingResponseHandler;
-import dev.langchain4j.model.chat.ChatLanguageModel;
-import dev.langchain4j.model.chat.StreamingChatLanguageModel;
-import dev.langchain4j.model.output.Response;
+import dev.langchain4j.service.SystemMessage;
+import dev.langchain4j.service.UserMessage;
+import io.quarkiverse.langchain4j.RegisterAiService;
 import io.smallrye.mutiny.Multi;
-import jakarta.enterprise.context.ApplicationScoped;
 
-@ApplicationScoped
-public class ChatBotService {
-  private final ChatLanguageModel chatModel;
-  private final StreamingChatLanguageModel streamingChatModel;
+@RegisterAiService
+public interface ChatBotService {
 
-  public ChatBotService(ChatLanguageModel chatModel,
-      StreamingChatLanguageModel streamingChatModel) {
-    this.chatModel = chatModel;
-    this.streamingChatModel = streamingChatModel;
-  }
-
-  /**
-   * Method to use streaming mode with AI Endpoints Mistral model.
-   * 
-   * @param question The question to ask.
-   * @return Multi<String>: the answer.
-   */
-  public Multi<String> askAQuestionStreamingMode(String question) {
-    return Multi.createFrom().emitter(emitter -> {
-      streamingChatModel.generate(question, new StreamingResponseHandler<>() {
-        @Override
-        public void onNext(String token) {
-          if (token != null) {
-            emitter.emit(token);
-          }
-        }
-
-        @Override
-        public void onError(Throwable error) {
-          emitter.fail(error);
-        }
-
-        @Override
-        public void onComplete(Response<AiMessage> response) {
-          emitter.complete();
-        }
-      });
-    });
-
-  }
+  @SystemMessage("You are a cool AI assistant.")
+  @UserMessage("Answer as best possible to the following question: {question}. The answer must be in a style of a virtual assistant.")
+  Multi<String> askAQuestionStreamingMode(String question);
 }
