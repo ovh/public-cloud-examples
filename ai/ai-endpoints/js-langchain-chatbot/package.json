@@ -1,0 +1,19 @@
+{
+  "name": "js-langchain-chatbot",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "",
+  "main": "chatbot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node chatbot.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@langchain/mistralai": "^0.0.22",
+    "@langchain/openai": "^0.0.34",
+    "commander": "^12.1.0",
+    "langchain": "^0.2.2"
+  }
+}

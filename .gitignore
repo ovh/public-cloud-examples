@@ -25,3 +25,6 @@ containers-orchestration/managed-kubernetes/create-cluster-with-cdktf-and-go/cdk
 
 # Python 
 venv/
+
+# JS
+node_modules/
