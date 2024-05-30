@@ -1,6 +1,7 @@
 import { ChatMistralAI } from "@langchain/mistralai";
 import { ChatPromptTemplate } from "@langchain/core/prompts";
 import { Command } from 'commander';
+import { setTimeout } from "timers/promises";
 
 /**
  * Function to do a chat completion request to the LLM given a user question.
@@ -19,17 +20,20 @@ async function chatCompletion(question) {
     apiKey: "None",
     endpoint: "https://mixtral-8x22b-instruct-v01.endpoints.kepler.ai.cloud.ovh.net/api/openai_compat/",
     maxTokens: 1500,
-    streaming: false,
+    streaming: true,
     verbose: false,
   });
 
   // Chain the model to the prompt to "apply it"
   const chain = promptTemplate.pipe(model);
-  const response = await chain.invoke({ question: question });
-  
-  console.log(response.content);
-}
+  const stream = await chain.stream({ question: question });
 
+  for await (const chunk of stream) {
+    // Timeout to simulate a human answering the question
+    await setTimeout(150);
+    process.stdout.write(chunk.content);
+  }
+}
 
 /**
  * Main entry of the CLI.
