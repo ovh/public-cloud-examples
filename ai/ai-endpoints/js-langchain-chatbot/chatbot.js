@@ -19,11 +19,12 @@ async function chatCompletion(question) {
     apiKey: "None",
     endpoint: "https://mixtral-8x22b-instruct-v01.endpoints.kepler.ai.cloud.ovh.net/api/openai_compat/",
     maxTokens: 1500,
+    streaming: false,
     verbose: false,
   });
 
+  // Chain the model to the prompt to "apply it"
   const chain = promptTemplate.pipe(model);
-
   const response = await chain.invoke({ question: question });
   
   console.log(response.content);
