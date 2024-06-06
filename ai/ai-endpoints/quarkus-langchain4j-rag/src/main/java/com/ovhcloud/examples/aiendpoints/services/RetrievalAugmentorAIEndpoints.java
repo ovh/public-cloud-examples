@@ -21,11 +21,11 @@ import jakarta.inject.Singleton;
 import static dev.langchain4j.data.document.loader.FileSystemDocumentLoader.loadDocument;
 
 @Singleton
-public class RetrievalAugmentorExample implements Supplier<RetrievalAugmentor> {
+public class RetrievalAugmentorAIEndpoints implements Supplier<RetrievalAugmentor> {
 
   private final RetrievalAugmentor augmentor;
 
-  RetrievalAugmentorExample() throws Exception{
+  RetrievalAugmentorAIEndpoints() throws Exception{
     EmbeddingModel embeddingModel = AIEndpointsModel.builder()
             .apiKey("foo")
             .logRequests(true)
@@ -33,7 +33,7 @@ public class RetrievalAugmentorExample implements Supplier<RetrievalAugmentor> {
         .build();
 
         DocumentParser documentParser = new TextDocumentParser();
-        Document document = loadDocument(Paths.get(RetrievalAugmentorExample.class.getClassLoader()
+        Document document = loadDocument(Paths.get(RetrievalAugmentorAIEndpoints.class.getClassLoader()
                 .getResource("rag/rag-content.txt").toURI()), documentParser);
 
         Response<Embedding> embeddings = embeddingModel.embed(document.text());
