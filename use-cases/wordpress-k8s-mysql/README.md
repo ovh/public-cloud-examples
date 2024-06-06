@@ -15,7 +15,7 @@ You need the following:
 * an [OVHcloud Public cloud project](https://www.ovhcloud.com/en/public-cloud/)
 * OVHcloud API credentials
     * [EU](https://www.ovh.com/auth/?onsuccess=https%3A%2F%2Fwww.ovh.com%2Fauth%2FcreateToken%2F%3F)
-    * [CA](https://ca.ovh.com/auth/?onsuccess=https%3A//ca.ovh.com%2Fauth%2FcreateToken%2F%3F)cd 
+    * [CA](https://ca.ovh.com/auth/?onsuccess=https%3A//ca.ovh.com%2Fauth%2FcreateToken%2F%3F)
 ## Set the environment variables
 
 ```bash
