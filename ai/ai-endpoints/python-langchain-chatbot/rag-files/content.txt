@@ -1,0 +1,2 @@
+AI Endpoints is a cool new product from OVHcloud.
+It bring the LLM usage as a service to the public.
