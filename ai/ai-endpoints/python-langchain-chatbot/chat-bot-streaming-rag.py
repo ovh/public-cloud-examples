@@ -7,7 +7,7 @@ import logging
 
 from langchain_core.embeddings import Embeddings
 from typing import List
-
+from langchain import hub
 
 from langchain_mistralai import ChatMistralAI
 from langchain_core.prompts import ChatPromptTemplate
@@ -79,15 +79,10 @@ def chat_completion(new_message: str):
                         max_tokens=1500, 
                         streaming=True)
 
-  prompt = ChatPromptTemplate.from_messages([
-    ("system", "You are a Nestor, a virtual assistant. Answer to the question."),
-    ("human", "{question}"),
-  ])
-
   loader = DirectoryLoader(
      glob="**/*",
      path="./rag-files/",
-     show_progress=True,
+     show_progress=True
   )
   docs = loader.load()
 
@@ -95,14 +90,10 @@ def chat_completion(new_message: str):
   splits = text_splitter.split_documents(docs)
   vectorstore = Chroma.from_documents(documents=splits, embedding=OVHcloudAIEEmbeddings())
 
-  # Retrieve and generate using the relevant snippets of the blog.
-  retriever = vectorstore.as_retriever()
-
-  def format_docs(docs):
-    return "\n\n".join(doc.page_content for doc in docs)
+  prompt = hub.pull("rlm/rag-prompt")
 
   rag_chain = (
-    {"context": retriever | format_docs, "question": RunnablePassthrough()}
+    {"context": vectorstore.as_retriever(), "question": RunnablePassthrough()}
     | prompt
     | model
     | StrOutputParser()
