@@ -1,3 +1,7 @@
-fastapi==0.110.0
-openai==1.13.3
-langchain-mistralai==0.1.7
+langchain
+langchain-mistralai
+langchain_community
+langchain_chroma
+argparse
+unstructured
+langchainhub
