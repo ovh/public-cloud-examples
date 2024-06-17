@@ -1,4 +1,5 @@
 import argparse
+import time
 
 from langchain import hub
 
@@ -36,7 +37,7 @@ def chat_completion(new_message: str):
   # Split documents into chunks and vectorize them
   text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
   splits = text_splitter.split_documents(docs)
-  vectorstore = Chroma.from_documents(documents=splits, embedding=OVHCloudEmbeddings())
+  vectorstore = Chroma.from_documents(documents=splits, embedding=OVHCloudEmbeddings(model_name="multilingual-e5-base"))
 
   prompt = hub.pull("rlm/rag-prompt")
 
@@ -44,11 +45,12 @@ def chat_completion(new_message: str):
     {"context": vectorstore.as_retriever(), "question": RunnablePassthrough()}
     | prompt
     | model
-    | StrOutputParser()
   )
 
   print("🤖: ")
-  print(rag_chain.invoke(new_message))
+  for r in rag_chain.stream({"question", new_message}):
+    print(r.content, end="", flush=True)
+    time.sleep(0.150)
 
 # Main entrypoint
 def main():
