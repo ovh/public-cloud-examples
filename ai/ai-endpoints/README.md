@@ -17,6 +17,7 @@ Don't hesitate to use the source code and give us feedback.
 
   - [Blocking chatbot](.//quarkus-langchain4j/) with LangChain4j and Quarkus
   - [Streaming chatbot](./quarkus-langchain4j-streaming/) with langChain4j and Quarkus.
+  - [RAG](./quarkus-langchain4j-rag/) with langChain4j and Quarkus.
 
 ### 🐍 Python 🐍
 
