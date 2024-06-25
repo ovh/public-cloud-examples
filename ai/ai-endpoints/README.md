@@ -15,12 +15,14 @@ Don't hesitate to use the source code and give us feedback.
 
 ### ☕️ Java demos ☕️
 
-  - [Blocking chatbot](.//quarkus-langchain4j/) with LangChain4j and Quarkus
+  - [Chatbot with LangChain4j](./java-langchain4j-chatbot/): blocking mode, streaming mode and RAG mode.
+  - [Blocking chatbot](./quarkus-langchain4j/) with LangChain4j and Quarkus
   - [Streaming chatbot](./quarkus-langchain4j-streaming/) with langChain4j and Quarkus.
+  - [Streaming chatbot with RAG](./quarkus-langchain4j-rag/) with langChain4j and Quarkus.
 
 ### 🐍 Python 🐍
 
-  - [Streaming chatbot](./python-langchain-chatbot/) with LangChain
+  - [Chatbot with LangChain](./python-langchain-chatbot/): blocking mode, streaming mode, RAG mode.
 
 ### 🕸️ Javascript 🕸️
 
