@@ -11,7 +11,7 @@ Don't hesitate to use the source code and give us feedback.
  - 🔗 LangChain: https://www.langchain.com/
  - 🔗 LangChain4j: https://docs.langchain4j.dev/intro/
  - 🔗 Quarkus: https://quarkus.io/
- - 💬 Discord dedicated [channel](https://discord.com/channels/850031577277792286/1217892323640344626
+ - 💬 Discord dedicated [channel](https://discord.com/channels/850031577277792286/1217892323640344626)
 
 ### ☕️ Java demos ☕️
 
