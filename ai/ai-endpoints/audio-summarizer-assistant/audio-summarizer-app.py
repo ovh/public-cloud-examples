@@ -73,7 +73,6 @@ def chat_completion(new_message):
         )
 
         # prompt
-        #history_openai_format = [{"role": "user", "content": f"Summarize the following text in a few words: {new_message}"}]
         history_openai_format = [{"role": "user", "content": f"Summarize the following text in a few words: {new_message}"}]
         # return summary
         return client.chat.completions.create(
