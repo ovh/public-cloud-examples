@@ -37,3 +37,7 @@ target/
 **/service.cert
 **/service.key
 ai/ai-endpoints/java-langchain4j-chatbot/target/test-classes/com/ovhcloud/examples/aiendpoints/AppTest.class
+
+# IDEs
+.idea/
+.vscode/
