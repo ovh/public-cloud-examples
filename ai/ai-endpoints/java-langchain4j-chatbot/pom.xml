@@ -30,27 +30,15 @@
 
     <dependency>
       <groupId>dev.langchain4j</groupId>
+      <artifactId>langchain4j-embeddings-bge-small-en-v15-q</artifactId>
+      <version>${langchain4j.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>dev.langchain4j</groupId>
       <artifactId>langchain4j-mistral-ai</artifactId>
       <version>${langchain4j.version}</version>
     </dependency>
-
-    <dependency>
-      <groupId>dev.langchain4j</groupId>
-      <artifactId>langchain4j-ollama</artifactId>
-      <version>${langchain4j.version}</version>
-    </dependency>
-
-    <dependency>
-      <groupId>dev.langchain4j</groupId>
-      <artifactId>langchain4j-vertex-ai-gemini</artifactId>
-      <version>${langchain4j.version}</version>
-    </dependency>
-
-    <dependency>
-      <groupId>dev.langchain4j</groupId>
-      <artifactId>langchain4j-anthropic</artifactId>
-      <version>${langchain4j.version}</version>
-  </dependency>
 
     <dependency> 
       <groupId>ch.qos.logback</groupId>
