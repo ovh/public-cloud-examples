@@ -29,7 +29,15 @@ venv/
 # JS
 node_modules/
 
+# Java
+target/
+
 # Never commit your credentials
 **/ca.pem
 **/service.cert
 **/service.key
+ai/ai-endpoints/java-langchain4j-chatbot/target/test-classes/com/ovhcloud/examples/aiendpoints/AppTest.class
+
+# IDEs
+.idea/
+.vscode/

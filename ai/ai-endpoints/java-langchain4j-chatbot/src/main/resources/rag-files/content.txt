@@ -1,0 +1,37 @@
+AI Endpoint is a new cool product designed by OVHcloud.
+
+Designed with simplicity in mind, our platform allows developers of all skill levels to enhance their applications with cutting-edge AI APIs —no AI expertise required.
+
+Designed for Developers
+
+with comprehensive documentation, straightforward APIs, and sample code.
+Committed to Privacy
+
+We neither store nor share your data during or after model use.
+Curated list of AI models
+
+World-renowned AI models alongside a handpicked selection of Nvidia’s optimized models.
+Non-locking technology
+
+Thanks to our transparency about the AI models used, customers can implement these models on their own infrastructure or other cloud services.
+
+Unlock the Future: seamless AI with strong privacy.
+
+These endpoints require no AI expertise or dedicated infrastructure, as the serverless platform provides access to advanced AI models including Large Language Models (LLMs), natural language processing, translation, speech recognition, image recognition, and more. Developers can select from a range of models, including open-source options like Mistral AI, Llama, Whisper, and Stable Diffusion, as well as a variety of optimized models from NVIDIA’s portfolio, creating a versatile testing ground for chosen AI models.
+
+AI Endpoints are now available in a free Alpha version, which initially includes open-source models. We will regularly update the AI Endpoints Alpha with new models, incorporating user feedback to enhance functionality.
+
+Enhance Applications with AI
+
+AI Endpoints equips you with a suite of powerful AI capabilities, enabling you to deliver personalized, intelligent features without the need for extensive AI expertise or infrastructure. By integrating our robust, pre-trained models, you can rapidly innovate and enhance your offerings, driving user engagement and operational excellence.
+
+Increase Productivity, Creativity and Efficiency of your organization
+
+AI Endpoints enables you to deliver next-generation solutions to their customers. These tools leverage cutting-edge AI models to automate routine tasks, derive insights from data, and foster creative problem-solving, thereby propelling businesses towards digital excellence with minimal friction.
+ Join the Alpha, Shape the Future
+
+Ready to unlock the future? Join us on this journey. Start experimenting with our APIs from April, 9th, 2024,
+and let's redefine what's possible with AI—responsibly, efficiently, and brilliantly.
+
+We're excited to see the incredible applications you'll create and the feedback you'll share.
+Together, we're not just users and providers; we're partners in pioneering a smarter, safer, and more seamless digital world.
