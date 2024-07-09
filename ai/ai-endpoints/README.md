@@ -25,6 +25,7 @@ Don't hesitate to use the source code and give us feedback.
   - [Chatbot with LangChain](./python-langchain-chatbot/): blocking mode, streaming mode, RAG mode.
   - [Streaming chatbot](./python-langchain-chatbot/) with LangChain
   - [Audio Summarizer Assistant](./audio-summarizer-assistant/) by connecting Speech-To-Text and LLM
+  - [Audio Virtual Assistant](./audio-virtual-assistant/) by putting ASR, LLM and TTS working together
 
 ### 🕸️ Javascript 🕸️
 
