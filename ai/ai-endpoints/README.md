@@ -26,6 +26,7 @@ Don't hesitate to use the source code and give us feedback.
   - [Streaming chatbot](./python-langchain-chatbot/) with LangChain
   - [Audio Summarizer Assistant](./audio-summarizer-assistant/) by connecting Speech-To-Text and LLM
   - [Audio Virtual Assistant](./audio-virtual-assistant/) by putting ASR, LLM and TTS working together
+  - [Conversational Memory for chatbot](./python-langchain-conversational-memory/) by using Mistral7B and LangChain Memory module
 
 ### 🕸️ Javascript 🕸️
 
