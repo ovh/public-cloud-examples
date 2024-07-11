@@ -93,6 +93,25 @@ root@lz-kube-1:~# curl -fL https://dsqdsqdqsd.p7mg.rancher.ovh.net/system-agent-
 ...
  ```
  
+  - and for the last two instances, pick the Public IP addresses and then in your local terminal connect you in ssh and copy/paste the second registration command (for worker nodes)
+
+ ```bash
+ $ ssh root@xxx.xxx.xxx.xxx
+The authenticity of host 'xxx.xxx.xxx.xxx (xxx.xxx.xxx.xxx)' can't be established.
+ED25519 key fingerprint is SHA256:dqsdqsdqsdqsd/dqsdqsdqsdqsdqsdqsdq.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+...
+
+root@lz-kube-4:~# curl -fL https://dsqdsqdqsd.p7mg.rancher.ovh.net/system-agent-install.sh | sudo  sh -s - --server https://dsqdsqdqsd.p7mg.rancher.ovh.net --label 'cattle.io/os=linux' --token kbv5k48vc8thhgqqhmtd8tn55qtlpgw7jp4llm4m4tvnp9sznscmpf --worker
+
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100 30794    0 30794    0     0   156k      0 --:--:-- --:--:-- --:--:--  157k
+[INFO]  Label: cattle.io/os=linux
+...
+ ```
+
  - wait until the cluster is in `Active` state
 
 #### Connect to the cluster with kubectl CLI
