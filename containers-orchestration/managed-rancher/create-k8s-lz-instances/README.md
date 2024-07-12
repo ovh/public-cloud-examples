@@ -11,7 +11,7 @@
 ### Demo
 
 In this demo we will:
-- create 5 instances (3 for the Kubernetes's etcd + controlplane & 2 for workers)
+- create 5 instances (3 for the Kubernetes's etcd + controlplane & 2 for workers) on a Local Zone
 - create a managed Rancher
 - In Rancher, configure the instances to deploy into them a Kubernetes cluster with k3s
 
