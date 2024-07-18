@@ -15,7 +15,7 @@ Don't hesitate to use the source code and give us feedback.
 
 ### ☕️ Java demos ☕️
 
-  - [Chatbot with LangChain4j](./java-langchain4j-chatbot/): blocking mode, streaming mode and RAG mode.
+  - [Chatbot with LangChain4j](./java-langchain4j-chatbot/): [blocking mode](./java-langchain4j-chatbot/src/main/java/com/ovhcloud/examples/aiendpoints/BlockingChatbot.java), [streaming mode](./java-langchain4j-chatbot/src/main/java/com/ovhcloud/examples/aiendpoints/StreamingChatbot.java), [RAG mode](./java-langchain4j-chatbot/src/main/java/com/ovhcloud/examples/aiendpoints/RAGStreamingChatbot.java), [memory mode](./java-langchain4j-chatbot/src/main/java/com/ovhcloud/examples/aiendpoints/MemoryStreamingChatbot.java) and [tooling mode](./java-langchain4j-chatbot/src/main/java/com/ovhcloud/examples/aiendpoints/ChatbotWithTools.java).
   - [Blocking chatbot](./quarkus-langchain4j/) with LangChain4j and Quarkus
   - [Streaming chatbot](./quarkus-langchain4j-streaming/) with langChain4j and Quarkus.
   - [Streaming chatbot with RAG](./quarkus-langchain4j-rag/) with langChain4j and Quarkus.
