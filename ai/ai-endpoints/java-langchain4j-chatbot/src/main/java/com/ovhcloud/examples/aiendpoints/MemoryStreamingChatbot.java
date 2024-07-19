@@ -43,7 +43,6 @@ public class MemoryStreamingChatbot {
           _LOG.info("🤖: ");
           assistant.chat("What is my name?")
               .onNext(_LOG::info)
-              .onComplete(m -> _LOG.info(m.finishReason().toString()))
               .onError(Throwable::printStackTrace).start();
         })
         .onError(Throwable::printStackTrace).start();

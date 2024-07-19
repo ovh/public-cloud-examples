@@ -1,5 +1,6 @@
 import argparse
 import time
+import os
 
 from langchain import hub
 
@@ -12,6 +13,10 @@ from langchain_community.embeddings.ovhcloud import OVHCloudEmbeddings
 
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnablePassthrough
+
+## Set the OVHcloud AI Endpoints token to use models
+_OVH_AI_ENDPOINTS_ACCESS_TOKEN = os.environ.get('OVH_AI_ENDPOINTS_TOKEN') 
+
 
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
@@ -37,7 +42,7 @@ def chat_completion(new_message: str):
   # Split documents into chunks and vectorize them
   text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
   splits = text_splitter.split_documents(docs)
-  vectorstore = Chroma.from_documents(documents=splits, embedding=OVHCloudEmbeddings(model_name="multilingual-e5-base"))
+  vectorstore = Chroma.from_documents(documents=splits, embedding=OVHCloudEmbeddings(model_name="multilingual-e5-base", access_token=_OVH_AI_ENDPOINTS_ACCESS_TOKEN))
 
   prompt = hub.pull("rlm/rag-prompt")
 

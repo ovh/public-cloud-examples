@@ -19,6 +19,6 @@ public class BlockingChatbot {
       .maxTokens(1500)
       .build();
 
-      _LOG.info("🤖: {}", aiChatModel.generate("Can you tell me what is the OVHcloud compagny and what kind of products are they propose?"));
+      _LOG.info("🤖: {}", aiChatModel.generate("Can you tell me what is the OVHcloud company and what kind of products are they propose?"));
   }
 }
