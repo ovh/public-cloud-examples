@@ -1,6 +1,19 @@
 # Public cloud examples
 
-![Work in progess](./docs/assets/wip.jpg)
+<table>
+  <tr>
+    <td>
+      <p align="center">
+        <img src="./docs/assets/wip.jpg"/>
+      </p>
+    </td>
+    <td>
+      <b style="font-size:24px">⚠️ This code is only for demonstration purposes </br>and should not be used in production. ⚠️ </b>
+    </td>
+  </tr>
+</table>
+
+
 
 Here is a list of examples which use multiple OVHcloud [Public Cloud products](https://www.ovhcloud.com/fr/public-cloud/).
 
