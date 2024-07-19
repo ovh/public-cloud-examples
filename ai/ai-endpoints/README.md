@@ -5,7 +5,7 @@ Each demo uses a specific language (Python, Java, JS, ...) and illustrate a spec
 
 Don't hesitate to use the source code and give us feedback.
 
-### 🛠️ Prequisites / links 🔗
+### 🛠️ Prerequisites / links 🔗
 
  - 🔗 AI Endpoints: https://endpoints.ai.cloud.ovh.net/
  - 🔗 LangChain: https://www.langchain.com/
