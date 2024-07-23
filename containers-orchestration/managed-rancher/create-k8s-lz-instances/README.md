@@ -39,7 +39,7 @@ In this demo we will:
 
   -  Copy/paste the password in **password** field and click on **Log in with Local User** button.
 
-  - A new password wil be generated, save it! Save the server URL too, check the **End User License Agreement** checkbox and click on the **Continue** button.
+  - A new password will be generated, save it! Save the server URL too, check the **End User License Agreement** checkbox and click on the **Continue** button.
 
 #### Configure Rancher to deploy a Kubernetes cluster
 
