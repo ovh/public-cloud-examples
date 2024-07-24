@@ -32,7 +32,7 @@ def tts_transcription(output_nmt, video_input, video_title, voice_type):
     # connect with tts server
     tts_service = riva.client.SpeechSynthesisService(
                     riva.client.Auth(
-                        uri=os.environ.get('TTS_GRPC_ENDPOINT'), 
+                        uri=os.environ.get('TTS_ENDPOINT'), 
                         use_ssl=True, 
                         metadata_args=[["authorization", f"bearer {ai_endpoint_token}"]]
                     )
