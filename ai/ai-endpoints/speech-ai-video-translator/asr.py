@@ -47,9 +47,9 @@ def asr_transcription(audio_input):
         sentence = resp.results[s].alternatives[0].transcript
         output_sentence.append(sentence)
         
-        for w in range(len(resp.results[s].alternatives[0].words)):
-            start_sentence = resp.results[s].alternatives[0].words[0].start_time
-            end_sentence = resp.results[s].alternatives[0].words[w].end_time
+        start_sentence = resp.results[s].alternatives[0].words[0].start_time
+        last_word = len(resp.results[s].alternatives[0].words) - 1 
+        end_sentence = resp.results[s].alternatives[0].words[last_word].end_time
         
         # add sart time and stop time of the sentence
         output_sentence.append(start_sentence)
