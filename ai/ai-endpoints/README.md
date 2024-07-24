@@ -27,6 +27,7 @@ Don't hesitate to use the source code and give us feedback.
   - [Audio Summarizer Assistant](./audio-summarizer-assistant/) by connecting Speech-To-Text and LLM
   - [Audio Virtual Assistant](./audio-virtual-assistant/) by putting ASR, LLM and TTS working together
   - [Conversational Memory for chatbot](./python-langchain-conversational-memory/) by using Mistral7B and LangChain Memory module
+  - [Video Translator](./speech-ai-video-translator) with ASR, NMT and TTS to subtitle and dub video voices
 
 ### 🕸️ Javascript 🕸️
 
