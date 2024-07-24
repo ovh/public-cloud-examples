@@ -16,7 +16,7 @@ def asr_transcription(audio_input):
     # connect with asr server
     asr_service = riva.client.ASRService(
                     riva.client.Auth(
-                        uri=os.environ.get('ASR_GRPC_ENDPOINT'), 
+                        uri=os.environ.get('ASR_ENDPOINT'), 
                         use_ssl=True, 
                         metadata_args=[["authorization", f"bearer {ai_endpoint_token}"]]
                     )
