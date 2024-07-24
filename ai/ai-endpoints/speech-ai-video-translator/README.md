@@ -2,6 +2,7 @@ This project illustrate how to master Speech AI and create a **Video Translator*
 Subtitle and dub voices of any video using Automatic Speech Recognition (ASR), Neural Machine Translation (NMT) and Text To Speech (TTS) inside a powerful web app.
 
 ## How to use the project
+- if the library **ffmpeg** is not already installed, launch the following command: `sudo apt install ffmpeg`
 
 - install the required dependencies: `pip install -r requirements.txt`
 
