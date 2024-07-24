@@ -4,7 +4,6 @@ import re
 import pysrt
 import subprocess
 import gradio as gr
-from pytube import YouTube
 from pydub import AudioSegment
 from moviepy.editor import *
 from pathlib import Path
