@@ -16,7 +16,7 @@ def nmt_translation(output_asr):
     # connect with nmt server
     nmt_service = riva.client.NeuralMachineTranslationClient(
                     riva.client.Auth(
-                        uri=os.environ.get('NMT_GRPC_ENDPOINT'), 
+                        uri=os.environ.get('NMT_ENDPOINT'), 
                         use_ssl=True, 
                         metadata_args=[["authorization", f"bearer {ai_endpoint_token}"]]
                     )
