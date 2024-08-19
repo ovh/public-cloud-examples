@@ -12,8 +12,8 @@ import dev.langchain4j.data.document.splitter.DocumentSplitters;
 import dev.langchain4j.data.embedding.Embedding;
 import dev.langchain4j.data.segment.TextSegment;
 import dev.langchain4j.model.embedding.EmbeddingModel;
-import dev.langchain4j.model.embedding.bge.small.en.v15.BgeSmallEnV15QuantizedEmbeddingModel;
 import dev.langchain4j.model.mistralai.MistralAiStreamingChatModel;
+import dev.langchain4j.model.ovhai.OvhAiEmbeddingModel;
 import dev.langchain4j.rag.content.retriever.ContentRetriever;
 import dev.langchain4j.rag.content.retriever.EmbeddingStoreContentRetriever;
 import dev.langchain4j.service.AiServices;
@@ -30,48 +30,51 @@ public class RAGStreamingChatbot {
     }
 
     public static void main(String[] args) {
-        DocumentParser documentParser = new TextDocumentParser();;
-        Document document = loadDocument(
-                RAGStreamingChatbot.class.getResource("/rag-files/content.txt").getFile(),
-                documentParser);
+    // Load the document and split it into chunks
+    DocumentParser documentParser = new TextDocumentParser();
+    Document document = loadDocument(
+      RAGStreamingChatbot.class.getResource("/rag-files/content.txt").getFile(),
+      documentParser
+    );
+    DocumentSplitter splitter = DocumentSplitters.recursive(300, 0);
 
+    List<TextSegment> segments = splitter.split(document);
+    
+    // Do the embeddings and store them in an embedding store
+    EmbeddingModel embeddingModel = OvhAiEmbeddingModel.withApiKey(OVHCLOUD_API_KEY);
+    List<Embedding> embeddings = embeddingModel.embedAll(segments).content();
+    
+    EmbeddingStore<TextSegment> embeddingStore = new InMemoryEmbeddingStore<>();
+    embeddingStore.addAll(embeddings, segments);
+    ContentRetriever contentRetriever = EmbeddingStoreContentRetriever.builder()
+      .embeddingStore(embeddingStore)
+      .embeddingModel(embeddingModel)
+      .maxResults(5)
+      .minScore(0.9)
+    .build();
 
-        DocumentSplitter splitter = DocumentSplitters.recursive(300, 0);
-        List<TextSegment> segments =
-                splitter.split(document);
+    MistralAiStreamingChatModel streamingChatModel = MistralAiStreamingChatModel.builder()
+      .apiKey(OVHCLOUD_API_KEY)
+      .modelName("Mistral-7B-Instruct-v0.2")
+      .baseUrl(
+        "https://mistral-7b-instruct-v02.endpoints.kepler.ai.cloud.ovh.net/api/openai_compat/v1"
+      )
+      .maxTokens(512)
+      .build();
 
-        EmbeddingModel embeddingModel = new BgeSmallEnV15QuantizedEmbeddingModel();
-        List<Embedding> embeddings = embeddingModel.embedAll(segments).content();
+    Assistant assistant = AiServices
+      .builder(Assistant.class)
+      .streamingChatLanguageModel(streamingChatModel)
+      .contentRetriever(contentRetriever)
+      .build();
 
-        EmbeddingStore<TextSegment> embeddingStore = new InMemoryEmbeddingStore<>();
-        embeddingStore.addAll(embeddings, segments);
+    _LOG.info("\n💬: What is AI Endpoints?\n");
 
-        ContentRetriever contentRetriever = EmbeddingStoreContentRetriever.builder()
-                .embeddingStore(embeddingStore)
-                .embeddingModel(embeddingModel)
-                .maxResults(2)
-                .minScore(0.5)
-                .build();
-
-        MistralAiStreamingChatModel streamingChatModel = MistralAiStreamingChatModel.builder()
-                .apiKey(OVHCLOUD_API_KEY).modelName("Mixtral-8x22B-Instruct-v0.1")
-                .baseUrl(
-                        "https://mixtral-8x22b-instruct-v01.endpoints.kepler.ai.cloud.ovh.net/api/openai_compat/v1/")
-                .maxTokens(1500).build();
-
-        Assistant assistant =
-                AiServices.builder(Assistant.class)
-                        .streamingChatLanguageModel(streamingChatModel)
-                        .contentRetriever(contentRetriever)
-                        .build();
-
-        _LOG.info("\n💬: What is AI Endpoints?.\n");
-        TokenStream tokenStream = assistant.chat("What is AI Endpoints?");
-        _LOG.info("🤖: ");
-        tokenStream
-                .onNext(_LOG::info)
-                .onError(Throwable::printStackTrace)
-                .start();
-
-    }
+    TokenStream tokenStream = assistant.chat("Can you explain me what is AI Endpoints?");
+    _LOG.info("🤖: ");
+    tokenStream
+        .onNext(_LOG::info)
+        .onError(Throwable::printStackTrace)
+        .start();
+  }
 }
