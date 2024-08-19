@@ -18,7 +18,6 @@ Don't hesitate to use the source code and give us feedback.
   - [Chatbot with LangChain4j](./java-langchain4j-chatbot/): blocking mode, streaming mode and RAG mode.
   - [Blocking chatbot](./quarkus-langchain4j/) with LangChain4j and Quarkus
   - [Streaming chatbot](./quarkus-langchain4j-streaming/) with langChain4j and Quarkus.
-  - [Streaming chatbot with RAG](./quarkus-langchain4j-rag/) with langChain4j and Quarkus.
 
 ### 🐍 Python 🐍
 
