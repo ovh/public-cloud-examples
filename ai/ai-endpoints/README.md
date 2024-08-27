@@ -27,6 +27,8 @@ Don't hesitate to use the source code and give us feedback.
   - [Audio Virtual Assistant](./audio-virtual-assistant/) by putting ASR, LLM and TTS working together
   - [Conversational Memory for chatbot](./python-langchain-conversational-memory/) by using Mistral7B and LangChain Memory module
   - [Video Translator](./speech-ai-video-translator) with ASR, NMT and TTS to subtitle and dub video voices
+  - [ASR features](./asr-features) to better understand how Automtic Speech Recognition models work
+  - [TTS features](./tts-features) to be able to use all Text To Speech models easily 
 
 ### 🕸️ Javascript 🕸️
 
