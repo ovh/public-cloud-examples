@@ -1,4 +1,4 @@
-module test-pulumi
+module ovhcloud-tf-registry-go
 
 go 1.21
 
