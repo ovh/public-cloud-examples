@@ -1,6 +1,8 @@
 package com.ovhcloud.examples.aiendpoints;
 
 import static dev.langchain4j.data.document.loader.FileSystemDocumentLoader.loadDocument;
+
+import java.nio.file.Path;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,12 +34,14 @@ public class RAGStreamingChatbot {
     TokenStream chat(String userMessage);
   }
 
-  public static void main(String[] args) {
+  public static void main(String[] args) throws Exception {
      // Load the document and split it into chunks
     DocumentParser documentParser = new TextDocumentParser();
+
     Document document = loadDocument(
-        RAGStreamingChatbot.class.getResource("/rag-files/content.txt").getFile(),
-        documentParser);
+            Path.of(ClassLoader.getSystemResource("rag-files/content.txt").toURI()),
+            documentParser);
+
     DocumentSplitter splitter = DocumentSplitters.recursive(300, 0);
 
     List<TextSegment> segments = splitter.split(document);
