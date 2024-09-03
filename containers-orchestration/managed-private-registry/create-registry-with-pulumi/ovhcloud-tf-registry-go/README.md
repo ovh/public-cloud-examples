@@ -4,29 +4,27 @@ This project uses the existing OVHcloud Terraform provider and allows you to dep
 
 ### Project creation
 
+Initialize a Go project for Pulumi:
+
 ```bash
 $ pulumi new go -y
+```
 
+Generate the Pulumi SDK for the existing OVHcloud TF provider:
+
+```bash
 $ pulumi package add terraform-provider ovh/ovh
 
 $ go mod edit -replace github.com/pulumi/pulumi-terraform-provider/sdks/go/ovh=./sdks/ovh
-
-# edit main.go with your code
-
-$ go mod tidy
-
-$ pulumi up
-
-## Project execution
-
-$ pulumi login --local
-
-$ pulumi up
 ```
 
-TODO: xxx
+Edit the `main.go` file with your code.
 
+Get the dependencies:
 
+```bash
+$ go mod tidy
+```
 
 ### Set up
   - Install the [Pulumi CLI](https://www.pulumi.com/docs/install/)
@@ -48,7 +46,13 @@ export OVH_APPLICATION_KEY="xxx"
 export OVH_APPLICATION_SECRET="xxx"
 export OVH_CONSUMER_KEY="xxx"
 export OVH_CLOUD_PROJECT_SERVICE="xxx"
+
+export PULUMI_CONFIG_PASSPHRASE=
 ```
+
+  - set the Pulumi passphrase to protect and unlock your configuration values and secrets
+
+`export PULUMI_CONFIG_PASSPHRASE=`
 
   - set the serviceName in Pulumi stack configuration
 
@@ -57,7 +61,11 @@ export OVH_CLOUD_PROJECT_SERVICE="xxx"
   - use the [main.go](main.go) file to define the resources to create
 
   - create a registry with a user and a project (~ 7-8 mins)
-`pulumi up`
+
+```bash
+pulumi login --local
+pulumi up
+```
 
   - display the registry URL, login and password and save them in environment variables (you will use)
 
