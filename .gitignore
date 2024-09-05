@@ -25,6 +25,8 @@ containers-orchestration/managed-kubernetes/create-cluster-with-cdktf-and-go/cdk
 
 # Python 
 venv/
+.venv/
+__pycache__/
 
 # JS
 node_modules/
@@ -41,3 +43,4 @@ ai/ai-endpoints/java-langchain4j-chatbot/target/test-classes/com/ovhcloud/exampl
 # IDEs
 .idea/
 .vscode/
+
