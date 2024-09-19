@@ -28,6 +28,7 @@ $ go mod tidy
 
 ### Set up
   - Install the [Pulumi CLI](https://www.pulumi.com/docs/install/)
+  - Install [Go](https://go.dev/doc/install)
   - An account in [Pulumi](https://www.pulumi.com/)
   - A [Pulumi access token](https://app.pulumi.com/account/tokens)
   - Get the credentials from the OVHCloud Public Cloud project:
