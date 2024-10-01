@@ -44,3 +44,5 @@ ai/ai-endpoints/java-langchain4j-chatbot/target/test-classes/com/ovhcloud/exampl
 .idea/
 .vscode/
 
+# Configuration
+.env
