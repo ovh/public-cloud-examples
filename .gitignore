@@ -26,6 +26,9 @@ containers-orchestration/managed-private-registry/create-registry-with-pulumi/ov
 
 # Python 
 venv/
+.venv/
+__pycache__/
+
 
 # JS
 node_modules/
@@ -42,3 +45,6 @@ ai/ai-endpoints/java-langchain4j-chatbot/target/test-classes/com/ovhcloud/exampl
 # IDEs
 .idea/
 .vscode/
+
+# Dot env files
+.env
