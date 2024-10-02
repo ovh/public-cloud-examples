@@ -15,6 +15,7 @@ Don't hesitate to use the source code and give us feedback.
 
 ### ☕️ Java demos ☕️
 
+  - [Natural Language Processing](./java-nlp)
   - [Chatbot with LangChain4j](./java-langchain4j-chatbot/): blocking mode, streaming mode and RAG mode.
   - [Blocking chatbot](./quarkus-langchain4j/) with LangChain4j and Quarkus
   - [Streaming chatbot](./quarkus-langchain4j-streaming/) with langChain4j and Quarkus.
@@ -27,7 +28,7 @@ Don't hesitate to use the source code and give us feedback.
   - [Audio Virtual Assistant](./audio-virtual-assistant/) by putting ASR, LLM and TTS working together
   - [Conversational Memory for chatbot](./python-langchain-conversational-memory/) by using Mistral7B and LangChain Memory module
   - [Video Translator](./speech-ai-video-translator) with ASR, NMT and TTS to subtitle and dub video voices
-  - [ASR features](./asr-features) to better understand how Automtic Speech Recognition models work
+  - [ASR features](./asr-features) to better understand how Automatic Speech Recognition models work
   - [TTS features](./tts-features) to be able to use all Text To Speech models easily 
 
 ### 🕸️ Javascript 🕸️

@@ -28,7 +28,6 @@ venv/
 .venv/
 __pycache__/
 
-
 # JS
 node_modules/
 
