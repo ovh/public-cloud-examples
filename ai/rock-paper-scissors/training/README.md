@@ -1,7 +1,7 @@
 ## Instructions to create the job for AI Training
 
 ### General information
-  - 🔗 [AI Training - Tutorial - Train YOLOv8 to play to "rock paper scissors](https://help.ovhcloud.com/csm/en-ie-public-cloud-ai-training-train-rock-paper-scissors?id=kb_article_view&sysparm_article=KB0060296)
+  - 🔗 [AI Training - Tutorial - Train YOLO to play to "rock paper scissors](https://help.ovhcloud.com/csm/en-ie-public-cloud-ai-training-train-rock-paper-scissors?id=kb_article_view&sysparm_article=KB0060296)
 
 ### Set up
   - install `ovhai` CLI, see [documentation](https://help.ovhcloud.com/csm/en-gb-public-cloud-ai-cli-install-client?id=kb_article_view&sysparm_article=KB0047844)
