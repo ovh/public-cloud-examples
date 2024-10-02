@@ -1,11 +1,11 @@
 ## Instructions to create the job for AI Training
 
 ### General information
-  - 🔗 [AI Deploy - Tutorial - Create an application to play rock paper scissors with YoloV8](https://help.ovhcloud.com/csm/en-ie-public-cloud-ai-deploy-rock-paper-scissors?id=kb_article_view&sysparm_article=KB0060262)
+  - 🔗 [AI Deploy - Tutorial - Create an application to play rock paper scissors with Yolo](https://help.ovhcloud.com/csm/en-ie-public-cloud-ai-deploy-rock-paper-scissors?id=kb_article_view&sysparm_article=KB0060262)
 
 ### Set up
   - install `ovhai` CLI, see [documentation](https://help.ovhcloud.com/csm/en-gb-public-cloud-ai-cli-install-client?id=kb_article_view&sysparm_article=KB0047844)
-  - we assume that you have an S3 bucket named `rock-paper-scissors` with all needed data from the demo Create a Notebook to [play to rock/paper/scissors](../../notebooks/YOLOV8/)
+  - we assume that you have an S3 bucket named `rock-paper-scissors` with all needed data from the demo Create a Notebook to [play to rock/paper/scissors](../../notebooks/)
 
 ### Image build for AI Deploy
 
