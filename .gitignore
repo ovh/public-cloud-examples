@@ -27,6 +27,8 @@ containers-orchestration/managed-kubernetes/create-cluster-with-cdktf-and-go/cdk
 venv/
 .venv/
 __pycache__/
+.rock-paper-scisors
+
 
 # JS
 node_modules/
