@@ -12,7 +12,7 @@
 
  - [ ] 🧠 AI 🧠
  - [ ] 💿 DBaaS 💿
- - [ ] ⎈ MKS / MRS / Rancher ⎈
+ - [ ] ⎈ Managed Kubernetes Service / Managed Private Registry / Managed Rancher Service ⎈
  - [ ] 🏗️ IaC 🏗️ 
 
 ## Purpose of this Pull Request
