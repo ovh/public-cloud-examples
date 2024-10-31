@@ -1,4 +1,4 @@
-# Deploy a Wordpress website and MySQL DB with Terraform
+# Deploy a Wordpress website and MySQL DB with Terraform / OpenTofu
 
 The purpose of this tutorial is to create a Mysql database and a Wordpress website and link them together in a Kubernetes cluster.
 
@@ -11,11 +11,12 @@ We will divide the project into two layers. The first layer is used to deploy th
 ## Requirements
 
 You need the following:
-* [Terraform](https://www.terraform.io/) installed
+* [Terraform](https://www.terraform.io/) or [OpenTofu](https://opentofu.org/) installed
 * an [OVHcloud Public cloud project](https://www.ovhcloud.com/en/public-cloud/)
 * OVHcloud API credentials
     * [EU](https://www.ovh.com/auth/?onsuccess=https%3A%2F%2Fwww.ovh.com%2Fauth%2FcreateToken%2F%3F)
     * [CA](https://ca.ovh.com/auth/?onsuccess=https%3A//ca.ovh.com%2Fauth%2FcreateToken%2F%3F)
+
 ## Set the environment variables
 
 ```bash
@@ -60,7 +61,7 @@ export OVH_CLOUD_PROJECT_SERVICE="xxx"
 
 ## Build and run
 
-### Create the Terraform variables file (configuration)
+### Create the Terraform / OpenTofu variables file (configuration)
 
 Two Terraform variables configuration files have been already created. Edit them to modify the needed information.
 
@@ -94,28 +95,28 @@ Customize the values if needed.
 
 ```bash
 cd 01-kube
-terraform init
-terraform plan -var-file=../variables_01.tfvars
+tofu init
+tofu plan -var-file=../variables_01.tfvars
 ```
 
 ### Create the cluster and the nodes-pool - 01-kube
 
 ```bash
-terraform apply -var-file=../variables_01.tfvars -auto-approve
+tofu apply -var-file=../variables_01.tfvars -auto-approve
 ```
 
 ### Validate the configuration - 02-db-wordpress
 
 ```bash
 cd ../02-db-wordpress
-terraform init
-terraform plan -var-file=../variables_02.tfvars
+tofu init
+tofu plan -var-file=../variables_02.tfvars
 ```
 
 ### Create the DB, website - 02-db-wordpress
 
 ```bash
-terraform apply -var-file=../variables_02.tfvars -auto-approve
+tofu apply -var-file=../variables_02.tfvars -auto-approve
 ```
 
 ### Login into Wordpress 
@@ -136,7 +137,7 @@ kubectl --kubeconfig=./kubeconfig.yml get secret -n default wordpress -o jsonpat
 
 ```bash
 cd 02-db-wordpress
-terraform destroy -var-file=../variables_02.tfvars -auto-approve
+tofu destroy -var-file=../variables_02.tfvars -auto-approve
 cd ../01-kube
-terraform destroy -var-file=../variables_01.tfvars -auto-approve
+tofu destroy -var-file=../variables_01.tfvars -auto-approve
 ```
