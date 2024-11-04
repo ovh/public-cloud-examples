@@ -1,5 +1,7 @@
 # Kubeflow on OVHcloud Public Cloud
 
+The purpose of this tutorial is to deploy KubeFlow in an OVHcloud Managed Kubernetes cluster with all the essential tools.
+
 This Terraform will create and configure:
 
 * A private network
@@ -41,31 +43,26 @@ vim ovhrc.sh
 
 ```bash
 export OVH_ENDPOINT="ovh-eu"
-export OVH_BASEURL="https://eu.api.ovh.com/1.0/"
 export OVH_APPLICATION_KEY="<your_application_key>"
 export OVH_APPLICATION_SECRET="<your_application_secret>"
 export OVH_CONSUMER_KEY="<your_consumer_key>"
-export OVH_CLOUD_PROJECT_SERVICE="$OS_TENANT_ID"
-
-export TF_VAR_ovh_api_dns_application_key="<your_application_key>"
-export TF_VAR_ovh_api_dns_application_secret="<your_application_secret>"
-export TF_VAR_ovh_api_dns_consumer_key="<your_consumer_key>"
+export OVH_CLOUD_PROJECT_SERVICE="<your_public_cloud_project_ID>"
 ```
 
-You can create a second token for the DNS configuration with limited permissions:
+You should create a second OVHcloud credential specific for the DNS configuration with limited permissions:
 https://github.com/kubernetes-sigs/external-dns/blob/master/docs/tutorials/ovh.md#creating-ovh-credentials
 
+```bash
+vim ovhrc.sh
+```
+
+```bash
+export TF_VAR_ovh_api_dns_application_key="<your_dns_application_key>"
+export TF_VAR_ovh_api_dns_application_secret="<your_dns_application_secret>"
+export TF_VAR_ovh_api_dns_consumer_key="<your_dns_consumer_key>"
+```
+
 ## Customize the deployment
-
-Configure Terraform with the public cloud project ID:
-
-```bash
-vim terraform.tfvars
-```
-
-```bash
-ovh_os_project_id = <your_openstack_project_id>
-```
 
 Configure Terraform with your OVH domain name:
 
@@ -88,11 +85,34 @@ terraform plan
 terraform apply
 ```
 
-## Get the Kubeflow default user password
+## Access to the Kubeflow UI
+
+Get the Kubeflow URL:
 
 ```bash
-terraform output kubeflow_password
+KUBEFLOW_URL=$(terraform output kubeflow_url)
+echo $KUBEFLOW_URL
 ```
+
+Get the username and password:
+
+```bash
+KUBEFLOW_USER=$(terraform output kubeflow_user)
+KUBEFLOW_PASSWORD=$(terraform output kubeflow_password)
+echo $KUBEFLOW_USER
+echo $KUBEFLOW_PASSWORD
+```
+
+You can now access to the KubeFlow URL with the user and password.
+
+## Pipeline example
+
+In the menu on the left, click on `Experiments (KFP)` and create a new experiment.
+
+Click on `Pipelines` and choose one of the existing pipeline (example: `[Tutorial] Data passing in python components`).
+To launch the pipeline click on `Create Run` and choose in which experiment you would like to run the pipeline.
+
+After a while the status of the run should turn green. You can see the logs of the run in your object storage.
 
 ## Troubleshoot
 
