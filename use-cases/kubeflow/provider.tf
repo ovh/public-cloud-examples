@@ -64,6 +64,6 @@ provider "aws" {
   skip_requesting_account_id  = true
   skip_region_validation = true
   endpoints {
-    s3 = "https://s3.${var.ovh_s3_region_name}.io.cloud.ovh.net"
+    s3 = "https://s3.${var.ovh_s3_region_name}.perf.cloud.ovh.net"
   }
 }
