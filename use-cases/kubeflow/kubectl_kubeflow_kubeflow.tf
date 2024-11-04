@@ -4371,7 +4371,7 @@ data:
   minioServiceHost: "s3.${var.ovh_s3_region_name}.io.cloud.ovh.net"
   minioServicePort: "443"
   minioServiceRegion: "${var.ovh_s3_region_name}"
-  bucketName: "${var.ovh_s3_bucket_name}-${var.ovh_os_project_id}"
+  bucketName: "${var.ovh_s3_bucket_name}-${random_string.bucket_name_suffix.result}"
   cacheDb: cachedb
   cacheImage: gcr.io/google-containers/busybox
   cacheNodeRestrictions: "false"
@@ -4409,7 +4409,7 @@ data:
     archiveLogs: true
     s3:
       endpoint: "s3.${var.ovh_s3_region_name}.io.cloud.ovh.net:443"
-      bucket: "${var.ovh_s3_bucket_name}-${var.ovh_os_project_id}"
+      bucket: "${var.ovh_s3_bucket_name}-${random_string.bucket_name_suffix.result}"
       # keyFormat is a format pattern to define how artifacts will be organized in a bucket.
       # It can reference workflow metadata variables such as workflow.namespace, workflow.name,
       # pod.name. Can also use strftime formating of workflow.creationTimestamp so that workflow

@@ -1,5 +1,4 @@
 resource "ovh_cloud_project_kube" "ovh_kube_cluster" {
-   service_name = "${var.ovh_os_project_id}"
    name         = "${var.ovh_kube_cluster_name}"
    region       = "${var.ovh_os_region_name}"
    version      = "${var.ovh_kube_version}"
@@ -15,7 +14,6 @@ resource "ovh_cloud_project_kube" "ovh_kube_cluster" {
 }
 
 resource "ovh_cloud_project_kube_nodepool" "control_plane_pool" {
-   service_name  = "${var.ovh_os_project_id}"
    kube_id       = ovh_cloud_project_kube.ovh_kube_cluster.id
    name          = "${var.ovh_kube_cluster_name}-control-plane"
    flavor_name   = "${var.kubeflow_control_plane_flavor}"
@@ -46,7 +44,6 @@ resource "ovh_cloud_project_kube_nodepool" "control_plane_pool" {
 }
 
 resource "ovh_cloud_project_kube_nodepool" "worker_cpu_pool" {
-   service_name  = "${var.ovh_os_project_id}"
    kube_id       = ovh_cloud_project_kube.ovh_kube_cluster.id
    name          = "${var.ovh_kube_cluster_name}-worker-cpu"
    flavor_name   = "${var.kubeflow_cpu_worker_flavor}"
@@ -57,7 +54,6 @@ resource "ovh_cloud_project_kube_nodepool" "worker_cpu_pool" {
 }
 
 resource "ovh_cloud_project_kube_nodepool" "worker_gpu_pool" {
-   service_name  = "${var.ovh_os_project_id}"
    kube_id       = ovh_cloud_project_kube.ovh_kube_cluster.id
    name          = "${var.ovh_kube_cluster_name}-worker-gpu"
    flavor_name   = "${var.kubeflow_gpu_worker_flavor}"

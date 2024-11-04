@@ -1,5 +1,4 @@
 resource "ovh_cloud_project_database" "mysql" {
-  service_name  = "${var.ovh_os_project_id}"
   description   = "${var.ovh_mysql_name}-mysql"
   engine        = "mysql"
   version       = "${var.ovh_mysql_version}"
@@ -32,7 +31,6 @@ resource "ovh_cloud_project_database" "mysql" {
 }
 
 resource "ovh_cloud_project_database_ip_restriction" "iprestriction-mysql" {
-  service_name = "${var.ovh_os_project_id}"
   engine       = "mysql"
   cluster_id   = ovh_cloud_project_database.mysql.id
   ip           = ovh_cloud_project_network_private_subnet.private-subnet.network

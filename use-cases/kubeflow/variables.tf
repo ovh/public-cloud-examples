@@ -1,7 +1,3 @@
-variable ovh_os_project_id {
-  type        = string
-}
-
 variable ovh_os_region_name {
   type        = string
   default     = "GRA11"
