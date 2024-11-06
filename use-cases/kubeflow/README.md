@@ -29,7 +29,7 @@ As we are going to configure the infrastructure using a private network, your pu
 
 ## Configure the deployment
 
-### Configure the OVHcloud Terraform provider
+### Configure the Terraform providers
 
 Create an OVHcloud API token:
 
@@ -60,6 +60,22 @@ vim ovhrc.sh
 export TF_VAR_ovh_api_dns_application_key="<your_dns_application_key>"
 export TF_VAR_ovh_api_dns_application_secret="<your_dns_application_secret>"
 export TF_VAR_ovh_api_dns_consumer_key="<your_dns_consumer_key>"
+```
+
+Create an object storage user:
+https://help.ovhcloud.com/csm/en-public-cloud-storage-s3-identity-access-management?id=kb_article_view&sysparm_article=KB0047362
+
+Configure Terraform with the object storage user:
+
+```bash
+export TF_VAR_ovh_s3_access_key="<your_object_storage_user_access_key>"
+export TF_VAR_ovh_s3_secret_key="<your_object_storage_user_secret_key>"
+```
+
+Create a default Kubernetes configuration file if you don't already have one:
+
+```bash
+[ ! -f ~/.kube/config ] && { mkdir -p ~/.kube; touch ~/.kube/config; }
 ```
 
 ## Customize the deployment

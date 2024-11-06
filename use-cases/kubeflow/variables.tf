@@ -18,6 +18,14 @@ variable ovh_kube_version {
   default     = "1.29"
 }
 
+variable ovh_s3_access_key {
+  type        = string
+}
+
+variable ovh_s3_secret_key {
+  type        = string
+}
+
 variable kubeflow_control_plane_flavor {
   type        = string
   default     = "b3-8"

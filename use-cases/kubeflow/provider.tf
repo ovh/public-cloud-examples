@@ -57,8 +57,8 @@ provider "kubectl" {
 
 provider "aws" {
   region      = "${var.ovh_s3_region_name}"
-  access_key  = "${ovh_cloud_project_user_s3_credential.s3_admin_cred.access_key_id}"
-  secret_key  = "${ovh_cloud_project_user_s3_credential.s3_admin_cred.secret_access_key}"
+  access_key  = "${var.ovh_s3_access_key}"
+  secret_key  = "${var.ovh_s3_secret_key}"
 
   skip_credentials_validation = true
   skip_requesting_account_id  = true

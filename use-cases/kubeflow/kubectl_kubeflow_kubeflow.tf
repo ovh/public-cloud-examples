@@ -4461,8 +4461,8 @@ metadata:
   name: mlpipeline-minio-artifact
   namespace: kubeflow
 stringData:
-  accesskey: "${ovh_cloud_project_user_s3_credential.s3_admin_cred.access_key_id}"
-  secretkey: "${ovh_cloud_project_user_s3_credential.s3_admin_cred.secret_access_key}"
+  accesskey: "${var.ovh_s3_access_key}"
+  secretkey: "${var.ovh_s3_secret_key}"
 YAML
 
 depends_on = [ovh_cloud_project_kube.ovh_kube_cluster, ovh_cloud_project_kube_nodepool.control_plane_pool, kubectl_manifest.kubeflow-kubeflow-namespace]
