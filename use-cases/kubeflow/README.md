@@ -111,9 +111,11 @@ echo $KUBEFLOW_PASSWORD
 
 You can now access to the KubeFlow URL with the user and password.
 
+You have to wait until the DNS propagation and then you should be able to reach the Kubeflow URL.
+
 ## Pipeline example
 
-In the menu on the left, click on `Experiments (KFP)` and create a new experiment.
+In the Kubeflow UI, in the menu on the left, click on `Experiments (KFP)` and create a new experiment.
 
 Click on `Pipelines` and choose one of the existing pipeline (example: `[Tutorial] Data passing in python components`).
 To launch the pipeline click on `Create Run` and choose in which experiment you would like to run the pipeline.

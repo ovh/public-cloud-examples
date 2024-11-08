@@ -1,8 +1,6 @@
-
 output "kubeflow_url" {
   description = "Kubeflow URL"
-  value = module.kubeflow.kubeflow_url
-  //value = "https://kubeflow.${var.ovh_dns_domain}"
+  value = "https://kubeflow.${var.ovh_dns_domain}"
 }
 
 output "kubeflow_user" {
