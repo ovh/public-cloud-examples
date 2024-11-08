@@ -49,7 +49,7 @@ export OVH_CONSUMER_KEY="<your_consumer_key>"
 export OVH_CLOUD_PROJECT_SERVICE="<your_public_cloud_project_ID>"
 ```
 
-You should create a second OVHcloud credential specific for the DNS configuration with limited permissions:
+You should create a second OVHcloud credential specific for the DNS configuration with limited permissions (better for security):
 https://github.com/kubernetes-sigs/external-dns/blob/master/docs/tutorials/ovh.md#creating-ovh-credentials
 
 ```bash
@@ -60,16 +60,6 @@ vim ovhrc.sh
 export TF_VAR_ovh_api_dns_application_key="<your_dns_application_key>"
 export TF_VAR_ovh_api_dns_application_secret="<your_dns_application_secret>"
 export TF_VAR_ovh_api_dns_consumer_key="<your_dns_consumer_key>"
-```
-
-Create an object storage user:
-https://help.ovhcloud.com/csm/en-public-cloud-storage-s3-identity-access-management?id=kb_article_view&sysparm_article=KB0047362
-
-Configure Terraform with the object storage user:
-
-```bash
-export TF_VAR_ovh_s3_access_key="<your_object_storage_user_access_key>"
-export TF_VAR_ovh_s3_secret_key="<your_object_storage_user_secret_key>"
 ```
 
 Create a default Kubernetes configuration file if you don't already have one:
