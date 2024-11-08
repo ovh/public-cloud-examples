@@ -13,3 +13,8 @@ output "kubeflow_password" {
   value = "ovhkubeflow123!"
   sensitive = true
 }
+
+output "ovh_kube_cluster_kubeconfig" {
+    value = module.kubeflow.ovh_kube_cluster_kubeconfig
+    sensitive = true
+}
