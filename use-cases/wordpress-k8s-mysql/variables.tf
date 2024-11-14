@@ -15,3 +15,14 @@ variable "node_pool_flavor_name" {
   type    = string
   default = "b3-8"
 }
+
+variable "database" {
+  description = "Wordpress website database parameters"
+  type        = map(any)
+  default = {
+    region  = ""
+    plan    = ""
+    flavor  = ""
+    version = ""
+  }
+}

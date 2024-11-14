@@ -27,9 +27,3 @@ resource "local_file" "kubeconfig_file" {
   content  = ovh_cloud_project_kube.wordpress_kube_cluster.kubeconfig
   filename = "kubeconfig.yml"
 }
-
-# Retrieve info from nodes in the pool
-data "ovh_cloud_project_kube_nodepool_nodes" "nodes" {
-  kube_id = ovh_cloud_project_kube.wordpress_kube_cluster.id
-  name    = ovh_cloud_project_kube_nodepool.wordpress_node_pool.name
-}

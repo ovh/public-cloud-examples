@@ -66,22 +66,13 @@ export OVH_CLOUD_PROJECT_SERVICE="xxx"
 Two Terraform variables configuration files have been already created. Edit them to modify the needed information.
 
 ```bash
-vi variables_01.tfvars
+vi variables.tfvars
 ```
 The following variable allows to deploy the Kubernetes cluster in GRA11 region:
 ```
 kubernetes = {
     region = "GRA11"
 }
-```
-If you want to deploy it in another region, edit the file with the wanted region.
-
-Add the following & customize if needed
-```bash
-vi variables_02.tfvars
-```
-The following variable allows to deploy the MySQL DB v8 in GRA region with essential plan and db1-7 flavor:
-```
 database = {
     region       = "GRA"
     plan         = "essential"
@@ -94,29 +85,14 @@ Customize the values if needed.
 ### Validate the configuration - 01-kube
 
 ```bash
-cd 01-kube
 tofu init
-tofu plan -var-file=../variables_01.tfvars
+tofu plan -var-file=./variables.tfvars
 ```
 
 ### Create the cluster and the nodes-pool - 01-kube
 
 ```bash
-tofu apply -var-file=../variables_01.tfvars -auto-approve
-```
-
-### Validate the configuration - 02-db-wordpress
-
-```bash
-cd ../02-db-wordpress
-tofu init
-tofu plan -var-file=../variables_02.tfvars
-```
-
-### Create the DB, website - 02-db-wordpress
-
-```bash
-tofu apply -var-file=../variables_02.tfvars -auto-approve
+tofu apply -var-file=../variables.tfvars -auto-approve
 ```
 
 ### Login into Wordpress 
@@ -130,14 +106,11 @@ The Wordpress site is available at this IP.
 
 Wordpress' back-office is available under `/wp-admin/`. The default user is `user`, the generated password can be retrieved using :
 ```bash
-kubectl --kubeconfig=./kubeconfig.yml get secret -n default wordpress -o jsonpath="{.data.wordpress-password}" | base64 -d
+kubectl --kubeconfig=./kubeconfig.yml get secret -n default wordpress -o jsonpath="{.data.wordpress-password}" | base64 -d |pbcopy
 ```
 
 ### Delete the DB and the Kubernetes cluster
 
 ```bash
-cd 02-db-wordpress
-tofu destroy -var-file=../variables_02.tfvars -auto-approve
-cd ../01-kube
-tofu destroy -var-file=../variables_01.tfvars -auto-approve
+tofu destroy -var-file=../variables.tfvars -auto-approve
 ```
