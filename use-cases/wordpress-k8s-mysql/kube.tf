@@ -3,6 +3,7 @@ resource "ovh_cloud_project_kube" "wordpress_kube_cluster" {
   name               = "${var.resource_prefix}kube_cluster"
   region             = var.kubernetes.region
   private_network_id = tolist(ovh_cloud_project_network_private.private_network.regions_attributes)[0].openstackid
+  nodes_subnet_id = ovh_cloud_project_network_private_subnet.subnet.id
   private_network_configuration {
     default_vrack_gateway              = ""
     private_network_routing_as_default = true
@@ -17,9 +18,6 @@ resource "ovh_cloud_project_kube_nodepool" "wordpress_node_pool" {
   desired_nodes = 3
   max_nodes     = 3
   min_nodes     = 3
-  depends_on = [
-    ovh_cloud_project_network_private_subnet.subnet
-  ]
 }
 
 # Create a local file for the kubeconfig file
