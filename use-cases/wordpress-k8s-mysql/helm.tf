@@ -4,7 +4,7 @@ resource "helm_release" "wordpress" {
   name       = "wordpress"
   repository = "https://charts.bitnami.com/bitnami"
   chart      = "wordpress"
-  version ="23.1.29"
+  version    = "23.1.29"
 
   set {
     name  = "mariadb.enabled"
@@ -31,7 +31,7 @@ resource "helm_release" "wordpress" {
     value = ovh_cloud_project_database_database.wordpress_db.name
   }
   depends_on = [
-    local_file.kubeconfig_file ,ovh_cloud_project_kube_nodepool.wordpress_node_pool
+    local_file.kubeconfig_file, ovh_cloud_project_kube_nodepool.wordpress_node_pool
   ]
 }
 

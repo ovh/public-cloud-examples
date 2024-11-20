@@ -82,17 +82,17 @@ database = {
 ```
 Customize the values if needed.
 
-### Validate the configuration - 01-kube
+### Validate the configuration 
 
 ```bash
 tofu init
 tofu plan -var-file=./variables.tfvars
 ```
 
-### Create the cluster and the nodes-pool - 01-kube
+### Create the complete architecture
 
 ```bash
-tofu apply -var-file=../variables.tfvars -auto-approve
+tofu apply -var-file=./variables.tfvars -auto-approve
 ```
 
 ### Login into Wordpress 
@@ -112,5 +112,5 @@ kubectl --kubeconfig=./kubeconfig.yml get secret -n default wordpress -o jsonpat
 ### Delete the DB and the Kubernetes cluster
 
 ```bash
-tofu destroy -var-file=../variables.tfvars -auto-approve
+tofu destroy -var-file=./variables.tfvars -auto-approve
 ```
