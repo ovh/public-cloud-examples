@@ -128,6 +128,5 @@ After a while the status of the run should turn green. You can see the logs of t
 
 ```bash
 terraform output --raw ovh_kube_cluster_kubeconfig > ./kubeconfig
-export KUBECONFIG=./kubeconfig
-kubectl get nodes
+kubectl get nodes --kubeconfig ./kubeconfig
 ```
