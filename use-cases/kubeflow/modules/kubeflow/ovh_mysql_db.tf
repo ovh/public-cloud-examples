@@ -23,17 +23,15 @@ resource "ovh_cloud_project_database" "mysql" {
     "mysql.sql_require_primary_key": "false"
   }
 
+  ip_restrictions {
+    ip = ovh_cloud_project_network_private_subnet.private-subnet.network
+  }
+
   timeouts {
     create = "30m"
     update = "30m"
     delete = "30m"
   }
-}
-
-resource "ovh_cloud_project_database_ip_restriction" "iprestriction-mysql" {
-  engine       = "mysql"
-  cluster_id   = ovh_cloud_project_database.mysql.id
-  ip           = ovh_cloud_project_network_private_subnet.private-subnet.network
 }
 
 resource "ovh_cloud_project_database_user" "kubeflow-mysql-user" {
