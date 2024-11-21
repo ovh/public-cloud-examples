@@ -95,6 +95,13 @@ tofu plan -var-file=./variables.tfvars
 tofu apply -var-file=./variables.tfvars -auto-approve
 ```
 
+Check that the helm package is deployed
+
+```bash
+helm list --kubeconfig ./kubeconfig.yml
+```
+
+
 ### Login into Wordpress 
 
 Get the Load Balancer service IP

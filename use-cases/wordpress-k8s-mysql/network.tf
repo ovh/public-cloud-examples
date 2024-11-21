@@ -15,7 +15,7 @@ resource "ovh_cloud_project_network_private_subnet" "subnet" {
 
 resource "ovh_cloud_project_gateway" "gateway" {
   name       = "${var.resource_prefix}gateway"
-  model      = "s"
+  model      = "l"
   region     = var.kubernetes.region
   network_id = tolist(ovh_cloud_project_network_private.private_network.regions_attributes[*].openstackid)[0]
   subnet_id  = ovh_cloud_project_network_private_subnet.subnet.id

@@ -31,19 +31,6 @@ resource "helm_release" "wordpress" {
     value = ovh_cloud_project_database_database.wordpress_db.name
   }
   depends_on = [
-    local_file.kubeconfig_file, ovh_cloud_project_kube_nodepool.wordpress_node_pool
+    local_file.kubeconfig_file, ovh_cloud_project_kube_nodepool.wordpress_node_pool, ovh_cloud_project_gateway.gateway
   ]
 }
-
-/*
-resource "helm_release" "nginx_ingress" {
-  name       = "nginx-ingress-controller"
-
-  repository = "https://charts.bitnami.com/bitnami"
-  chart      = "nginx-ingress-controller"
-
-  set {
-    name  = "service.type"
-    value = "ClusterIP"
-  }
-}*/
