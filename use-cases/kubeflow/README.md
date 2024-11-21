@@ -49,8 +49,20 @@ export OVH_CONSUMER_KEY="<your_consumer_key>"
 export OVH_CLOUD_PROJECT_SERVICE="<your_public_cloud_project_ID>"
 ```
 
-You should create a second OVHcloud credential specific for the DNS configuration with limited permissions (better for security):
-https://github.com/kubernetes-sigs/external-dns/blob/master/docs/tutorials/ovh.md#creating-ovh-credentials
+You should create a second OVHcloud credential specific for the DNS configuration with limited permissions (better for security).
+
+Create an API token with the following permissions:
+https://www.ovh.com/auth/api/createToken
+
+```
+GET on /domain/zone
+GET on /domain/zone/*/record
+GET on /domain/zone/*/record/*
+POST on /domain/zone/*/record
+DELETE on /domain/zone/*/record/*
+GET on /domain/zone/*/soa
+POST on /domain/zone/*/refresh
+```
 
 ```bash
 vim ovhrc.sh
