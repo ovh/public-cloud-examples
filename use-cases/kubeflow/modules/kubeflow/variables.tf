@@ -8,6 +8,11 @@ variable ovh_os_private_network_vlan_id {
   default     = "10"
 }
 
+variable ovh_gateway_size {
+  type        = string
+  default     = "s"
+}
+
 variable ovh_kube_cluster_name {
   type        = string
   default     = "mks-kubeflow"
@@ -15,7 +20,7 @@ variable ovh_kube_cluster_name {
 
 variable ovh_kube_version {
   type        = string
-  default     = "1.29"
+  default     = "1.31"
 }
 
 variable ovh_s3_access_key {

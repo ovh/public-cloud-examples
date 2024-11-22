@@ -13,3 +13,11 @@ resource "ovh_cloud_project_network_private_subnet" "private-subnet" {
   dhcp         = true
   no_gateway   = false
 }
+
+resource "ovh_cloud_project_gateway" "gateway" {
+  name          = "${var.ovh_kube_cluster_name}-gateway"
+  model         = "${var.ovh_gateway_size}"
+  region        = "${var.ovh_os_region_name}"
+  network_id    = tolist(ovh_cloud_project_network_private.private-net.regions_attributes[*].openstackid)[0]
+  subnet_id     = ovh_cloud_project_network_private_subnet.private-subnet.id
+}

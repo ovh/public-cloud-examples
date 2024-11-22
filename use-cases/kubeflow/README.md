@@ -5,8 +5,9 @@ The purpose of this tutorial is to deploy KubeFlow in an OVHcloud Managed Kubern
 This Terraform will create and configure:
 
 * A private network
+* A gateway
 * A managed Kubernetes cluster
-* A load balancer for Kubernetes with a public IP
+* A Public Cloud load balancer with a public IP
 * A MySQL managed database
 * An object storage bucket
 * A Kubeflow deployment
