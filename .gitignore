@@ -48,3 +48,5 @@ ai/ai-endpoints/java-langchain4j-chatbot/target/test-classes/com/ovhcloud/exampl
 
 # Dot env files
 .env
+use-cases/kubeflow/ovhrc.sh
+use-cases/kubeflow/kubeconfig
