@@ -8,10 +8,10 @@ variable "kubernetes" {
 
 variable "resource_prefix" {
   type    = string
-  default = "tf-public-cloud-examples-workpress-on-mks-with-mysql-"
+  default = "tf-public-cloud-examples-wordpress-on-mks-with-mysql-"
 }
 
 variable "node_pool_flavor_name" {
   type    = string
-  default = "b2-7"
+  default = "b3-8"
 }
