@@ -69,6 +69,8 @@ POST on /domain/zone/*/refresh
 vim ovhrc.sh
 ```
 
+Add at the end of the file:
+
 ```bash
 export TF_VAR_ovh_api_dns_application_key="<your_dns_application_key>"
 export TF_VAR_ovh_api_dns_application_secret="<your_dns_application_secret>"
@@ -100,7 +102,7 @@ You can find the list of configuration variables in `variables.tf` and you can o
 ```bash
 source ovhrc.sh
 terraform init
-terraform plan
+terraform apply -target module.s3_user
 terraform apply
 ```
 
