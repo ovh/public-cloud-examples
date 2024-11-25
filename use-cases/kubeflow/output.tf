@@ -1,3 +1,12 @@
+output "access_key_id" {
+    value = module.s3_user.access_key_id
+}
+
+output "secret_access_key" {
+    value = module.s3_user.secret_access_key
+    sensitive = true
+}
+
 output "kubeflow_url" {
   description = "Kubeflow URL"
   value = "https://kubeflow.${var.ovh_dns_domain}"

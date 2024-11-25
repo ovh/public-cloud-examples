@@ -5,7 +5,7 @@ variable ovh_os_region_name {
 
 variable ovh_os_private_network_vlan_id {
   type        = string
-  default     = "10"
+  default     = "11"
 }
 
 variable ovh_gateway_size {

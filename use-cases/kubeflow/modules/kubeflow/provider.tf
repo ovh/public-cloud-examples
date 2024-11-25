@@ -2,7 +2,7 @@ terraform {
   required_providers {
     ovh = {
       source  = "ovh/ovh"
-      version = "1.0.0"
+      version = "1.1.0"
     }
 
     helm = {
@@ -18,11 +18,6 @@ terraform {
     kubectl = {
       source  = "gavinbunney/kubectl"
       version = "1.14.0"
-    }
-
-    aws = {
-      source  = "hashicorp/aws"
-      version = "5.74.0"
     }
 
     random = {
