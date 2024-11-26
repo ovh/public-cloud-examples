@@ -113,7 +113,7 @@ The Wordpress site is available at this IP.
 
 Wordpress' back-office is available under `/wp-admin/`. The default user is `user`, the generated password can be retrieved using :
 ```bash
-kubectl --kubeconfig=./kubeconfig.yml get secret -n default wordpress -o jsonpath="{.data.wordpress-password}" | base64 -d |pbcopy
+kubectl --kubeconfig=./kubeconfig.yml get secret -n default wordpress -o jsonpath="{.data.wordpress-password}" | base64 -d
 ```
 
 ### Delete the DB and the Kubernetes cluster
