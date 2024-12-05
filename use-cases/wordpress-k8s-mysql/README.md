@@ -11,7 +11,7 @@ We will divide the project into two layers. The first layer is used to deploy th
 ## Requirements
 
 You need the following:
-* [Terraform](https://www.terraform.io/) or [OpenTofu](https://opentofu.org/) installed
+* [Terraform](https://www.terraform.io/) or [OpenTofu](https://opentofu.org/) installed. In the instructions below, we are using the former. If you use the latter, you will need to update the commands accordingly !
 * an [OVHcloud Public cloud project](https://www.ovhcloud.com/en/public-cloud/)
 * OVHcloud API credentials
     * [EU](https://www.ovh.com/auth/?onsuccess=https%3A%2F%2Fwww.ovh.com%2Fauth%2FcreateToken%2F%3F)
@@ -95,28 +95,28 @@ Customize the values if needed.
 
 ```bash
 cd 01-kube
-tofu init
-tofu plan -var-file=../variables_01.tfvars
+terraform init
+terraform plan -var-file=../variables_01.tfvars
 ```
 
 ### Create the cluster and the nodes-pool - 01-kube
 
 ```bash
-tofu apply -var-file=../variables_01.tfvars -auto-approve
+terraform apply -var-file=../variables_01.tfvars -auto-approve
 ```
 
 ### Validate the configuration - 02-db-wordpress
 
 ```bash
 cd ../02-db-wordpress
-tofu init
-tofu plan -var-file=../variables_02.tfvars
+terraform init
+terraform plan -var-file=../variables_02.tfvars
 ```
 
 ### Create the DB, website - 02-db-wordpress
 
 ```bash
-tofu apply -var-file=../variables_02.tfvars -auto-approve
+terraform apply -var-file=../variables_02.tfvars -auto-approve
 ```
 
 ### Login into Wordpress 
@@ -137,7 +137,7 @@ kubectl --kubeconfig=./kubeconfig.yml get secret -n default wordpress -o jsonpat
 
 ```bash
 cd 02-db-wordpress
-tofu destroy -var-file=../variables_02.tfvars -auto-approve
+terraform destroy -var-file=../variables_02.tfvars -auto-approve
 cd ../01-kube
-tofu destroy -var-file=../variables_01.tfvars -auto-approve
+terraform destroy -var-file=../variables_01.tfvars -auto-approve
 ```
