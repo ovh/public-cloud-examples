@@ -11,7 +11,7 @@ We will divide the project into two layers. The first layer is used to deploy th
 ## Requirements
 
 You need the following:
-* [Terraform](https://www.terraform.io/) or [OpenTofu](https://opentofu.org/) installed
+* [Terraform](https://www.terraform.io/) or [OpenTofu](https://opentofu.org/) installed. In the instructions below, we are using the former. If you use the latter, you will need to update the commands accordingly ! 
 * an [OVHcloud Public cloud project](https://www.ovhcloud.com/en/public-cloud/)
 * OVHcloud API credentials
     * [EU](https://www.ovh.com/auth/?onsuccess=https%3A%2F%2Fwww.ovh.com%2Fauth%2FcreateToken%2F%3F)
@@ -85,14 +85,14 @@ Customize the values if needed.
 ### Validate the configuration 
 
 ```bash
-tofu init
-tofu plan -var-file=./variables.tfvars
+terraform init
+terraform plan -var-file=./variables.tfvars
 ```
 
 ### Create the complete architecture
 
 ```bash
-tofu apply -var-file=./variables.tfvars -auto-approve
+terraform apply -var-file=./variables.tfvars -auto-approve
 ```
 
 Check that the helm package is deployed
@@ -119,5 +119,5 @@ kubectl --kubeconfig=./kubeconfig.yml get secret -n default wordpress -o jsonpat
 ### Delete the DB and the Kubernetes cluster
 
 ```bash
-tofu destroy -var-file=./variables.tfvars -auto-approve
+terraform destroy -var-file=./variables.tfvars -auto-approve
 ```
