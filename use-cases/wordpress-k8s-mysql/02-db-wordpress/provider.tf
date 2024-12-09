@@ -2,7 +2,7 @@ terraform {
   required_providers {
     ovh = {
       source  = "ovh/ovh"
-      version = "~> 0.43.1"
+      version = "~> 1.1.0"
 
     }
     helm = {
