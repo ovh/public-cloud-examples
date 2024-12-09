@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: octavia-keepip
+  annotations:
+    loadbalancer.ovhcloud.com/class: "octavia"
+    loadbalancer.openstack.org/keep-floatingip: "true" # Once the IP has been created with this flag, K8S cluster will not manage his deletion / Can be set AFTER the creation
+  labels:
+    app: test-octavia
+spec:
+  ports:
+  - name: client
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: nginx
+  type: LoadBalancer
