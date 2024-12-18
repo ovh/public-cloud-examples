@@ -5,7 +5,7 @@
 
 ### Set up
   - install `ovhai` CLI, see [documentation](https://help.ovhcloud.com/csm/en-gb-public-cloud-ai-cli-install-client?id=kb_article_view&sysparm_article=KB0047844)
-  - we assume that you have an S3 bucket named `rock-paper-scissors` with all needed data from the demo Create a Notebook to [play to rock/paper/scissors](../../notebooks/YOLOV8/)
+  - we assume that you have an S3* compatible bucket named `rock-paper-scissors` with all needed data from the demo Create a Notebook to [play to rock/paper/scissors](../../notebooks/YOLOV8/)
 
 ### Image build for AI Training
 
@@ -26,3 +26,5 @@ ovhai job run \
 ```
 
 You can follow the training with the logs: `ovhai job logs -f <job id>`
+
+**\***: S3 is a trademark of Amazon Technologies, Inc. OVHcloud’s service is not sponsored by, endorsed by, or otherwise affiliated with Amazon Technologies, Inc.

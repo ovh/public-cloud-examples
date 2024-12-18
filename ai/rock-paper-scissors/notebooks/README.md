@@ -6,7 +6,7 @@
 
 ### Set up
   - install `ovhai` CLI, see [documentation](https://help.ovhcloud.com/csm/en-gb-public-cloud-ai-cli-install-client?id=kb_article_view&sysparm_article=KB0047844)
-  - create an S3 bucket named `rock-paper-scissors` ⚠️ This step is optional, this is more convenient to use the data with other demos or OVHcloud products ⚠️
+  - create an S3* compatible bucket named `rock-paper-scissors` ⚠️ This step is optional, this is more convenient to use the data with other demos or OVHcloud products ⚠️
   - create an account on (roboflow)[https://universe.roboflow.com]
 
 #### AI Notebook with JupyterLab
@@ -24,3 +24,5 @@ ovhai notebook run conda jupyterlab \
   - in the notebook's files explorer go to `public-cloud-examples/ai/rock-paper-scissors/notebooks` and open `rock-paper-scissors.ipynb` file
   - follow the steps in the notebook
   - stop the Notebook if needed
+
+  **\***: S3 is a trademark of Amazon Technologies, Inc. OVHcloud’s service is not sponsored by, endorsed by, or otherwise affiliated with Amazon Technologies, Inc.
