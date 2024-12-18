@@ -6,7 +6,7 @@
 
 ### Set up
   - install `ovhai` CLI, see [documentation](https://help.ovhcloud.com/csm/en-gb-public-cloud-ai-cli-install-client?id=kb_article_view&sysparm_article=KB0047844)
-  - create an S3* bucket named `rock-paper-scissors` ⚠️ This step is optional, this is more convenient to use the data with other demos or OVHcloud products ⚠️
+  - create an S3* compatible bucket named `rock-paper-scissors` ⚠️ This step is optional, this is more convenient to use the data with other demos or OVHcloud products ⚠️
   - create an account on (roboflow)[https://universe.roboflow.com]
 
 #### AI Notebook with JupyterLab
