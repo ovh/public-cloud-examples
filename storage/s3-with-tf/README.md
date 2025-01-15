@@ -1,29 +1,15 @@
 # Create a simple Object container storage
 
-To run this TF code you need to set some environment variables:
-  - `AWS_SECRET_ACCESS_KEY="no_need_to_define_a_secret_key"`
-  - `AWS_ACCESS_KEY_ID="no_need_to_define_an_access_key"`
-> These keys are mandatory for the AWS provider but not used by our API.
-  - OVHcloud API configuration:
-   - OVH_APPLICATION_KEY, 
-   - OVH_APPLICATION_SECRET, 
-   - OVH_CONSUMER_KEY,
-   - OVH_CLOUD_PROJECT_SERVICE
-  - Open Stack configuration:
-    - OS_AUTH_URL, 
-    - OS_USERNAME, 
-    - OS_PASSWORD, 
-    - OS_TENANT_NAME
-> See the documentation to [configure the OVHcloud provider](https://registry.terraform.io/providers/ovh/ovh/latest/docs#provider-configuration) and the [Open Stack provider](https://registry.terraform.io/providers/terraform-provider-openstack/openstack/latest/docs#configuration-reference) to set these variables.
+To run this TF code you need to set some environment variables (mandatory for AWS provider):
 
-Run the TF command `terraform apply`, you will prompt to enter the credentials:
+```
+export AWS_ACCESS_KEY_ID="<your_access_key>"
+export AWS_SECRET_ACCESS_KEY="<your_secret_access_key>>"
+```
+
+Run the TF command `terraform apply`:
 ```bash
 $ terraform apply
-var.access_key
-  Enter a value: xxxxx
- 
-var.secret_key
-  Enter a value: xxxxxx
 ```
 
 To destroy the bucket with all the objects inside, run the command `terraform destroy`.
