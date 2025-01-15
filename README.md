@@ -43,6 +43,7 @@ Here is the several topics:
 ├── databases-analytics             ## Here you find demo about databases, data streaming, data integration, ...
 ├── iam                             ## Here you find demo about IAM (roles, identity, ...)
 ├── network                         ## Here you find demo about network (private network, load balancer, gateway, VPS ...)
+├── storage                         ## Here you find demo about storage (object storage, block storage, ...)
 └── use-cases                       ## Here you find use cases (examples using several services: kubernetes, databases...)
 ```
 
