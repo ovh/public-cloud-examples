@@ -4,8 +4,9 @@ To run this TF code you need to set some environment variables (mandatory for AW
 
 ```
 export AWS_ACCESS_KEY_ID="<your_access_key>"
-export AWS_SECRET_ACCESS_KEY="<your_secret_access_key>>"
+export AWS_SECRET_ACCESS_KEY="<your_secret_access_key>"
 ```
+
 
 Run the TF command `terraform apply`:
 ```bash
