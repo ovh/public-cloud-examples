@@ -7,6 +7,10 @@ export AWS_ACCESS_KEY_ID="<your_access_key>"
 export AWS_SECRET_ACCESS_KEY="<your_secret_access_key>"
 ```
 
+To define the region (depending on our needs), follow this guide:
+https://help.ovhcloud.com/csm/en-gb-public-cloud-storage-s3-location?id=kb_article_view&sysparm_article=KB0047382
+
+And then update the region variable in the `variables.tf` file.
 
 Run the TF command `terraform apply`:
 ```bash

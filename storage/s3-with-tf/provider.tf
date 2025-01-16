@@ -8,7 +8,7 @@ terraform {
 
 # Configure the AWS Provider
 provider "aws" {
-  region     = "gra"
+  region     = "${var.region}"
 
   # OVH implementation has no STS service
   skip_credentials_validation = true
@@ -16,6 +16,6 @@ provider "aws" {
   # the gra region is unknown to AWS hence skipping is needed.
   skip_region_validation = true
   endpoints {
-    s3 = "https://s3.gra.io.cloud.ovh.net"
+    s3 = "https://s3.${var.region}.io.cloud.ovh.net"
   }
 }
