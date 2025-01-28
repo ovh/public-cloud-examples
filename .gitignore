@@ -50,3 +50,5 @@ ai/ai-endpoints/java-langchain4j-chatbot/target/test-classes/com/ovhcloud/exampl
 .env
 use-cases/kubeflow/ovhrc.sh
 use-cases/kubeflow/kubeconfig
+my_kube_cluster.yaml
+kustomize
