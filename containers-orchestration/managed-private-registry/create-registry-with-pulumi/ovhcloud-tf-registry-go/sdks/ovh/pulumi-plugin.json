@@ -1,0 +1,5 @@
+{
+  "resource": true,
+  "name": "terraform-provider",
+  "version": "0.1.0"
+}
