@@ -1,6 +1,6 @@
 # Create a simple Object Storage container (S3™ compatible bucket)
 
-The aim of this example is to deploy two Object Storage containers. One in 1-AZ region and one in 3-AZ regon.
+The aim of this example is to deploy two Object Storage containers. One in 1-AZ region and one in 3-AZ region.
 
 ### Set up
   - Install the [Terraform CLI](https://www.terraform.io/downloads.html)
