@@ -1,3 +1,0 @@
-variable "region" {
-    default = "gra"
-}
