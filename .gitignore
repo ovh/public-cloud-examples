@@ -52,3 +52,4 @@ use-cases/kubeflow/ovhrc.sh
 use-cases/kubeflow/kubeconfig
 my_kube_cluster.yaml
 kustomize
+containers-orchestration/managed-rancher/create-rancher-with-tf/variables.tf

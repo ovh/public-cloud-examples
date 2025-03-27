@@ -1,0 +1,3 @@
+variable "service_name" {
+  default = "$OVH_CLOUD_PROJECT_SERVICE"
+}
