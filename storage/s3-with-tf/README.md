@@ -1,16 +1,36 @@
-# Create a simple Object container storage
+# Create a simple Object Storage container (S3™ compatible bucket)
 
-To run this TF code you need to set some environment variables (mandatory for AWS provider):
+The aim of this example is to deploy two Object Storage containers. One in 1-AZ region and one in 3-AZ region.
 
+### Set up
+  - Install the [Terraform CLI](https://www.terraform.io/downloads.html)
+  - Get the credentials from the OVHCloud Public Cloud project:
+    - `application_key`
+    - `application_secret`
+    - `consumer_key`
+  - Get the `service_name` (Public Cloud project ID)
+
+### Demo
+  - set the environment variables `OVH_APPLICATION_KEY`, `OVH_APPLICATION_SECRET`, `OVH_CONSUMER_KEY` and `OVH_CLOUD_PROJECT_SERVICE`
+
+```bash
+# OVHcloud provider needed keys
+export OVH_ENDPOINT="ovh-eu"
+export OVH_APPLICATION_KEY="xxx"
+export OVH_APPLICATION_SECRET="xxx"
+export OVH_CONSUMER_KEY="xxx"
+export OVH_CLOUD_PROJECT_SERVICE="xxx"
 ```
-export AWS_ACCESS_KEY_ID="<your_access_key>"
-export AWS_SECRET_ACCESS_KEY="<your_secret_access_key>"
-```
+  - Replace the value of your OVH_CLOUD_PROJECT_SERVICE environment variable in the [variables.tf](variables.tf) file (in the service_name variable)
 
-To define the region (depending on our needs), follow this guide:
+`envsubst < variables.tf.template > variables.tf`
+
+To define the region of your containers (depending on our needs), follow this guide:
 https://help.ovhcloud.com/csm/en-gb-public-cloud-storage-s3-location?id=kb_article_view&sysparm_article=KB0047382
 
-And then update the region variable in the `variables.tf` file.
+And then update the regions variables in the `variables.tf` file.
+
+/!\ The region must be in uppercase!
 
 Run the TF command `terraform apply`:
 ```bash
