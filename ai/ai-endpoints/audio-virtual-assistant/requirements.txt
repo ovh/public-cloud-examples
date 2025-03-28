@@ -1,5 +1,5 @@
-openai==1.13.3
-streamlit==1.36.0
-streamlit-mic-recorder==1.16.0
-nvidia-riva-client==2.15.1
+openai==1.68.2
+streamlit==1.42.0
+streamlit-mic-recorder==0.0.8
+nvidia-riva-client==2.18.0
 python-dotenv==1.0.1

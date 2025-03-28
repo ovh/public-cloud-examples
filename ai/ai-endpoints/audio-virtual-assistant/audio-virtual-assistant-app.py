@@ -44,13 +44,10 @@ metadata_args=[["authorization", f"bearer {ai_endpoint_token}"]])
     # set up config
     sample_rate_hz = 48000
     req = {
-            "language_code"  : "en-US",                                 # 
-languages: en-US
+            "language_code"  : "en-US",                                 # languages: en-US
             "encoding"       : riva.client.AudioEncoding.LINEAR_PCM ,
-            "sample_rate_hz" : sample_rate_hz,                          # 
-sample rate: 48KHz audio
-            "voice_name"     : "English-US.Female-1"                    # 
-voices: `English-US.Female-1`, `English-US.Male-1`
+            "sample_rate_hz" : sample_rate_hz,                          # sample rate: 48KHz audio
+            "voice_name"     : "English-US.Female-1"                    # voices: `English-US.Female-1`, `English-US.Male-1`
     }
     
     # return response
@@ -95,7 +92,7 @@ api_key=ai_endpoint_token)
 prompt, "avatar":"👤"})
             messages.chat_message("user", avatar="👤").write(prompt)
             response = client.chat.completions.create(
-                model="Mixtral-8x22B-Instruct-v0.1", 
+                model="Mixtral-8x7B-Instruct-v0.1", 
                 messages=st.session_state.messages,
                 temperature=0,
                 max_tokens=1024,
