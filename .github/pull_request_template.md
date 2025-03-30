@@ -10,9 +10,12 @@
 
 ## Products targeted
 
- - [ ] 🧠 AI 🧠
- - [ ] 💿 DBaaS 💿
- - [ ] ⎈ Managed Kubernetes Service / Managed Private Registry / Managed Rancher Service ⎈
+ - [ ] 🧠 AI (Deploy, Notebook, Training, Endpoints...) 🧠
+ - [ ] 💿 Databases & Analytics (DBs, Data Platform, LDP...) 💿
+ - [ ] 📁 Storage (Object Storage, Block Storage...) 📁
+ - [ ] ⎈ Containers & Orchestration (Kubernetes, Registry, Rancher...) ⎈
+ - [ ] 🔒 IAM/KMS 🔒
+ - [ ] 🛜 Network 🛜
  - [ ] 🏗️ IaC 🏗️ 
 
 ## Purpose of this Pull Request
