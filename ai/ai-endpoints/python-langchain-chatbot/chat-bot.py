@@ -5,16 +5,18 @@ from langchain_mistralai import ChatMistralAI
 from langchain_core.prompts import ChatPromptTemplate
 
 ## Set the OVHcloud AI Endpoints token to use models
-_OVH_AI_ENDPOINTS_ACCESS_TOKEN = os.environ.get('OVH_AI_ENDPOINTS_TOKEN') 
+_OVH_AI_ENDPOINTS_ACCESS_TOKEN = os.environ.get('OVH_AI_ENDPOINTS_ACCESS_TOKEN') 
+_OVH_AI_ENDPOINTS_MODEL_NAME = os.environ.get('OVH_AI_ENDPOINTS_MODEL_NAME') 
+_OVH_AI_ENDPOINTS_MODEL_URL = os.environ.get('OVH_AI_ENDPOINTS_MODEL_URL') 
 
 # Function in charge to call the LLM model.
 # Question parameter is the user's question.
 # The function print the LLM answer.
 def chat_completion(question: str):
   # no need to use a token
-  model = ChatMistralAI(model="Mixtral-8x22B-Instruct-v0.1", 
+  model = ChatMistralAI(model=_OVH_AI_ENDPOINTS_MODEL_NAME, 
                         api_key=_OVH_AI_ENDPOINTS_ACCESS_TOKEN,
-                        endpoint='https://mixtral-8x22b-instruct-v01.endpoints.kepler.ai.cloud.ovh.net/api/openai_compat/v1', 
+                        endpoint=_OVH_AI_ENDPOINTS_MODEL_URL, 
                         max_tokens=1500)
 
   prompt = ChatPromptTemplate.from_messages([
