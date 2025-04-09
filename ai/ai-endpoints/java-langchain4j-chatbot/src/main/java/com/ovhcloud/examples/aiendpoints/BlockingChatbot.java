@@ -6,16 +6,17 @@ import dev.langchain4j.model.mistralai.MistralAiChatModel;
 
 public class BlockingChatbot {
   private static final Logger _LOG = LoggerFactory.getLogger(BlockingChatbot.class);
-  private static final String OVHCLOUD_API_KEY = System.getenv("OVHCLOUD_API_KEY");
-
+  private static final String OVH_AI_ENDPOINTS_ACCESS_TOKEN = System.getenv("OVH_AI_ENDPOINTS_ACCESS_TOKEN");
+  private static final String OVH_AI_ENDPOINTS_MODEL_NAME = System.getenv("OVH_AI_ENDPOINTS_MODEL_NAME");
+  private static final String OVH_AI_ENDPOINTS_MODEL_URL = System.getenv("OVH_AI_ENDPOINTS_MODEL_URL");
 
   public static void main(String[] args) {
 
 
     MistralAiChatModel aiChatModel = MistralAiChatModel.builder()
-      .apiKey(OVHCLOUD_API_KEY)
-      .modelName("Mixtral-8x22B-Instruct-v0.1")
-      .baseUrl("https://mixtral-8x22b-instruct-v01.endpoints.kepler.ai.cloud.ovh.net/api/openai_compat/v1/")
+      .apiKey(OVH_AI_ENDPOINTS_ACCESS_TOKEN)
+      .modelName(OVH_AI_ENDPOINTS_MODEL_NAME)
+      .baseUrl(OVH_AI_ENDPOINTS_MODEL_URL)
       .maxTokens(1500)
       .build();
 

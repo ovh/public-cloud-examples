@@ -14,8 +14,12 @@ from langchain_community.embeddings.ovhcloud import OVHCloudEmbeddings
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnablePassthrough
 
-## Set the OVHcloud AI Endpoints token to use models
-_OVH_AI_ENDPOINTS_ACCESS_TOKEN = os.environ.get('OVH_AI_ENDPOINTS_TOKEN') 
+## Set the OVHcloud AI Endpoints configurations
+_OVH_AI_ENDPOINTS_ACCESS_TOKEN = os.environ.get('OVH_AI_ENDPOINTS_ACCESS_TOKEN') 
+_OVH_AI_ENDPOINTS_MODEL_NAME = os.environ.get('OVH_AI_ENDPOINTS_MODEL_NAME') 
+_OVH_AI_ENDPOINTS_MODEL_URL = os.environ.get('OVH_AI_ENDPOINTS_MODEL_URL') 
+_OVH_AI_ENDPOINTS_EMBEDDING_MODEL_NAME = os.environ.get('OVH_AI_ENDPOINTS_EMBEDDING_MODEL_NAME') 
+
 
 
 from langchain_text_splitters import RecursiveCharacterTextSplitter
@@ -25,9 +29,9 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 # The function print the LLM answer.
 def chat_completion(new_message: str):
   # no need to use a token
-  model = ChatMistralAI(model="Mixtral-8x22B-Instruct-v0.1", 
-                        api_key="foo",
-                        endpoint='https://mixtral-8x22b-instruct-v01.endpoints.kepler.ai.cloud.ovh.net/api/openai_compat/v1', 
+  model = ChatMistralAI(model=_OVH_AI_ENDPOINTS_MODEL_NAME, 
+                        api_key=_OVH_AI_ENDPOINTS_ACCESS_TOKEN,
+                        endpoint=_OVH_AI_ENDPOINTS_MODEL_URL, 
                         max_tokens=1500, 
                         streaming=True)
 
@@ -42,7 +46,7 @@ def chat_completion(new_message: str):
   # Split documents into chunks and vectorize them
   text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
   splits = text_splitter.split_documents(docs)
-  vectorstore = Chroma.from_documents(documents=splits, embedding=OVHCloudEmbeddings(model_name="multilingual-e5-base", access_token=_OVH_AI_ENDPOINTS_ACCESS_TOKEN))
+  vectorstore = Chroma.from_documents(documents=splits, embedding=OVHCloudEmbeddings(model_name=_OVH_AI_ENDPOINTS_EMBEDDING_MODEL_NAME, access_token=_OVH_AI_ENDPOINTS_ACCESS_TOKEN))
 
   prompt = hub.pull("rlm/rag-prompt")
 
