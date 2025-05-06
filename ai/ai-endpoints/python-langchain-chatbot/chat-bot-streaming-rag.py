@@ -8,21 +8,17 @@ from langchain_mistralai import ChatMistralAI
 
 from langchain_chroma import Chroma
 
-from langchain_community.document_loaders import DirectoryLoader
+from langchain_community.document_loaders import TextLoader
 from langchain_community.embeddings.ovhcloud import OVHCloudEmbeddings
 
-from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnablePassthrough
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 ## Set the OVHcloud AI Endpoints configurations
 _OVH_AI_ENDPOINTS_ACCESS_TOKEN = os.environ.get('OVH_AI_ENDPOINTS_ACCESS_TOKEN') 
 _OVH_AI_ENDPOINTS_MODEL_NAME = os.environ.get('OVH_AI_ENDPOINTS_MODEL_NAME') 
 _OVH_AI_ENDPOINTS_MODEL_URL = os.environ.get('OVH_AI_ENDPOINTS_MODEL_URL') 
 _OVH_AI_ENDPOINTS_EMBEDDING_MODEL_NAME = os.environ.get('OVH_AI_ENDPOINTS_EMBEDDING_MODEL_NAME') 
-
-
-
-from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 # Function in charge to call the LLM model.
 # Question parameter is the user's question.
@@ -36,26 +32,27 @@ def chat_completion(new_message: str):
                         streaming=True)
 
   # Load documents from a local directory
-  loader = DirectoryLoader(
-     glob="**/*",
-     path="./rag-files/",
-     show_progress=True
-  )
+  loader = TextLoader("./rag-files/content.txt")
   docs = loader.load()
 
   # Split documents into chunks and vectorize them
   text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
   splits = text_splitter.split_documents(docs)
-  vectorstore = Chroma.from_documents(documents=splits, embedding=OVHCloudEmbeddings(model_name=_OVH_AI_ENDPOINTS_EMBEDDING_MODEL_NAME, access_token=_OVH_AI_ENDPOINTS_ACCESS_TOKEN))
+  vectorstore = Chroma.from_documents(documents=splits, 
+                                      embedding=OVHCloudEmbeddings(model_name=_OVH_AI_ENDPOINTS_EMBEDDING_MODEL_NAME, 
+                                                                   access_token=_OVH_AI_ENDPOINTS_ACCESS_TOKEN))
 
+  # Get a pre-configured prompt to do RAG
   prompt = hub.pull("rlm/rag-prompt")
 
+  # Create the RAG chain
   rag_chain = (
     {"context": vectorstore.as_retriever(), "question": RunnablePassthrough()}
     | prompt
     | model
   )
 
+  # Display the response in a streaming way
   print("🤖: ")
   for r in rag_chain.stream({"question", new_message}):
     print(r.content, end="", flush=True)
@@ -65,7 +62,7 @@ def chat_completion(new_message: str):
 def main():
   # User input
   parser = argparse.ArgumentParser()
-  parser.add_argument('--question', type=str, default="What is the meaning of life?")
+  parser.add_argument('--question', type=str, default="What is AI Endpoints?")
   args = parser.parse_args()
   chat_completion(args.question)
 
