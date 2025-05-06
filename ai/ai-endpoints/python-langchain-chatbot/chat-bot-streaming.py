@@ -21,13 +21,16 @@ def chat_completion(new_message: str):
                         max_tokens=1500, 
                         streaming=True)
 
+  # Create the prompt
   prompt = ChatPromptTemplate.from_messages([
     ("system", "You are a Nestor, a virtual assistant. Answer to the question."),
     ("human", "{question}"),
   ])
 
+  # Use the prompt with the model
   chain = prompt | model
 
+  # Display the response in a streaming way
   print("🤖: ")
   for r in chain.stream({"question", new_message}):
     print(r.content, end="", flush=True)
@@ -37,7 +40,7 @@ def chat_completion(new_message: str):
 def main():
   # User input
   parser = argparse.ArgumentParser()
-  parser.add_argument('--question', type=str, default="What is the meaning of life?")
+  parser.add_argument('--question', type=str, default="What is OVHcloud?")
   args = parser.parse_args()
   chat_completion(args.question)
 
