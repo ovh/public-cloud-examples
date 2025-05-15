@@ -1,11 +1,11 @@
-# 16-Imports
+# 08-Imports
 
-# 17-Set the OVHcloud AI Endpoints token to use models
+# 09-Set the OVHcloud AI Endpoints token to use models
 
-# 18-Select the Mistral model
+# 10-Select the Mistral model
 
-# 19-Create the prompt
+# 11-Create the prompt
 
-# 20-Use the prompt with the model
+# 12-Use the prompt with the model
 
-# 21-Display the response in a streaming way
+# 13-Display the response in a streaming way
