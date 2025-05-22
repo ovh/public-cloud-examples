@@ -1,0 +1,20 @@
+# Until the deletion of the previous service, this Service will only deploy the LoadBalancer without the floating IP.
+# When the Floating IP is available (small-service deletion will release the IP), the floationg ip will be attach to this new LB.
+apiVersion: v1
+kind: Service
+metadata:
+  name: octavia-medium-upgraded
+  annotations:
+    loadbalancer.ovhcloud.com/class: "octavia"
+  labels:
+    app: test-octavia
+spec:
+  loadBalancerIP: 57.128.57.253 # Public Floating IP address from the previous service
+  ports:
+  - name: client
+    port: 81
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: nginx
+  type: LoadBalancer
