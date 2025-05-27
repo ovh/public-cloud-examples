@@ -14,7 +14,7 @@ import dev.langchain4j.model.chat.response.ChatResponse;
 import dev.langchain4j.model.mistralai.MistralAiChatModel;
 import dev.langchain4j.model.chat.ChatModel;
 
-Person(String name, int age, double height, boolean married) {
+record Person(String name, int age, double height, boolean married) {
 }
 
 void main() throws Exception {
