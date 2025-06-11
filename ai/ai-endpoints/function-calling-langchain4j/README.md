@@ -13,7 +13,7 @@
 
 ## ⚡️ How to use the project ⚡️
 
-  - run `jbang SimpleFunctionCalling.java` command
+  - run `jbang ImageGeneration.java` command
   - explain your image with natural language
   - see the result in the `generated-image.jpeg`
   - fine tune your prompt to get better results
