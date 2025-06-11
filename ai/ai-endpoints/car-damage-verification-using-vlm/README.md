@@ -25,7 +25,7 @@ This demonstrates how Vision Language Models can analyze visual content and cros
 
 ### 1. Prerequisites
 
-Follow the [complete VLM tutorial setup guide](https://cougz.github.io/ovhcloud-workbooks/public-cloud/ai-endpoints/vlm-tutorial-car-damage-verfication/setup-guide/) for detailed setup instructions.
+Ensure you have Python 3.8+ installed and access to OVHcloud AI Endpoints.
 
 ### 2. Environment Setup
 
