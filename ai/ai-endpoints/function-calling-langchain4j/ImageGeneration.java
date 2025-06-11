@@ -63,7 +63,7 @@ interface ChatBot {
               - once and only once you have this two prompts call the tool with the two prompts.
             If asked about to create an image, you MUST call the `generateImage` function.
             """)
-    @UserMessage("Create an image with stable diffusion XLK following this description: {{userMessage}}")
+    @UserMessage("Create an image with stable diffusion XL following this description: {{userMessage}}")
     String chat(String userMessage);
 }
 
