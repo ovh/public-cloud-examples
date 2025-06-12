@@ -15,6 +15,7 @@ Don't hesitate to use the source code and give us feedback.
 
 ### ☕️ Java demos ☕️
 
+  - [MCP server / client](./mcp-quarkus-langchain4j)
   - [Simple Structured Output](./structured-output-langchain4j/)
   - [Natural Language Processing](./java-nlp)
   - [Chatbot with LangChain4j](./java-langchain4j-chatbot/): blocking mode, streaming mode and RAG mode.
