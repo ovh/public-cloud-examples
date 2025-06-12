@@ -3,6 +3,7 @@ This project illustrate how to use Automatic Speech Recognition (ASR) and Large 
 ## How to use the project
 
 - install the required dependencies: `pip install -r requirements.txt`
+- install `ffmpeg` and `ffprob`
 
 - create the `.env` file:
 ```
