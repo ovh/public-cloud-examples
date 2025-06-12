@@ -30,7 +30,8 @@ Don't hesitate to use the source code and give us feedback.
   - [Conversational Memory for chatbot](./python-langchain-conversational-memory/) by using Mistral7B and LangChain Memory module
   - [Video Translator](./speech-ai-video-translator) with ASR, NMT and TTS to subtitle and dub video voices
   - [ASR features](./asr-features) to better understand how Automatic Speech Recognition models work
-  - [TTS features](./tts-features) to be able to use all Text To Speech models easily 
+  - [TTS features](./tts-features) to be able to use all Text To Speech models easily
+  - [Car Damage Verification with VLM](./car-damage-verification-using-vlm/) - Interactive fact-checking using Vision Language Models to verify car claims against photos
 
 ### 🕸️ Javascript 🕸️
 
