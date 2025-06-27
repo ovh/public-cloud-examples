@@ -15,6 +15,7 @@ Don't hesitate to use the source code and give us feedback.
 
 ### ☕️ Java demos ☕️
 
+  - [MCP server / client](./mcp-quarkus-langchain4j)
   - [Function calling with LangChain4J](./function-calling-langchain4j)
   - [Simple Structured Output](./structured-output-langchain4j/)
   - [Natural Language Processing](./java-nlp)
