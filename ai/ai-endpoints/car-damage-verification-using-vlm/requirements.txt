@@ -1,0 +1,9 @@
+chainlit>=1.0.0
+pillow>=10.0.0
+requests>=2.31.0
+python-dotenv>=1.0.0
+aiofiles>=23.0.0
+typing-extensions>=4.5.0
+pydantic>=2.0.0
+fastapi>=0.100.0
+uvicorn>=0.23.0
