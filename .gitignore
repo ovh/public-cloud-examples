@@ -53,3 +53,5 @@ use-cases/kubeflow/kubeconfig
 my_kube_cluster.yaml
 kustomize
 containers-orchestration/managed-rancher/create-rancher-with-tf/variables.tf
+use-cases/create-and-use-object-storage-as-tf-backend/my-app/backend.tf
+use-cases/create-and-use-object-storage-as-tf-backend/object-storage-tf/variables.tf
