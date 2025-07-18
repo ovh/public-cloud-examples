@@ -51,7 +51,7 @@ export AWS_ACCESS_KEY_ID=$(terraform output -raw access_key_id)
 export AWS_SECRET_ACCESS_KEY=$(terraform output -raw secret_access_key)
 ```
 
-    - store the created bucket name in an environment variable (necessary for the next section).
+  - store the created bucket name in an environment variable (necessary for the next section).
 
 ```bash
 $ export BUCKET_NAME=$(terraform output s3_bucket)
