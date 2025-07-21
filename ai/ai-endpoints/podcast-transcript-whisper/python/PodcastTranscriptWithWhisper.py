@@ -35,6 +35,3 @@ for dialog in jsonTranscript["diarization"]:
 
 
 print(f"\n📝 Diarized Transcript 📝:\n{diarizedTranscript}")
-
-
-
