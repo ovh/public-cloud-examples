@@ -1,6 +1,6 @@
 # 🎯 What is the goals of this example ? 🎯
 
-This example show you how it's very simple to fine tune a LLM with the [axolotl](https://docs.axolotl.ai/) Framework and OVHcloud [Machine Learning Services](https://www.ovhcloud.com/fr/public-cloud/ai-machine-learning/).
+This example shows you how it's very simple to fine tune a LLM with the [axolotl](https://docs.axolotl.ai/) Framework and OVHcloud [Machine Learning Services](https://www.ovhcloud.com/fr/public-cloud/ai-machine-learning/).
 
 ## 📚 Prerequisites 📚
 
@@ -16,7 +16,7 @@ This example show you how it's very simple to fine tune a LLM with the [axolotl]
 ## 💬 The chatbot 🤖
 
 To test the created models, you can use the chatbot in the [chatbot](./chatbot) folder.
-**⚠️ It's a simple chatbot to tests purpose only, not for real production 😉 ⚠️**
+**⚠️ It's a simple chatbot for testing purpose only, not for real production 😉 ⚠️**
 
 The chatbot is packaged with Docker and can be built with the provided [Dockerfile](./chatbot/Dockerfile): `cd ./chatbot && docker buildx build --platform="linux/amd64"  -t <id>/fine-tune-chatbot:1.0.0 .`
 You can run the chatbot using:
@@ -33,7 +33,7 @@ ovhai app run \
     my-id/fine-tune-chatbot:1.0.0
 ```
 
-And you can access the chatbot by navigating to `http://127.0.0.1:8080` or using the public URL provided by OVHcloud AI Deploy.
+And you can access the chatbot by navigating to `http://127.0.0.1:7860` or using the public URL provided by OVHcloud AI Deploy.
 
 ## 📚 The data generation 📚
 
