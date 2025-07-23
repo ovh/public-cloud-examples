@@ -9,7 +9,7 @@ load_in_8bit: true
 load_in_4bit: false
 
 datasets:
-  - path: /workspace/ai-endpoints-doc/
+  - path: /workspace/public-cloud-examples/ai/llm-fine-tune/notebook/ai-endpoints-doc/
     type: chat_template
       
     field_messages: messages
