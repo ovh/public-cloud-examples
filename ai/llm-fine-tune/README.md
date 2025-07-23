@@ -45,3 +45,21 @@ You have two Python scripts:
   - one to generate synthetic data from the previous generated documentation: [DatasetAugmentation.py](./dataset/DatasetAugmentation.py) 
 
 Once you have set the environment variables (see Prerequisites section) you can run the scripts with Python : `python DatasetCreation.py`
+
+## 🏋️‍♀️ Train the model 🏋
+
+You have to create a notebook thanks to `ovhai` CLI:
+```bash
+ovhai notebook run conda jupyterlab \
+	--name axolto-llm-fine-tune \
+	--framework-version conda-py311-cudaDevel11.8 \
+	--flavor l4-1-gpu \
+	--gpu 1 \
+  --volume https://github.com/ovh/public-cloud-examples.git:/workspace/public-cloud-examples:RW
+	--envvar HF_TOKEN=$MY_HF_TOKEN \
+	--envvar WANDB_TOKEN=$MY_WANDB_TOKEN \
+	--unsecure-http
+```
+
+To train the model please follow the steps in the [notebook](./notebook/axolto-llm-fine-tune-Meta-Llama-3.2-1B-instruct-ai-endpoints.ipynb) provided in the [notebook](./notebook/) folder.  
+You have to upload the previously generated data in the [ai-endpoints-doc](./notebook/ai-endpoints-doc/) folder.
