@@ -6,6 +6,8 @@ This example show you how it's very simple to fine tune a LLM with the [axolotl]
 
  - An OVHcloud [public cloud project created](https://help.ovhcloud.com/csm/en-ie-public-cloud-compute-essential-information?id=kb_article_view&sysparm_article=KB0050387)
  - An OVHcloud [AI Endpoints valid API Key](https://help.ovhcloud.com/csm/en-ie-public-cloud-ai-endpoints-getting-started?id=kb_article_view&sysparm_article=KB0065398) stored in an environment variable named `OVH_AI_ENDPOINTS_ACCESS_TOKEN`
+ - A valid AI Endpoint model URL stored in an environment variable named `OVH_AI_ENDPOINTS_MODEL_URL`
+ - A valid AI Endpoint model name stored in an environment variable named `OVH_AI_ENDPOINTS_MODEL_NAME`
  - A [Hugging Face](https://huggingface.co/) account with a valid API Key
  - Optional: 
   - a valid Python installation
@@ -32,3 +34,14 @@ ovhai app run \
 ```
 
 And you can access the chatbot by navigating to `http://127.0.0.1:8080` or using the public URL provided by OVHcloud AI Deploy.
+
+## 📚 The data generation 📚
+
+To train the model you need data.
+Data are generated from the OVHcloud AI Endpoints [official documentation](https://help.ovhcloud.com/csm/en-gb-documentation-public-cloud-ai-and-machine-learning-ai-endpoints?id=kb_browse_cat&kb_id=574a8325551974502d4c6e78b7421938&kb_category=ea1d6daa918a1a541e11d3d71f8624aa&spa=1).
+
+You have two Python scripts:
+  - one to generate valide dataset from the markdown documentation: [DatasetCreation.py](./dataset/DatasetCreation.py)
+  - one to generate synthetic data from the previous generated documentation: [DatasetAugmentation.py](./dataset/DatasetAugmentation.py) 
+
+Once you have set the environment variables (see Prerequisites section) you can run the scripts with Python : `python DatasetCreation.py`
