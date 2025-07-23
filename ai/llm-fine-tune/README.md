@@ -55,7 +55,7 @@ ovhai notebook run conda jupyterlab \
 	--framework-version conda-py311-cudaDevel11.8 \
 	--flavor l4-1-gpu \
 	--gpu 1 \
-  --volume https://github.com/ovh/public-cloud-examples.git:/workspace/public-cloud-examples:RW
+  --volume https://github.com/ovh/public-cloud-examples.git:/workspace/public-cloud-examples:RW \
 	--envvar HF_TOKEN=$MY_HF_TOKEN \
 	--envvar WANDB_TOKEN=$MY_WANDB_TOKEN \
 	--unsecure-http
