@@ -52,7 +52,7 @@ You have to create a notebook thanks to `ovhai` CLI:
 ```bash
 ovhai notebook run conda jupyterlab \
 	--name axolto-llm-fine-tune \
-	--framework-version conda-py311-cudaDevel11.8 \
+	--framework-version 25.3.1-py312-cudadevel128-gpu \
 	--flavor l4-1-gpu \
 	--gpu 1 \
   --volume https://github.com/ovh/public-cloud-examples.git:/workspace/public-cloud-examples:RW \
