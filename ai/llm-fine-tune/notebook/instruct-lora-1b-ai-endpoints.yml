@@ -38,7 +38,7 @@ lora_dropout: 0.05
 lora_target_linear: true
 
 wandb_project: ai_endpoints_training
-wandb_entity: wildagsx
+wandb_entity: <W&B id>
 wandb_mode: 
 wandb_watch:
 wandb_name:
