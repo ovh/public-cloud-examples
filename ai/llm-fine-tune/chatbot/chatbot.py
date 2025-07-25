@@ -1,4 +1,4 @@
-# Application to compare answer generation from OVHcloud AI Endpoints exposed model and fine tuned model.
+# Application to compare answers generation from OVHcloud AI Endpoints exposed model and fine tuned model.
 # ⚠️ Do not used in production!! ⚠️
 
 import gradio as gr
@@ -44,7 +44,7 @@ def chat(prompt, system_prompt, temperature, top_p, model_name, model_url, api_k
 with gr.Blocks() as demo:
     with gr.Row():
         with gr.Column():
-            system_prompt = gr.Textbox(value="""You are a specialist on OVHcloud product.
+            system_prompt = gr.Textbox(value="""You are a specialist on OVHcloud products.
 If you can't find any sure and relevant information about the product asked, answer with "This product doesn't exist in OVHcloud""", 
                 label="🧑‍🏫 System Prompt 🧑‍🏫")
             temperature = gr.Slider(minimum=0.0, maximum=2.0, step=0.01, label="Temperature", value=0.5)
