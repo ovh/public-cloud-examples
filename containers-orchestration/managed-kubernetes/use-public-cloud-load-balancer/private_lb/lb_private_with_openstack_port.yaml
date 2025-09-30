@@ -4,7 +4,6 @@ kind: Service
 metadata:
   name: octavia-private-with-openstack-port
   annotations:
-    loadbalancer.ovhcloud.com/class: "octavia"
     service.beta.kubernetes.io/openstack-internal-load-balancer: "true"
     loadbalancer.openstack.org/port-id: "4c758644-af77-4e60-9e24-bc5e67295ac0"
   labels:

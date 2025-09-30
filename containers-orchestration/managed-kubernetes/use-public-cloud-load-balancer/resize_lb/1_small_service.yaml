@@ -2,9 +2,6 @@ apiVersion: v1
 kind: Service
 metadata:
   name: octavia-small-to-upgrade
-  annotations:
-    loadbalancer.ovhcloud.com/class: "octavia"
-    # Default flavor is small
   labels:
     app: test-octavia
 spec:

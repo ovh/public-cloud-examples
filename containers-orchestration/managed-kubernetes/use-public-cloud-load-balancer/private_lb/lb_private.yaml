@@ -4,7 +4,6 @@ kind: Service
 metadata:
   name: octavia-private
   annotations:
-    loadbalancer.ovhcloud.com/class: "octavia"
     service.beta.kubernetes.io/openstack-internal-load-balancer: "true"
   labels:
     app: test-octavia

@@ -3,7 +3,6 @@ kind: Service
 metadata:
   name: octavia-small-to-upgrade
   annotations:
-    loadbalancer.ovhcloud.com/class: "octavia"
     loadbalancer.openstack.org/keep-floatingip: "true" # Post-adding the keep-floatingip annotation
   labels:
     app: test-octavia

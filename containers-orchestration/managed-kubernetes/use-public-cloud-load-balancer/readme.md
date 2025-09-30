@@ -57,7 +57,6 @@ metadata:
   name: test-lb-service
   namespace: test-lb-ns
   annotations:
-    loadbalancer.ovhcloud.com/class: "octavia"
     loadbalancer.ovhcloud.com/flavor: "small"
 spec:
   ports:

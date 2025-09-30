@@ -3,7 +3,6 @@ kind: Service
 metadata:
   name: octavia-medium
   annotations:
-    loadbalancer.ovhcloud.com/class: "octavia"
     loadbalancer.ovhcloud.com/flavor: "medium"
   labels:
     app: test-octavia
