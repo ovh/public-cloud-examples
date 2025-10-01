@@ -5,7 +5,7 @@ metadata:
   name: publicCloudLB-private-with-openstack-port
   annotations:
     service.beta.kubernetes.io/openstack-internal-load-balancer: "true"
-    loadbalancer.openstack.org/port-id: "4c758644-af77-4e60-9e24-bc5e67295ac0"
+    loadbalancer.openstack.org/port-id: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
   labels:
     app: test-publicCloudLB
 spec:
