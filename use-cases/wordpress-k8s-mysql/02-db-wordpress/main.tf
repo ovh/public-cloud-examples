@@ -1,6 +1,6 @@
 resource "local_file" "kubeconfig_file" {
   content  = data.terraform_remote_state.kube.outputs.kubeconfig_file
-  filename = "kubeconfig_file"
+  filename = "kubeconfig.yml"
 }
 
 # Create the DB service
@@ -10,16 +10,19 @@ resource "ovh_cloud_project_database" "database_service" {
   version     = var.database.version
   plan        = var.database.plan
   nodes {
-    region = var.database.region
+    region     = var.database.region
+    network_id = data.terraform_remote_state.kube.outputs.network_uid
+    subnet_id  = data.terraform_remote_state.kube.outputs.subnet.id
+  }
+  ip_restrictions {
+    description = "mks nodepool subnet CIDR"
+    ip          = data.terraform_remote_state.kube.outputs.subnet.cidr
   }
   flavor = var.database.flavor
 }
 
 # Create the managed mySQL DB
 resource "ovh_cloud_project_database_database" "wordpress_db" {
-  depends_on = [
-    ovh_cloud_project_database.database_service
-  ]
   engine     = "mysql"
   cluster_id = ovh_cloud_project_database.database_service.id
   name       = "wordpress_db"
@@ -35,30 +38,9 @@ resource "ovh_cloud_project_database_user" "wordpress_db_user" {
   name       = "wordpress_db_user"
 }
 
-# Fetch the openstack instances to get their id
-data "openstack_compute_instance_v2" "instances" {
-  for_each = {
-    for vm in data.terraform_remote_state.kube.outputs.nodepool_nodes.nodes : vm.instance_id => vm
-  }
-  id = each.value.instance_id
-}
-
-# DB IP restrictions with the IPs of the nodes
-resource "ovh_cloud_project_database_ip_restriction" "nodes_iprestriction" {
-  depends_on = [
-    ovh_cloud_project_database_database.wordpress_db
-  ]
-  for_each   = data.openstack_compute_instance_v2.instances
-  engine     = ovh_cloud_project_database.database_service.engine
-  cluster_id = ovh_cloud_project_database.database_service.id
-  ip         = "${each.value.access_ip_v4}/32"
-}
-
 # Create the wordpress web site and connect it to the DB
+# More details on parameter at https://github.com/bitnami/charts/tree/main/bitnami/wordpress
 resource "helm_release" "wordpress" {
-  depends_on = [
-    ovh_cloud_project_database_user.wordpress_db_user
-  ]
   name       = "wordpress"
   repository = "https://charts.bitnami.com/bitnami"
   chart      = "wordpress"
@@ -87,4 +69,7 @@ resource "helm_release" "wordpress" {
     name  = "externalDatabase.database"
     value = ovh_cloud_project_database_database.wordpress_db.name
   }
+  depends_on = [
+    local_file.kubeconfig_file
+  ]
 }

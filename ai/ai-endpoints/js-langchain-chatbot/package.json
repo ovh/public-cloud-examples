@@ -1,0 +1,18 @@
+{
+  "name": "js-langchain-chatbot",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Chatbot example with LangChain and AI Endpoints",
+  "main": "chatbot.js",
+  "scripts": {
+    "start": "node chatbot.js"
+  },
+  "author": "OVHcloud",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@langchain/mistralai": "^0.0.22",
+    "@langchain/openai": "^0.0.34",
+    "commander": "^12.1.0",
+    "langchain": "^0.2.2"
+  }
+}

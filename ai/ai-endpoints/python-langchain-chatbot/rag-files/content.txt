@@ -1,0 +1,40 @@
+
+Pourquoi choisir AI Endpoints d'OVHcloud ?
+Sécurité et confidentialité des données
+
+Notre plateforme s'engage à garantir que vos données et celles de vos utilisateurs restent privées et sécurisées.
+
+Nous vous assurons, par exemple, que les données ne sont jamais utilisées pour entraîner ou améliorer des modèles d'IA.
+Une plateforme conçue pour les développeurs
+
+Conçu pour les développeurs de tous niveaux, AI Endpoints simplifie l'intégration des derniers modèles d'IA dans vos applications. Grâce à une documentation complète, des API standards et des exemples de code, vous pouvez ajouter des capacités d'IA rapidement, sans avoir besoin d'une expertise préalable en intelligence artificielle.
+Les meilleurs modèles d’IA à votre disposition
+
+Accédez à une sélection des modèles d’IA les plus performants et reconnus du marché. Que vous ayez besoin d’un grand modèle de langage (LLM), de traitement vocal, d’analyse documentaire ou d’analyse d’images, AI Endpoints met à votre disposition des outils puissants et adaptés à vos besoins.
+Technologie réversible et sans verrouillage fournisseur
+
+Avec AI Endpoints, les modèles utilisés sont transparents et peuvent être déployés sur votre propre infrastructure ou intégrés à un autre service cloud. Cette approche garantit une totale liberté et élimine tout risque de dépendance à un fournisseur, vous permettant de conserver le contrôle sur votre environnement IT.
+ API standard
+
+Des API reconnues (comme celle d'OpenAI) pour une intégration facile
+Authentification par token
+
+Gérez et révoquez simplement vos jetons d'API
+Performance
+
+Haute performance d'inférence grâce aux infrastructures GPU d'OVHcloud
+Sécurité
+
+Plateforme sous-jacente certifiée ISO27000, SOC et données de santé
+Confidentialité
+
+Vos données ne sont ni réutilisées, ni conservées
+Plus de 40 modèles
+
+Une sélection en constante évolution de modèles open weights et renommés
+Gestion du cycle de vie
+
+Améliorez la reproductibilité grâce à une gestion transparente des versions de modèles
+Sandbox
+
+Testez et explorez les modèles de manière interactive dans un environnement intuitif

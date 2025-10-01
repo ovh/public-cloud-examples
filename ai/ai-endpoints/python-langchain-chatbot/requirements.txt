@@ -1,0 +1,7 @@
+langchain==0.3.24
+langchain-mistralai==0.2.10
+langchain_community==0.3.22
+langchain_chroma==0.2.3
+argparse==1.4.0
+unstructured==0.17.2
+langchainhub==0.1.21

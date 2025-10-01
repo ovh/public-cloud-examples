@@ -1,6 +1,19 @@
 # Public cloud examples
 
-![Work in progess](./docs/assets/wip.jpg)
+<table>
+  <tr>
+    <td>
+      <p align="center">
+        <img src="./docs/assets/wip.jpg"/>
+      </p>
+    </td>
+    <td>
+      <b style="font-size:24px">⚠️ This code is only for demonstration purposes </br>and should not be used in production. ⚠️ </b>
+    </td>
+  </tr>
+</table>
+
+
 
 Here is a list of examples which use multiple OVHcloud [Public Cloud products](https://www.ovhcloud.com/fr/public-cloud/).
 
@@ -18,15 +31,19 @@ All examples are organized depending on the main used product (Network, AI, ...)
 Here is the several topics:
 ```bash
 .
-├── ai-machine-learning             ## Here you find demos about AI Products: AI Notebooks, AI Training and AI Deploy
-├── containers-orchestration        ## Here you find demos about Kubernetes, Rancher and Harbor
+├── ai                              ## Here you find demos about AI Products: AI Notebooks, AI Training, AI Deploy, AI Endpoints...
+│   ├── ai-endpoints
+│   ├── deploy
+│   ├── notebooks
+│   └── training
+├── containers-orchestration        ## Here you find demos about Kubernetes, Rancher & Harbor
 │   ├── managed-kubernetes
-│   └── managed-private-registry
+│   ├── managed-private-registry
+│   └── managed-rancher
 ├── databases-analytics             ## Here you find demo about databases, data streaming, data integration, ...
-│   └── databases
 ├── iam                             ## Here you find demo about IAM (roles, identity, ...)
-├── network                         ## Here you find demo about network (private network, load balancer, gateway, ...)
-│   ├── private-network
+├── network                         ## Here you find demo about network (private network, load balancer, gateway, VPS ...)
+├── storage                         ## Here you find demo about storage (object storage, block storage, ...)
 └── use-cases                       ## Here you find use cases (examples using several services: kubernetes, databases...)
 ```
 

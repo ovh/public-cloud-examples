@@ -1,0 +1,13 @@
+changelog:
+  categories:
+    - title: ✨ Features ✨
+      labels:
+        - '✨ New demos ✨'
+        - '🌟 Enhancement 🌟'
+        - '📝 Documentation 📝'
+    - title: 🐛 Bug 🐛
+      labels:
+        - '🐛 Bug 🐛'
+    - title: 🤷‍♂️ Other Changes 🤷‍♂️
+      labels:
+        - "*"        
