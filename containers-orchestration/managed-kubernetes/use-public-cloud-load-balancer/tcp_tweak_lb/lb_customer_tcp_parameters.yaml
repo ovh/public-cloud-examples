@@ -1,9 +1,8 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: octavia-custom-tcp-parameters
+  name: publicCloudLB-custom-tcp-parameters
   annotations:
-    loadbalancer.ovhcloud.com/class: "octavia"
     # Default values
     loadbalancer.openstack.org/timeout-client-data : 50000
     loadbalancer.openstack.org/timeout-member-connect : 5000
@@ -11,7 +10,7 @@ metadata:
     loadbalancer.openstack.org/timeout-tcp-inspect : 0
     loadbalancer.openstack.org/connection-limit: -1
   labels:
-    app: test-octavia
+    app: test-publicCloudLB
 spec:
   ports:
   - name: client

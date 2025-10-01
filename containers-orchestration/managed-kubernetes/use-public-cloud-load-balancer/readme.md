@@ -53,7 +53,7 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: test-lb
+    app: test-publicCloudLB
   name: test-lb-service
   namespace: test-lb-ns
   annotations:
@@ -65,7 +65,7 @@ spec:
     protocol: TCP
     targetPort: 80
   selector:
-    app: test-lb
+    app: test-publicCloudLB
   type: LoadBalancer
 ```
 3. Create a 'Service' using the following command:

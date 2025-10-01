@@ -20,7 +20,7 @@ Wait Load Balancer delivery
 ```shell
 $ kubectl get service -n demo-resize
 NAME                       TYPE           CLUSTER-IP    EXTERNAL-IP   PORT(S)        AGE
-octavia-small-to-upgrade   LoadBalancer   10.3.36.237   57.128.57.47  80:31146/TCP   38s
+octavia-small-to-upgrade   LoadBalancer   10.3.36.237   xx.xx.xx.xx  80:31146/TCP   38s
 ```
 
 Add and Apply the `keep-floatingip` annotation (can be applied at the first step)
@@ -38,7 +38,7 @@ octavia-small-to-upgrade   LoadBalancer   10.3.36.237   xx.xx.xx.xx    80:31146/
 Create a new service with the new expected flavor. To do so edit the `3_medium_service_deploy.yaml` manifest file to change the 'loadBalancerIP' then apply:
 ```yaml
 spec:
-  loadBalancerIP: 57.128.57.47 # Public Floating IP address from the previous service
+  loadBalancerIP: xx.xx.xx.xx # Public Floating IP address from the old service
 ```
 ```shell
 $ kubectl apply -f 3_medium_service_deploy.yaml -n demo-resize

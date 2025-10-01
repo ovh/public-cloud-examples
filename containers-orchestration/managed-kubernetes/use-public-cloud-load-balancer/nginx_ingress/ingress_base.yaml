@@ -8,10 +8,10 @@ spec:
   ingressClassName: nginx
   tls:
   - hosts:
-    - octavia.lgr-k8s.ovh
-    secretName: octavia-secret
+    - myapp.example.com
+    secretName: publicCloudLB-secret
   rules:
-  - host: octavia.lgr-k8s.ovh
+  - host: myapp.example.com
     http:
       paths:
       - path: /

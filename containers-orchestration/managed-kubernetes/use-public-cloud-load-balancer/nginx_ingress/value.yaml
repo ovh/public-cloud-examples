@@ -1,7 +1,6 @@
 controller:
   service:
     annotations:
-      loadbalancer.ovhcloud.com/class: "octavia"
       loadbalancer.openstack.org/proxy-protocol: "true"
       loadbalancer.ovhcloud.com/flavor: "large" # OVHcloud Public Cloud loadbalancer flavor list: https://help.ovhcloud.com/csm/en-ie-public-cloud-network-octavia-use-lbaas-openstack?id=kb_article_view&sysparm_article=KB0050296
   config:

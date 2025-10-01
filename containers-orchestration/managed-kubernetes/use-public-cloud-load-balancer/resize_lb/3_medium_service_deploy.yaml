@@ -3,11 +3,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: octavia-medium-upgraded
+  name: publicCloudLB-medium-upgraded
   labels:
-    app: test-octavia
+    app: test-publicCloudLB
 spec:
-  loadBalancerIP: 57.128.57.253 # Public Floating IP address from the previous service
+  loadBalancerIP: xx.xx.xx.xx # Public Floating IP address from the previous service
   ports:
   - name: client
     port: 81

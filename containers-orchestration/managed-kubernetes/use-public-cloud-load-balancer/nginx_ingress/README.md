@@ -50,7 +50,7 @@ The Ingress Controller enables you to expose your HTTP(S) applications running i
             ingress:
               class: nginx
     ```
-    
+
     To do so, apply it using:
     ```bash
     kubectl apply -f acme-config.yml
@@ -92,7 +92,7 @@ kubectl get svc ingress-nginx-controller -n ingress-nginx
      tls:
      - hosts:
        - myapp.example.com
-       secretName: octavia-secret
+       secretName: publicCloudLB-secret
      rules:
      - host: myapp.example.com
        http:
