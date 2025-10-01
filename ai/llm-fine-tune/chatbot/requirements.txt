@@ -1,0 +1,4 @@
+gradio==5.38.0
+langchain-openai==0.3.28
+langchain-core==0.3.69
+langchain==0.3.26
