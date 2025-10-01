@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: publicCloudLB-small-to-upgrade
+  annotations:
+    loadbalancer.openstack.org/keep-floatingip: "true" # Post-adding the keep-floatingip annotation
+  labels:
+    app: test-publicCloudLB
+spec:
+  ports:
+  - name: client
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: nginx
+  type: LoadBalancer

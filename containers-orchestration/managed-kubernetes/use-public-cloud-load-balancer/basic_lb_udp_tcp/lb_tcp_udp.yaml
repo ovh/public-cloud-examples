@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: publicCloudLB-udp-tcp
+  labels:
+    app: test-publicCloudLB
+spec:
+  ports:
+  - name: client
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  - name: client-udp
+    port: 80
+    protocol: UDP
+    targetPort: 80
+  selector:
+    app: nginx
+  type: LoadBalancer

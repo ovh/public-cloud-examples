@@ -15,6 +15,8 @@ basics/utils/vars.csv
 
 containers-orchestration/managed-kubernetes/create-cluster-with-tf/my_kube_cluster.yml
 containers-orchestration/managed-private-registry/create-registry-with-pulumi/ovhcloud-registry-go/Pulumi.dev.yaml
+.DS_Store
+
 *.tfvars
 kubeconfig.yml
 .quarkus/
