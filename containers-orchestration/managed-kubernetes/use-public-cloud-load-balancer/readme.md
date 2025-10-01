@@ -78,4 +78,4 @@ $ kubectl get service test-lb-service -n=test-lb-ns
 NAME                 TYPE           CLUSTER-IP    EXTERNAL-IP      PORT(S)        AGE
 test-lb-service      LoadBalancer   10.3.107.18   xx.xx.xx.xx   80:30172/TCP   12m
 ```
-5. Open a web browser and access: http://141.94.215.240
+5. Open a web browser and access: http://xx.xx.xx.xx
