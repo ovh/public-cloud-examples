@@ -8,7 +8,7 @@ You have to provide the following annotation:
 `service.beta.kubernetes.io/openstack-internal-load-balancer: "true"`
 
 ## Specify the private IP
-You need to provide a PortI
+You need to provide a PortID and to set it on the `loadbalancer.openstack.org/port-id` annotation. 
 
 1. Create a OpenStack port and use this as LB Ip address
 
