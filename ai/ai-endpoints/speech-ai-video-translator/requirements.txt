@@ -4,3 +4,4 @@ gradio==4.16.0
 moviepy==1.0.3
 librosa==0.10.1
 pysrt==1.1.2
+openai==1.68.2

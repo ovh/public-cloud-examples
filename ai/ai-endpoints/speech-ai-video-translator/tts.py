@@ -5,9 +5,6 @@ import riva.client
 from moviepy.editor import *
 from pydub import AudioSegment
 
-# env
-load_dotenv()
-ai_endpoint_token = os.getenv("OVH_AI_ENDPOINTS_ACCESS_TOKEN")
 inputs_path = "/workspace/inputs"
 outputs_path = "/workspace/outputs"
 directories = ["videos", "audios", "subtitles"]
@@ -27,17 +24,8 @@ def add_audio_on_video(translated_audio, video_input, video_title):
     return new_videoclip
 
 # TTS function
-def tts_transcription(output_nmt, video_input, video_title, voice_type):
+def tts_transcription(output_nmt, video_input, video_title, voice_type, tts_client):
     
-    # connect with tts server
-    tts_service = riva.client.SpeechSynthesisService(
-                    riva.client.Auth(
-                        uri=os.environ.get('TTS_ENDPOINT'), 
-                        use_ssl=True, 
-                        metadata_args=[["authorization", f"bearer {ai_endpoint_token}"]]
-                    )
-                )
-
     # set up tts config
     sample_rate_hz = 16000
     req = { 
@@ -61,7 +49,7 @@ def tts_transcription(output_nmt, video_input, video_title, voice_type):
         
         # create tts transcription
         req["text"] = output_nmt[i][0]
-        resp = tts_service.synthesize(**req)
+        resp = tts_client.synthesize(**req)
         sound_segment = AudioSegment(
             resp.audio,
             sample_width=2,

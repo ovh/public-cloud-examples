@@ -1,35 +1,52 @@
 # import dependencies
 import os
 from dotenv import load_dotenv
-import riva.client
+import requests
 
 # env
 load_dotenv()
-ai_endpoint_token = os.getenv("OVH_AI_ENDPOINTS_ACCESS_TOKEN")
+NMT_AI_ENDPOINT = os.environ.get('NMT_AI_ENDPOINT')
+AI_ENDPOINT_TOKEN = os.getenv("OVH_AI_ENDPOINTS_ACCESS_TOKEN")
 inputs_path = "/workspace/inputs"
 outputs_path = "/workspace/outputs"
 directories = ["videos", "audios", "subtitles"]
 
-# NMT function
 def nmt_translation(output_asr):
-    
-    # connect with nmt server
-    nmt_service = riva.client.NeuralMachineTranslationClient(
-                    riva.client.Auth(
-                        uri=os.environ.get('NMT_ENDPOINT'), 
-                        use_ssl=True, 
-                        metadata_args=[["authorization", f"bearer {ai_endpoint_token}"]]
-                    )
-                )
+    # Define the headers for the API request
+    headers = {
+        "Content-Type": "text/plain",
+        "Authorization": f"Bearer {AI_ENDPOINT_TOKEN}"
+    }
 
-    # set up config
-    model_name = 'fr_en_24x6'
-    
     output_nmt = []
-    for s in range(len(output_asr)):
-        output_nmt.append(output_asr[s])
-        text_translation = nmt_service.translate([output_asr[s][0]], model_name, "fr", "en")
-        output_nmt[s][0]=text_translation.translations[0].text
+    
+    # Iterate through each entry and perform translation
+    for original_entry in output_asr:
+        text_to_translate = original_entry[0]
         
-    # return response
+        try:
+            # Send translation request
+            response = requests.post(
+                url=NMT_AI_ENDPOINT,
+                data=text_to_translate,
+                headers=headers
+            )
+
+            # Handle response
+            if response.status_code == 200:
+                translated_text = response.text
+            else:
+                raise Exception(
+                    f"Translation failed for: {text_to_translate}. Status: {response.status_code}, Response: {response.text}"
+                )
+            
+        except Exception as e:
+            # Optionally modify error handling (logging, default values, etc.)
+            raise e
+
+        # Construct a new entry with translated text
+        new_entry = [translated_text] + original_entry[1:]
+        
+        output_nmt.append(new_entry)
+    
     return output_nmt

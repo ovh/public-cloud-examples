@@ -7,13 +7,33 @@ import gradio as gr
 from pydub import AudioSegment
 from moviepy.editor import *
 from pathlib import Path
-
+from openai import OpenAI
+import riva.client
 
 # /// Import Speech AI functions \\\
 from asr import asr_transcription
 from nmt import nmt_translation
 from tts import tts_transcription
 
+
+# env
+from dotenv import load_dotenv
+load_dotenv()
+
+ASR_AI_ENDPOINT = os.environ.get('ASR_AI_ENDPOINT')
+NMT_AI_ENDPOINT = os.environ.get('NMT_AI_ENDPOINT')
+TTS_GRPC_ENDPOINT = os.environ.get('TTS_GRPC_ENDPOINT')
+AI_ENDPOINT_TOKEN = os.getenv("OVH_AI_ENDPOINTS_ACCESS_TOKEN")
+
+# Initialize clients
+asr_client = OpenAI(base_url=ASR_AI_ENDPOINT, api_key=AI_ENDPOINT_TOKEN)
+tts_client = riva.client.SpeechSynthesisService(
+    riva.client.Auth(
+        uri=TTS_GRPC_ENDPOINT,
+        use_ssl=True,
+        metadata_args=[["authorization", f"bearer {AI_ENDPOINT_TOKEN}"]]
+    )
+)
 
 # /// Directory creation \\\
 inputs_path = "/workspace/inputs"
@@ -40,31 +60,27 @@ def create_directories(inputs_path, outputs_path, directories):
 # /// Video and audio processing functions \\\
 # create SRT file with subtitles
 def generate_str_file(output_nmt):
-    
     lines = []
     for t in range(len(output_nmt)):
         lines.append("%d" % t)
         lines.append(
             "%s --> %s" %
             (
-                ms_to_timecode(output_nmt[t][1]),
-                ms_to_timecode(output_nmt[t][2])
+                s_to_timecode(output_nmt[t][1]),
+                s_to_timecode(output_nmt[t][2])
             )
         )
         lines.append(output_nmt[t][0])
         lines.append('')
-    
     return '\n'.join(lines)
 
-# convert ms into timecode
-def ms_to_timecode(x):
-     
-    hour, x = divmod(x, 3600000)
-    minute, x = divmod(x, 60000)
-    second, x = divmod(x, 1000)
-    millisecond, x = divmod(x, 1)
-
-    return '%.2d:%.2d:%.2d,%.3d' % (hour, minute, second, millisecond)
+# convert seconds into timecode
+def s_to_timecode(x):
+    hour, x = divmod(x, 3600)
+    minute, x = divmod(x, 60)
+    second, millisecond = divmod(x, 1)
+    millisecond = int(millisecond * 1000)
+    return '%.2d:%.2d:%.2d,%.3d' % (int(hour), int(minute), int(second), millisecond)
 
 # video processings
 def process_video(video_input, translation_mode, voice_type):
@@ -81,7 +97,7 @@ def process_video(video_input, translation_mode, voice_type):
 
     # ASR (audio -> text) in source language
     audio_input = f"{inputs_path}/audios/{video_title}.wav"
-    audio_to_text = asr_transcription(audio_input)
+    audio_to_text = asr_transcription(audio_input, asr_client)
     print(f"Speech to Text synthesis done for video {video_title}.mp4")
 
     # NMT (text -> text) in target language
@@ -102,7 +118,7 @@ def process_video(video_input, translation_mode, voice_type):
         
     # TTS (text -> audio) in target language
     else:
-        text_to_audio = tts_transcription(text_to_text_translation, video_input, video_title, voice_type)
+        text_to_audio = tts_transcription(text_to_text_translation, video_input, video_title, voice_type, tts_client)
         print(f"Voice dubbing done for video {video_title}.mp4")
 
         video_output = gr.Video(

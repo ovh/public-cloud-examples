@@ -2,7 +2,6 @@
 import gradio as gr
 from utils import process_video
 
-
 # /// Config \\\
 # gradio interface theme
 api_theme = gr.themes.Default(primary_hue="blue")
@@ -22,7 +21,7 @@ def reset_inputs():
     ), gr.Dropdown(
         visible=False,
     ), gr.Video(
-        label="Translated video in english 🇺🇸",
+        label="Translated video in French 🇫🇷",
         visible=True,
         show_download_button=True,
         interactive=False,
@@ -75,7 +74,7 @@ with gr.Blocks(theme=api_theme) as demo:
             # Video input
             with gr.Row():
                 video_input = gr.Video(
-                    label="Video input in french 🇫🇷 (.mp4)",
+                    label="Video input in English 🇬🇧 (.mp4)",
                     sources="upload",
                     format="mp4",
                     max_length=600,   
@@ -108,7 +107,7 @@ with gr.Blocks(theme=api_theme) as demo:
                 visible=False,
             )
             video_output = gr.Video(
-                label="Translated video in english 🇺🇸",
+                label="Translated video in French 🇫🇷",
                 visible=True,
                 show_download_button=True,
                 interactive=False,
