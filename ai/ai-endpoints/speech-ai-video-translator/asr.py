@@ -8,7 +8,7 @@ def asr_transcription(audio_input, client):
         response = client.audio.transcriptions.create(
             model="whisper-large-v3",
             file=audio_file,
-            language="en",
+            language="fr",
             response_format="verbose_json",
             timestamp_granularities=["segment", "word"]
         )

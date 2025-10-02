@@ -27,6 +27,7 @@ AI_ENDPOINT_TOKEN = os.getenv("OVH_AI_ENDPOINTS_ACCESS_TOKEN")
 
 # Initialize clients
 asr_client = OpenAI(base_url=ASR_AI_ENDPOINT, api_key=AI_ENDPOINT_TOKEN)
+nmt_client = OpenAI(base_url=NMT_AI_ENDPOINT, api_key=AI_ENDPOINT_TOKEN)
 tts_client = riva.client.SpeechSynthesisService(
     riva.client.Auth(
         uri=TTS_GRPC_ENDPOINT,
@@ -99,9 +100,10 @@ def process_video(video_input, translation_mode, voice_type):
     audio_input = f"{inputs_path}/audios/{video_title}.wav"
     audio_to_text = asr_transcription(audio_input, asr_client)
     print(f"Speech to Text synthesis done for video {video_title}.mp4")
-
+    print(audio_to_text)
+    
     # NMT (text -> text) in target language
-    text_to_text_translation = nmt_translation(audio_to_text)
+    text_to_text_translation = nmt_translation(audio_to_text, nmt_client)
     print(f"Text translation done for video {video_title}.mp4")
     output_subtitles_file = f"{outputs_path}/subtitles/{video_title}.srt"
     with open(output_subtitles_file, 'w') as f:

@@ -21,7 +21,7 @@ def reset_inputs():
     ), gr.Dropdown(
         visible=False,
     ), gr.Video(
-        label="Translated video in French 🇫🇷",
+        label="Translated video in English 🇬🇧",
         visible=True,
         show_download_button=True,
         interactive=False,
@@ -74,7 +74,7 @@ with gr.Blocks(theme=api_theme) as demo:
             # Video input
             with gr.Row():
                 video_input = gr.Video(
-                    label="Video input in English 🇬🇧 (.mp4)",
+                    label="Video input in French 🇫🇷 (.mp4)",
                     sources="upload",
                     format="mp4",
                     max_length=600,   
@@ -107,7 +107,7 @@ with gr.Blocks(theme=api_theme) as demo:
                 visible=False,
             )
             video_output = gr.Video(
-                label="Translated video in French 🇫🇷",
+                label="Translated video in English 🇬🇧",
                 visible=True,
                 show_download_button=True,
                 interactive=False,

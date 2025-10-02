@@ -9,7 +9,7 @@ Subtitle and dub voices of any video using Automatic Speech Recognition (ASR), N
 - create the `.env` file:
 ```
 ASR_AI_ENDPOINT=https://whisper-large-v3.endpoints.kepler.ai.cloud.ovh.net/api/openai_compat/v1
-NMT_AI_ENDPOINT=https://t5-large.endpoints.kepler.ai.cloud.ovh.net/api/translate?from=English&target=French
+NMT_AI_ENDPOINT=https://oai.endpoints.kepler.ai.cloud.ovh.net/v1
 TTS_GRPC_ENDPOINT=nvr-tts-en-us.endpoints-grpc.kepler.ai.cloud.ovh.net:443
 OVH_AI_ENDPOINTS_ACCESS_TOKEN=<ai-endpoints-api-token>
 ```

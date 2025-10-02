@@ -35,17 +35,19 @@ def tts_transcription(output_nmt, video_input, video_title, voice_type, tts_clie
             "voice_name"     : f"English-US.{voice_type}"                    
     }
 
-    output_audio = 0
+    output_audio = AudioSegment.empty()
     output_audio_file = f"{outputs_path}/audios/{video_title}.wav"
+
     for i in range(len(output_nmt)):
-        
-        # add silence between audio sample
-        if i==0:
-            duration_silence = output_nmt[i][1]
-        else:
-            duration_silence = output_nmt[i][1] - output_nmt[i-1][2]
-        silent_segment = AudioSegment.silent(duration = duration_silence)
-        output_audio += silent_segment
+        target_start_time = output_nmt[i][1] * 1000 # convert to ms
+        current_audio_length = len(output_audio) # already in ms
+
+        # Calculate silence needed to reach the target start time
+        duration_silence = target_start_time - current_audio_length
+
+        if duration_silence > 0:
+            silent_segment = AudioSegment.silent(duration=duration_silence)
+            output_audio += silent_segment
         
         # create tts transcription
         req["text"] = output_nmt[i][0]
