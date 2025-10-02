@@ -1,0 +1,11 @@
+variable "service_name" {
+  default = "$OVH_CLOUD_PROJECT_SERVICE"
+}
+
+variable "region_1AZ" {
+    default = "GRA" #The region must be in uppercase
+}
+
+variable "region_3AZ" {
+    default = "EU-WEST-PAR" #The region must be in uppercase
+}

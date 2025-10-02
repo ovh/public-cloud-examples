@@ -15,6 +15,9 @@ Don't hesitate to use the source code and give us feedback.
 
 ### ☕️ Java demos ☕️
 
+  - [MCP server / client](./mcp-quarkus-langchain4j)
+  - [Function calling with LangChain4J](./function-calling-langchain4j)
+  - [Simple Structured Output](./structured-output-langchain4j/)
   - [Natural Language Processing](./java-nlp)
   - [Chatbot with LangChain4j](./java-langchain4j-chatbot/): blocking mode, streaming mode and RAG mode.
   - [Blocking chatbot](./quarkus-langchain4j/) with LangChain4j and Quarkus
@@ -22,6 +25,7 @@ Don't hesitate to use the source code and give us feedback.
 
 ### 🐍 Python 🐍
 
+  - [Podcast audio transcript](./podcast-transcript-whisper/python/)
   - [Chatbot with LangChain](./python-langchain-chatbot/): blocking mode, streaming mode, RAG mode.
   - [Streaming chatbot](./python-langchain-chatbot/) with LangChain
   - [Audio Summarizer Assistant](./audio-summarizer-assistant/) by connecting Speech-To-Text and LLM
@@ -29,7 +33,8 @@ Don't hesitate to use the source code and give us feedback.
   - [Conversational Memory for chatbot](./python-langchain-conversational-memory/) by using Mistral7B and LangChain Memory module
   - [Video Translator](./speech-ai-video-translator) with ASR, NMT and TTS to subtitle and dub video voices
   - [ASR features](./asr-features) to better understand how Automatic Speech Recognition models work
-  - [TTS features](./tts-features) to be able to use all Text To Speech models easily 
+  - [TTS features](./tts-features) to be able to use all Text To Speech models easily
+  - [Car Damage Verification with VLM](./car-damage-verification-using-vlm/) - Interactive fact-checking using Vision Language Models to verify car claims against photos
 
 ### 🕸️ Javascript 🕸️
 

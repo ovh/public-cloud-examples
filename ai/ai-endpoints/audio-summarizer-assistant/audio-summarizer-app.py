@@ -76,7 +76,7 @@ def chat_completion(new_message):
         history_openai_format = [{"role": "user", "content": f"Summarize the following text in a few words: {new_message}"}]
         # return summary
         return client.chat.completions.create(
-            model="Mixtral-8x22B-Instruct-v0.1",
+            model="Mixtral-8x7B-Instruct-v0.1",
             messages=history_openai_format,
             temperature=0,
             max_tokens=1024
@@ -140,4 +140,3 @@ with gr.Blocks(theme=gr.themes.Default(primary_hue="blue"), fill_height=True) as
 if __name__ == '__main__':
  
     demo.launch(server_name="0.0.0.0", server_port=8000)
-    

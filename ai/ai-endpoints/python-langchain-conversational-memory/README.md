@@ -6,7 +6,7 @@ This project illustrate how to implement conversational memory and enable your c
 
 - create the `.env` file:
 ```
-LLM_AI_ENDPOINT=https://mistral-7b-instruct-v02.endpoints.kepler.ai.cloud.ovh.net/api/openai_compat/v1
+LLM_AI_ENDPOINT=https://mistral-7b-instruct-v0-3.endpoints.kepler.ai.cloud.ovh.net/api/openai_compat/v1
 OVH_AI_ENDPOINTS_ACCESS_TOKEN=<ai-endpoints-api-token>
 ```
 
