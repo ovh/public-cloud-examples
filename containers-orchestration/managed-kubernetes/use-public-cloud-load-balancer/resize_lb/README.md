@@ -1,13 +1,38 @@
 # Resize your LoadBalancer
 
-### Objective
-There is no proper way to 'resize' your Load Balancer from one flavor to another yet (work in progress). The best alternative to change the flavor of your load balancer is to recreate a new Kubernetes Service that will use the same public IP as an existing one.
+## Objective
+There is no proper way to 'resize' your Load Balancer from one flavor to another yet (see the related [github issue](https://github.com/ovh/public-cloud-roadmap/issues/418) for more information). The best alternative to change the flavor of your load balancer is to recreate a new Kubernetes Service that will use the same public IP as an existing one.
 
 OVHcloud Public Cloud LoadBalancer flavors: https://help.ovhcloud.com/csm/en-ie-public-cloud-network-octavia-use-lbaas-openstack?id=kb_article_view&sysparm_article=KB0050296
 
-### Example
+## Prerequisites for MKS standard plan
 
-On this example we will create a LoadBalancer using a 'small' flavor, then we will make sure that the Public IP will not be released from your project and finally we will create a new loadBalancer using a 'medium' flavor that will replace the old one and use the same Public IP.
+* Get a running MKS cluster with a MKS Standard plan,
+
+* Prepare an authenticated OpenStack CLI for your Public Cloud project, make sure you consult the following guides:
+  - [Prepare the environment to use the OpenStack API](https://help.ovhcloud.com/csm/en-ie-public-cloud-compute-prepare-openstack-api-environment?id=kb_article_view&sysparm_article=KB0051001) by installing python-openstackclient.
+  - [Load the OpenStack environment variables](https://help.ovhcloud.com/csm/en-ie-public-cloud-compute-set-openstack-environment-variables?id=kb_article_view&sysparm_article=KB0050930).
+
+* Select a flavor for your loadbalancer. [More information](https://www.ovhcloud.com/en/public-cloud/load-balancer/)
+
+* Get the ID of the flavor your selected, using `openstack loadbalancer flavor list`
+
+```console
++-----+--------+--------------------------------------+---------+
+| id  | name   | flavor_profile_id                    | enabled |
++-----+--------+--------------------------------------+---------+
+| zzz | large  | e23251e0-5ae0-4d03-824d-f3c3f5ab352c | True    |
+| aaa | xl     | e5e1111e-23ff-4f4a-978b-ea720e8911b5 | True    |
+| xxx | small  | 369f5329-86cb-40c8-b555-c8de09262966 | True    |
+| yyy | medium | b3f09d32-9c2d-4835-b0f5-12ba58bd8339 | True    |
++-----+--------+--------------------------------------+---------+
+```
+
+* Replace the`yyy` pattern in the file `3_medium_service_deploy.yaml` before executing the following steps.
+
+## Example of a Load Balancer resize
+
+On this example, a Load Balancer will be created using the 'small' flavor (it is selected by default when no annotation is given). Then we will make sure that the Public IP will not be released from your project and finally we will create a new loadBalancer using a 'medium' flavor that will replace the old one and use the same Public IP.
 
 Deploy a Load Balancer Service using a 'small' flavor
 ```shell

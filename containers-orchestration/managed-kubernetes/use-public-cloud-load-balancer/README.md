@@ -24,14 +24,12 @@ This guide uses some concepts that are specific to our Public Cloud Load Balance
 
 
 ### Prerequisites
-To be able to deploy a [Public Cloud Load Balancer](https://www.ovhcloud.com/en-ie/public-cloud/load-balancer/), you should have a running Managed Kubernetes Service and it must run or have been upgraded to the following patch versions:
+To be able to deploy a [Public Cloud Load Balancer](https://www.ovhcloud.com/en-ie/public-cloud/load-balancer/), you should have a running Managed Kubernetes Service `>=1.31` or in one of the following patch versions:
 
 | Kubernetes versions |
-|-------------|
-| 1.24.13-3>= |   
-| 1.25.9-3>=  |   
-| 1.26.4-3>=  |   
-| 1.27>=      |  
+| ------------------- |
+| 1.29.3-3  >=        |
+| 1.30.2-1  >=        |
 
 
 ### Setup
@@ -56,8 +54,6 @@ metadata:
     app: test-publicCloudLB
   name: test-lb-service
   namespace: test-lb-ns
-  annotations:
-    loadbalancer.ovhcloud.com/flavor: "small"
 spec:
   ports:
   - name: 80-80
