@@ -3,15 +3,17 @@ kind: Service
 metadata:
   name: publicCloudLB-medium
   annotations:
-    loadbalancer.ovhcloud.com/flavor: "medium"
+    # Use `openstack loadbalancer flavor list` to get the full list of available flavors.
+    loadbalancer.ovhcloud.com/flavor: "medium" # Name of a loadbalancer flavor, used in MKS Free ONLY.
+    loadbalancer.openstack.org/flavor-id: xxx # UUID of a loadbalancer flavor, used in MKS Standard ONLY.
   labels:
     app: test-publicCloudLB
 spec:
   ports:
-  - name: client
-    port: 80
-    protocol: TCP
-    targetPort: 80
+    - name: client
+      port: 80
+      protocol: TCP
+      targetPort: 80
   selector:
     app: nginx
   type: LoadBalancer
