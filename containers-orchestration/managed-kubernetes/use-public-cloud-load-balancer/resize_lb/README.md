@@ -28,7 +28,7 @@ OVHcloud Public Cloud LoadBalancer flavors: https://help.ovhcloud.com/csm/en-ie-
 +-----+--------+--------------------------------------+---------+
 ```
 
-* Replace the`yyy` pattern in the file `3_medium_service_deploy.yaml` before executing the following steps.
+* Replace the `yyy` pattern in the file `3_medium_service_deploy.yaml` before executing the following steps.
 
 ## Example of a Load Balancer resize
 
