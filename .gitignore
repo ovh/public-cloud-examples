@@ -24,6 +24,7 @@ containers-orchestration/managed-kubernetes/create-cluster-with-cdktf-and-go/kub
 containers-orchestration/managed-kubernetes/create-cluster-with-cdktf-and-go/generated
 containers-orchestration/managed-kubernetes/create-cluster-with-cdktf-and-go/cdktf.out
 .vscode/settings.json
+containers-orchestration/managed-private-registry/create-registry-with-pulumi/ovhcloud-tf-registry-go/Pulumi.dev.yaml
 
 # Python 
 venv/
