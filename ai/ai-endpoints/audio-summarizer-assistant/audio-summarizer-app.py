@@ -5,6 +5,7 @@ import requests
 from pydub import AudioSegment
 from dotenv import load_dotenv
 from openai import OpenAI
+import functools
 
 
 # access the environment variables from the .env file
@@ -13,9 +14,19 @@ asr_ai_endpoint_url = os.environ.get('ASR_AI_ENDPOINT')
 llm_ai_endpoint_url = os.getenv("LLM_AI_ENDPOINT")
 ai_endpoint_token = os.getenv("OVH_AI_ENDPOINTS_ACCESS_TOKEN")
 
+ # client defintions & authentication
+asr_client = OpenAI(
+    base_url=asr_ai_endpoint_url,
+    api_key=ai_endpoint_token
+)
+
+llm_client = OpenAI(
+    base_url=llm_ai_endpoint_url,
+    api_key=ai_endpoint_token
+)
 
 # automatic speech recognition
-def asr_transcription(audio):
+def asr_transcription(asr_client, audio):
     
     if audio is None:
         return " "
@@ -28,59 +39,38 @@ def asr_transcription(audio):
         process_audio_to_wav = process_audio_to_wav.set_frame_rate(16000)
         process_audio_to_wav.export(processed_audio, format="wav")
     
-        # headers
-        headers = headers = {
-            'accept': 'application/json',
-            "Authorization": f"Bearer {ai_endpoint_token}",
-        }
-
-        # put processed audio file as endpoint input
-        files = [
-            ('audio', open(processed_audio, 'rb')),
-        ]
-
-        # get response from endpoint
-        response = requests.post(
-            asr_ai_endpoint_url, 
-            files=files, 
-            headers=headers
-        )
+        with open(processed_audio, "rb") as audio_file:
+            response = asr_client.audio.transcriptions.create(
+                model="whisper-large-v3",
+                file=audio_file,
+                response_format="verbose_json",
+                timestamp_granularities=["segment"]
+            )
 
         # return complete transcription
-        if response.status_code == 200:
-            # Handle response
-            response_data = response.json()
-            resp=''
-            for alternative in response_data:
-                resp+=alternative['alternatives'][0]['transcript']
-        else:
-            print("Error:", response.status_code)
-            
-        return resp
+        return response.text
 
 
-# ask Mixtral 8x22b for summarization
-def chat_completion(new_message):
+# ask Mixtral 8x7b for summarization
+def chat_completion(llm_client, new_message):
 
     if new_message==" ":
         return "Please, send an input audio to get its summary!"
     
     else:
-        # auth
-        client = OpenAI(
-            base_url=llm_ai_endpoint_url,
-            api_key=ai_endpoint_token
-        )
-
         # prompt
         history_openai_format = [{"role": "user", "content": f"Summarize the following text in a few words: {new_message}"}]
         # return summary
-        return client.chat.completions.create(
+        return llm_client.chat.completions.create(
             model="Mixtral-8x7B-Instruct-v0.1",
             messages=history_openai_format,
             temperature=0,
             max_tokens=1024
         ).choices.pop().message.content
+
+# create partial functions with bound client instances
+asr_transcribe_fn = functools.partial(asr_transcription, asr_client)
+chat_completion_fn = functools.partial(chat_completion, llm_client)
 
 
 # gradio
@@ -127,12 +117,12 @@ with gr.Blocks(theme=gr.themes.Default(primary_hue="blue"), fill_height=True) as
   
     # update functions
     inp_audio.change(
-        fn = asr_transcription,
+        fn = asr_transcribe_fn,
         inputs = inp_audio,
         outputs = inp_text
       )
     inp_text.change(
-        fn = chat_completion,
+        fn = chat_completion_fn,
         inputs = inp_text,
         outputs = out_resp
       )
