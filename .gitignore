@@ -15,6 +15,8 @@ basics/utils/vars.csv
 
 containers-orchestration/managed-kubernetes/create-cluster-with-tf/my_kube_cluster.yml
 containers-orchestration/managed-private-registry/create-registry-with-pulumi/ovhcloud-registry-go/Pulumi.dev.yaml
+.DS_Store
+
 *.tfvars
 kubeconfig.yml
 .quarkus/
@@ -50,3 +52,12 @@ ai/ai-endpoints/java-langchain4j-chatbot/target/test-classes/com/ovhcloud/exampl
 .env
 use-cases/kubeflow/ovhrc.sh
 use-cases/kubeflow/kubeconfig
+my_kube_cluster.yaml
+kustomize
+containers-orchestration/managed-rancher/create-rancher-with-tf/variables.tf
+use-cases/create-and-use-object-storage-as-tf-backend/my-app/backend.tf
+use-cases/create-and-use-object-storage-as-tf-backend/object-storage-tf/variables.tf
+
+# LLM Fine Tune data
+ai/llm-fine-tune/dataset/docs/*
+ai/llm-fine-tune/dataset/generated/*

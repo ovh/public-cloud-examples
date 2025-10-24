@@ -25,10 +25,14 @@ import dev.langchain4j.store.embedding.pgvector.PgVectorEmbeddingStore;
 
 public class RAGStreamingChatbot {
   private static final Logger _LOG = LoggerFactory.getLogger(RAGStreamingChatbot.class);
-  private static final String OVHCLOUD_API_KEY = System.getenv("OVHCLOUD_API_KEY");
   private static final String DATABASE_HOST = System.getenv("DATABASE_HOST");
   private static final String DATABASE_USER = System.getenv("DATABASE_USER");
   private static final String DATABASE_PASSWORD = System.getenv("DATABASE_PASSWORD");
+  private static final String OVH_AI_ENDPOINTS_ACCESS_TOKEN = System.getenv("OVH_AI_ENDPOINTS_ACCESS_TOKEN");
+  private static final String OVH_AI_ENDPOINTS_MODEL_NAME = System.getenv("OVH_AI_ENDPOINTS_MODEL_NAME");
+  private static final String OVH_AI_ENDPOINTS_MODEL_URL = System.getenv("OVH_AI_ENDPOINTS_MODEL_URL"); 
+  private static final String OVH_AI_ENDPOINTS_EMBEDDING_MODEL_URL = System.getenv("OVH_AI_ENDPOINTS_EMBEDDING_MODEL_URL"); 
+
 
   interface Assistant {
     TokenStream chat(String userMessage);
@@ -47,7 +51,10 @@ public class RAGStreamingChatbot {
     List<TextSegment> segments = splitter.split(document);
 
     // Do the embeddings and store them in an embedding store
-    EmbeddingModel embeddingModel = OvhAiEmbeddingModel.withApiKey(OVHCLOUD_API_KEY);
+    EmbeddingModel embeddingModel = OvhAiEmbeddingModel.builder()
+        .apiKey(OVH_AI_ENDPOINTS_ACCESS_TOKEN)
+        .baseUrl(OVH_AI_ENDPOINTS_EMBEDDING_MODEL_URL)
+        .build();
     List<Embedding> embeddings = embeddingModel.embedAll(segments).content();
 
     EmbeddingStore<TextSegment> embeddingStore = PgVectorEmbeddingStore.builder()
@@ -72,10 +79,10 @@ public class RAGStreamingChatbot {
         .build();
 
     MistralAiStreamingChatModel streamingChatModel = MistralAiStreamingChatModel.builder()
-        .apiKey(OVHCLOUD_API_KEY)
-        .modelName("Mistral-7B-Instruct-v0.2")
+        .apiKey(OVH_AI_ENDPOINTS_ACCESS_TOKEN)
+        .modelName(OVH_AI_ENDPOINTS_MODEL_NAME)
         .baseUrl(
-            "https://mistral-7b-instruct-v02.endpoints.kepler.ai.cloud.ovh.net/api/openai_compat/v1")
+            OVH_AI_ENDPOINTS_MODEL_URL)
         .maxTokens(512)
         .build();
 

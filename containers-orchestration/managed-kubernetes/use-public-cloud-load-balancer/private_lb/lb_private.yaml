@@ -1,0 +1,18 @@
+# Only available with a MKS cluster attached to a Private network
+apiVersion: v1
+kind: Service
+metadata:
+  name: publicCloudLB-private
+  annotations:
+    service.beta.kubernetes.io/openstack-internal-load-balancer: "true"
+  labels:
+    app: test-publicCloudLB
+spec:
+  ports:
+  - name: client
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: nginx
+  type: LoadBalancer

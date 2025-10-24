@@ -19,6 +19,3 @@ RUN chown -R 42420:42420 /workspace
 
 # run (CMD) the app.py
 CMD [ "streamlit" , "run" , "/workspace/app.py", "--server.address=0.0.0.0" ]
-
-
-#ENV HOME=/workspace

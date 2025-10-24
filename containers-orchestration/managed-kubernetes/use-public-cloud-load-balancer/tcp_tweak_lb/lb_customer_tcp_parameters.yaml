@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: publicCloudLB-custom-tcp-parameters
+  annotations:
+    # Default values
+    loadbalancer.openstack.org/timeout-client-data : 50000
+    loadbalancer.openstack.org/timeout-member-connect : 5000
+    loadbalancer.openstack.org/timeout-member-data : 50000
+    loadbalancer.openstack.org/timeout-tcp-inspect : 0
+    loadbalancer.openstack.org/connection-limit: -1
+  labels:
+    app: test-publicCloudLB
+spec:
+  ports:
+  - name: client
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: nginx
+  type: LoadBalancer

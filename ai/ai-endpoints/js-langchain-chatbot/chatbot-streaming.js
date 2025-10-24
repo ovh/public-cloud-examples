@@ -15,10 +15,10 @@ async function chatCompletion(question) {
 
   // Use Mixtral-8x22B as LLM
   const model = new ChatMistralAI({
-    modelName: "Mixtral-8x22B-Instruct-v0.1",
-    model: "Mixtral-8x22B-Instruct-v0.1",
-    apiKey: "None",
-    endpoint: "https://mixtral-8x22b-instruct-v01.endpoints.kepler.ai.cloud.ovh.net/api/openai_compat/",
+    modelName: process.env.OVH_AI_ENDPOINTS_MODEL_NAME,
+    model: process.env.OVH_AI_ENDPOINTS_MODEL_NAME,
+    apiKey: process.env.OVH_AI_ENDPOINTS_ACCESS_TOKEN,
+    endpoint: process.env.OVH_AI_ENDPOINTS_MODEL_URL,
     maxTokens: 1500,
     streaming: true,
     verbose: false,

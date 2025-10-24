@@ -42,7 +42,6 @@ kubectl --kubeconfig=$KUBE_CLUSTER get secret ovhregistrycred -o jsonpath="{.dat
 cd overlays/wescale
 
 kustomize edit set image hello-ovh="${PRIVATE_REGISTRY_URL_WITHOUT_SCHEME}/${PRIVATE_REGISTRY_PROJECT}/hello-ovh:1.0.0-linuxamd64"
-cd ../..
 ```
 
  - Deploy an app (linked to the created private registry)
