@@ -1,0 +1,9 @@
+variable service_name {
+  type        = string
+  default = "$OVH_CLOUD_PROJECT_SERVICE"
+}
+
+variable region {
+    //default = "GRA11" //1AZ - Free
+    default = "EU-WEST-PAR" //3AZ - Standard
+}
