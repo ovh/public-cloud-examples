@@ -4,6 +4,5 @@ variable service_name {
 }
 
 variable region {
-    //default = "GRA11" //1AZ - Free
     default = "EU-WEST-PAR" //3AZ - Standard
 }
