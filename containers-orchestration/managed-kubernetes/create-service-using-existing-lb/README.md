@@ -89,7 +89,7 @@ kubectl apply -f svc.yaml -n demo-attach-ip
 kubectl get deploy,svc -n demo-attach-ip
 ```
 
-Note please wait several seconds to obtain the EXTERNAL-IP
+Note: please wait several seconds to obtain the EXTERNAL-IP
 
 
 ### After the demo
