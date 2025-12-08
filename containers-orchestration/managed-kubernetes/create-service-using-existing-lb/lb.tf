@@ -27,7 +27,6 @@ resource "ovh_cloud_project_gateway" "gateway" {
 resource "ovh_cloud_project_loadbalancer" "lb" {
   service_name = ovh_cloud_project_network_private_subnet.privsub.service_name
   region_name = ovh_cloud_project_network_private_subnet.privsub.region
-  //flavor_id = "31990104-8a7b-4d8f-a728-9c4cfd14fe72" # small flavor on GRA11 region
   flavor_id = element([for name in data.ovh_cloud_project_loadbalancer_flavors.flavors.flavors: name if "${name.name}" == "small"], 0).id
   name = "my_new_lb_for_kube"
   network = {
