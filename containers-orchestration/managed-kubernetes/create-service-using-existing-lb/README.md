@@ -1,6 +1,6 @@
 ## Create a LB with TF and use it in a MKS service
 
-/!\ Warning: works only on MKS Standard for th emoment!
+/!\ Warning: works only on MKS Standard for the moment!
 
 MKS Standard -> call directly to the CCM (100% upstream)
 MKS Free -> PCI Integration problem (to be fixed)
