@@ -83,7 +83,7 @@ envsubst < svc.yaml.template > svc.yaml
 kubectl apply -f svc.yaml -n demo-attach-ip
 ```
 
-  - check the service is atatched to the LB (and have an external IP):
+  - check the service is attached to the LB (and have an external IP):
 
 ```bash
 kubectl get deploy,svc -n demo-attach-ip
