@@ -62,5 +62,5 @@ echo $PAT_TOKEN
 
 🎉
 
-Note: If the PAT_TOKEN is equals to null, execute the command and check the error message.
+Note: If the PAT_TOKEN is equals to null, execute the command `ovhcloud iam user token create <user> --name <name> --description <description>` and check the error message.
 
