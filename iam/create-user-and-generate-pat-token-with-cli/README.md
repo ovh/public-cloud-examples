@@ -10,7 +10,8 @@
   - Create an IAM local user:
 
 ```
-$ ovhcloud iam user create --login <login> --group <group>> --description <description> --password <password> --email <email> 
+$ ovhcloud iam user create --login <login> --group <group> --description <description> --password <password> --email <email> 
+```
 
 Example:
 ```
@@ -30,16 +31,12 @@ $ ovhcloud iam user create --login "secretmanager-123456-7890-1234-5687-aabbccdd
 List users:
 
 ```
-$ ovhcloud iam user list
-┌─────────────────────────────────────────────────────────┬──────────────┬─────────────────────────────────────────────────────────────────────────────────┐
-│                          login                          │    group     │                                   description                                   │
-├─────────────────────────────────────────────────────────┼──────────────┼─────────────────────────────────────────────────────────────────────────────────┤
-│ ai-endpoint-user      │ UNPRIVILEGED │ A user created for AI endpoints, linked to xxxxxxxxxxxxxxxxxxxx     │
-│ ai-endpoints-user-aabbccddee      │ UNPRIVILEGED │ A user created for AI endpoints, linked to aabbccddee     │
-│ secretmanager-123456-7890-1234-5687-aabbccddee      │ ADMIN        │ A user create for secretmanager, linked to 123456-7890-1234-5687-aabbccddee │
-└─────────────────────────────────────────────────────────┴──────────────┴─────────────────────────────────────────────────────────────────────────────────┘
-💡 Use option --json or --yaml to get the raw output with all information
+ovhcloud iam user list
 ```
+
+Example:
+
+![ovhcloud cli iam user list command](assets/ovhcloud-iam-user-list.png)
 
   - Generate a PAT token (and save it in an environment variable):
 
