@@ -10,7 +10,7 @@ resource "openstack_sharedfilesystem_share_v2" "share" {
   name             = "${var.demo_name}-share"
   description      = "${var.demo_name} share"
   region           = var.region_name
-  share_type       = "generic_0"
+  share_type       = "standard-1az"
   share_proto      = "NFS"
   size             = var.share_size
   share_network_id = openstack_sharedfilesystem_sharenetwork_v2.sharenetwork.id
