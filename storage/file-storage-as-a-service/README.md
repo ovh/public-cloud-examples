@@ -2,7 +2,10 @@
 
 ## General information
 
+OVHcloud provides a File Storage Service powered by OpenStack Manila. This service offers managed NFS shares on private networks, supporting ReadWriteMany (RWX) access across multiple instances or Kubernetes pods.
+
 ⚠️ A Gateway is needed because of the Floating IP used by the compute Instance in this example.
+⚠️ A private network and subnet are mandatory for the usage of FSaaS.
 
 ## Configure the deployment
 ### Configure the Terraform providers
