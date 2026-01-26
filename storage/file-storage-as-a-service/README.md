@@ -1,5 +1,9 @@
 # File Storage as a Service on OVHcloud Public Cloud
 
+## General information
+
+⚠️ A Gateway is needed because of the Floating IP used by the compute Instance in this example.
+
 ## Configure the deployment
 ### Configure the Terraform providers
 
