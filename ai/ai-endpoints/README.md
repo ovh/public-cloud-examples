@@ -18,7 +18,6 @@ Don't hesitate to use the source code and give us feedback.
   - [MCP server / client](./mcp-quarkus-langchain4j)
   - [Function calling with LangChain4J](./function-calling-langchain4j)
   - [Simple Structured Output](./structured-output-langchain4j/)
-  - [Natural Language Processing](./java-nlp)
   - [Chatbot with LangChain4j](./java-langchain4j-chatbot/): blocking mode, streaming mode and RAG mode.
   - [Blocking chatbot](./quarkus-langchain4j/) with LangChain4j and Quarkus
   - [Streaming chatbot](./quarkus-langchain4j-streaming/) with langChain4j and Quarkus.
