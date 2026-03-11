@@ -6,6 +6,14 @@ OVHcloud provides a Block storage of type classic-multiattach in all the 3AZ reg
 
 ⚠️ A Gateway is needed because of the Floating IP used by one of the compute Instance in this example.
 
+After applying this Terraform example you will have:
+
+* A private network
+* A gateway
+* Three instances (one in each AZ)
+* A volume classic multiattach attached to the 3 instances
+* A floating IP attached to one of the instances (to be able to SSH into the private network)
+
 ## Configure the deployment
 ### Configure the Terraform providers
 
@@ -21,6 +29,12 @@ vim terraform.tfvars
 
 ```
 ssh_public_key = "<your_ssh_public_key>"
+```
+
+Configure the VLAN used by the private network if needed (default VLAN: 11):
+
+```
+private_network_vlan_id = "<your_vlan_id>"
 ```
 
 ## Deploy
