@@ -1,0 +1,247 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: vllm-config
+  namespace: vllm
+data:
+  model_name: "Qwen/Qwen3-VL-8B-Instruct"
+  served_model_name: "qwen3-vl-8b"
+  tensor_parallel_size: "1"
+  gpu_memory_utilization: "0.90"
+  max_model_len: "8192"
+  max_num_seqs: "128"
+  dtype: "bfloat16"
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: qwen3-vl
+  namespace: vllm
+  labels:
+    app: qwen3-vl
+spec:
+  replicas: 2
+  
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  
+  selector:
+    matchLabels:
+      app: qwen3-vl
+  
+  template:
+    metadata:
+      labels:
+        app: qwen3-vl
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8000"
+        prometheus.io/path: "/metrics"
+    
+    spec:
+      # ensure 1 pod per node
+      topologySpreadConstraints:
+      - maxSkew: 1
+        topologyKey: kubernetes.io/hostname
+        whenUnsatisfiable: DoNotSchedule
+        labelSelector:
+          matchLabels:
+            app: qwen3-vl
+      
+      containers:
+      - name: vllm
+        image: vllm/vllm-openai:latest
+        imagePullPolicy: IfNotPresent
+        
+        command:
+          - python3
+          - -m
+          - vllm.entrypoints.openai.api_server
+        
+        args:
+          - --model
+          - $(MODEL_NAME)
+          - --served-model-name
+          - $(SERVED_MODEL_NAME)
+          - --tensor-parallel-size
+          - $(TENSOR_PARALLEL_SIZE)
+          - --gpu-memory-utilization
+          - $(GPU_MEMORY_UTILIZATION)
+          - --dtype
+          - $(DTYPE)
+          - --max-model-len
+          - $(MAX_MODEL_LEN)
+          - --max-num-seqs
+          - $(MAX_NUM_SEQS)
+          - --port
+          - "8000"
+          - --host
+          - "0.0.0.0"
+          - --trust-remote-code
+          - --enable-prefix-caching
+        
+        ports:
+        - name: http
+          containerPort: 8000
+          protocol: TCP
+        
+        env:
+        - name: MODEL_NAME
+          valueFrom:
+            configMapKeyRef:
+              name: vllm-config
+              key: model_name
+        - name: SERVED_MODEL_NAME
+          valueFrom:
+            configMapKeyRef:
+              name: vllm-config
+              key: served_model_name
+        - name: TENSOR_PARALLEL_SIZE
+          valueFrom:
+            configMapKeyRef:
+              name: vllm-config
+              key: tensor_parallel_size
+        - name: GPU_MEMORY_UTILIZATION
+          valueFrom:
+            configMapKeyRef:
+              name: vllm-config
+              key: gpu_memory_utilization
+        - name: MAX_MODEL_LEN
+          valueFrom:
+            configMapKeyRef:
+              name: vllm-config
+              key: max_model_len
+        - name: MAX_NUM_SEQS
+          valueFrom:
+            configMapKeyRef:
+              name: vllm-config
+              key: max_num_seqs
+        - name: DTYPE
+          valueFrom:
+            configMapKeyRef:
+              name: vllm-config
+              key: dtype
+        - name: HUGGING_FACE_HUB_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: huggingface-secret
+              key: token
+        - name: TOKENIZERS_PARALLELISM
+          value: "false"
+        - name: CUDA_VISIBLE_DEVICES
+          value: "0"
+        
+        resources:
+          requests:
+            nvidia.com/gpu: 1
+            cpu: "8"
+            memory: "40Gi"
+          limits:
+            nvidia.com/gpu: 1
+            cpu: "16"
+            memory: "60Gi"
+        
+        volumeMounts:
+        - name: shm
+          mountPath: /dev/shm
+        - name: cache
+          mountPath: /root/.cache/huggingface
+        
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8000
+          initialDelaySeconds: 180
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 30
+        
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8000
+          initialDelaySeconds: 200
+          periodSeconds: 30
+          timeoutSeconds: 10
+          failureThreshold: 3
+        
+        startupProbe:
+          httpGet:
+            path: /health
+            port: 8000
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          failureThreshold: 60
+      
+      volumes:
+      - name: shm
+        emptyDir:
+          medium: Memory
+          sizeLimit: 20Gi
+      - name: cache
+        emptyDir:
+          sizeLimit: 50Gi
+      
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: nvidia.com/gpu.present
+                operator: In
+                values:
+                - "true"
+        
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - qwen3-vl
+            topologyKey: kubernetes.io/hostname
+      
+      tolerations:
+      - key: nvidia.com/gpu
+        operator: Exists
+        effect: NoSchedule
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: qwen3-vl-service
+  namespace: vllm
+  labels:
+    app: qwen3-vl
+spec:
+  type: ClusterIP
+  sessionAffinity: ClientIP
+  sessionAffinityConfig:
+    clientIP:
+      timeoutSeconds: 10800  # 3 hours
+  selector:
+    app: qwen3-vl
+  ports:
+  - name: http
+    port: 8000
+    targetPort: 8000
+    protocol: TCP
+
+---
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: qwen3-vl-pdb
+  namespace: vllm
+spec:
+  minAvailable: 1
+  selector:
+    matchLabels:
+      app: qwen3-vl
