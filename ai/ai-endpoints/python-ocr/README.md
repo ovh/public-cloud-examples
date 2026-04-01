@@ -1,6 +1,6 @@
 # Python OCR with AI Endpoints
 
-Extract text from images using a vision-capable model via [OVHcloud AI Endpoints](https://endpoints.ai.cloud.ovh.net/).
+Extract text from images using a vision-capable model via [OVHcloud AI Endpoints](https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/).
 
 The script sends a local image to a vision LLM and returns the extracted text, preserving the original layout (tables, columns, line breaks) in Markdown format.
 
