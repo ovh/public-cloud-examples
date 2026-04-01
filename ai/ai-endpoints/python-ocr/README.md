@@ -15,9 +15,15 @@ The script sends a local image to a vision LLM and returns the extracted text, p
 
 | Variable | Description |
 |---|---|
-| `OVH_AI_ENDPOINTS_ACCESS_TOKEN` | API token — see [documentation](https://help.ovhcloud.com/csm/en-gb-public-cloud-ai-endpoints-getting-started?id=kb_article_view&sysparm_article=KB0065401#generating-your-first-api-access-key) to generate one |
-| `OVH_AI_ENDPOINTS_MODEL_URL` | Base URL of the model — see [AI Endpoints](https://www.ovhcloud.com/en/public-cloud/ai-endpoints/) |
-| `OVH_AI_ENDPOINTS_VLLM_MODEL` | Model name — see [AI Endpoints](https://www.ovhcloud.com/en/public-cloud/ai-endpoints/) |
+| `OVH_AI_ENDPOINTS_ACCESS_TOKEN` | API token, see [documentation](https://help.ovhcloud.com/csm/en-gb-public-cloud-ai-endpoints-getting-started?id=kb_article_view&sysparm_article=KB0065401#generating-your-first-api-access-key) to generate one |
+| `OVH_AI_ENDPOINTS_MODEL_URL` | Base URL of the model, see [AI Endpoints](https://www.ovhcloud.com/en/public-cloud/ai-endpoints/) |
+| `OVH_AI_ENDPOINTS_VLLM_MODEL` | Model name, see [AI Endpoints](https://www.ovhcloud.com/en/public-cloud/ai-endpoints/) |
+
+> For example:  
+>  - `OVH_AI_ENDPOINTS_MODEL_URL="https://oai.endpoints.kepler.ai.cloud.ovh.net/v1/chat/completions"`   
+>  - `OVH_AI_ENDPOINTS_VLLM_MODEL="Qwen2.5-VL-72B-Instruct"`  
+>
+> ⚠️ The model name and URL may differ depending on the availability of new models. ⚠️
 
 ## 🚀 How to use
 
