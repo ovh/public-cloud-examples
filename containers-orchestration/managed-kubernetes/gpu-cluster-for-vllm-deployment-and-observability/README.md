@@ -10,6 +10,6 @@ Before you begin, ensure you have:
 
 ## How to use the project
 
-Follow the different steps of this [architecture guide](**WAITING FOR ARTICLE PUBLICATION**) for a native GPU deployment of vLLM on MKS with full stack observability.
+Follow the different steps of this [architecture guide]([**WAITING FOR ARTICLE PUBLICATION**](https://blog.ovhcloud.com/reference-architecture-deploying-a-vision-language-model-with-vllm-on-ovhcloud-mks-for-high-performance-inference-and-full-observability/)) for a native GPU deployment of vLLM on MKS with full stack observability.
 
 ![image](ref-archi-mks-vllm.jpg)
