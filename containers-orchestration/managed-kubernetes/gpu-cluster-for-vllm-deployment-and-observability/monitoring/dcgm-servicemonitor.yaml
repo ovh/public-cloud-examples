@@ -1,0 +1,31 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: nvidia-dcgm-exporter
+  namespace: gpu-operator
+  labels:
+    app: nvidia-dcgm-exporter
+    app.kubernetes.io/name: nvidia-dcgm-exporter
+    release: prometheus
+spec:
+  jobLabel: app
+  
+  selector:
+    matchLabels:
+      app: nvidia-dcgm-exporter
+  
+  endpoints:
+  - port: gpu-metrics
+    path: /metrics
+    interval: 30s
+    scrapeTimeout: 10s
+    
+    relabelings:
+    - sourceLabels: [__meta_kubernetes_pod_node_name]
+      targetLabel: kubernetes_node
+    - sourceLabels: [__meta_kubernetes_pod_name]
+      targetLabel: pod
+    - sourceLabels: [__meta_kubernetes_namespace]
+      targetLabel: namespace
+    - sourceLabels: [__meta_kubernetes_pod_label_app]
+      targetLabel: app
