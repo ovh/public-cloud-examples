@@ -1,0 +1,63 @@
+# ==============================================================================
+# REFERENCE FILE — do not put real secrets here.
+# Sensitive variables (passwords, API keys, PSK, passphrase) must be passed via
+# TF_VAR_* environment variables from your secrets manager.
+# See docs/05-security-and-secrets.md for the full procedure.
+# ==============================================================================
+
+####################################
+# State
+####################################
+
+tofu_state_passphrase = "CHANGE_ME"
+
+####################################
+# OVH credentials
+####################################
+
+ovh_endpoint           = "ovh-eu"
+ovh_application_key    = "CHANGE_ME"
+ovh_application_secret = "CHANGE_ME"
+ovh_consumer_key       = "CHANGE_ME"
+
+####################################
+# Common
+####################################
+
+compute_region      = "GRA11"
+ssh_public_key_path = "~/.ssh/id_ed25519.pub"
+
+# CIDR allowed to administer the firewalls (WebGUI + SSH depending on templates)
+admin_client_ip = "203.0.113.10/24"
+
+# OPNsense accounts
+admin_password = "CHANGE_ME"
+ha_password    = "CHANGE_ME"
+
+# IPsec
+ipsec_pre_shared_key = "CHANGE_ME"
+vti_link_cidr         = "169.254.0.0/30"
+
+####################################
+# Hub addressing
+####################################
+
+hub_flavor            = "b3-64"
+hub_net_wan_vlan_id   = 100
+hub_private_wan_cidr  = "10.1.0.0/24"
+hub_net_lan_vlan_id   = 200
+hub_private_lan_cidr  = "192.168.10.0/24"
+hub_net_hasync_vlan_id = 199
+hub_private_hasync_cidr = "10.0.254.0/30"
+
+####################################
+# Spoke QA addressing
+####################################
+
+spoke_qa_flavor             = "b3-64"
+spoke_qa_net_wan_vlan_id    = 300
+spoke_qa_private_wan_cidr   = "10.2.0.0/24"
+spoke_qa_net_lan_vlan_id    = 301
+spoke_qa_private_lan_cidr   = "192.168.20.0/24"
+spoke_qa_net_hasync_vlan_id = 302
+spoke_qa_private_hasync_cidr = "10.0.255.0/30"

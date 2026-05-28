@@ -1,0 +1,27 @@
+# examples/orbital-edge/tofu/hub/terraform.tfvars.example
+# Configuration only. Secrets go through TF_VAR_* — see secrets.sh.example.
+
+ovh_endpoint   = "ovh-eu"
+compute_region = "EU-WEST-PAR"
+
+# IP from which the OPNsense API (port 8443) is reachable.
+# Restrict to a single fixed IP in production.
+admin_client_ip = "REPLACE_ME/32"
+
+# Flavor b3-64: 16 vCPU, 64 GB RAM — sized for the cumulative traffic of the 4 spokes.
+hub_flavor = "b3-64"
+
+# Hub WAN — network between the OVHcloud Network Gateway and OPNsense.
+hub_net_wan_vlan_id  = 100
+hub_private_wan_cidr = "10.1.0.0/24"
+
+# Hub LAN / Transit — VLAN shared with every spoke (never recreate with DHCP).
+hub_net_lan_vlan_id  = 200
+hub_private_lan_cidr = "192.168.10.0/24"
+
+# Hub HASYNC — dedicated channel for CARP state replication between the two OPNsense nodes.
+hub_net_hasync_vlan_id  = 199
+hub_private_hasync_cidr = "10.0.254.0/30"
+
+# Public SSH key for OPNsense console access if needed.
+ssh_public_key_path = "~/.ssh/id_ed25519.pub"

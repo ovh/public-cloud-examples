@@ -1,0 +1,92 @@
+########################################################################################
+# REFERENCE FILE — do not put real secrets here.
+# Sensitive variables (passwords, API keys, passphrase) must be passed via
+# TF_VAR_* environment variables from your secrets manager.
+# See docs/05-security-and-secrets.md for the full procedure.
+########################################################################################
+
+########################################################################################
+# OPNsense HA — existing project deployment
+# Copy this file to terraform.tfvars for the configuration variables.
+########################################################################################
+
+########################################################################################
+# OpenTofu state encryption
+########################################################################################
+
+tofu_state_passphrase = "change-me-strong-passphrase"
+
+########################################################################################
+# OVH API credentials
+# Create a token at: https://api.ovh.com/createToken/
+# Required scope: GET/POST/PUT/DELETE /cloud/project/{projectId}/*
+########################################################################################
+
+ovh_endpoint           = "ovh-eu"
+ovh_application_key    = "xxxxxxxxxxxxxxxx"
+ovh_application_secret = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+ovh_consumer_key       = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+
+########################################################################################
+# Existing OVHcloud project
+# The project must already exist and have a vRack attached.
+# To list your projects: https://www.ovh.com/manager/#/public-cloud/
+########################################################################################
+
+project_id = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+
+########################################################################################
+# Region
+#
+# 3-AZ regions — OPNsense nodes are automatically placed on separate availability zones
+# (in addition to anti-affinity at the hypervisor level):
+#   EU-WEST-PAR   Paris      → primary: eu-west-par-a  |  secondary: eu-west-par-b
+#   EU-SOUTH-MIL  Milan      → primary: eu-south-mil-a |  secondary: eu-south-mil-b
+#
+# Single-AZ regions — anti-affinity at the hypervisor level only:
+#   GRA11         Gravelines
+#   SBG7          Strasbourg
+#   BHS5          Beauharnois (Canada)
+#   WAW1          Warsaw
+#   DE1           Frankfurt
+#   UK1           London
+########################################################################################
+
+region = "EU-WEST-PAR"
+
+########################################################################################
+# Instance
+########################################################################################
+
+# Recommended flavors:
+#   b3-16   — 4 vCPU  16 GB RAM   (default, suits most workloads)
+#   b3-64   — 16 vCPU 64 GB RAM   (high-throughput / large rulesets)
+flavor = "b3-16"
+
+# Path to an existing SSH public key. Leave commented out to auto-generate a keypair.
+# ssh_public_key_path = "~/.ssh/id_rsa.pub"
+
+########################################################################################
+# Network
+# All networks are created as vRack-backed VLANs.
+# VLAN IDs must not conflict with other resources in your vRack.
+########################################################################################
+
+vlan_wan    = 100
+cidr_wan    = "10.1.0.0/24"
+
+vlan_lan    = 200
+cidr_lan    = "192.168.10.0/24"
+
+vlan_hasync = 199
+cidr_hasync = "10.0.254.0/30"
+
+########################################################################################
+# Firewall access
+# admin_client_ip restricts WebGUI (8443) and SSH (22) access.
+# Use your public IP or a CIDR range (e.g. "203.0.113.42" or "203.0.113.0/24").
+########################################################################################
+
+admin_client_ip = "203.0.113.42"
+admin_password  = "change-me-strong-password"
+ha_password     = "change-me-ha-secret"

@@ -1,0 +1,179 @@
+####################################
+#     OpenTofu State Encryption    #
+####################################
+
+variable "tofu_state_passphrase" {
+  type      = string
+  sensitive = true
+}
+
+####################################
+#           OVH Provider           #
+####################################
+
+variable "ovh_endpoint" {
+  description = "OVH Endpoint"
+  type        = string
+  validation {
+    condition     = contains(["ovh-eu", "ovh-ca", "ovh-us"], var.ovh_endpoint)
+    error_message = "Valid values for 'ovh_endpoint' are 'ovh-eu', 'ovh-ca', 'ovh-us'"
+  }
+}
+
+variable "ovh_application_key" {
+  description = "OVH Application Key"
+  type        = string
+  sensitive   = true
+  ephemeral   = true
+}
+
+variable "ovh_application_secret" {
+  description = "OVH Application Secret"
+  type        = string
+  sensitive   = true
+  ephemeral   = true
+}
+
+variable "ovh_consumer_key" {
+  description = "OVH Consumer Key"
+  type        = string
+  sensitive   = true
+  ephemeral   = true
+}
+
+####################################
+#         Regions / Common         #
+####################################
+
+variable "compute_region" {
+  description = "Default region for Compute OVH services (e.g. BHS5, GRA9, SBG7, etc.)"
+  type        = string
+}
+
+variable "ssh_public_key_path" {
+  description = "Path to an SSH public key file for OPNsense instances (e.g. ~/.ssh/id_rsa.pub). If null, auto-generated."
+  type        = string
+  default     = null
+}
+
+variable "admin_client_ip" {
+  description = "Firewall admin client IP"
+  type        = string
+}
+
+variable "admin_password" {
+  description = "Firewall admin password"
+  type        = string
+  sensitive   = true
+}
+
+variable "ha_password" {
+  description = "Firewall HA password"
+  type        = string
+  sensitive   = true
+}
+
+variable "ipsec_pre_shared_key" {
+  description = "Firewall IPSec tunnel pre-shared key"
+  type        = string
+  sensitive   = true
+}
+
+variable "vti_link_cidr" {
+  description = "Link-local /30 CIDR for the IPsec VTI point-to-point link between hub and spoke QA"
+  type        = string
+  default     = "169.254.0.0/30"
+}
+
+####################################
+#              Hub                 #
+####################################
+
+variable "hub_flavor" {
+  description = "OPNsense hub instance flavor name"
+  type        = string
+  default     = "b3-16"
+}
+
+variable "hub_net_wan_vlan_id" {
+  description = "Hub WAN VLAN ID"
+  type        = number
+  default     = 100
+}
+
+variable "hub_private_wan_cidr" {
+  description = "Hub private WAN CIDR"
+  type        = string
+  default     = "10.1.0.0/24"
+}
+
+variable "hub_net_lan_vlan_id" {
+  description = "Hub LAN VLAN ID"
+  type        = number
+  default     = 200
+}
+
+variable "hub_private_lan_cidr" {
+  description = "Hub private LAN CIDR"
+  type        = string
+  default     = "192.168.10.0/24"
+}
+
+variable "hub_net_hasync_vlan_id" {
+  description = "Hub HASYNC VLAN ID"
+  type        = number
+  default     = 199
+}
+
+variable "hub_private_hasync_cidr" {
+  description = "Hub private HASYNC CIDR"
+  type        = string
+  default     = "10.0.254.0/30"
+}
+
+####################################
+#            Spoke QA              #
+####################################
+
+variable "spoke_qa_flavor" {
+  description = "OPNsense spoke QA instance flavor name"
+  type        = string
+  default     = "b3-8"
+}
+
+variable "spoke_qa_net_wan_vlan_id" {
+  description = "Spoke QA WAN VLAN ID"
+  type        = number
+  default     = 300
+}
+
+variable "spoke_qa_private_wan_cidr" {
+  description = "Spoke QA private WAN CIDR"
+  type        = string
+  default     = "10.2.0.0/24"
+}
+
+variable "spoke_qa_net_lan_vlan_id" {
+  description = "Spoke QA LAN VLAN ID"
+  type        = number
+  default     = 301
+}
+
+variable "spoke_qa_private_lan_cidr" {
+  description = "Spoke QA private LAN CIDR"
+  type        = string
+  default     = "192.168.20.0/24"
+}
+
+variable "spoke_qa_net_hasync_vlan_id" {
+  description = "Spoke QA HASYNC VLAN ID"
+  type        = number
+  default     = 302
+}
+
+variable "spoke_qa_private_hasync_cidr" {
+  description = "Spoke QA private HASYNC CIDR"
+  type        = string
+  default     = "10.0.255.0/30"
+}
+
