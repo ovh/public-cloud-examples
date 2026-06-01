@@ -17,8 +17,7 @@ Reference documentation: [AI Endpoints - Batch mode](https://docs.ovhcloud.com/e
 - The following environment variable created:
   - `AI_ENDPOINT_API_KEY`: your AI Endpoints API token. See the [Getting started guide](https://docs.ovhcloud.com/en/guides/public-cloud/ai-machine-learning/ai-endpoints-getting-started#generating-your-first-api-access-key)
     to know how to generate it.
-- Optionally, `AI_ENDPOINT_BASE_URL` if you want to override the default base URL
-  (`https://oai.endpoints.kepler.ai.cloud.ovh.net/v1`).
+  - `AI_ENDPOINT_BASE_URL`: set this to the OVHcloud AI Endpoints API URL, see [model documentation](https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/) for the right URL to use.
 
 ## 📁 Files
 
