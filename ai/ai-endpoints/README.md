@@ -24,6 +24,7 @@ Don't hesitate to use the source code and give us feedback.
 
 ### 🐍 Python 🐍
 
+  - [Batch mode](./batch-mode/) to send a large number of requests in an asynchronous way
   - [Podcast audio transcript](./podcast-transcript-whisper/python/)
   - [Chatbot with LangChain](./python-langchain-chatbot/): blocking mode, streaming mode, RAG mode.
   - [Streaming chatbot](./python-langchain-chatbot/) with LangChain
