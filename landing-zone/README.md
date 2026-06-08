@@ -63,9 +63,11 @@ export TF_VAR_ovh_application_secret="..."
 export TF_VAR_ovh_consumer_key="..."
 
 # OPNsense accounts (and IPsec PSK on the multi-vRack architecture)
-export TF_VAR_admin_password="..."
-export TF_VAR_ha_password="..."
-export TF_VAR_ipsec_pre_shared_key="..."   # multi-vRack only
+export TF_VAR_admin_password="..." # choose a strong password for admin access
+export TF_VAR_ha_password="..." # choose a HA password for the HA cluster
+export TF_VAR_ipsec_pre_shared_key="..."   # multi-vRack only, choose a strong PSK for IPSEC VPN
+export TF_VAR_ssh_public_key_path="~/.ssh/id_rsa.pub"
+export TF_VAR_admin_client_ip="192.168.1.0/24" # or your own IP/CIDR
 ```
 
 `cp terraform.tfvars.example terraform.tfvars` then edit the **non-secret** values only —
