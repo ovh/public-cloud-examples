@@ -59,9 +59,6 @@ tofu plan
 tofu apply
 ```
 
-> Without `TF_VAR_tofu_state_passphrase`, `tofu apply` prompts interactively for the state
-> passphrase. Use the same value every time, or the encrypted state can no longer be read.
-
 ## Useful outputs
 
 | Output | Use |
