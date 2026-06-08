@@ -3,8 +3,9 @@
 ####################################
 
 variable "tofu_state_passphrase" {
-  type      = string
-  sensitive = true
+  description = "Passphrase used to encrypt the OpenTofu state file (AES-GCM via PBKDF2). Set via TF_VAR_tofu_state_passphrase; the same value is required for every later init/plan/apply."
+  type        = string
+  sensitive   = true
 }
 
 ####################################

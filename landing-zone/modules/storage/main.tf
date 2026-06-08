@@ -27,22 +27,22 @@ resource "ovh_cloud_project_storage" "source" {
   }
 
   replication = {
-    rules = [ 
+    rules = [
       {
-        id = "logs_replication"
-        priority = 1
-        status = "enabled"
+        id                        = "logs_replication"
+        priority                  = 1
+        status                    = "enabled"
         delete_marker_replication = var.compliance_mode ? "disabled" : "enabled"
         destination = {
-          name = ovh_cloud_project_storage.backup.name
-          region = var.backup_region
-          storage_class = "STANDARD_IA"
+          name                           = ovh_cloud_project_storage.backup.name
+          region                         = var.backup_region
+          storage_class                  = "STANDARD_IA"
           remove_on_main_bucket_deletion = false
         }
         filter = {
           prefix = "logs/"
         }
-      } 
+      }
     ]
   }
 }
@@ -65,7 +65,7 @@ resource "ovh_cloud_project_storage" "backup" {
   }
 
   object_lock = {
-    status = var.compliance_mode ? "enabled": "disabled"
+    status = var.compliance_mode ? "enabled" : "disabled"
     rule = {
       mode   = "compliance"
       period = "P90D"
@@ -82,16 +82,16 @@ resource "ovh_cloud_project_user_s3_policy" "bucket_policy" {
   user_id      = var.ovh_S3_user_id
 
   policy = jsonencode({
-    "Statement": [
+    "Statement" : [
       {
-        "Action": ["s3:*"],
-        "Effect": "Allow",
-        "Resource": [
+        "Action" : ["s3:*"],
+        "Effect" : "Allow",
+        "Resource" : [
           "arn:aws:s3:::${ovh_cloud_project_storage.source.name}",
           "arn:aws:s3:::${ovh_cloud_project_storage.source.name}/*",
           "arn:aws:s3:::${ovh_cloud_project_storage.backup.name}",
           "arn:aws:s3:::${ovh_cloud_project_storage.backup.name}/*"
-          
+
         ]
       }
     ]

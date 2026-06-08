@@ -3,8 +3,8 @@
 ########################################################################################
 
 locals {
-  hub_ipsec_interface_name  = "ipsec${var.ipsec_reqid}"
-  hub_vti_gateway_name      = "VTISpokeGW${var.ipsec_reqid}"
+  hub_ipsec_interface_name = "ipsec${var.ipsec_reqid}"
+  hub_vti_gateway_name     = "VTISpokeGW${var.ipsec_reqid}"
 }
 
 resource "time_sleep" "wait_spoke_ready" {
@@ -57,16 +57,16 @@ resource "restapi_object" "hub_connection" {
 
   data = jsonencode({
     connection = {
-      enabled     = "1"
-      proposals   = "aes256gcm16-sha256-ecp256"
-      unique      = "no"
-      version     = "2"
-      mobike      = "0"
-      local_addrs = var.hub_wan_carp_ip
+      enabled      = "1"
+      proposals    = "aes256gcm16-sha256-ecp256"
+      unique       = "no"
+      version      = "2"
+      mobike       = "0"
+      local_addrs  = var.hub_wan_carp_ip
       remote_addrs = module.spoke.floating_ip
-      rekey_time  = "86400"
-      keyingtries = "0"
-      description = "Phase 1 to Spoke (reqid=${var.ipsec_reqid})"
+      rekey_time   = "86400"
+      keyingtries  = "0"
+      description  = "Phase 1 to Spoke (reqid=${var.ipsec_reqid})"
     }
   })
 }
@@ -149,19 +149,19 @@ resource "restapi_object" "hub_child_sa" {
 
   data = jsonencode({
     child = {
-      enabled        = "1"
-      connection     = restapi_object.hub_connection.id
-      reqid          = tostring(var.ipsec_reqid)
-      esp_proposals  = "aes128gcm16-ecp256"
-      start_action   = "trap|start"
-      close_action   = "start"
-      dpd_action     = "start"
-      mode           = "tunnel"
-      policies       = "0"
-      local_ts       = "0.0.0.0/0"
-      remote_ts      = "0.0.0.0/0"
-      rekey_time     = "43200"
-      description    = "Phase 2 to Spoke (reqid=${var.ipsec_reqid})"
+      enabled       = "1"
+      connection    = restapi_object.hub_connection.id
+      reqid         = tostring(var.ipsec_reqid)
+      esp_proposals = "aes128gcm16-ecp256"
+      start_action  = "trap|start"
+      close_action  = "start"
+      dpd_action    = "start"
+      mode          = "tunnel"
+      policies      = "0"
+      local_ts      = "0.0.0.0/0"
+      remote_ts     = "0.0.0.0/0"
+      rekey_time    = "43200"
+      description   = "Phase 2 to Spoke (reqid=${var.ipsec_reqid})"
     }
   })
 }
@@ -240,16 +240,16 @@ resource "restapi_object" "hub_gateway" {
 
   data = jsonencode({
     gateway_item = {
-      disabled    = "0"
-      name        = local.hub_vti_gateway_name
-      descr       = "VTI toward Spoke (reqid=${var.ipsec_reqid})"
-      interface   = local.hub_ipsec_interface_name
-      ipprotocol  = "inet"
-      gateway     = cidrhost(var.vti_link_cidr, 2)
-      defaultgw   = "0"
-      fargw       = "0"
+      disabled        = "0"
+      name            = local.hub_vti_gateway_name
+      descr           = "VTI toward Spoke (reqid=${var.ipsec_reqid})"
+      interface       = local.hub_ipsec_interface_name
+      ipprotocol      = "inet"
+      gateway         = cidrhost(var.vti_link_cidr, 2)
+      defaultgw       = "0"
+      fargw           = "0"
       monitor_disable = "1"
-      priority    = "255"
+      priority        = "255"
     }
   })
 }
@@ -286,9 +286,9 @@ resource "restapi_object" "hub_route" {
 
   data = jsonencode({
     route = {
-      network = var.spoke_private_lan_cidr
-      gateway = local.hub_vti_gateway_name
-      descr   = "Spoke LAN via IPsec VTI (reqid=${var.ipsec_reqid})"
+      network  = var.spoke_private_lan_cidr
+      gateway  = local.hub_vti_gateway_name
+      descr    = "Spoke LAN via IPsec VTI (reqid=${var.ipsec_reqid})"
       disabled = "0"
     }
   })

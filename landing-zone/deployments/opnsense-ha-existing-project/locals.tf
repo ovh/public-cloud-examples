@@ -8,10 +8,10 @@
 
 locals {
   three_az_pairs = {
-    "EU-WEST-PAR"  = [
-      ["eu-west-par-a",  "eu-west-par-b"],
-      ["eu-west-par-a",  "eu-west-par-c"],
-      ["eu-west-par-b",  "eu-west-par-c"],
+    "EU-WEST-PAR" = [
+      ["eu-west-par-a", "eu-west-par-b"],
+      ["eu-west-par-a", "eu-west-par-c"],
+      ["eu-west-par-b", "eu-west-par-c"],
     ]
     "EU-SOUTH-MIL" = [
       ["eu-south-mil-a", "eu-south-mil-b"],

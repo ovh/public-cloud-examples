@@ -9,26 +9,30 @@
 # Spoke Day-2 template - example values
 ########################################################################################
 
-# OVH API credentials
-ovh_endpoint           = "ovh-eu"
-ovh_application_key    = "xxxx"
-ovh_application_secret = "xxxx"
-ovh_consumer_key       = "xxxx"
+# State  (SECRET — do NOT set here)
+# tofu_state_passphrase  → export TF_VAR_tofu_state_passphrase="..."
+
+# OVH API credentials  (SECRET — do NOT set here, except the endpoint)
+ovh_endpoint = "ovh-eu"
+# ovh_application_key     → export TF_VAR_ovh_application_key="..."
+# ovh_application_secret  → export TF_VAR_ovh_application_secret="..."
+# ovh_consumer_key        → export TF_VAR_ovh_consumer_key="..."
 
 # OpenStack region
 compute_region = "GRA11"
 
-# Admin access (same secret as hub Day-1)
-admin_client_ip = "203.0.113.10/24"
-admin_password  = "CHANGE_ME"
-ha_password     = "CHANGE_ME"
+# Admin access — IP (or CIDR) allowed to reach the OPNsense WebGUI (8443) and SSH (22).
+# Prefer a single fixed IP; a broad range such as /24 is overly permissive.
+admin_client_ip = "203.0.113.42"
+# admin_password  → export TF_VAR_admin_password="..."   (SECRET, same value as hub Day-1)
+# ha_password     → export TF_VAR_ha_password="..."       (SECRET, same value as hub Day-1)
 
 # Hub references (from deployments/landing-zone outputs)
 hub_floating_ip      = "141.94.10.231"
 hub_wan_carp_ip      = "10.1.0.99"
 hub_private_wan_cidr = "10.1.0.0/24"
-hub_api_key          = "xxxx" # tofu output hub_api_key
-hub_api_secret       = "xxxx" # tofu output -raw hub_api_secret
+# hub_api_key     → export TF_VAR_hub_api_key="..."      (SECRET; tofu output hub_api_key)
+# hub_api_secret  → export TF_VAR_hub_api_secret="..."   (SECRET; tofu output -raw hub_api_secret)
 
 # Spoke naming
 spoke_project_description = "spoke-prod"
@@ -48,9 +52,9 @@ spoke_private_lan_cidr    = "192.168.40.0/24"
 spoke_private_hasync_cidr = "10.0.252.0/30"
 
 # IPsec parameters (must be unique per spoke)
-ipsec_reqid       = 100
-vti_link_cidr      = "169.254.0.8/30"
-ipsec_pre_shared_key = "CHANGE_ME"
+ipsec_reqid = 100
+vti_link_cidr = "169.254.0.8/30"
+# ipsec_pre_shared_key  → export TF_VAR_ipsec_pre_shared_key="..."   (SECRET)
 
 # Optional SSH key to inject into OPNsense
 # ssh_public_key_path = "~/.ssh/id_rsa.pub"

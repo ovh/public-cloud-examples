@@ -117,7 +117,7 @@ variable "cidr_hasync" {
 ########################################################################################
 
 variable "admin_client_ip" {
-  description = "IP address (or CIDR) allowed to reach the WebGUI (port 8443) and SSH (port 22)"
+  description = "IP address or CIDR allowed to reach the OPNsense WebGUI (port 8443) and SSH (port 22). Prefer a single fixed IP; a broad range such as /24 is overly permissive."
   type        = string
 }
 

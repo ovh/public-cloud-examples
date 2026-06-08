@@ -18,6 +18,18 @@ terraform {
     }
   }
 
+  encryption {
+    key_provider "pbkdf2" "my_passphrase" {
+      passphrase = var.tofu_state_passphrase
+    }
+    method "aes_gcm" "default" {
+      keys = key_provider.pbkdf2.my_passphrase
+    }
+    state {
+      method = method.aes_gcm.default
+    }
+  }
+
   required_version = ">= 1.11.4"
 }
 

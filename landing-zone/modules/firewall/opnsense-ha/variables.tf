@@ -52,6 +52,7 @@ variable "ha_password" {
 variable "api_key" {
   description = "OPNsense API key (injected into config.xml for REST API auth)"
   type        = string
+  sensitive   = true
   default     = null
 }
 

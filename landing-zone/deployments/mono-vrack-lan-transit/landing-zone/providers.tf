@@ -47,7 +47,7 @@ provider "ovh" {
 }
 
 provider "openstack" {
-  alias       = "hub"
+  alias = "hub"
 
   auth_url    = "https://auth.cloud.ovh.net/v3/"
   domain_name = "default"

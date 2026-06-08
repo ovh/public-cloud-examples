@@ -16,7 +16,7 @@ resource "openstack_networking_subnet_v2" "transit" {
   name        = "${var.spoke_name}-transit-subnet"
   network_id  = openstack_networking_network_v2.transit.id
   cidr        = var.hub_lan_cidr
-  enable_dhcp = false   # CRITICAL: DHCP is managed by the hub on this L2
+  enable_dhcp = false # CRITICAL: DHCP is managed by the hub on this L2
   no_gateway  = true
 }
 

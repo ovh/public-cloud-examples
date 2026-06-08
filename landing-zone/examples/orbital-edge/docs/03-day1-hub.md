@@ -24,7 +24,7 @@ Alice starts from the committed template:
 ```bash
 cd examples/orbital-edge/tofu/hub
 cp terraform.tfvars.example terraform.tfvars
-$EDITOR terraform.tfvars
+nano terraform.tfvars # nano or your favorite editor to edit variables depending on your landing zone
 ```
 
 Final content (after editing — `admin_client_ip` set to Alice's workstation IP):

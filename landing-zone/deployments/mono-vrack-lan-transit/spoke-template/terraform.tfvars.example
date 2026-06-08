@@ -6,19 +6,19 @@
 # ==============================================================================
 
 ####################################
-# State
+# State  (SECRET — do NOT set here)
 ####################################
 
-tofu_state_passphrase = "CHANGE_ME"
+# tofu_state_passphrase  → export TF_VAR_tofu_state_passphrase="..."
 
 ####################################
-# OVH credentials
+# OVH credentials  (SECRET — do NOT set here, except the endpoint)
 ####################################
 
-ovh_endpoint           = "ovh-eu"
-ovh_application_key    = "CHANGE_ME"
-ovh_application_secret = "CHANGE_ME"
-ovh_consumer_key       = "CHANGE_ME"
+ovh_endpoint = "ovh-eu"
+# ovh_application_key     → export TF_VAR_ovh_application_key="..."
+# ovh_application_secret  → export TF_VAR_ovh_application_secret="..."
+# ovh_consumer_key        → export TF_VAR_ovh_consumer_key="..."
 
 ####################################
 # Common
@@ -31,12 +31,13 @@ compute_region = "GRA11"
 # (from: cd deployments/landing-zone-one-vrack && tofu output)
 ####################################
 
-hub_vrack_service_name = "CHANGE_ME"   # tofu output hub_vrack_service_name
-hub_floating_ip        = "CHANGE_ME"   # tofu output hub_floating_ip
+hub_vrack_service_name = "pn-xxxxxxx"     # tofu output hub_vrack_service_name (not secret)
+hub_floating_ip        = "141.94.10.231"  # tofu output hub_floating_ip (not secret)
 hub_lan_carp_ip        = "192.168.10.99"  # tofu output hub_lan_carp_ip
 
-hub_api_key    = "CHANGE_ME"  # tofu output hub_api_key
-hub_api_secret = "CHANGE_ME"  # tofu output -raw hub_api_secret
+# Hub OPNsense API credentials  (SECRET — do NOT set here)
+# hub_api_key     → export TF_VAR_hub_api_key="..."      (tofu output hub_api_key)
+# hub_api_secret  → export TF_VAR_hub_api_secret="..."   (tofu output -raw hub_api_secret)
 
 ####################################
 # Transit VLAN (= Hub LAN)

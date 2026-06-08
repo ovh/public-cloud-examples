@@ -58,7 +58,7 @@ cd deployments/opnsense-ha-existing-project
 
 # 2. Prepare the network configuration (non-sensitive values only)
 cp terraform.tfvars.example terraform.tfvars
-$EDITOR terraform.tfvars   # region, VLAN, CIDRs, flavor — no secrets
+nano terraform.tfvars # nano or your favorite editor to edit variables depending on your landing zone
 
 # 3. Inject secrets via environment variables (see docs/05-security-and-secrets.md)
 export TF_VAR_tofu_state_passphrase="..."
@@ -108,7 +108,7 @@ tofu output -raw api_secret    # sensitive — only on a trusted workstation
 
 On the first `tofu apply`, one of the three possible AZ pairs (a+b, a+c, b+c) is drawn at random and pinned in the state. It only changes if you change `region`. No further configuration required.
 
-### Mono-AZ regions — hypervisor anti-affinity only
+### Mono-AZ regions examples — hypervisor anti-affinity only
 
 `GRA11` · `SBG7` · `BHS5` · `WAW1` · `DE1` · `UK1`
 

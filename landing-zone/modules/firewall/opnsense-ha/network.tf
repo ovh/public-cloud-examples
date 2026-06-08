@@ -13,10 +13,10 @@ resource "openstack_networking_network_v2" "fw_wan_net" {
 }
 
 resource "openstack_networking_subnet_v2" "fw_wan_subnet" {
-  name            = "opn-wan-subnet"
-  network_id      = openstack_networking_network_v2.fw_wan_net.id
-  cidr            = var.private_wan_cidr
-  enable_dhcp     = true
+  name        = "opn-wan-subnet"
+  network_id  = openstack_networking_network_v2.fw_wan_net.id
+  cidr        = var.private_wan_cidr
+  enable_dhcp = true
   allocation_pool {
     start = cidrhost(var.private_wan_cidr, 100)
     end   = cidrhost(var.private_wan_cidr, 200)
@@ -89,10 +89,10 @@ resource "openstack_networking_network_v2" "fw_lan_net" {
 }
 
 resource "openstack_networking_subnet_v2" "fw_lan_subnet" {
-  name            = "opn-lan-subnet"
-  network_id      = openstack_networking_network_v2.fw_lan_net.id
-  cidr            = var.private_lan_cidr
-  enable_dhcp     = true
+  name        = "opn-lan-subnet"
+  network_id  = openstack_networking_network_v2.fw_lan_net.id
+  cidr        = var.private_lan_cidr
+  enable_dhcp = true
   allocation_pool {
     start = cidrhost(var.private_lan_cidr, 100)
     end   = cidrhost(var.private_lan_cidr, 200)

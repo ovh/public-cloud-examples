@@ -40,10 +40,27 @@ Spokes are not created at Day‑1 — they are added at Day‑2 through the spok
 
 ```bash
 cd deployments/mono-vrack-lan-transit/landing-zone
+
+# 1. Network configuration (non-sensitive values only)
+cp terraform.tfvars.example terraform.tfvars
+nano terraform.tfvars # nano or your favorite editor to edit variables depending on your landing zone
+
+# 2. Inject secrets via environment variables (see ../../../docs/05-security-and-secrets.md)
+export TF_VAR_tofu_state_passphrase="..."   # encrypts the state; reused on every later command
+export TF_VAR_ovh_application_key="..."
+export TF_VAR_ovh_application_secret="..."
+export TF_VAR_ovh_consumer_key="..."
+export TF_VAR_admin_password="..."
+export TF_VAR_ha_password="..."
+
+# 3. Deploy
 tofu init
 tofu plan
 tofu apply
 ```
+
+> Without `TF_VAR_tofu_state_passphrase`, `tofu apply` prompts interactively for the state
+> passphrase. Use the same value every time, or the encrypted state can no longer be read.
 
 ## Useful outputs
 

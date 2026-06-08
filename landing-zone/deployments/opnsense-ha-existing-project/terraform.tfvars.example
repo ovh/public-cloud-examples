@@ -11,21 +11,21 @@
 ########################################################################################
 
 ########################################################################################
-# OpenTofu state encryption
+# OpenTofu state encryption  (SECRET — do NOT set here)
 ########################################################################################
 
-tofu_state_passphrase = "change-me-strong-passphrase"
+# tofu_state_passphrase  → export TF_VAR_tofu_state_passphrase="..."
 
 ########################################################################################
-# OVH API credentials
+# OVH API credentials  (SECRET — do NOT set here, except the endpoint)
 # Create a token at: https://api.ovh.com/createToken/
 # Required scope: GET/POST/PUT/DELETE /cloud/project/{projectId}/*
 ########################################################################################
 
-ovh_endpoint           = "ovh-eu"
-ovh_application_key    = "xxxxxxxxxxxxxxxx"
-ovh_application_secret = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-ovh_consumer_key       = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+ovh_endpoint = "ovh-eu"
+# ovh_application_key     → export TF_VAR_ovh_application_key="..."
+# ovh_application_secret  → export TF_VAR_ovh_application_secret="..."
+# ovh_consumer_key        → export TF_VAR_ovh_consumer_key="..."
 
 ########################################################################################
 # Existing OVHcloud project
@@ -88,5 +88,5 @@ cidr_hasync = "10.0.254.0/30"
 ########################################################################################
 
 admin_client_ip = "203.0.113.42"
-admin_password  = "change-me-strong-password"
-ha_password     = "change-me-ha-secret"
+# admin_password  → export TF_VAR_admin_password="..."   (SECRET)
+# ha_password     → export TF_VAR_ha_password="..."       (SECRET)

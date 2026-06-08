@@ -1,3 +1,17 @@
+####################################
+#     OpenTofu State Encryption    #
+####################################
+
+variable "tofu_state_passphrase" {
+  description = "Passphrase used to encrypt the OpenTofu state file (AES-GCM via PBKDF2). Set via TF_VAR_tofu_state_passphrase; the same value is required for every later init/plan/apply."
+  type        = string
+  sensitive   = true
+}
+
+####################################
+#           OVH Provider           #
+####################################
+
 variable "ovh_endpoint" {
   description = "OVH Endpoint"
   type        = string
@@ -36,7 +50,7 @@ variable "ssh_public_key_path" {
 }
 
 variable "admin_client_ip" {
-  description = "Firewall admin client IP"
+  description = "IP address or CIDR allowed to reach the OPNsense WebGUI (port 8443) and SSH (port 22). Prefer a single fixed IP; a broad range such as /24 is overly permissive."
   type        = string
 }
 
@@ -116,37 +130,44 @@ variable "spoke_flavor" {
 }
 
 variable "spoke_net_wan_vlan_id" {
-  type    = number
-  default = 400
+  description = "VLAN ID for the spoke WAN network (must be unique within the vRack)."
+  type        = number
+  default     = 400
 }
 
 variable "spoke_net_lan_vlan_id" {
-  type    = number
-  default = 401
+  description = "VLAN ID for the spoke LAN network (must be unique within the vRack)."
+  type        = number
+  default     = 401
 }
 
 variable "spoke_net_hasync_vlan_id" {
-  type    = number
-  default = 402
+  description = "VLAN ID for the spoke OPNsense HA sync (pfSync/CARP) network."
+  type        = number
+  default     = 402
 }
 
 variable "spoke_private_wan_cidr" {
-  type    = string
-  default = "10.3.0.0/24"
+  description = "CIDR of the spoke WAN subnet (carries the IPsec tunnel to the hub)."
+  type        = string
+  default     = "10.3.0.0/24"
 }
 
 variable "spoke_private_lan_cidr" {
-  type    = string
-  default = "192.168.30.0/24"
+  description = "CIDR of the spoke LAN subnet where workloads are attached."
+  type        = string
+  default     = "192.168.30.0/24"
 }
 
 variable "spoke_private_hasync_cidr" {
-  type    = string
-  default = "10.0.253.0/30"
+  description = "CIDR of the spoke HA-sync subnet (a /30 is enough for the OPNsense pair)."
+  type        = string
+  default     = "10.0.253.0/30"
 }
 
 variable "vti_link_cidr" {
-  type    = string
-  default = "169.254.0.4/30"
+  description = "Point-to-point /30 for the IPsec VTI link between this spoke and the hub (must be unique per spoke)."
+  type        = string
+  default     = "169.254.0.4/30"
 }
 

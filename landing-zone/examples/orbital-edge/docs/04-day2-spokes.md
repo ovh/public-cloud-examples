@@ -65,7 +65,7 @@ backend "s3" {
 ```bash
 cd examples/orbital-edge/tofu/spoke-constellation-dev
 cp terraform.tfvars.example terraform.tfvars
-$EDITOR terraform.tfvars
+nano terraform.tfvars # nano or your favorite editor to edit variables depending on your landing zone
 ```
 
 Final content (after filling in the hub references from Vault):
@@ -173,7 +173,7 @@ backend "s3" {
 ```bash
 cd examples/orbital-edge/tofu/spoke-signalvault-dev
 cp terraform.tfvars.example terraform.tfvars
-$EDITOR terraform.tfvars
+nano terraform.tfvars # nano or your favorite editor to edit variables depending on your landing zone
 ```
 
 ```hcl
@@ -274,7 +274,7 @@ vault kv put secret/orbital-edge/signalvault-dev/db \
 ```bash
 cd examples/orbital-edge/tofu/spoke-constellation-prod
 cp terraform.tfvars.example terraform.tfvars
-$EDITOR terraform.tfvars
+nano terraform.tfvars # nano or your favorite editor to edit variables depending on your landing zone
 ```
 
 ```hcl
@@ -337,7 +337,7 @@ Camille's IAM policies + CI pipeline created by `iam.tf` during `tofu apply`.
 ```bash
 cd examples/orbital-edge/tofu/spoke-signalvault-prod
 cp terraform.tfvars.example terraform.tfvars
-$EDITOR terraform.tfvars
+nano terraform.tfvars # nano or your favorite editor to edit variables depending on your landing zone
 ```
 
 ```hcl

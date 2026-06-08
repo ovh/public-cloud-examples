@@ -3,8 +3,9 @@
 ####################################
 
 variable "tofu_state_passphrase" {
-  type      = string
-  sensitive = true
+  description = "Passphrase used to encrypt the OpenTofu state file (AES-GCM via PBKDF2). Set via TF_VAR_tofu_state_passphrase; the same value is required for every later init/plan/apply."
+  type        = string
+  sensitive   = true
 }
 
 ####################################
@@ -57,7 +58,7 @@ variable "ssh_public_key_path" {
 }
 
 variable "admin_client_ip" {
-  description = "Firewall admin client IP"
+  description = "IP address or CIDR allowed to reach the OPNsense WebGUI (port 8443) and SSH (port 22). Prefer a single fixed IP; a broad range such as /24 is overly permissive."
   type        = string
 }
 
