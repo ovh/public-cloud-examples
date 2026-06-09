@@ -1,0 +1,71 @@
+# ==============================================================================
+# REFERENCE FILE — do not put real secrets here.
+# Sensitive variables (passwords, API keys, PSK, passphrase) must be passed via
+# TF_VAR_* environment variables from your secrets manager.
+# See docs/05-security-and-secrets.md for the full procedure.
+# ==============================================================================
+
+####################################
+# State  (SECRET — do NOT set here)
+####################################
+
+# tofu_state_passphrase  → export TF_VAR_tofu_state_passphrase="..."
+
+####################################
+# OVH credentials  (SECRET — do NOT set here, except the endpoint)
+####################################
+
+ovh_endpoint = "ovh-eu"
+# ovh_application_key     → export TF_VAR_ovh_application_key="..."
+# ovh_application_secret  → export TF_VAR_ovh_application_secret="..."
+# ovh_consumer_key        → export TF_VAR_ovh_consumer_key="..."
+
+####################################
+# Common
+####################################
+
+compute_region = "GRA11"
+
+####################################
+# Hub references
+# (from: cd deployments/landing-zone-one-vrack && tofu output)
+####################################
+
+hub_vrack_service_name = "pn-xxxxxxx"     # tofu output hub_vrack_service_name (not secret)
+hub_floating_ip        = "141.94.10.231"  # tofu output hub_floating_ip (not secret)
+hub_lan_carp_ip        = "192.168.10.99"  # tofu output hub_lan_carp_ip
+
+# Hub OPNsense API credentials  (SECRET — do NOT set here)
+# hub_api_key     → export TF_VAR_hub_api_key="..."      (tofu output hub_api_key)
+# hub_api_secret  → export TF_VAR_hub_api_secret="..."   (tofu output -raw hub_api_secret)
+
+####################################
+# Transit VLAN (= Hub LAN)
+# DO NOT MODIFY these values unless the hub was deployed with different ones
+####################################
+
+hub_lan_vlan_id   = 200
+hub_lan_cidr      = "192.168.10.0/24"
+transit_router_ip = "192.168.10.10"  # Fixed spoke IP on VLAN 200, outside the hub DHCP pool (.100-.200)
+
+####################################
+# Spoke QA LAN networks
+#
+# VLAN CONVENTION in this shared vRack:
+#   100       → Hub WAN           (RESERVED)
+#   199       → Hub HASYNC        (RESERVED)
+#   200       → Hub LAN/Transit   (SHARED, do NOT recreate with DHCP)
+#   300-399   → Spoke QA          (this range)
+#   400-499   → Spoke prod        (reserved for future spokes)
+####################################
+
+networks = {
+  "app" = {
+    vlan_id = 300
+    cidr    = "10.30.0.0/24"
+  }
+  "db" = {
+    vlan_id = 301
+    cidr    = "10.31.0.0/24"
+  }
+}

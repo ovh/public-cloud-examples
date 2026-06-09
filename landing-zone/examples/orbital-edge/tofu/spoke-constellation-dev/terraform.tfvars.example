@@ -1,0 +1,29 @@
+# examples/orbital-edge/tofu/spoke-constellation-dev/terraform.tfvars.example
+# Configuration only. Secrets go through TF_VAR_* — see secrets.sh.example.
+
+ovh_endpoint   = "ovh-eu"
+compute_region = "EU-WEST-PAR"
+spoke_name     = "constellation-dev"
+
+# Hub references — fill in from the hub outputs (tofu -chdir=../hub output …)
+hub_vrack_service_name = "REPLACE_ME"   # tofu -chdir=../hub output hub_vrack_service_name
+hub_floating_ip        = "REPLACE_ME"   # tofu -chdir=../hub output hub_floating_ip
+hub_lan_carp_ip        = "192.168.10.99"
+
+# Transit VLAN — same as the hub, do not change
+hub_lan_vlan_id   = 200
+hub_lan_cidr      = "192.168.10.0/24"
+
+# Spoke router IP on the transit — outside the hub DHCP pool (.100-.200)
+transit_router_ip = "192.168.10.10"
+
+# constellation-dev spoke LAN networks
+networks = {
+  "kube" = {
+    vlan_id = 300
+    cidr    = "10.30.0.0/24"
+  }
+}
+
+# OAuth2 login of the CI/CD service account (Manager → Identity & access → Service accounts)
+iam_ci_service_account_login = "REPLACE_ME"
