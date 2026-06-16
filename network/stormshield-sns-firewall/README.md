@@ -56,9 +56,11 @@ https://help.ovhcloud.com/csm/en-public-cloud-network-stormshield-vrack?id=kb_ar
 
 ## Deploy Stormshield SNS HA cluster
 
+```bash
 terraform init
 terraform plan
 terraform apply
+```
 
 Browse: https://<first_public_ip>
 Login: admin
