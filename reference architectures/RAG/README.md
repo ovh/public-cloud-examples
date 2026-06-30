@@ -1,0 +1,1 @@
+These are the files containing the code used in the Reference Architecture for Retrieval Augmented Generation posted in [OVHcloud Blog](https://blog.ovhcloud.com/reference-architecture-retrieval-augmented-generation-rag/)
