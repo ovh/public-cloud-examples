@@ -1,0 +1,27 @@
+controller:
+  replicaCount: 2
+
+  service:
+    type: LoadBalancer
+
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 500m
+      memory: 512Mi
+
+  # required for streaming responses and large multimodal payloads (images)
+  config:
+    proxy-body-size: "100m"
+    proxy-read-timeout: "300"
+    proxy-send-timeout: "300"
+
+  # exposes the /metrics endpoint
+  metrics:
+    enabled: true
+
+  podDisruptionBudget:
+    enabled: true
+    minAvailable: 1
