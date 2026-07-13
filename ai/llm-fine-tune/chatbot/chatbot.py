@@ -49,7 +49,7 @@ If you can't find any sure and relevant information about the product asked, ans
                 label="🧑‍🏫 System Prompt 🧑‍🏫")
             temperature = gr.Slider(minimum=0.0, maximum=2.0, step=0.01, label="Temperature", value=0.5)
             top_p = gr.Slider(minimum=0.0, maximum=1.0, step=0.01, label="Top P", value=0.0)
-            model_name = gr.Textbox(label="🧠 Model Name 🧠", value='Llama-3.1-8B-Instruct')
+            model_name = gr.Textbox(label="🧠 Model Name 🧠", value='Meta-Llama-3_3-70B-Instruct')
             model_url = gr.Textbox(label="🔗 Model URL 🔗", value='https://oai.endpoints.kepler.ai.cloud.ovh.net/v1')
             api_key = gr.Textbox(label="🔑 OVH AI Endpoints Access Token 🔑", value=os.getenv("OVH_AI_ENDPOINTS_ACCESS_TOKEN"), type="password")
 

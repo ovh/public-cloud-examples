@@ -25,7 +25,7 @@ def nmt_translation(output_asr, client):
         try:
             # Make a chat completion request
             response = client.chat.completions.create(
-                model="Llama-3.1-8B-Instruct",
+                model="Meta-Llama-3_3-70B-Instruct",
                 messages=history,
                 temperature=0, 
                 max_tokens=1024
