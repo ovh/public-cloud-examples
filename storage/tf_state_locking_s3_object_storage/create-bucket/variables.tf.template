@@ -1,0 +1,13 @@
+variable "service_name" {
+  default = "$OVH_CLOUD_PROJECT_SERVICE"
+}
+
+
+variable bucket_name {
+  type        = string
+}
+
+variable bucket_region {
+  type        = string
+  default     = "GRA"
+}
