@@ -49,7 +49,6 @@ resource "ovh_cloud_storage_file_share_network" "sharenetwork" {
   name              = var.share_network_name
   network_id        = var.network_id
   subnet_id         = var.subnet_id
-  availability_zone = var.share_availability_zone
 }
 
 resource "kubectl_manifest" "manila-runtime-configmap" {
