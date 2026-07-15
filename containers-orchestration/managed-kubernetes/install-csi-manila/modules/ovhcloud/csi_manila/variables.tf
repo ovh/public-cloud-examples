@@ -23,12 +23,6 @@ variable "share_network_name" {
   type        = string
 }
 
-variable "share_availability_zone" {
-  description = "Share network availability zone"
-  type        = string
-  default     = ""
-}
-
 variable "network_id" {
   description = "Network ID"
   type        = string
