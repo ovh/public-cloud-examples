@@ -52,7 +52,6 @@ vim terraform.tfvars
 mks_cluster_id = "<your_mks_cluster_id>"
 ```
 
-If your Managed Kubernetes Service cluster is in a 3AZ region, choose in which zone to create the share network (example: eu-west-par-a):
 
 ```bash
 vim terraform.tfvars
