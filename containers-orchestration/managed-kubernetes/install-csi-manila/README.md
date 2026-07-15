@@ -89,7 +89,7 @@ kubectl apply -f test/pvc.yaml
 When the Manila share is created, create a deployment:
 
 ```bash
-kubectl apply -f deploy.yaml
+kubectl apply -f test/deploy.yaml
 ```
 
 Verify that the pod is running:
