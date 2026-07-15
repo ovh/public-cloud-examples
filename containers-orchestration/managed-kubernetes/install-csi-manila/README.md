@@ -29,7 +29,6 @@ export OVH_CONSUMER_KEY="<your_consumer_key>"
 export OVH_CLOUD_PROJECT_SERVICE="<your_public_cloud_project_ID>"
 ```
 
-### Configure the Terraform OpenStack provider
 
 Use this documentation to create an OpenStack user:
 https://docs.ovhcloud.com/en/guides/public-cloud/cross-functional/create-and-delete-a-user
