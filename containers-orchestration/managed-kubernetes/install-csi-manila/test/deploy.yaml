@@ -26,4 +26,4 @@ spec:
             name: "http-server"
         volumeMounts:
           - mountPath: "/usr/share/nginx/html"
-            name: nfs-share-pvc
+            name: nfs-share-fs-pvc
