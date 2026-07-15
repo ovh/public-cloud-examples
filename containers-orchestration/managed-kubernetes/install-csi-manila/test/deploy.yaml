@@ -17,7 +17,7 @@ spec:
       volumes:
       - name: nfs-share-pvc
         persistentVolumeClaim:
-          claimName: nfs-share-pvc
+          claimName: nfs-share-fs-pvc
       containers:
       - name: nginx
         image: nginx
