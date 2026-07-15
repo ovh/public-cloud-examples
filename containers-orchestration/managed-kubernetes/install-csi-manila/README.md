@@ -1,0 +1,106 @@
+# Install Manila CSI on a Managed Kubernetes Service (MKS) cluster
+
+**Requirements:**
+
+You need the following:
+* [Terraform](https://www.terraform.io/) installed
+* An [OVHcloud Public Cloud project](https://www.ovhcloud.com/en/public-cloud/)
+* A [Managed Kubernetes Service cluster](https://www.ovhcloud.com/en/public-cloud/kubernetes/) that is connected to a private network
+
+## Configure the deployment
+
+### Configure the Terraform OVH provider
+
+Create an OVHcloud API token:
+
+https://api.ovh.com/createToken?GET=/\*&POST=/\*&PUT=/\*&DELETE=/\*
+
+Configure Terraform with this token:
+
+```bash
+vim ovhrc.sh
+```
+
+```bash
+export OVH_ENDPOINT="ovh-eu"
+export OVH_APPLICATION_KEY="<your_application_key>"
+export OVH_APPLICATION_SECRET="<your_application_secret>"
+export OVH_CONSUMER_KEY="<your_consumer_key>"
+export OVH_CLOUD_PROJECT_SERVICE="<your_public_cloud_project_ID>"
+```
+
+## Customize the deployment
+
+Configure Terraform with your OVH public cloud project id:
+
+```bash
+vim terraform.tfvars
+```
+
+```bash
+service_name = "<your_public_cloud_project_id"
+```
+
+Configure Terraform with your Managed Kubernetes Cluster id:
+
+```bash
+vim terraform.tfvars
+```
+
+```bash
+mks_cluster_id = "<your_mks_cluster_id>"
+```
+
+## Deploy the stack
+
+```bash
+source ovhrc.sh
+terraform init
+terraform apply
+```
+
+## Test
+
+Create a Persistent Volume Claim:
+
+```bash
+kubectl apply -f test/pvc.yaml
+```
+
+Check the status of the PVC:
+```bash
+kubectl get pvc nfs-share-fs-pvc
+
+```bash
+kubectl apply -f test/deploy.yaml
+```
+
+Verify that the pod is running:
+
+```bash
+kubectl get pod
+```
+
+Verify that you can scale the deployment (multi-attach volume):
+
+```bash
+kubectl scale deploy/nginx-deployment --replicas=2
+kubectl get pod
+```
+
+To verify RWX functionality, connect to one pod and create a file in the mounted directory (e.g., /usr/share/nginx/html). Then connect to the second pod and confirm the file is visible:
+
+```bash
+MY_POD=$(kubectl get po -o name | head -n 1)
+echo $MY_POD
+MY_POD_2=$(kubectl get po -o name | head -n 2)
+echo $MY_POD_2
+
+#Create a file in the pod number 1
+kubectl exec $MY_POD -it -- touch /usr/share/nginx/html/index.html
+
+#Display it in the pod number two
+kubectl exec $MY_POD_2 -it -- ls
+```
+
+Your Manila share exposed through NFS is functioning correctly!
