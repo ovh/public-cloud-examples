@@ -83,7 +83,7 @@ provisioner: nfs.manila.csi.openstack.org
 allowVolumeExpansion: true
 parameters:
   type: standard-1az
-  shareNetworkID: "${ovh_cloud_project_file_storage_share_network.sharenetwork.id}"
+  shareNetworkID: "${ovh_cloud_storage_file_share_network.sharenetwork.id}"
   nfs-shareClient: "${var.subnet_cidr}"
   csi.storage.k8s.io/provisioner-secret-name: csi-manila-secrets
   csi.storage.k8s.io/provisioner-secret-namespace: default
