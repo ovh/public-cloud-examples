@@ -66,7 +66,6 @@ share_availability_zone = "<your_share_availability_zone>"
 
 ```bash
 source ovhrc.sh
-source openrc.sh
 terraform init
 terraform apply
 ```
