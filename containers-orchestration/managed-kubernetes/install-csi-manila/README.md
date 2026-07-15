@@ -86,7 +86,9 @@ Create a Persistent Volume Claim:
 kubectl apply -f test/pvc.yaml
 ```
 
-When the Manila share is created, create a deployment:
+Check the status of the PVC:
+```bash
+kubectl get pvc nfs-share-pvc
 
 ```bash
 kubectl apply -f test/deploy.yaml
