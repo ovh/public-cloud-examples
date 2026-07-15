@@ -97,5 +97,5 @@ YAML
 }
 
 output "manila-user" {
-  value = ovh_cloud_project_user.manila-user
+  value = ovh_cloud_project_user.manila-user.username
 }
