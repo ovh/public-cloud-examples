@@ -45,7 +45,7 @@ YAML
 
 resource "ovh_cloud_storage_file_share_network" "sharenetwork" {
   service_name      = var.service_name
-  region_name       = var.region
+  region       = var.region
   name              = var.share_network_name
   network_id        = var.network_id
   subnet_id         = var.subnet_id
