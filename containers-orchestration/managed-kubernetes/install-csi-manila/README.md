@@ -88,3 +88,21 @@ Verify that you can scale the deployment (multi-attach volume):
 ```bash
 kubectl scale deploy/nginx-deployment --replicas=2
 kubectl get pod
+```
+
+To verify RWX functionality, connect to one pod and create a file in the mounted directory (e.g., /usr/share/nginx/html). Then connect to the second pod and confirm the file is visible:
+
+```bash
+MY_POD=$(kubectl get po -o name | head -n 1)
+echo $MY_POD
+MY_POD_2=$(kubectl get po -o name | head -n 2)
+echo $MY_POD_2
+
+#Create a file in the pod number 1
+kubectl exec $MY_POD -it -- touch /usr/share/nginx/html/index.html
+
+#Display it in the pod number two
+kubectl exec $MY_POD_2 -it -- ls
+```
+
+Your Manila share exposed through NFS is functioning correctly!
