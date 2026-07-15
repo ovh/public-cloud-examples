@@ -1,7 +1,7 @@
 terraform {
   required_providers {
     helm = {
-      source = "opentofu/helm"
+      source = "hashicorp/helm"
     }
 
     ovh = {
