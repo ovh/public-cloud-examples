@@ -21,3 +21,8 @@ module "csi_manila" {
   subnet_id          = data.ovh_cloud_project_kube.mks_cluster.nodes_subnet_id
   subnet_cidr        = data.ovh_cloud_network_private_vrack_subnet.mks_cluster_subnet.cidr
 }
+
+output "manila-user" {
+  value = module.csi_manila.manila-user
+  sensitive = true
+}
