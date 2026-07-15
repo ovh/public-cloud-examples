@@ -71,7 +71,7 @@ kubectl apply -f test/pvc.yaml
 
 Check the status of the PVC:
 ```bash
-kubectl get pvc nfs-share-pvc
+kubectl get pvc nfs-share-fs-pvc
 
 ```bash
 kubectl apply -f test/deploy.yaml
