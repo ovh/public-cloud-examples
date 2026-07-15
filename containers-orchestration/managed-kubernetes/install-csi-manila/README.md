@@ -31,7 +31,6 @@ export OVH_CLOUD_PROJECT_SERVICE="<your_public_cloud_project_ID>"
 
 
 
-
 ## Customize the deployment
 
 Configure Terraform with your OVH public cloud project id:
