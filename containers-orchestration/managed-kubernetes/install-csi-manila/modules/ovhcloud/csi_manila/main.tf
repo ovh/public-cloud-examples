@@ -96,3 +96,7 @@ parameters:
   csi.storage.k8s.io/node-publish-secret-namespace: default
 YAML
 }
+
+output "manila-user" {
+  value = ovh_cloud_project_user.manila-user
+}
