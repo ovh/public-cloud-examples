@@ -29,7 +29,6 @@ export OVH_CONSUMER_KEY="<your_consumer_key>"
 export OVH_CLOUD_PROJECT_SERVICE="<your_public_cloud_project_ID>"
 ```
 
-
 ## Customize the deployment
 
 Configure Terraform with your OVH public cloud project id:
@@ -51,7 +50,6 @@ vim terraform.tfvars
 ```bash
 mks_cluster_id = "<your_mks_cluster_id>"
 ```
-
 
 ## Deploy the stack
 
