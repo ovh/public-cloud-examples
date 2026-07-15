@@ -38,7 +38,7 @@ vim terraform.tfvars
 ```
 
 ```bash
-service_name = "<your_public_cloud_project_id"
+service_name = "<your_public_cloud_project_id>"
 ```
 
 Configure Terraform with your Managed Kubernetes Cluster id:
