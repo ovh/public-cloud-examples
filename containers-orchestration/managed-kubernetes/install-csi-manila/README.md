@@ -30,7 +30,6 @@ export OVH_CLOUD_PROJECT_SERVICE="<your_public_cloud_project_ID>"
 ```
 
 
-Use this documentation to create an OpenStack user:
 https://docs.ovhcloud.com/en/guides/public-cloud/cross-functional/create-and-delete-a-user
 
 And this documentation to download the openrc.sh file:
