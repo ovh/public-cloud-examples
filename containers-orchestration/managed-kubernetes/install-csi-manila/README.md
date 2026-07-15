@@ -88,4 +88,3 @@ Verify that you can scale the deployment (multi-attach volume):
 ```bash
 kubectl scale deploy/nginx-deployment --replicas=2
 kubectl get pod
-```
