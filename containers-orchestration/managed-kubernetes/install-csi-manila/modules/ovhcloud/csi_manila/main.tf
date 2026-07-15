@@ -43,7 +43,7 @@ YAML
 
 
 
-resource "ovh_cloud_project_file_storage_share_network" "sharenetwork" {
+resource "ovh_cloud_storage_file_share_network" "sharenetwork" {
   service_name      = var.service_name
   region_name       = var.region
   name              = var.share_network_name
