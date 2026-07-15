@@ -24,5 +24,4 @@ module "csi_manila" {
 
 output "manila-user" {
   value = module.csi_manila.manila-user
-  sensitive = true
 }
