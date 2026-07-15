@@ -53,14 +53,6 @@ mks_cluster_id = "<your_mks_cluster_id>"
 ```
 
 
-```bash
-vim terraform.tfvars
-```
-
-```bash
-share_availability_zone = "<your_share_availability_zone>"
-```
-
 ## Deploy the stack
 
 ```bash
