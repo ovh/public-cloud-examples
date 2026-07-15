@@ -31,7 +31,6 @@ export OVH_CLOUD_PROJECT_SERVICE="<your_public_cloud_project_ID>"
 
 
 
-https://docs.ovhcloud.com/en/guides/public-cloud/cross-functional/compute-set-openstack-environment-variables
 
 ## Customize the deployment
 
