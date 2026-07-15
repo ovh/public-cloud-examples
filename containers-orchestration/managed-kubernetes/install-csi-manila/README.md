@@ -1,4 +1,4 @@
-# Install Manila CSI on a Managed Kubernetes Sevice cluster
+# Install Manila CSI on a Managed Kubernetes Service (MKS) cluster
 
 **Requirements:**
 
