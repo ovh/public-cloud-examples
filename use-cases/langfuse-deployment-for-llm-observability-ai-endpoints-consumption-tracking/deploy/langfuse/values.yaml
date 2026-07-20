@@ -1,0 +1,184 @@
+# Langfuse configuration: public ingress (Traefik + cert-manager/Let's Encrypt)
+# + OVHcloud managed databases Postgres/Valkey/ClickHouse and Object Storage
+
+langfuse:
+  logging:
+    level: info
+    format: json
+
+  salt:
+    secretKeyRef:
+      name: langfuse-secrets
+      key: LANGFUSE_SALT
+
+  encryptionKey:
+    secretKeyRef:
+      name: langfuse-secrets
+      key: LANGFUSE_SECRET_KEY
+
+  features:
+    telemetryEnabled: false
+    signUpDisabled: true
+    experimentalFeaturesEnabled: false
+
+  nodeEnv: production
+
+  serviceAccount:
+    create: true
+    automountServiceAccountToken: false
+
+  # pin web/worker to a dedicated "workload" node pool, separate from the
+  # "system" pool running traefik/cert-manager -- requires the workload pool
+  # to be tainted accordingly (dedicated=workload:NoSchedule), otherwise this
+  # tolerations block has no effect and pods can still land on either pool
+  nodeSelector:
+    nodepool: np-workload
+  tolerations:
+    - key: dedicated
+      operator: Equal
+      value: workload
+      effect: NoSchedule
+
+  podSecurityContext:
+    runAsNonRoot: true
+    runAsUser: 1001
+    seccompProfile:
+      type: RuntimeDefault
+  securityContext:
+    allowPrivilegeEscalation: false
+    readOnlyRootFilesystem: false
+    capabilities:
+      drop:
+        - ALL
+
+  ingress:
+    enabled: true
+    className: "traefik"
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt-prod
+    hosts:
+      - host: "langfuse.<your-domain>"           # replace <your-domain> with your actual domain name
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+    tls:
+      enabled: true
+      secretName: "langfuse-tls"
+
+  replicas: 1
+  resources:
+    requests:
+      cpu: 250m
+      memory: 512Mi
+    limits:
+      cpu: 500m
+      memory: 1Gi
+
+  web:
+    image:
+      repository: langfuse/langfuse
+      pullPolicy: Always
+    resources:
+      requests:
+        cpu: 500m
+        memory: 1Gi
+      limits:
+        cpu: "2"
+        memory: 4Gi
+    pdb:
+      create: true
+      maxUnavailable: 1
+
+  worker:
+    image:
+      repository: langfuse/langfuse-worker
+      pullPolicy: Always
+    resources:
+      requests:
+        cpu: "1"
+        memory: 2Gi
+      limits:
+        cpu: "4"
+        memory: 8Gi
+    pdb:
+      create: true
+      maxUnavailable: 1
+
+  nextauth:
+    url: https://langfuse.<your-domain>           # replace <your-domain> with your actual domain name
+    secret:
+      secretKeyRef:
+        name: langfuse-secrets
+        key: NEXTAUTH_SECRET
+
+# OVHcloud Managed Postgres
+postgresql:
+  deploy: false
+  host: "<your-postgresql-host>:20184"           # replace <your-postgresql-host> by yours
+  port: 20184
+  args: "sslmode=require"
+  auth:
+    username: avnadmin
+    existingSecret: langfuse-secrets
+    secretKeys:
+      userPasswordKey: POSTGRES_PASSWORD
+      adminPasswordKey: POSTGRES_PASSWORD
+    database:  defaultdb
+  directUrl: postgres://avnadmin:$(DATABASE_PASSWORD)@<your-postgresql-host>:20184/defaultdb?sslmode=require           # replace <your-postgresql-host> by yours
+  shadowDatabaseUrl: ""
+  migration:
+    autoMigrate: true
+
+# OVHcloud Managed Valkey (Redis)
+redis:
+  deploy: false
+  host: <your-valkey-host>           # replace <your-valkey-host> by yours
+  port: 20185
+  tls:
+    enabled: true
+  auth:
+    username: default
+    existingSecret: langfuse-secrets
+    existingSecretPasswordKey: VALKEY_PASSWORD
+    database: 0
+
+# OVHcloud Managed ClickHouse
+clickhouse:
+  deploy: false
+  host: https://<your-clickhouse-host>           # replace <your-clickhouse-host> by yours
+  httpPort: 20185
+  nativePort: 20184
+  database: default
+  auth:
+    username: avnadmin
+    existingSecret: langfuse-secrets
+    existingSecretKey: CLICKHOUSE_PASSWORD
+  migration:
+    ssl: true
+    autoMigrate: true
+  clusterEnabled: false
+
+# OVHcloud S3-compatible Object Storage
+s3:
+  deploy: false
+  storageProvider: "s3"
+  bucket: <your-bucket>           # replace <your-bucket> by your S3 bucket name
+  region: gra
+  endpoint: https://s3.gra.io.cloud.ovh.net
+  forcePathStyle: false
+  accessKeyId:
+    secretKeyRef:
+      name: langfuse-secrets
+      key: S3_ACCESS_KEY
+  secretAccessKey:
+    secretKeyRef:
+      name: langfuse-secrets
+      key: S3_SECRET_KEY
+  batchExport:
+    enabled: true
+    prefix: "batch-exports/"
+  mediaUpload:
+    enabled: true
+    prefix: "media/"
+    maxContentLength: 1000000000
+    downloadUrlExpirySeconds: 3600
