@@ -7,20 +7,20 @@ resource "openstack_compute_keypair_v2" "fw_keypair" {
   public_key = var.ssh_public_key_path != null ? trimspace(file(var.ssh_public_key_path)) : null
 }
 
-resource "ovh_cloud_project_ssh_key" "fw_ssh_key" {
-  service_name = var.os_tenant_id
-  public_key   = openstack_compute_keypair_v2.fw_keypair.public_key
-  name         = openstack_compute_keypair_v2.fw_keypair.name
-  region       = var.os_region
+########################################################################################
+#   OPNsense cloud-ready image (see docs/04-image-opnsense-cloud-ready.md)
+########################################################################################
+
+locals {
+  image_source_url = coalesce(
+    var.image_source_url,
+    "https://opnsense.s3.eu-west-par.io.cloud.ovh.net/releases-cloudready/OPNsense-${var.opnsense_version}-cloudready.qcow2",
+  )
 }
 
-########################################################################################
-#   Upload OPNsense VM Image to OpenStack
-########################################################################################
-
 resource "openstack_images_image_v2" "fw_image" {
-  name             = "OPNsense Cloud-Ready"
-  image_source_url = "https://opnsense.s3.eu-west-par.io.cloud.ovh.net/releases-cloudready/OPNsense-26.1-cloudready.qcow2"
+  name             = "OPNsense ${var.opnsense_version} Cloud-Ready"
+  image_source_url = local.image_source_url
   container_format = "bare"
   disk_format      = "qcow2"
 }

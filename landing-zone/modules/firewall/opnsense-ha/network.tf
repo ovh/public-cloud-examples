@@ -63,15 +63,24 @@ resource "openstack_networking_port_v2" "fw_wan_carp_vip" {
 
 ########################################################################################
 #   Gateway | Public <-> Private WAN Network
+#   A Neutron router attached to Ext-Net is what the OVHcloud console calls a "Gateway"
+#   (size S by default). Created with OpenStack credentials only — no OVH API token.
+#   The router takes the subnet gateway IP (.1), which the templates use as WAN_GATEWAY_IP.
 ########################################################################################
 
-resource "ovh_cloud_project_gateway" "fw_wan_router" {
-  service_name = var.os_tenant_id
-  name         = "opn-wan-router"
-  model        = "s"
-  region       = var.os_region
-  network_id   = openstack_networking_network_v2.fw_wan_net.id
-  subnet_id    = openstack_networking_subnet_v2.fw_wan_subnet.id
+data "openstack_networking_network_v2" "ext_net" {
+  name = "Ext-Net"
+}
+
+resource "openstack_networking_router_v2" "fw_wan_router" {
+  name                = "opn-wan-router"
+  admin_state_up      = true
+  external_network_id = data.openstack_networking_network_v2.ext_net.id
+}
+
+resource "openstack_networking_router_interface_v2" "fw_wan_router_if" {
+  router_id = openstack_networking_router_v2.fw_wan_router.id
+  subnet_id = openstack_networking_subnet_v2.fw_wan_subnet.id
 }
 
 ########################################################################################
@@ -98,7 +107,10 @@ resource "openstack_networking_subnet_v2" "fw_lan_subnet" {
     end   = cidrhost(var.private_lan_cidr, 200)
   }
   dns_nameservers = ["213.186.33.99"]
-  no_gateway      = false
+  # The LAN CARP VIP (.99) is the workloads' default gateway. Declaring it as the subnet
+  # gateway makes Neutron DHCP hand out the right default route and DNS host route,
+  # so a plain DHCP client on the LAN reaches the Internet without manual configuration.
+  gateway_ip = cidrhost(var.private_lan_cidr, 99)
 }
 
 resource "openstack_networking_port_v2" "fw_lan_active_port" {

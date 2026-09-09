@@ -9,55 +9,27 @@ variable "tofu_state_passphrase" {
 }
 
 ########################################################################################
-# OVH API credentials
-# Generate at: https://api.ovh.com/createToken/
-# Required rights: GET/POST/PUT/DELETE on /cloud/project/{projectId}/*
-########################################################################################
-
-variable "ovh_endpoint" {
-  description = "OVH API endpoint (ovh-eu | ovh-ca | ovh-us)"
-  type        = string
-  default     = "ovh-eu"
-}
-
-variable "ovh_application_key" {
-  description = "OVH API application key"
-  type        = string
-  sensitive   = true
-}
-
-variable "ovh_application_secret" {
-  description = "OVH API application secret"
-  type        = string
-  sensitive   = true
-}
-
-variable "ovh_consumer_key" {
-  description = "OVH API consumer key"
-  type        = string
-  sensitive   = true
-}
-
-########################################################################################
 # Existing OVHcloud project
 # Prerequisites:
-#   - The project must already exist
-#   - A vRack must already be attached to the project
+#   - The project must already exist and have a vRack attached
+#   - OpenStack credentials (openrc.sh) of a user with the administrator role — the
+#     project ID comes from OS_PROJECT_ID, no OVH API token is required
 ########################################################################################
 
-variable "project_id" {
-  description = "OVHcloud Public Cloud project ID (existing project with a vRack attached)"
-  type        = string
-}
-
 variable "region" {
-  description = "OVHcloud compute region (e.g. EU-WEST-PAR, EU-SOUTH-MIL, GRA11, SBG7, BHS5). For 3-AZ regions, HA placement across availability zones is automatic."
+  description = "OVHcloud compute region (e.g. GRA9, GRA11, SBG7, BHS5, EU-WEST-PAR, EU-SOUTH-MIL). For 3-AZ regions, HA placement across availability zones is automatic."
   type        = string
 }
 
 ########################################################################################
 # OPNsense instance
 ########################################################################################
+
+variable "opnsense_version" {
+  description = "OPNsense release of the cloud-ready image. The configuration templates target the 26.7 model (MVC firewall rules, source NAT, HA sync)."
+  type        = string
+  default     = "26.7"
+}
 
 variable "flavor" {
   description = "Instance flavor for OPNsense nodes"
@@ -66,7 +38,7 @@ variable "flavor" {
 }
 
 variable "ssh_public_key_path" {
-  description = "Path to an SSH public key file. If null, a keypair is auto-generated and the private key is available via `tofu output -json`."
+  description = "Path to an SSH public key file. If null, a keypair is auto-generated and the private key is available via `tofu output -raw ssh_private_key`."
   type        = string
   default     = null
 }
@@ -83,7 +55,7 @@ variable "vlan_wan" {
 }
 
 variable "cidr_wan" {
-  description = "CIDR for the WAN network (OVHcloud managed gateway is provisioned on this subnet)"
+  description = "CIDR for the WAN network (the Neutron router / OVHcloud gateway takes the first address)"
   type        = string
   default     = "10.1.0.0/24"
 }
@@ -117,7 +89,7 @@ variable "cidr_hasync" {
 ########################################################################################
 
 variable "admin_client_ip" {
-  description = "IP address or CIDR allowed to reach the OPNsense WebGUI (port 8443) and SSH (port 22). Prefer a single fixed IP; a broad range such as /24 is overly permissive."
+  description = "IP address or CIDR allowed to reach the OPNsense WebGUI (port 8443) and SSH (port 22). Stored in the AdminClients alias, editable afterwards in the GUI. Prefer a single fixed IP; a broad range such as /24 is overly permissive."
   type        = string
 }
 

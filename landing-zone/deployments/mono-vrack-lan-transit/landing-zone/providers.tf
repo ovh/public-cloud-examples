@@ -2,7 +2,7 @@ terraform {
   required_providers {
     ovh = {
       source  = "ovh/ovh"
-      version = "~> 2.12.0"
+      version = "~> 2.12"
     }
     openstack = {
       source  = "terraform-provider-openstack/openstack"
@@ -14,10 +14,17 @@ terraform {
     }
     time = {
       source  = "hashicorp/time"
-      version = "~> 0.13.0"
+      version = "~> 0.13"
+    }
+    null = {
+      source  = "hashicorp/null"
+      version = "~> 3.2"
+    }
+    local = {
+      source  = "hashicorp/local"
+      version = "~> 2.5"
     }
   }
-
   encryption {
     key_provider "pbkdf2" "my_passphrase" {
       passphrase = var.tofu_state_passphrase
@@ -29,7 +36,6 @@ terraform {
       method = method.aes_gcm.default
     }
   }
-
   required_version = ">= 1.11.4"
 }
 
@@ -39,6 +45,12 @@ locals {
   name_suffix = formatdate("DDMMYYhhmm", time_static.deployment.rfc3339)
 }
 
+########################################################################################
+# OVH API — run by the platform owner ("big admin"). Either the classic triplet through the
+# ovh_* variables, or a service account through OVH_CLIENT_ID / OVH_CLIENT_SECRET (leave the
+# variables unset). Required IAM actions for a service account are listed in docs/02.
+########################################################################################
+
 provider "ovh" {
   endpoint           = var.ovh_endpoint
   application_key    = var.ovh_application_key
@@ -47,8 +59,7 @@ provider "ovh" {
 }
 
 provider "openstack" {
-  alias = "hub"
-
+  alias       = "hub"
   auth_url    = "https://auth.cloud.ovh.net/v3/"
   domain_name = "default"
   tenant_id   = ovh_cloud_project.hub.project_id

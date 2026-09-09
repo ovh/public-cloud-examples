@@ -1,17 +1,26 @@
 module "spoke" {
-  source = "../../../modules/network/spoke-one-vrack"
-
-  depends_on = [time_sleep.wait_spoke_vrack]
-
-  os_tenant_id = ovh_cloud_project.spoke.project_id
-  os_region    = var.compute_region
+  source     = "../../../modules/network/spoke-slot"
+  depends_on = [time_sleep.wait_spoke_vrack, null_resource.openstack_ready]
 
   spoke_name = var.spoke_name
+  slot       = var.slot
+  networks   = var.networks
 
-  hub_lan_vlan_id   = var.hub_lan_vlan_id
-  hub_lan_cidr      = var.hub_lan_cidr
-  hub_lan_carp_ip   = var.hub_lan_carp_ip
-  transit_router_ip = var.transit_router_ip
+  openstack_cli_auth = {
+    OS_AUTH_URL             = "https://auth.cloud.ovh.net/v3/"
+    OS_IDENTITY_API_VERSION = "3"
+    OS_USER_DOMAIN_NAME     = "Default"
+    OS_PROJECT_DOMAIN_NAME  = "Default"
+    OS_REGION_NAME          = var.compute_region
+    OS_USERNAME             = ovh_cloud_project_user.spoke_iac.username
+    OS_PASSWORD             = ovh_cloud_project_user.spoke_iac.password
+    OS_PROJECT_ID           = ovh_cloud_project.spoke.project_id
+    OS_TENANT_ID            = ovh_cloud_project.spoke.project_id
+  }
 
-  networks = var.networks
+  hub_lan_vlan_id = var.hub_lan_vlan_id
+  hub_lan_cidr    = var.hub_lan_cidr
+  hub_lan_carp_ip = var.hub_lan_carp_ip
+
+  extra_egress = var.extra_egress
 }

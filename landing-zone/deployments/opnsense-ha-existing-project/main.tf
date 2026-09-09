@@ -1,14 +1,4 @@
 ########################################################################################
-# Ephemeral OpenStack user — scoped to this project
-########################################################################################
-
-resource "ovh_cloud_project_user" "opnsense" {
-  service_name = var.project_id
-  description  = "opnsense-ha-deployment"
-  role_name    = "administrator"
-}
-
-########################################################################################
 # OPNsense HA cluster
 ########################################################################################
 
@@ -17,14 +7,12 @@ module "opnsense_ha" {
 
   role = "hub-simple"
 
-  depends_on = [ovh_cloud_project_user.opnsense]
-
-  os_tenant_id            = var.project_id
   os_region               = var.region
   az_primary              = local.az_primary
   az_secondary            = local.az_secondary
   os_instance_flavor_name = var.flavor
   ssh_public_key_path     = var.ssh_public_key_path
+  opnsense_version        = var.opnsense_version
 
   admin_client_ip = var.admin_client_ip
   admin_password  = var.admin_password

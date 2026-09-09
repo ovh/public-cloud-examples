@@ -1,9 +1,5 @@
 terraform {
   required_providers {
-    ovh = {
-      source  = "ovh/ovh"
-      version = "~> 2.12.0"
-    }
     openstack = {
       source  = "terraform-provider-openstack/openstack"
       version = "~> 3.4.0"
@@ -11,10 +7,6 @@ terraform {
     random = {
       source  = "hashicorp/random"
       version = "~> 3.7.2"
-    }
-    time = {
-      source  = "hashicorp/time"
-      version = "~> 0.13.0"
     }
   }
 
@@ -33,20 +25,15 @@ terraform {
   required_version = ">= 1.11.4"
 }
 
-provider "ovh" {
-  endpoint           = var.ovh_endpoint
-  application_key    = var.ovh_application_key
-  application_secret = var.ovh_application_secret
-  consumer_key       = var.ovh_consumer_key
-}
+########################################################################################
+# OpenStack authentication — plain OpenStack credentials, no OVH API token.
+# Source the openrc.sh of an OpenStack user with the "administrator" role on the project
+# (OS_AUTH_URL, OS_PROJECT_ID, OS_USERNAME, OS_PASSWORD, OS_USER_DOMAIN_NAME=Default),
+# or use a clouds.yaml + OS_CLOUD. Only the region is set here.
+########################################################################################
 
 provider "openstack" {
-  auth_url    = "https://auth.cloud.ovh.net/v3/"
-  domain_name = "default"
-  tenant_id   = var.project_id
-  user_name   = ovh_cloud_project_user.opnsense.username
-  password    = ovh_cloud_project_user.opnsense.password
-  region      = var.region
+  region = var.region
 }
 
 ########################################################################################

@@ -18,8 +18,8 @@ Documentation is organised by architecture in **[docs/](docs/README.md)**:
 
 | Architecture | Description | Guides |
 |--------------|-------------|--------|
-| **Multi-vRack + IPsec** | One vRack per bubble, IPsec/VTI tunnel, OPNsense HA in every spoke. | [deployments/multi-vrack-ipsec/docs/](deployments/multi-vrack-ipsec/docs/README.md) |
-| **Mono-vRack + LAN transit** | A single shared vRack, OPNsense HA at the hub only, L2 connectivity. | [deployments/mono-vrack-lan-transit/docs/](deployments/mono-vrack-lan-transit/docs/README.md) |
+| **Mono-vRack + LAN transit** (maintained) | One shared vRack, OPNsense 26.7 HA at the hub only, spokes by slot, zero-trust security groups, explicit proxy. | [deployments/mono-vrack-lan-transit/docs/](deployments/mono-vrack-lan-transit/docs/README.md) |
+| **Multi-vRack + IPsec** (deprecated) | One vRack per bubble, IPsec/VTI tunnel, OPNsense HA in every spoke — kept for reference, pre-26.7 templates. | [deployments/multi-vrack-ipsec/docs/](deployments/multi-vrack-ipsec/docs/README.md) |
 | **Worked example (OrbitalEdge SAS)** | Complete fictional end-to-end deployment built on the Mono-vRack template (hub + 4 spokes). | [examples/orbital-edge/](examples/orbital-edge/README.md) |
 
 Common guides (vision, OVH prerequisites, hyperscaler migration): **[docs/](docs/README.md)**.
@@ -27,7 +27,7 @@ Common guides (vision, OVH prerequisites, hyperscaler migration): **[docs/](docs
 ## Quick prerequisites
 
 - [OpenTofu](https://opentofu.org/) — required (state encryption uses an OpenTofu feature not available in HashiCorp Terraform).
-- **OVHcloud API** credentials: Application Key, Application Secret, Consumer Key (see [docs/02-ovh-prerequisites.md](docs/02-ovh-prerequisites.md)).
+- **OVHcloud API** credentials: Application Key, Application Secret, Consumer Key (see [docs/02-ovh-prerequisites.md](docs/02-ovh-prerequisites.md)) — landing zones and Day-2 spokes only. The standalone `deployments/opnsense-ha-existing-project/` authenticates with plain OpenStack credentials (`openrc.sh`) and needs no OVH API token.
 - **Public Cloud** access and the ability to create projects, vRacks and OpenStack users.
 
 ## Repository layout
@@ -40,7 +40,9 @@ Common guides (vision, OVH prerequisites, hyperscaler migration): **[docs/](docs
 | `deployments/mono-vrack-lan-transit/spoke-template/` | Mono-vRack — Day‑2: new-spoke template. |
 | `deployments/opnsense-ha-existing-project/` | Standalone OPNsense HA in an existing project. |
 | `modules/firewall/opnsense-ha/` | OPNsense HA module (roles: hub-simple, hub-ipsec, spoke-ipsec). |
-| `modules/network/spoke-one-vrack/` | Firewall-less spoke network (mono-vRack). |
+| `modules/network/spoke-slot/` | Firewall-less spoke by slot number (mono-vRack): networks, router, zero-trust security groups. |
+| `modules/network/spoke-one-vrack/` | Previous spoke module (API-peered), superseded by `spoke-slot`. |
+| `tools/` | `hub-postboot.sh` (Day-1 plugin sync), `audit-exposure.sh` (read-only exposure/drift audit). |
 | `modules/storage/` | Storage module (use as needed). |
 | `examples/orbital-edge/` | End-to-end worked example (OrbitalEdge SAS): hub + 4 spokes on the Mono-vRack template. |
 
@@ -48,7 +50,7 @@ Common guides (vision, OVH prerequisites, hyperscaler migration): **[docs/](docs
 
 ### Before you apply — set your secrets (one-time, per shell)
 
-Every deployment **encrypts its OpenTofu state** with a passphrase. 
+Every deployment **encrypts its OpenTofu state** with a passphrase.
 
 Secrets (passphrase, OVH API credentials, OPNsense passwords, IPsec PSK) are **not** stored in
 `terraform.tfvars`. Export them as `TF_VAR_*` environment variables in your shell first:
@@ -58,6 +60,7 @@ Secrets (passphrase, OVH API credentials, OPNsense passwords, IPsec PSK) are **n
 export TF_VAR_tofu_state_passphrase="a-strong-passphrase"
 
 # OVH API credentials — https://api.ovh.com/createToken/
+# (landing zones and Day-2 spokes only — not used by the standalone OPNsense HA deployment)
 export TF_VAR_ovh_application_key="..."
 export TF_VAR_ovh_application_secret="..."
 export TF_VAR_ovh_consumer_key="..."
@@ -115,6 +118,7 @@ tofu init && tofu apply
 
 ```bash
 cd deployments/opnsense-ha-existing-project
+source ~/openrc.sh                 # OpenStack user of the existing project — no OVH API token
 cp terraform.tfvars.example terraform.tfvars
 nano terraform.tfvars # nano or your favorite editor to edit variables depending on your landing zone
 tofu init && tofu apply

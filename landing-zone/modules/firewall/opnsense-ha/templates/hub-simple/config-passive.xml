@@ -1,99 +1,111 @@
 <?xml version="1.0"?>
+<!--
+  OPNsense HA - secondary node (CARP BACKUP, receives config over xmlrpc; only pfsync is configured here)
+  Configuration written for the OPNsense 26.7 model, no legacy rule pages needed:
+    firewall rules  -> //OPNsense/Firewall/Filter/rules      (MVC, version 1.0.6)
+    source NAT      -> //OPNsense/Firewall/Filter/snatrules  (mode stays in nat/outbound/mode, as 26.7 does)
+    aliases         -> //OPNsense/Firewall/Alias
+    gateways        -> //OPNsense/Gateways
+    HA sync         -> //hasync (root node: pfsync + xmlrpc + syncitems)
+    VIPs, tunables  -> /virtualip, //sysctl
+  UUIDs are derived with uuidv5() so both nodes start with identical object ids.
+  Optional hub role (HUB_SERVICES / SLOTS, off in the standalone deployment):
+    slots         -> one OPNsense gateway + static route per spoke slot (no OVH resource)
+    hub services  -> unbound DNS, ntpd and the explicit squid proxy on the LAN CARP VIP,
+                     os-squid listed in system/firmware/plugins (installed with
+                     POST /api/core/firmware/syncPlugins at Day-1), zero-trust LAN policy
+-->
 <opnsense>
-  <sysctl>
-    <item>
-      <descr>Enable unicast CARP</descr>
-      <tunable>net.inet.carp.allow_unicast</tunable>
-      <value>1</value>
-    </item>
-    <item>
-      <descr>Allow CARP preemption</descr>
+  <theme>opnsense</theme>
+  <sysctl version="1.0.2">
+    <item uuid="${uuidv5("dns", "opnsense-ha.tunable.carp-preempt")}">
       <tunable>net.inet.carp.preempt</tunable>
       <value>1</value>
+      <descr>Allow CARP preemption</descr>
     </item>
-    <item>
-      <descr>Max socket buffer size</descr>
+    <item uuid="${uuidv5("dns", "opnsense-ha.tunable.maxsockbuf")}">
       <tunable>kern.ipc.maxsockbuf</tunable>
       <value>16777216</value>
+      <descr>Max socket buffer size</descr>
     </item>
-    <item>
-      <descr>TCP send buffer max</descr>
+    <item uuid="${uuidv5("dns", "opnsense-ha.tunable.sendbuf-max")}">
       <tunable>net.inet.tcp.sendbuf_max</tunable>
       <value>16777216</value>
+      <descr>TCP send buffer max</descr>
     </item>
-    <item>
-      <descr>TCP receive buffer max</descr>
+    <item uuid="${uuidv5("dns", "opnsense-ha.tunable.recvbuf-max")}">
       <tunable>net.inet.tcp.recvbuf_max</tunable>
       <value>16777216</value>
+      <descr>TCP receive buffer max</descr>
     </item>
-    <item>
-      <descr>Fast IP forwarding</descr>
-      <tunable>net.inet.ip.fastforwarding</tunable>
-      <value>1</value>
-    </item>
-    <item>
-      <descr>Deferred netisr dispatch for multi-core</descr>
+    <item uuid="${uuidv5("dns", "opnsense-ha.tunable.isr-dispatch")}">
       <tunable>net.isr.dispatch</tunable>
       <value>deferred</value>
+      <descr>Deferred netisr dispatch for multi-core</descr>
     </item>
-    <item>
-      <descr>Interface queue length</descr>
-      <tunable>net.link.ifqmaxlen</tunable>
-      <value>2048</value>
-    </item>
-    <item>
-      <descr>IP input queue length</descr>
+    <item uuid="${uuidv5("dns", "opnsense-ha.tunable.intr-queue")}">
       <tunable>net.inet.ip.intr_queue_maxlen</tunable>
       <value>4096</value>
+      <descr>IP input queue length</descr>
     </item>
   </sysctl>
   <system>
+    <optimization>normal</optimization>
     <hostname>${HOSTNAME}</hostname>
     <domain>ovh.internal</domain>
     <dnsserver>213.186.33.99</dnsserver>
-    <user>
-      <uid>0</uid>
-      <name>root</name>
-      <password>${bcrypt(ADMIN_PASSWORD)}</password>
+    <dnsallowoverride>0</dnsallowoverride>
+    <timezone>Etc/UTC</timezone>
+    <timeservers>0.opnsense.pool.ntp.org 1.opnsense.pool.ntp.org 2.opnsense.pool.ntp.org 3.opnsense.pool.ntp.org</timeservers>
+    <group>
+      <name>admins</name>
+      <description>System Administrators</description>
+      <scope>system</scope>
+      <gid>1999</gid>
+      <member>0</member>
+      <member>2000</member>
+      <member>2001</member>
       <priv>page-all</priv>
+    </group>
+    <user>
+      <name>root</name>
+      <descr>System Administrator</descr>
+      <scope>system</scope>
+      <groupname>admins</groupname>
+      <password>${bcrypt(ADMIN_PASSWORD)}</password>
+      <uid>0</uid>
+%{ if API_KEY != "" ~}
       <apikeys>
         <item>
           <key>${API_KEY}</key>
           <secret>${API_SECRET_HASH}</secret>
         </item>
       </apikeys>
+%{ endif ~}
     </user>
     <user>
-      <uid>2000</uid>
       <name>admin</name>
+      <descr>Administrator (SSH key access)</descr>
+      <scope>user</scope>
+      <groupname>admins</groupname>
       <password>${bcrypt(ADMIN_PASSWORD)}</password>
+      <uid>2000</uid>
       <authorizedkeys>${base64encode(ADMIN_SSH_KEY)}</authorizedkeys>
       <shell>/bin/sh</shell>
       <priv>page-all</priv>
-      <priv>user-ssh</priv>
-      <groupname>wheel</groupname>
-      <groupname>admins</groupname>
     </user>
     <user>
-      <uid>2001</uid>
       <name>haadmin</name>
-      <password>${bcrypt(HA_PASSWORD)}</password>
-      <priv>page-all</priv>
+      <descr>HA configuration sync (xmlrpc)</descr>
+      <scope>user</scope>
       <groupname>admins</groupname>
-    </user>
-    <group>
-      <name>admins</name>
+      <password>${bcrypt(HA_PASSWORD)}</password>
+      <uid>2001</uid>
       <priv>page-all</priv>
-      <member>2000</member>
-    </group>
-    <group>
-      <name>wheel</name>
-      <member>2000</member>
-    </group>
+    </user>
     <ssh>
       <enabled>enabled</enabled>
       <group>admins</group>
-      <permitrootlogin>1</permitrootlogin>
       <passwordauth>0</passwordauth>
       <pubkeyacceptedalgorithms>ssh-ed25519,rsa-sha2-512,rsa-sha2-256,+ssh-rsa</pubkeyacceptedalgorithms>
     </ssh>
@@ -101,192 +113,613 @@
       <protocol>https</protocol>
       <port>8443</port>
       <nohttpreferercheck>1</nohttpreferercheck>
+%{ if HUB_SERVICES ~}
+      <noantilockout>1</noantilockout>
+%{ endif ~}
     </webgui>
-    <!-- No <hasync> on secondary - config is received, never pushed -->
+    <disablenatreflection>yes</disablenatreflection>
+    <usevirtualterminal>1</usevirtualterminal>
+    <pf_share_forward>1</pf_share_forward>
+    <lb_use_sticky>1</lb_use_sticky>
+    <bogons>
+      <interval>monthly</interval>
+    </bogons>
+%{ if HUB_SERVICES ~}
+    <firmware>
+      <plugins>os-squid</plugins>
+    </firmware>
+%{ endif ~}
   </system>
   <interfaces>
     <wan>
       <if>vtnet0</if>
       <enable>1</enable>
+      <descr>WAN</descr>
       <ipaddr>${WAN_PORT_IP}</ipaddr>
       <subnet>${WAN_PORT_NETMASK}</subnet>
-      <descr>WAN</descr>
+      <gateway>WANGW</gateway>
       <blockpriv>0</blockpriv>
       <blockbogons>0</blockbogons>
     </wan>
     <lan>
       <if>vtnet1</if>
       <enable>1</enable>
+      <descr>LAN</descr>
       <ipaddr>${LAN_PORT_IP}</ipaddr>
       <subnet>${LAN_PORT_NETMASK}</subnet>
-      <descr>LAN</descr>
       <blockpriv>0</blockpriv>
       <blockbogons>0</blockbogons>
     </lan>
-    <hasync>
+    <opt1>
       <if>vtnet2</if>
       <enable>1</enable>
+      <descr>HASYNC</descr>
       <ipaddr>${HASYNC_PORT_IP}</ipaddr>
       <subnet>${HASYNC_PORT_NETMASK}</subnet>
-      <descr>HASYNC</descr>
       <blockpriv>0</blockpriv>
       <blockbogons>0</blockbogons>
-    </hasync>
+    </opt1>
   </interfaces>
-  <gateways>
-    <gateway_item>
+%{ if HUB_SERVICES ~}
+  <ntpd>
+    <interface>lan</interface>
+    <prefer>0.opnsense.pool.ntp.org</prefer>
+    <ispool>0.opnsense.pool.ntp.org 1.opnsense.pool.ntp.org 2.opnsense.pool.ntp.org 3.opnsense.pool.ntp.org</ispool>
+  </ntpd>
+%{ endif ~}
+%{ if length(SLOTS) > 0 ~}
+  <!-- Slot routing: spoke k = supernet cidrsubnet(base, 8, k) reached through its Neutron router on the transit VLAN. -->
+  <staticroutes version="1.0.1">
+%{ for s in SLOTS ~}
+    <route uuid="${uuidv5("dns", "opnsense-ha.slot.${s.k}.route")}">
+      <network>${s.supernet}</network>
+      <gateway>${s.gateway}</gateway>
+      <descr>Slot ${s.k} supernet via transit router</descr>
+      <enabled>1</enabled>
+    </route>
+%{ endfor ~}
+  </staticroutes>
+%{ endif ~}
+  <!-- Source NAT mode is still stored here in 26.7 (read by the volatile snat_mode field). Rules live in snatrules below. -->
+  <nat>
+    <outbound>
+      <mode>hybrid</mode>
+    </outbound>
+  </nat>
+  <filter/>
+  <virtualip version="1.0.1">
+    <vip uuid="${uuidv5("dns", "opnsense-ha.vip.wan")}">
       <interface>wan</interface>
-      <gateway>${WAN_GATEWAY_IP}</gateway>
-      <name>WANGW</name>
-      <priority>255</priority>
-      <weight>1</weight>
-      <ipprotocol>inet</ipprotocol>
-      <defaultgw>1</defaultgw>
-    </gateway_item>
-  </gateways>
-  <virtualip>
-    <vip>
       <mode>carp</mode>
-      <interface>wan</interface>
+      <subnet>${WAN_CARP_IP}</subnet>
+      <subnet_bits>${WAN_PORT_NETMASK}</subnet_bits>
+      <gateway/>
+      <noexpand>0</noexpand>
+      <nobind>0</nobind>
+      <password>${HA_PASSWORD}</password>
       <vhid>11</vhid>
       <advbase>1</advbase>
       <advskew>100</advskew>
-      <password>${HA_PASSWORD}</password>
-      <subnet>${WAN_CARP_IP}</subnet>
-      <subnet_bits>${WAN_PORT_NETMASK}</subnet_bits>
       <peer>${PEER_WAN_IP}</peer>
+      <peer6/>
+      <nosync>0</nosync>
       <descr>WAN CARP VIP</descr>
-      <type>single</type>
-      <uniqid>wan-carp-vip</uniqid>
     </vip>
-    <vip>
-      <mode>carp</mode>
+    <vip uuid="${uuidv5("dns", "opnsense-ha.vip.lan")}">
       <interface>lan</interface>
+      <mode>carp</mode>
+      <subnet>${LAN_CARP_IP}</subnet>
+      <subnet_bits>${LAN_PORT_NETMASK}</subnet_bits>
+      <gateway/>
+      <noexpand>0</noexpand>
+      <nobind>0</nobind>
+      <password>${HA_PASSWORD}</password>
       <vhid>13</vhid>
       <advbase>1</advbase>
       <advskew>100</advskew>
-      <password>${HA_PASSWORD}</password>
-      <subnet>${LAN_CARP_IP}</subnet>
-      <subnet_bits>${LAN_PORT_NETMASK}</subnet_bits>
       <peer>${PEER_LAN_IP}</peer>
+      <peer6/>
+      <nosync>0</nosync>
       <descr>LAN CARP VIP</descr>
-      <type>single</type>
-      <uniqid>lan-carp-vip</uniqid>
     </vip>
   </virtualip>
-  <pfsync>
-    <enabled>1</enabled>
-    <pfsyncinterface>vtnet2</pfsyncinterface>
+  <!-- HA: root node read by rc.filter_synchronize (xmlrpc) and interfaces_pfsync_configure() (pfsync). -->
+  <hasync version="1.0.2">
+    <disablepreempt>0</disablepreempt>
+    <disconnectppps>0</disconnectppps>
+    <pfsyncinterface>opt1</pfsyncinterface>
     <pfsyncpeerip>${PEER_HA_IP}</pfsyncpeerip>
-  </pfsync>
-  <filter>
-    <rule>
-      <type>pass</type>
-      <interface>wan</interface>
-      <direction>in</direction>
-      <protocol>tcp</protocol>
-      <source>
-        <address>${ADMIN_CLIENT_IP}</address>
-      </source>
-      <destination>
-        <any/>
-        <port>8443</port>
-      </destination>
-      <descr>Allow WebGUI access from Admin IP</descr>
-    </rule>
-    <rule>
-      <type>pass</type>
-      <interface>wan</interface>
-      <direction>in</direction>
-      <protocol>tcp</protocol>
-      <source><any/></source>
-      <destination>
-        <any/>
-        <port>22</port>
-      </destination>
-      <descr>Allow SSH on WAN</descr>
-    </rule>
-    <rule>
-      <type>pass</type>
-      <interface>lan</interface>
-      <direction>in</direction>
-      <protocol>tcp</protocol>
-      <source>
-        <address>${ADMIN_CLIENT_IP}</address>
-      </source>
-      <destination>
-        <any/>
-        <port>8443</port>
-      </destination>
-      <descr>Allow WebGUI access from Admin IP</descr>
-    </rule>
-    <rule>
-      <type>pass</type>
-      <interface>lan</interface>
-      <direction>in</direction>
-      <protocol>tcp</protocol>
-      <source><any/></source>
-      <destination>
-        <any/>
-        <port>22</port>
-      </destination>
-      <descr>Allow SSH on LAN</descr>
-    </rule>
-    <rule>
-      <type>pass</type>
-      <interface>hasync</interface>
-      <ipprotocol>inet</ipprotocol>
-      <protocol>pfsync</protocol>
-      <source>
-        <network>hasync</network>
-      </source>
-      <destination>
-        <network>hasync</network>
-      </destination>
-      <descr>Allow pfsync on HASYNC</descr>
-    </rule>
-    <rule>
-      <type>pass</type>
-      <interface>hasync</interface>
-      <ipprotocol>inet</ipprotocol>
-      <protocol>tcp</protocol>
-      <source>
-        <network>hasync</network>
-      </source>
-      <destination>
-        <network>hasync</network>
-        <port>8443</port>
-      </destination>
-      <descr>Allow xmlrpc on HASYNC</descr>
-    </rule>
-    <rule>
-      <type>pass</type>
-      <interface>wan</interface>
-      <ipprotocol>inet</ipprotocol>
-      <protocol>carp</protocol>
-      <source>
-        <network>wan</network>
-      </source>
-      <destination>
-        <network>wan</network>
-      </destination>
-      <descr>Allow unicast CARP on WAN</descr>
-    </rule>
-    <rule>
-      <type>pass</type>
-      <interface>lan</interface>
-      <ipprotocol>inet</ipprotocol>
-      <protocol>carp</protocol>
-      <source>
-        <address>lan</address>
-      </source>
-      <destination>
-        <address>lan</address>
-      </destination>
-      <descr>Allow unicast CARP on LAN</descr>
-    </rule>
-  </filter>
+    <pfsyncversion>1400</pfsyncversion>
+    <pfsyncdefer>0</pfsyncdefer>
+    <verifypeer>0</verifypeer>
+  </hasync>
   <OPNsense>
+    <Gateways version="1.0.0">
+      <gateway_item uuid="${uuidv5("dns", "opnsense-ha.gateway.wangw")}">
+        <disabled>0</disabled>
+        <name>WANGW</name>
+        <descr>WAN gateway (OpenStack router)</descr>
+        <interface>wan</interface>
+        <ipprotocol>inet</ipprotocol>
+        <gateway>${WAN_GATEWAY_IP}</gateway>
+        <defaultgw>1</defaultgw>
+        <fargw>0</fargw>
+        <monitor_disable>0</monitor_disable>
+        <monitor_noroute>0</monitor_noroute>
+        <monitor/>
+        <force_down>0</force_down>
+        <priority>255</priority>
+        <weight>1</weight>
+      </gateway_item>
+%{ for s in SLOTS ~}
+      <gateway_item uuid="${uuidv5("dns", "opnsense-ha.slot.${s.k}.gateway")}">
+        <disabled>0</disabled>
+        <name>${s.gateway}</name>
+        <descr>Slot ${s.k} transit router</descr>
+        <interface>lan</interface>
+        <ipprotocol>inet</ipprotocol>
+        <gateway>${s.transit_ip}</gateway>
+        <defaultgw>0</defaultgw>
+        <fargw>0</fargw>
+        <monitor_disable>1</monitor_disable>
+        <monitor_noroute>0</monitor_noroute>
+        <monitor/>
+        <force_down>0</force_down>
+        <priority>255</priority>
+        <weight>1</weight>
+      </gateway_item>
+%{ endfor ~}
+    </Gateways>
+    <Firewall>
+      <Alias version="1.0.1">
+        <geoip>
+          <url/>
+        </geoip>
+        <aliases>
+          <alias uuid="${uuidv5("dns", "opnsense-ha.alias.adminclients")}">
+            <enabled>1</enabled>
+            <name>AdminClients</name>
+            <type>network</type>
+            <proto/>
+            <interface/>
+            <counters>0</counters>
+            <updatefreq/>
+            <content>${ADMIN_CLIENT_IP}</content>
+            <categories/>
+            <description>Hosts allowed to manage the firewall (WebGUI 8443, SSH 22)</description>
+          </alias>
+%{ if HUB_SERVICES ~}
+          <alias uuid="${uuidv5("dns", "opnsense-ha.alias.slotsupernets")}">
+            <enabled>1</enabled>
+            <name>SlotSupernets</name>
+            <type>network</type>
+            <proto/>
+            <interface/>
+            <counters>0</counters>
+            <updatefreq/>
+            <content>${SLOT_SUPERNET_BASE}</content>
+            <categories/>
+            <description>All spoke slot supernets (workload sources behind the transit)</description>
+          </alias>
+%{ endif ~}
+        </aliases>
+      </Alias>
+      <Filter version="1.0.6">
+        <rules>
+          <rule uuid="${uuidv5("dns", "opnsense-ha.rule.wan-webgui")}">
+            <enabled>1</enabled>
+            <statetype>keep</statetype>
+            <sequence>1</sequence>
+            <action>pass</action>
+            <quick>1</quick>
+            <interfacenot>0</interfacenot>
+            <interface>wan</interface>
+            <direction>in</direction>
+            <ipprotocol>inet</ipprotocol>
+            <protocol>TCP</protocol>
+            <source_net>AdminClients</source_net>
+            <source_not>0</source_not>
+            <source_port/>
+            <destination_net>wan</destination_net>
+            <destination_not>0</destination_not>
+            <destination_port>8443</destination_port>
+            <log>0</log>
+            <description>WebGUI from admin clients (WAN)</description>
+          </rule>
+          <rule uuid="${uuidv5("dns", "opnsense-ha.rule.wan-ssh")}">
+            <enabled>1</enabled>
+            <statetype>keep</statetype>
+            <sequence>11</sequence>
+            <action>pass</action>
+            <quick>1</quick>
+            <interfacenot>0</interfacenot>
+            <interface>wan</interface>
+            <direction>in</direction>
+            <ipprotocol>inet</ipprotocol>
+            <protocol>TCP</protocol>
+            <source_net>AdminClients</source_net>
+            <source_not>0</source_not>
+            <source_port/>
+            <destination_net>wan</destination_net>
+            <destination_not>0</destination_not>
+            <destination_port>22</destination_port>
+            <log>0</log>
+            <description>SSH from admin clients (WAN)</description>
+          </rule>
+          <rule uuid="${uuidv5("dns", "opnsense-ha.rule.lan-webgui")}">
+            <enabled>1</enabled>
+            <statetype>keep</statetype>
+            <sequence>21</sequence>
+            <action>pass</action>
+            <quick>1</quick>
+            <interfacenot>0</interfacenot>
+            <interface>lan</interface>
+            <direction>in</direction>
+            <ipprotocol>inet</ipprotocol>
+            <protocol>TCP</protocol>
+            <source_net>AdminClients</source_net>
+            <source_not>0</source_not>
+            <source_port/>
+            <destination_net>lan</destination_net>
+            <destination_not>0</destination_not>
+            <destination_port>8443</destination_port>
+            <log>0</log>
+            <description>WebGUI from admin clients (LAN)</description>
+          </rule>
+          <rule uuid="${uuidv5("dns", "opnsense-ha.rule.lan-ssh")}">
+            <enabled>1</enabled>
+            <statetype>keep</statetype>
+            <sequence>31</sequence>
+            <action>pass</action>
+            <quick>1</quick>
+            <interfacenot>0</interfacenot>
+            <interface>lan</interface>
+            <direction>in</direction>
+            <ipprotocol>inet</ipprotocol>
+            <protocol>TCP</protocol>
+            <source_net>AdminClients</source_net>
+            <source_not>0</source_not>
+            <source_port/>
+            <destination_net>lan</destination_net>
+            <destination_not>0</destination_not>
+            <destination_port>22</destination_port>
+            <log>0</log>
+            <description>SSH from admin clients (LAN)</description>
+          </rule>
+%{ if HUB_SERVICES ~}
+          <!-- Zero-trust hub policy: spokes reach the hub services on the LAN VIP, nothing else. -->
+          <rule uuid="${uuidv5("dns", "opnsense-ha.rule.zt-dns")}">
+            <enabled>1</enabled>
+            <statetype>keep</statetype>
+            <sequence>41</sequence>
+            <action>pass</action>
+            <quick>1</quick>
+            <interfacenot>0</interfacenot>
+            <interface>lan</interface>
+            <direction>in</direction>
+            <ipprotocol>inet</ipprotocol>
+            <protocol>TCP/UDP</protocol>
+            <source_net>SlotSupernets</source_net>
+            <source_not>0</source_not>
+            <source_port/>
+            <destination_net>${LAN_CARP_IP}</destination_net>
+            <destination_not>0</destination_not>
+            <destination_port>53</destination_port>
+            <log>0</log>
+            <description>Spokes: DNS on the hub VIP</description>
+          </rule>
+          <rule uuid="${uuidv5("dns", "opnsense-ha.rule.zt-ntp")}">
+            <enabled>1</enabled>
+            <statetype>keep</statetype>
+            <sequence>42</sequence>
+            <action>pass</action>
+            <quick>1</quick>
+            <interfacenot>0</interfacenot>
+            <interface>lan</interface>
+            <direction>in</direction>
+            <ipprotocol>inet</ipprotocol>
+            <protocol>UDP</protocol>
+            <source_net>SlotSupernets</source_net>
+            <source_not>0</source_not>
+            <source_port/>
+            <destination_net>${LAN_CARP_IP}</destination_net>
+            <destination_not>0</destination_not>
+            <destination_port>123</destination_port>
+            <log>0</log>
+            <description>Spokes: NTP on the hub VIP</description>
+          </rule>
+          <rule uuid="${uuidv5("dns", "opnsense-ha.rule.zt-proxy")}">
+            <enabled>1</enabled>
+            <statetype>keep</statetype>
+            <sequence>43</sequence>
+            <action>pass</action>
+            <quick>1</quick>
+            <interfacenot>0</interfacenot>
+            <interface>lan</interface>
+            <direction>in</direction>
+            <ipprotocol>inet</ipprotocol>
+            <protocol>TCP</protocol>
+            <source_net>SlotSupernets</source_net>
+            <source_not>0</source_not>
+            <source_port/>
+            <destination_net>${LAN_CARP_IP}</destination_net>
+            <destination_not>0</destination_not>
+            <destination_port>3128</destination_port>
+            <log>0</log>
+            <description>Spokes: explicit proxy on the hub VIP</description>
+          </rule>
+          <rule uuid="${uuidv5("dns", "opnsense-ha.rule.zt-icmp-hub")}">
+            <enabled>1</enabled>
+            <statetype>keep</statetype>
+            <sequence>44</sequence>
+            <action>pass</action>
+            <quick>1</quick>
+            <interfacenot>0</interfacenot>
+            <interface>lan</interface>
+            <direction>in</direction>
+            <ipprotocol>inet</ipprotocol>
+            <protocol>ICMP</protocol>
+            <source_net>SlotSupernets</source_net>
+            <source_not>0</source_not>
+            <source_port/>
+            <destination_net>${LAN_CARP_IP}</destination_net>
+            <destination_not>0</destination_not>
+            <destination_port></destination_port>
+            <log>0</log>
+            <description>Spokes: ping the hub VIP</description>
+          </rule>
+          <rule uuid="${uuidv5("dns", "opnsense-ha.rule.zt-icmp-interspoke")}">
+            <enabled>1</enabled>
+            <statetype>keep</statetype>
+            <sequence>45</sequence>
+            <action>pass</action>
+            <quick>1</quick>
+            <interfacenot>0</interfacenot>
+            <interface>lan</interface>
+            <direction>in</direction>
+            <ipprotocol>inet</ipprotocol>
+            <protocol>ICMP</protocol>
+            <source_net>SlotSupernets</source_net>
+            <source_not>0</source_not>
+            <source_port/>
+            <destination_net>SlotSupernets</destination_net>
+            <destination_not>0</destination_not>
+            <destination_port></destination_port>
+            <log>1</log>
+            <description>Inter-spoke ICMP allowed and logged (demo of hub filtering)</description>
+          </rule>
+          <rule uuid="${uuidv5("dns", "opnsense-ha.rule.zt-deny-spokes")}">
+            <enabled>1</enabled>
+            <statetype>keep</statetype>
+            <sequence>46</sequence>
+            <action>block</action>
+            <quick>1</quick>
+            <interfacenot>0</interfacenot>
+            <interface>lan</interface>
+            <direction>in</direction>
+            <ipprotocol>inet</ipprotocol>
+            <protocol>any</protocol>
+            <source_net>SlotSupernets</source_net>
+            <source_not>0</source_not>
+            <source_port/>
+            <destination_net>any</destination_net>
+            <destination_not>0</destination_not>
+            <destination_port></destination_port>
+            <log>1</log>
+            <description>Zero-trust: everything else from the spokes is denied and logged</description>
+          </rule>
+%{ else ~}
+          <rule uuid="${uuidv5("dns", "opnsense-ha.rule.lan-any")}">
+            <enabled>1</enabled>
+            <statetype>keep</statetype>
+            <sequence>41</sequence>
+            <action>pass</action>
+            <quick>1</quick>
+            <interfacenot>0</interfacenot>
+            <interface>lan</interface>
+            <direction>in</direction>
+            <ipprotocol>inet</ipprotocol>
+            <protocol>any</protocol>
+            <source_net>lan</source_net>
+            <source_not>0</source_not>
+            <source_port/>
+            <destination_net>any</destination_net>
+            <destination_not>0</destination_not>
+            <destination_port/>
+            <log>0</log>
+            <description>Allow LAN to any</description>
+          </rule>
+%{ endif ~}
+          <rule uuid="${uuidv5("dns", "opnsense-ha.rule.hasync-pfsync")}">
+            <enabled>1</enabled>
+            <statetype>keep</statetype>
+            <sequence>51</sequence>
+            <action>pass</action>
+            <quick>1</quick>
+            <interfacenot>0</interfacenot>
+            <interface>opt1</interface>
+            <direction>in</direction>
+            <ipprotocol>inet</ipprotocol>
+            <protocol>PFSYNC</protocol>
+            <source_net>opt1</source_net>
+            <source_not>0</source_not>
+            <source_port/>
+            <destination_net>opt1</destination_net>
+            <destination_not>0</destination_not>
+            <destination_port/>
+            <log>0</log>
+            <description>pfsync state sync on HASYNC</description>
+          </rule>
+          <rule uuid="${uuidv5("dns", "opnsense-ha.rule.hasync-xmlrpc")}">
+            <enabled>1</enabled>
+            <statetype>keep</statetype>
+            <sequence>61</sequence>
+            <action>pass</action>
+            <quick>1</quick>
+            <interfacenot>0</interfacenot>
+            <interface>opt1</interface>
+            <direction>in</direction>
+            <ipprotocol>inet</ipprotocol>
+            <protocol>TCP</protocol>
+            <source_net>opt1</source_net>
+            <source_not>0</source_not>
+            <source_port/>
+            <destination_net>opt1</destination_net>
+            <destination_not>0</destination_not>
+            <destination_port>8443</destination_port>
+            <log>0</log>
+            <description>xmlrpc config sync on HASYNC</description>
+          </rule>
+          <rule uuid="${uuidv5("dns", "opnsense-ha.rule.wan-carp")}">
+            <enabled>1</enabled>
+            <statetype>keep</statetype>
+            <sequence>71</sequence>
+            <action>pass</action>
+            <quick>1</quick>
+            <interfacenot>0</interfacenot>
+            <interface>wan</interface>
+            <direction>in</direction>
+            <ipprotocol>inet</ipprotocol>
+            <protocol>CARP</protocol>
+            <source_net>wan</source_net>
+            <source_not>0</source_not>
+            <source_port/>
+            <destination_net>wan</destination_net>
+            <destination_not>0</destination_not>
+            <destination_port/>
+            <log>0</log>
+            <description>Unicast CARP on WAN</description>
+          </rule>
+          <rule uuid="${uuidv5("dns", "opnsense-ha.rule.lan-carp")}">
+            <enabled>1</enabled>
+            <statetype>keep</statetype>
+            <sequence>81</sequence>
+            <action>pass</action>
+            <quick>1</quick>
+            <interfacenot>0</interfacenot>
+            <interface>lan</interface>
+            <direction>in</direction>
+            <ipprotocol>inet</ipprotocol>
+            <protocol>CARP</protocol>
+            <source_net>lan</source_net>
+            <source_not>0</source_not>
+            <source_port/>
+            <destination_net>lan</destination_net>
+            <destination_not>0</destination_not>
+            <destination_port/>
+            <log>0</log>
+            <description>Unicast CARP on LAN</description>
+          </rule>
+        </rules>
+        <snatrules>
+          <rule uuid="${uuidv5("dns", "opnsense-ha.snat.wanip-nonat")}">
+            <enabled>1</enabled>
+            <nonat>1</nonat>
+            <nosync>0</nosync>
+            <sequence>1</sequence>
+            <interface>wan</interface>
+            <ipprotocol>inet</ipprotocol>
+            <protocol>any</protocol>
+            <source_net>wanip</source_net>
+            <source_not>0</source_not>
+            <source_port/>
+            <destination_net>any</destination_net>
+            <destination_not>0</destination_not>
+            <destination_port/>
+            <target/>
+            <target_port/>
+            <log>0</log>
+            <description>Firewall own traffic keeps its interface address</description>
+          </rule>
+          <rule uuid="${uuidv5("dns", "opnsense-ha.snat.lan-via-carp-vip")}">
+            <enabled>1</enabled>
+            <nonat>0</nonat>
+            <nosync>0</nosync>
+            <sequence>11</sequence>
+            <interface>wan</interface>
+            <ipprotocol>inet</ipprotocol>
+            <protocol>any</protocol>
+            <source_net>lan</source_net>
+            <source_not>0</source_not>
+            <source_port/>
+            <destination_net>any</destination_net>
+            <destination_not>0</destination_not>
+            <destination_port/>
+            <target>${WAN_CARP_IP}</target>
+            <target_port/>
+            <log>0</log>
+            <description>Outbound NAT via WAN CARP VIP</description>
+          </rule>
+%{ if length(SLOTS) > 0 ~}
+          <!-- Slot supernets sit behind static routes: hybrid/automatic SNAT only covers interface networks, so they need an explicit rule. -->
+          <rule uuid="${uuidv5("dns", "opnsense-ha.snat.slots-via-carp-vip")}">
+            <enabled>1</enabled>
+            <nonat>0</nonat>
+            <nosync>0</nosync>
+            <sequence>12</sequence>
+            <interface>wan</interface>
+            <ipprotocol>inet</ipprotocol>
+            <protocol>any</protocol>
+            <source_net>${SLOT_SUPERNET_BASE}</source_net>
+            <source_not>0</source_not>
+            <source_port/>
+            <destination_net>any</destination_net>
+            <destination_not>0</destination_not>
+            <destination_port/>
+            <target>${WAN_CARP_IP}</target>
+            <target_port/>
+            <log>0</log>
+            <description>Slot supernets outbound NAT via WAN CARP VIP</description>
+          </rule>
+%{ endif ~}
+        </snatrules>
+        <npt/>
+        <onetoone/>
+      </Filter>
+    </Firewall>
+%{ if HUB_SERVICES ~}
+    <unboundplus version="1.0.15">
+      <general>
+        <enabled>1</enabled>
+        <port>53</port>
+        <active_interface>lan</active_interface>
+        <outgoing_interface>wan</outgoing_interface>
+        <dnssec>0</dnssec>
+        <local_zone_type>transparent</local_zone_type>
+      </general>
+      <acls>
+        <acl uuid="${uuidv5("dns", "opnsense-ha.unbound.acl.slots")}">
+          <enabled>1</enabled>
+          <name>SlotSupernets</name>
+          <action>allow</action>
+          <networks>${SLOT_SUPERNET_BASE}</networks>
+          <description>Spoke workloads resolve through the hub</description>
+        </acl>
+      </acls>
+    </unboundplus>
+    <proxy version="1.0.9">
+      <general>
+        <enabled>1</enabled>
+        <enablePinger>1</enablePinger>
+      </general>
+      <forward>
+        <interfaces>lan</interfaces>
+        <port>3128</port>
+        <sslbump>0</sslbump>
+        <transparentMode>0</transparentMode>
+        <addACLforInterfaceSubnets>1</addACLforInterfaceSubnets>
+        <acl>
+          <allowedSubnets>${SLOT_SUPERNET_BASE}</allowedSubnets>
+          <sslPorts>${PROXY_SSL_PORTS}</sslPorts>
+%{ if PROXY_ALLOWED_DOMAINS != "" ~}
+          <!-- allowlist mode: whitelist is evaluated before the deny-all blacklist in the squid template -->
+          <whiteList>${PROXY_ALLOWED_DOMAINS}</whiteList>
+          <blackList>^.*$</blackList>
+%{ endif ~}
+        </acl>
+      </forward>
+    </proxy>
+%{ endif ~}
     <Syslog>
       <general>
         <enabled>1</enabled>

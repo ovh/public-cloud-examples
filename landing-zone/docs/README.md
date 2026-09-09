@@ -6,8 +6,8 @@ Cross-cutting documentation for both available architectures. Pick your architec
 
 | Architecture | Description | Documentation |
 |--------------|-------------|---------------|
-| **Multi-vRack + IPsec** | One vRack per bubble, IPsec/VTI tunnel between each spoke and the hub, OPNsense HA pair in every bubble. | [deployments/multi-vrack-ipsec/docs/](../deployments/multi-vrack-ipsec/docs/README.md) |
-| **Mono-vRack + LAN transit** | A single shared vRack, OPNsense HA only at the hub, L2 connectivity through a transit VLAN. | [deployments/mono-vrack-lan-transit/docs/](../deployments/mono-vrack-lan-transit/docs/README.md) |
+| **Mono-vRack + LAN transit** (maintained) | One shared vRack, OPNsense 26.7 HA at the hub with DNS/NTP/proxy, firewall-less spokes by slot, zero-trust security groups. | [deployments/mono-vrack-lan-transit/docs/](../deployments/mono-vrack-lan-transit/docs/README.md) |
+| **Multi-vRack + IPsec** (deprecated) | One vRack per bubble, IPsec/VTI tunnel, OPNsense HA in every bubble — kept for reference. | [deployments/multi-vrack-ipsec/docs/](../deployments/multi-vrack-ipsec/docs/README.md) |
 | **OPNsense HA — Existing project** | OPNsense HA pair in an existing Public Cloud project, without creating a vRack or a project. | [deployments/opnsense-ha-existing-project/](../deployments/opnsense-ha-existing-project/README.md) |
 
 > **Looking for a complete, concrete walkthrough?** The **[OrbitalEdge SAS worked example](../examples/orbital-edge/)** is a fictional end-to-end deployment built on the **Mono-vRack + LAN transit** architecture (it is an example, not a fourth architecture). It is the best starting point for a newcomer.

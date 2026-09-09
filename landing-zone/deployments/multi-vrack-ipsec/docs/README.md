@@ -1,3 +1,5 @@
+> **⚠️ Deprecated — kept for reference.** The multi-vRack + IPsec architecture is no longer maintained: one OPNsense pair per bubble, IPsec over public Floating IPs and an eleven-step API peering make it heavy, and OVHcloud has no plan for a managed VPN gateway. Its templates (`hub-ipsec`, `spoke-ipsec`) still use the pre-26.7 layout: firewall rules are legacy (read-only without the `os-firewall-legacy` plugin) and **HA is CARP only — pfsync and configuration sync are not active**. Use it only if you need pre-built IPsec tunnels between bubbles and accept these limits. The maintained architecture is [Mono-vRack + LAN transit](../../mono-vrack-lan-transit/docs/README.md).
+
 # Documentation — Multi-vRack + IPsec architecture
 
 One vRack per bubble (hub + each spoke). Hub ↔ spoke interconnection runs over an **IPsec/VTI** tunnel with an OPNsense HA pair in every bubble.

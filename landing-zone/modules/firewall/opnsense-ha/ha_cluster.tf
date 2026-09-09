@@ -1,9 +1,37 @@
 ########################################################################################
+#   Template variables shared by both nodes (slots, services)
+########################################################################################
+
+locals {
+  slots = [
+    for k in range(1, var.slot_count + 1) : {
+      k          = k
+      supernet   = cidrsubnet(var.slot_supernet_base, 8, k)
+      transit_ip = cidrhost(var.private_lan_cidr, var.slot_transit_offset + k)
+      gateway    = format("SlotGW%02d", k)
+    }
+  ]
+  template_common = {
+    SLOTS              = local.slots
+    SLOT_SUPERNET_BASE = var.slot_supernet_base
+    HUB_SERVICES       = var.hub_services
+    # squid url_regex patterns per domain: plain HTTP on port 80 and CONNECT (HTTPS) on 443, domain and sub-domains.
+    # Patterns containing ^ or \ are used verbatim by the OPNsense template; the list is comma-separated.
+    # squid SSL_ports (CONNECT allowed) as OPNsense expects them: "port:label" entries
+    PROXY_SSL_PORTS = join(",", [for p in var.proxy_connect_ports : format("%d:%s", p, lookup({ 443 = "https", 6514 = "syslog-tls", 12202 = "gelf-tls", 9200 = "opensearch" }, p, "custom"))])
+    PROXY_ALLOWED_DOMAINS = join(",", flatten([for d in var.proxy_allowed_domains : [
+      format("^http://([^/]*\\.)?%s(:80)?(/|$)", replace(d, ".", "\\.")),
+      format("^([^/]*\\.)?%s:443$", replace(d, ".", "\\.")),
+    ]]))
+  }
+}
+
+########################################################################################
 #   Attach Floating IP to OPNsense Primary
 ########################################################################################
 
 resource "openstack_networking_floatingip_v2" "fw_fip" {
-  depends_on = [ovh_cloud_project_gateway.fw_wan_router]
+  depends_on = [openstack_networking_router_interface_v2.fw_wan_router_if]
 
   pool        = "Ext-Net"
   port_id     = openstack_networking_port_v2.fw_wan_carp_vip.id
@@ -27,6 +55,20 @@ resource "openstack_compute_instance_v2" "fw_active" {
 
   lifecycle {
     ignore_changes = [user_data]
+    precondition {
+      condition = var.slot_count == 0 || (
+        cidrhost(var.private_wan_cidr, 0) != cidrhost(var.slot_supernet_base, 0) &&
+        !startswith(var.private_wan_cidr, "10.") && !startswith(var.private_hasync_cidr, "10.") && !startswith(var.private_lan_cidr, "10.")
+      ) || !startswith(var.slot_supernet_base, "10.")
+      error_message = "With slot routing enabled, the hub WAN / LAN / HASYNC CIDRs must not overlap slot_supernet_base (default 10.0.0.0/8): use e.g. 172.16.x.x for WAN and HASYNC."
+    }
+    precondition {
+      condition = alltrue([
+        for c in [var.private_wan_cidr, var.private_hasync_cidr, var.private_lan_cidr] :
+        !startswith(c, "172.17.") && !(startswith(c, "172.31.") && tonumber(split(".", c)[2]) < 128)
+      ])
+      error_message = "Hub WAN / LAN / HASYNC CIDRs must avoid 172.17.0.0/16 (Docker on Managed Kubernetes nodes) and 172.31.0.0/17 (Ext-Net gateway ports used by Floating IPs) — both reserved by OVHcloud."
+    }
   }
 
   network {
@@ -63,6 +105,7 @@ resource "openstack_compute_instance_v2" "fw_active" {
       API_KEY             = var.api_key != null ? var.api_key : ""
       API_SECRET_HASH     = var.api_secret_hash != null ? var.api_secret_hash : ""
     },
+    local.template_common,
     var.template_extra_vars
   )))
 }
@@ -120,6 +163,7 @@ resource "openstack_compute_instance_v2" "fw_passive" {
       API_KEY             = var.api_key != null ? var.api_key : ""
       API_SECRET_HASH     = var.api_secret_hash != null ? var.api_secret_hash : ""
     },
+    local.template_common,
     var.template_extra_vars
   )))
 }

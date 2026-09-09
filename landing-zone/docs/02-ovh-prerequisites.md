@@ -7,7 +7,7 @@
 
 ## Creating API credentials (Application Key, Secret, Consumer Key)
 
-The deployments use the **OVH provider** with three values:
+The landing-zone deployments (multi-vRack, mono-vRack and their Day-2 spokes) use the **OVH provider** with three values. The standalone `deployments/opnsense-ha-existing-project/` does not: it only needs an OpenStack user on the existing project (`openrc.sh`) — see its [README](../deployments/opnsense-ha-existing-project/README.md).
 
 | Variable (typical) | Role |
 |--------------------|------|

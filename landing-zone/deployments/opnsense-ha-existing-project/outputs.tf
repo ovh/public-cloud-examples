@@ -46,3 +46,22 @@ output "api_secret" {
   value       = random_password.api_secret.result
   sensitive   = true
 }
+
+output "ssh_private_key" {
+  description = "Auto-generated SSH private key (empty when ssh_public_key_path is set) — `tofu output -raw ssh_private_key`"
+  value       = module.opnsense_ha.ssh_private_key
+  sensitive   = true
+}
+
+output "node_wan_ips" {
+  description = "Real WAN addresses of the two nodes (the CARP VIP floats between them)"
+  value = {
+    primary   = module.opnsense_ha.primary_wan_ip
+    secondary = module.opnsense_ha.secondary_wan_ip
+  }
+}
+
+output "image_source_url" {
+  description = "Cloud-ready image imported into Glance"
+  value       = module.opnsense_ha.image_source_url
+}

@@ -2,7 +2,7 @@
 
 > **⚠️ Unofficial image — user responsibility**
 >
-> The image currently referenced in `config.tf` (`OPNsense-26.1-cloudready.qcow2`, the version in force at the time this guide was written) is a **community image, neither produced nor validated by the OPNsense project**. It is hosted on an OVHcloud S3 bucket for convenience. **Its use is entirely at your own risk.** No guarantee of integrity, availability or updates is provided. Rebuilding this image yourself from the official OPNsense sources is strongly recommended, following the procedure below.
+> The image referenced by default in `config.tf` (`OPNsense-<opnsense_version>-cloudready.qcow2`, `26.7` at the time this guide was written) is a **community image, neither produced nor validated by the OPNsense project**. It is hosted on an OVHcloud S3 bucket for convenience. **Its use is entirely at your own risk.** No guarantee of integrity, availability or updates is provided. Rebuilding this image yourself from the official OPNsense sources is strongly recommended, following the procedure below.
 
 ---
 
@@ -185,17 +185,20 @@ fi
 
 ---
 
-## Pointing to your own image in `config.tf`
+## Pointing to your own image
 
-Once your image is uploaded, change the `image_source_url` variable in [modules/firewall/opnsense-ha/config.tf](../modules/firewall/opnsense-ha/config.tf):
+Once your image is uploaded, pass its URL to the module through the `image_source_url` variable (it overrides the default URL built from `opnsense_version`):
 
 ```hcl
-resource "openstack_images_image_v2" "fw_image" {
-  name             = "OPNsense Cloud-Ready"
-  image_source_url = "https://<your-bucket>.s3.<your-region>.io.cloud.ovh.net/releases-cloudready/OPNsense-<version>-cloudready.qcow2"
-  container_format = "bare"
-  disk_format      = "qcow2"
+module "opnsense_ha" {
+  source = "../../modules/firewall/opnsense-ha"
+
+  opnsense_version = "26.7"
+  image_source_url = "https://<your-bucket>.s3.<your-region>.io.cloud.ovh.net/releases-cloudready/OPNsense-26.7-cloudready.qcow2"
+  # ...
 }
 ```
 
-Replace `<your-bucket>`, `<your-region>` and `<version>` with your values.
+Replace `<your-bucket>` and `<your-region>` with your values. Changing the URL replaces the Glance image, and therefore the instances that boot from it — plan before applying on a running cluster.
+
+> **Configuration model:** the `hub-simple` templates injected through `user_data` are written for the OPNsense 26.7 model (MVC firewall rules and Source NAT, root `hasync` node). They also load on 26.1, which already ships those models, but the rules then show up in the "new" rules GUI only.

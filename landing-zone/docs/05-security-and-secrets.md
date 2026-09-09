@@ -33,6 +33,8 @@ OpenTofu automatically reads any environment variable prefixed with `TF_VAR_` an
 | `TF_VAR_hub_api_key` | Hub OPNsense API key (Day-2 spoke) |
 | `TF_VAR_hub_api_secret` | Hub OPNsense API secret (Day-2 spoke) |
 
+The three `TF_VAR_ovh_*` variables are only read by the landing zones and their Day-2 spokes, which create projects, vRacks and users through the OVH API. The standalone `deployments/opnsense-ha-existing-project/` deployment authenticates with the OpenStack credentials of the existing project (`source openrc.sh`) and does not use them.
+
 ### Example: manual deployment (multi-vRack landing zone)
 
 ```bash
@@ -154,5 +156,5 @@ The `local-exec` calls in `hub_peering.tf` build commands like `curl -u api_key:
 | `admin_password` / `ha_password` | Change in the OPNsense UI → update `TF_VAR_*` (`user_data` is ignored after first boot) |
 | `ipsec_pre_shared_key` | Update `TF_VAR_ipsec_pre_shared_key` → `tofu apply` (the `restapi` provider updates the PSK entry on the hub) — synchronise hub and spoke at the same time |
 | `hub_api_key` / `hub_api_secret` | `tofu apply -replace=random_string.hub_api_key -replace=random_password.hub_api_secret` → `tofu apply` on the spoke to propagate |
-| OVH API credentials | Revoke in the OVHcloud manager → generate a new set → update the environment variables |
+| OVH API credentials (landing zones and Day-2 spokes only) | Revoke in the OVHcloud manager → generate a new set → update the environment variables |
 | `tofu_state_passphrase` | Update `TF_VAR_tofu_state_passphrase` → `tofu apply` (the state is automatically re-encrypted with the new passphrase) |

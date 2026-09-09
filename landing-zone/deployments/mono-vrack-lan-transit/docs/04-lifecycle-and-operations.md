@@ -2,58 +2,59 @@
 
 ## Add a spoke
 
-1. Duplicate `deployments/mono-vrack-lan-transit/spoke-template` (or new workspace/Terragrunt).
-2. Configure a **separate backend** — one state per spoke.
-3. Pick unique values: `transit_router_ip`, VLAN IDs, CIDRs (see constraints in [Day‑2](03-day2-spoke.md)).
-4. `tofu apply`.
+Copy the template, pick a free slot (never 2 or 3), apply ([Day‑2](03-day2-spoke.md)). No hub change. Record the slot.
 
 ## Remove a spoke
 
-1. `tofu destroy` in the spoke directory.
-   - Removes the Public Cloud project, the Neutron networks, and the OPNsense API objects (gateway + routes) through the `restapi` provider.
-2. Verify in the hub OPNsense UI (`System → Routes`) that the spoke's gateway and routes are gone.
+`tofu destroy` in the spoke directory removes the networks, the identities and the project (project termination is confirmed by the provider through the account's notification mails). The hub keeps its inert route to the slot; the slot can be reused once the project is gone.
 
-> The `restapi` provider is configured with `destroy_method = "POST"` — deletion of OPNsense objects goes through the `/del_*` API endpoints. When in doubt, verify manually in the UI.
+## Extend the slots
 
-## Full destroy (hub + every spoke)
+Raise `slot_count` on the landing zone and apply: the hub's `user_data` is ignored after boot (`lifecycle.ignore_changes`), so push the new gateways/routes to the running pair with the OPNsense API (`routing/settings/add_gateway`, `routes/routes/addroute`, then `…/reconfigure`) or redeploy the hub in a maintenance window.
 
-1. Destroy **every spoke** first (required: the API routes must be removed while the hub is still reachable).
-2. Destroy the hub (`tofu destroy` in `landing-zone/`) — removes the OPNsense instances, the vRack and the hub project.
+## Change the proxy allowlist, CONNECT ports or the hub's remote syslog
 
-> **Do not destroy the hub before the spokes.** Once the hub is destroyed, the `restapi` provider can no longer reach the OPNsense API to clean up the spoke objects.
+Edit `proxy_allowed_domains`, `proxy_connect_ports` or `hub_remote_syslog` in the landing-zone
+`terraform.tfvars` and apply: the post-boot step re-runs and pushes the settings to both hub nodes through
+the API (squid restarted, syslog reconfigured) — no instance is rebuilt (`user_data` changes are ignored on
+running nodes). An empty allowlist restores "any destination"; `hub_remote_syslog = null` removes the
+destination. Verified on the sandbox: allowed domain and sub-domains `200`, other domains `403`, HTTPS
+`CONNECT` to other domains refused; ports and destination applied and removed on both nodes.
 
-## HA failover
+## HA failover — measured on the sandbox (GRA9, 2026‑08‑28)
 
-The OPNsense pair uses CARP for the VIPs (WAN and LAN). When the primary node fails:
+| Event | Observed |
+|---|---|
+| primary stopped | Floating IP served by the secondary as soon as the instance was down; CARP MASTER on WAN and LAN; squid running on the secondary |
+| 1‑second probe through the proxy | **7 lost samples**, then steady |
+| 100 MB download in progress **through the proxy** | **cut** (`curl` error 56 after 27 MB) — an explicit proxy terminates TCP; its connections do not survive a node switch, pfsync or not |
+| primary restarted | MASTER again after **34 s** (preemption), one lost sample |
 
-- The CARP VIP automatically swings to the secondary — the floating IP follows through the OVHcloud mechanism.
-- Established connections survive thanks to pfsync synchronisation (state table).
-- The configuration is replicated in real time via xmlrpc (dedicated HASYNC channel).
+Plan for it: clients retry (browsers, `apt`, most SDKs do); long transfers through the proxy should be resumable. Flows that only *route* through the hub (inter-spoke, DNS) do survive thanks to pfsync — measured at one lost second on the standalone deployment.
 
-No manual action is required for a normal failover.
+## Configuration sync between the two hub nodes
 
-## OPNsense update
+OPNsense replicates configuration **on demand**: after a change on the primary, push it from *System › High Availability › Status* or `POST /api/core/hasync_status/restart_all`. Firewall state (pfsync) is continuous.
 
-OPNsense updates are done from the WebGUI or via SSH — they do not go through Terraform. Update the secondary node first, test the failover, then update the primary.
+## Audit
 
-## Hub sizing
+`tools/audit-exposure.sh`, run with a spoke's `audit` identity (read only), reports instances on `Ext-Net`, floating IPs, ports without port security, security groups outside the landing-zone set and rules left in `default`. Run it periodically per spoke; a `VIOLATION` line is a conversation to have with the team.
 
-Every inter-spoke and Internet-bound flow goes through the hub OPNsense pair. Adjust the flavor (`hub_flavor`) to your throughput needs:
+## Hub OPNsense upgrades
 
-| Flavor | vCPU | RAM | Indicative throughput |
-|--------|------|-----|-----------------------|
-| `b3-16` (default) | 4 | 16 GB | ≤ ~1 Gbps |
-| `b3-64` | 16 | 64 GB | high traffic / many spokes |
+Minor updates: WebGUI or `opnsense-update` on the secondary first, test a failover, then the primary. Major version: rebuild the pair from a new cloud-ready image (`opnsense_version`) in a maintenance window — the module recreates the instances; spokes are untouched.
 
-Resizing the flavor requires a `tofu apply` with `taint` on the instances (or destroy/recreate of the hub module) — plan for a maintenance window.
+## Troubleshooting
 
-## restapi troubleshooting
+- *Spoke instance has no connectivity at all* — booted without security group (default is empty) or without `-base`.
+- *Instance reaches DNS but not the Internet* — no proxy configured on the client; direct egress is denied by design.
+- *Proxy stopped after Day‑1* — re-run `tools/hub-postboot.sh` (installs missing plugins, normalises the proxy model, starts squid).
+- *A new spoke cannot reach the hub VIP* — its slot number is above `slot_count`, or the hub LAN VLAN/CIDR differ from the hub.
+- *Hub firewall log* — `Firewall › Log Files › Live View`: denied spoke flows carry the label *Zero-trust: everything else from the spokes is denied and logged*.
 
-- *internal validation failed; object ID is not set* error: the OPNsense API returned `result: failed` without a UUID — usually a business validation issue (duplicate gateway, invalid CIDR, IP already in use).
-- Enable `TF_LOG=TRACE` to see HTTP request/response bodies.
-- The hub must be fully booted before the spoke `apply` — wait for the WebGUI to answer on `https://<hub_floating_ip>:8443`.
+## Sizing
 
-## Links
-
-- Day‑1: [Landing zone](02-day1-landing-zone.md).
-- Day‑2: [Spoke](03-day2-spoke.md).
+| Flavor | Indicative use |
+|--------|----------------|
+| `b3-16` (default) | up to ~1 Gbit/s routed, a few hundred proxy clients |
+| `b3-64` | many spokes, heavy proxy use |
