@@ -1,0 +1,5 @@
+boto3
+requests
+PyPDF2
+psycopg2-binary
+markdownify
